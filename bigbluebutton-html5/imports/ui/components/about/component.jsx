@@ -43,7 +43,7 @@ const AboutComponent = ({ intl, clientBuild, copyright }) => (
     }}
   >
     {`${intl.formatMessage(intlMessages.copyright)} ${copyright}`} <br />
-    {`${intl.formatMessage(intlMessages.version)} ${clientBuild}`}
+    Release Version: v1.9
   </Modal>
 );
 
