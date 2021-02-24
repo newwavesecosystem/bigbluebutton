@@ -9,7 +9,7 @@ const intlMessages = defineMessages({
   },
   version: {
     id: 'app.about.version',
-    description: 'Client version label',
+    description: 'App release version label',
   },
   copyright: {
     id: 'app.about.copyright',
