@@ -76,6 +76,8 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     }
   </style>
   <script>
+      window.onbeforeunload = function() { return "Your work will be lost."; };
+
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
     });
