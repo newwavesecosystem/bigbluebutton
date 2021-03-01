@@ -323,7 +323,7 @@ class ActionsDropdown extends PureComponent {
     const children = availablePresentations.length > 2 && amIPresenter
       ? availablePresentations.concat(availableActions) : availableActions;
 
-    if ((!amIPresenter && !amIModerator)
+    if ((amIPresenter && amIModerator)
       || availableActions.length === 0
       || !isMeteorConnected) {
       return null;

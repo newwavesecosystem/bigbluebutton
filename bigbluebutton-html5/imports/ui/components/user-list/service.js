@@ -610,7 +610,7 @@ export const getUserNamesLink = (docTitle, fnSortedLabel, lnSortedLabel) => {
   const date = new Date();
   const time = `${date.getHours()}-${date.getMinutes()}`;
   const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${time}`;
-  link.setAttribute('download', `${meeting.meetingProp.name}[users-list]_${dateString}.txt`);
+  link.setAttribute('download', `${meeting.meetingProp.name}[attendance]_${dateString}.txt`);
   link.setAttribute(
     'href',
     `data: ${mimeType} ;charset=utf-16,${encodeURIComponent(namesListsString)}`,
