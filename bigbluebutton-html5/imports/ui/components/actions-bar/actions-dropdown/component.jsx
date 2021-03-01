@@ -104,7 +104,7 @@ class ActionsDropdown extends PureComponent {
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
-    this.leaveSession = this.leaveSession.bind(this);
+    // this.leaveSession = this.leaveSession.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -205,17 +205,17 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
-      (amIPresenter
-        ? (
-                  <DropdownListItem
-                      icon="logout"
-                      label="logendm"
-                      description="youaretogetout"
-                      key={this.selectUserRandId}
-                      onClick={this.leaveSession()}
-                  />
-        )
-        : null),
+      // (amIPresenter
+      //   ? (
+      //             <DropdownListItem
+      //                 icon="logout"
+      //                 label="logendm"
+      //                 description="youaretogetout"
+      //                 key={this.selectUserRandId}
+      //                 onClick={this.leaveSession()}
+      //             />
+      //   )
+      //   : null),
     ]);
   }
 
