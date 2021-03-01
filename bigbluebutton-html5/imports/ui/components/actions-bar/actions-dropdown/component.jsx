@@ -84,6 +84,10 @@ const intlMessages = defineMessages({
     id: 'app.actionsBar.actionsDropdown.selectRandUserDesc',
     description: 'Description for select random user option',
   },
+  leaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  }
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -199,6 +203,18 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
+      (amIPresenter
+        ? (
+                  <DropdownListItem
+                      key="list-item-logout"
+                      data-test="logout"
+                      icon="logout"
+                      label={intl.formatMessage(intlMessages.leaveSessionLabel)}
+                      description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+                      onClick={() => this.leaveSession()}
+                  />
+        )
+        : null),
     ]);
   }
 
@@ -241,6 +257,14 @@ class ActionsDropdown extends PureComponent {
   handleExternalVideoClick() {
     const { mountModal } = this.props;
     mountModal(<ExternalVideoModal />);
+  }
+
+  leaveSession() {
+    makeCall('userLeftMeeting');
+    // we don't check askForFeedbackOnLogout here,
+    // it is checked in meeting-ended component
+    Session.set('codeError', this.LOGOUT_CODE);
+    // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
   }
 
   render() {
