@@ -16,6 +16,7 @@ import ExternalVideoModal from '/imports/ui/components/external-video-player/mod
 import RandomUserSelectContainer from '/imports/ui/components/modal/random-user/container';
 import cx from 'classnames';
 import { styles } from '../styles';
+import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -85,9 +86,21 @@ const intlMessages = defineMessages({
     id: 'app.actionsBar.actionsDropdown.selectRandUserDesc',
     description: 'Description for select random user option',
   },
-  leaveSessionLabel: {
+  selectleaveSessionLabel: {
     id: 'app.navBar.settingsDropdown.leaveSessionLabel',
     description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
+  },
+  endMeetingLabel: {
+    id: 'app.navBar.settingsDropdown.endMeetingLabel',
+    description: 'End meeting options label',
+  },
+  endMeetingDesc: {
+    id: 'app.navBar.settingsDropdown.endMeetingDesc',
+    description: 'Describes settings option closing the current meeting',
   },
 });
 
@@ -102,6 +115,7 @@ class ActionsDropdown extends PureComponent {
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
     this.selectLeaveMeeting = _.uniqueId('action-item-');
+    this.endLeaveMeeting = _.uniqueId('action-item-');
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
@@ -209,11 +223,22 @@ class ActionsDropdown extends PureComponent {
       (amIPresenter
         ? (
           <DropdownListItem
-            icon="user"
-            label={intl.formatMessage(intlMessages.selectRandUserLabel)}
-            description={intl.formatMessage(intlMessages.selectRandUserDesc)}
+            icon="logout"
+            label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
+            description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
             key={this.selectLeaveMeeting}
             onClick={() => this.leaveSession()}
+          />
+        )
+        : null),
+      (amIPresenter
+        ? (
+          <DropdownListItem
+            icon="application"
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            key={this.endLeaveMeeting}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
           />
         )
         : null),
