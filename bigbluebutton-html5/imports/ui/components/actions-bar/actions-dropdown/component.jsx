@@ -85,7 +85,7 @@ const intlMessages = defineMessages({
     description: 'Description for select random user option',
   },
   leaveSessionLabel: {
-    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    id: 'lsam',
     description: 'Leave session button label',
   }
 });
@@ -209,8 +209,8 @@ class ActionsDropdown extends PureComponent {
         ? (
                   <DropdownListItem
                       icon="logout"
-                      label={intl.formatMessage(intlMessages.leaveSessionLabel)}
-                      description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+                      label="logendm"
+                      description="youaretogetout"
                       key={this.selectUserRandId}
                       onClick={this.leaveSession()}
                   />
