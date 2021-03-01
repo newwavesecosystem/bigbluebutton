@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
+import { makeCall } from '/imports/ui/services/api';
 import Button from '/imports/ui/components/button/component';
 import Dropdown from '/imports/ui/components/dropdown/component';
 import DropdownTrigger from '/imports/ui/components/dropdown/trigger/component';
@@ -85,9 +86,9 @@ const intlMessages = defineMessages({
     description: 'Description for select random user option',
   },
   leaveSessionLabel: {
-    id: 'lsam',
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
     description: 'Leave session button label',
-  }
+  },
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -104,7 +105,7 @@ class ActionsDropdown extends PureComponent {
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
-    // this.leaveSession = this.leaveSession.bind(this);
+    this.leaveSession = this.leaveSession.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -212,7 +213,7 @@ class ActionsDropdown extends PureComponent {
             label={intl.formatMessage(intlMessages.selectRandUserLabel)}
             description={intl.formatMessage(intlMessages.selectRandUserDesc)}
             key={this.selectUserRandId}
-            onClick={() => mountModal(<RandomUserSelectContainer isSelectedUser={false} />)}
+            onClick={() => this.leaveSession()}
           />
         )
         : null),
