@@ -100,7 +100,7 @@ class ActionsDropdown extends PureComponent {
     this.pollId = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
-    this.selectEndMeeting = "action-item-endm1";
+    this.selectEndMeeting = _.uniqueId('action-item-');
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
@@ -208,11 +208,11 @@ class ActionsDropdown extends PureComponent {
       (amIPresenter
         ? (
                   <DropdownListItem
-                      key={this.selectEndMeeting}
                       icon="logout"
                       label={intl.formatMessage(intlMessages.leaveSessionLabel)}
                       description={intl.formatMessage(intlMessages.leaveSessionDesc)}
-                      onClick={() => this.leaveSession()}
+                      key={this.selectUserRandId}
+                      onClick={this.leaveSession()}
                   />
         )
         : null),
