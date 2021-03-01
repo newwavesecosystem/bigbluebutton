@@ -205,6 +205,17 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
+      (amIPresenter
+        ? (
+          <DropdownListItem
+            icon="user"
+            label={intl.formatMessage(intlMessages.selectRandUserLabel)}
+            description={intl.formatMessage(intlMessages.selectRandUserDesc)}
+            key={this.selectUserRandId}
+            onClick={() => mountModal(<RandomUserSelectContainer isSelectedUser={false} />)}
+          />
+        )
+        : null),
       // (amIPresenter
       //   ? (
       //             <DropdownListItem
