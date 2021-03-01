@@ -27,6 +27,8 @@ const propTypes = {
   handleTakePresenter: PropTypes.func.isRequired,
   allowExternalVideo: PropTypes.bool.isRequired,
   stopExternalVideoShare: PropTypes.func.isRequired,
+  isBreakoutRoom: PropTypes.bool,
+  isMeteorConnected: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -140,6 +142,9 @@ class ActionsDropdown extends PureComponent {
       isPollingEnabled,
       stopExternalVideoShare,
       mountModal,
+      isMeteorConnected,
+      amIModerator,
+      isBreakoutRoom,
     } = this.props;
 
     const {
@@ -154,6 +159,14 @@ class ActionsDropdown extends PureComponent {
     const {
       formatMessage,
     } = intl;
+
+    const {
+      allowLogout: allowLogoutSetting,
+    } = Meteor.settings.public.app;
+
+    const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
+
+    const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
     return _.compact([
       (amIPresenter && isPollingEnabled
@@ -220,39 +233,28 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
-      (amIPresenter
-        ? (
-          <DropdownListItem
-            icon="logout"
-            label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
-            description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
-            key={this.selectLeaveMeeting}
-            onClick={() => this.leaveSession()}
-          />
-        )
-        : null),
-      (amIPresenter
-        ? (
-          <DropdownListItem
+      (shouldRenderLogoutOption
+          ?
+          (<DropdownListItem
+              icon="logout"
+              label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
+              description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
+              key={this.selectLeaveMeeting}
+              onClick={() => this.leaveSession()}
+          />):null
+      ),
+
+      (allowedToEndMeeting
+              ?
+          (<DropdownListItem
             icon="application"
             label={intl.formatMessage(intlMessages.endMeetingLabel)}
             description={intl.formatMessage(intlMessages.endMeetingDesc)}
             key={this.endLeaveMeeting}
             onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
           />
-        )
-        : null),
-      // (amIPresenter
-      //   ? (
-      //             <DropdownListItem
-      //                 icon="logout"
-      //                 label="logendm"
-      //                 description="youaretogetout"
-      //                 key={this.selectUserRandId}
-      //                 onClick={this.leaveSession()}
-      //             />
-      //   )
-      //   : null),
+          ):null
+        ),
     ]);
   }
 
