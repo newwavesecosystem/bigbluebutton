@@ -86,7 +86,7 @@ class ErrorScreen extends PureComponent {
           {children}
         </div>
 
-        <a href={url}>Go home</a>
+        <a href={url} style={{marginTop: 5}}>Go Home</a>
       </div>
     );
   }
