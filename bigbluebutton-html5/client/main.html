@@ -76,11 +76,42 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     }
   </style>
   <script>
-      window.onbeforeunload = function() { return "Your work will be lost."; };
+      window.onload = function () {
+          if (typeof history.pushState === "function") {
+              history.pushState("jibberish", null, null);
+              window.onpopstate = function () {
+                  history.pushState('newjibberish', null, null);
+                  // Handle the back (or forward) buttons here
+                  // Will NOT handle refresh, use onbeforeunload for this.
+                  var r = confirm("You pressed a Back button! Are you sure you want to leave the meeting room?");
 
-    document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-    });
+                  if (r == true) {
+                      // Call Back button programmatically as per user confirmation.
+                      history.back();
+                      // Uncomment below line to redirect to the previous page instead.
+                      // window.location = document.referrer // Note: IE11 is not supporting this.
+                  } else {
+                      // Stay on the current page.
+                  }
+              };
+          }
+          else {
+              var ignoreHashChange = true;
+              window.onhashchange = function () {
+                  if (!ignoreHashChange) {
+                      ignoreHashChange = true;
+                      window.location.hash = Math.random();
+                      // Detect and redirect change here
+                      // Works in older FF and IE9
+                      // * it does mess with your hash symbol (anchor?) pound sign
+                      // delimiter on the end of the URL
+                  }
+                  else {
+                      ignoreHashChange = false;
+                  }
+              };
+          }
+      }
   </script>
   <script src="compatibility/adapter.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/sip.js?v=VERSION" language="javascript"></script>

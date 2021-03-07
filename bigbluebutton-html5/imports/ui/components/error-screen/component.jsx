@@ -65,6 +65,8 @@ class ErrorScreen extends PureComponent {
       formatedMessage = intl.formatMessage(intlMessages[code]);
     }
 
+    let url="https://konn3ct.com";
+
     return (
       <div className={styles.background}>
         <h1 className={styles.message}>
@@ -83,6 +85,8 @@ class ErrorScreen extends PureComponent {
         <div>
           {children}
         </div>
+
+        <a href={url}>Go home</a>
       </div>
     );
   }
