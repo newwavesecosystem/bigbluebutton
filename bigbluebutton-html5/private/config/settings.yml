@@ -2,18 +2,18 @@ public:
   app:
     mobileFontSize: 16px
     desktopFontSize: 14px
-    audioChatNotification: false
+    audioChatNotification: true
     autoJoin: true
     listenOnlyMode: true
     forceListenOnly: false
     skipCheck: false
     skipCheckOnJoin: false
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    clientTitle: konn3ct
+    appName: konn3ct
     bbbServerVersion: 2.3-dev
-    copyright: '©2021 BigBlueButton Inc.'
-    html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    copyright: '©2021 konn3ct'
+    html5ClientBuild: 1.8
+    helpLink: https://konn3ct.com/contact
     lockOnJoin: true
     cdn: ''
     basename: '/html5client'

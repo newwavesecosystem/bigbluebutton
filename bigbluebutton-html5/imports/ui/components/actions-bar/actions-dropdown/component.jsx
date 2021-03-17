@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
+import { makeCall } from '/imports/ui/services/api';
 import Button from '/imports/ui/components/button/component';
 import Dropdown from '/imports/ui/components/dropdown/component';
 import DropdownTrigger from '/imports/ui/components/dropdown/trigger/component';
@@ -15,6 +16,7 @@ import ExternalVideoModal from '/imports/ui/components/external-video-player/mod
 import RandomUserSelectContainer from '/imports/ui/components/modal/random-user/container';
 import cx from 'classnames';
 import { styles } from '../styles';
+import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -25,6 +27,8 @@ const propTypes = {
   handleTakePresenter: PropTypes.func.isRequired,
   allowExternalVideo: PropTypes.bool.isRequired,
   stopExternalVideoShare: PropTypes.func.isRequired,
+  isBreakoutRoom: PropTypes.bool,
+  isMeteorConnected: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -84,6 +88,22 @@ const intlMessages = defineMessages({
     id: 'app.actionsBar.actionsDropdown.selectRandUserDesc',
     description: 'Description for select random user option',
   },
+  selectleaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
+  },
+  endMeetingLabel: {
+    id: 'app.navBar.settingsDropdown.endMeetingLabel',
+    description: 'End meeting options label',
+  },
+  endMeetingDesc: {
+    id: 'app.navBar.settingsDropdown.endMeetingDesc',
+    description: 'Describes settings option closing the current meeting',
+  },
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -96,9 +116,14 @@ class ActionsDropdown extends PureComponent {
     this.pollId = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
+    this.selectLeaveMeeting = _.uniqueId('action-item-');
+    this.endLeaveMeeting = _.uniqueId('action-item-');
+    // Set the logout code to 680 because it's not a real code and can be matched on the other side
+    this.LOGOUT_CODE = '680';
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
+    this.leaveSession = this.leaveSession.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -119,6 +144,9 @@ class ActionsDropdown extends PureComponent {
       isPollingEnabled,
       stopExternalVideoShare,
       mountModal,
+      isMeteorConnected,
+      amIModerator,
+      isBreakoutRoom,
     } = this.props;
 
     const {
@@ -133,6 +161,14 @@ class ActionsDropdown extends PureComponent {
     const {
       formatMessage,
     } = intl;
+
+    const {
+      allowLogout: allowLogoutSetting,
+    } = Meteor.settings.public.app;
+
+    const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
+
+    const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
     return _.compact([
       (amIPresenter && isPollingEnabled
@@ -153,7 +189,7 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
-      (!amIPresenter
+      (amIModerator
         ? (
           <DropdownListItem
             icon="presentation"
@@ -199,6 +235,28 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
+      (shouldRenderLogoutOption
+          ?
+          (<DropdownListItem
+              icon="logout"
+              label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
+              description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
+              key={this.selectLeaveMeeting}
+              onClick={() => this.leaveSession()}
+          />):null
+      ),
+
+      (allowedToEndMeeting
+              ?
+          (<DropdownListItem
+            icon="application"
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            key={this.endLeaveMeeting}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+          />
+          ):null
+        ),
     ]);
   }
 
@@ -243,6 +301,14 @@ class ActionsDropdown extends PureComponent {
     mountModal(<ExternalVideoModal />);
   }
 
+  leaveSession() {
+    makeCall('userLeftMeeting');
+    // we don't check askForFeedbackOnLogout here,
+    // it is checked in meeting-ended component
+    Session.set('codeError', this.LOGOUT_CODE);
+    // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
+  }
+
   render() {
     const {
       intl,
@@ -257,8 +323,7 @@ class ActionsDropdown extends PureComponent {
     const children = availablePresentations.length > 2 && amIPresenter
       ? availablePresentations.concat(availableActions) : availableActions;
 
-    if ((!amIPresenter && !amIModerator)
-      || availableActions.length === 0
+    if (availableActions.length === 0
       || !isMeteorConnected) {
       return null;
     }
