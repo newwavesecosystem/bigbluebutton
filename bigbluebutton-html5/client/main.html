@@ -85,7 +85,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
                   // Will NOT handle refresh, use onbeforeunload for this.
                   var r = confirm("You pressed a Back button! Are you sure you want to leave the meeting room?");
 
-                  if (r == true) {
+                  if (r === true) {
                       // Call Back button programmatically as per user confirmation.
                       window.location.replace("https://konn3ct.com");
                       // Uncomment below line to redirect to the previous page instead.
