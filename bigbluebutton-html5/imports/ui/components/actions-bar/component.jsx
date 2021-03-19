@@ -17,6 +17,9 @@ import UserOptionsContainer from "../user-list/user-list-content/user-participan
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
+  currentUser: PropTypes.shape({}).isRequired,
+  users: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  setEmojiStatus: PropTypes.func.isRequired,
 };
 
 const ROLE_MODERATOR = Meteor.settings.public.user.role_moderator;
@@ -79,6 +82,7 @@ class ActionsBar extends PureComponent {
       users,
       setEmojiStatus,
       meetingIsBreakout,
+      currentUser,
     } = this.props;
 
     const actionBarClasses = {};
