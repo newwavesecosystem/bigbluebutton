@@ -88,7 +88,7 @@ class ActionsBar extends PureComponent {
           height: ACTIONSBAR_HEIGHT,
         }}
       >
-        <div className={styles.left}>
+        <div className={styles.right}>
           <ActionsDropdown {...{
             amIPresenter,
             amIModerator,
