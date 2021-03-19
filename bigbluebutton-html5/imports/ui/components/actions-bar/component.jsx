@@ -12,6 +12,7 @@ import Button from '/imports/ui/components/button/component';
 import { makeCall } from '/imports/ui/services/api';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
+import _ from 'lodash';
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
