@@ -11,6 +11,7 @@ import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager'
 import Button from '/imports/ui/components/button/component';
 import { makeCall } from '/imports/ui/services/api';
 import PropTypes from 'prop-types';
+import { defineMessages } from 'react-intl';
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
