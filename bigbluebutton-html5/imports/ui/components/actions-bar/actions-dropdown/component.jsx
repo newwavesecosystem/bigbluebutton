@@ -342,7 +342,7 @@ class ActionsDropdown extends PureComponent {
             onClick={() => null}
           />
         </DropdownTrigger>
-        <DropdownContent placement="top left">
+        <DropdownContent placement="top right">
           <DropdownList>
             {children}
           </DropdownList>
