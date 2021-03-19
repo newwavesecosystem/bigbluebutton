@@ -8,8 +8,52 @@ import JoinVideoOptionsContainer from '../video-provider/video-button/container'
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import PresentationOptionsContainer from './presentation-options/component';
 import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager';
+import Button from '/imports/ui/components/button/component';
+import { makeCall } from '/imports/ui/services/api';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  intl: PropTypes.object.isRequired,
+};
+
+const intlMessages = defineMessages({
+  selectleaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
+  },
+  endMeetingLabel: {
+    id: 'app.navBar.settingsDropdown.endMeetingLabel',
+    description: 'End meeting options label',
+  },
+  endMeetingDesc: {
+    id: 'app.navBar.settingsDropdown.endMeetingDesc',
+    description: 'Describes settings option closing the current meeting',
+  },
+});
 
 class ActionsBar extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.selectLeaveMeeting = _.uniqueId('action-item-');
+    this.endLeaveMeeting = _.uniqueId('action-item-');
+    // Set the logout code to 680 because it's not a real code and can be matched on the other side
+    this.LOGOUT_CODE = '680';
+
+    this.leaveSession = this.leaveSession.bind(this);
+  }
+
+  leaveSession() {
+    makeCall('userLeftMeeting');
+    // we don't check askForFeedbackOnLogout here,
+    // it is checked in meeting-ended component
+    Session.set('codeError', this.LOGOUT_CODE);
+    // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
+  }
   render() {
     const {
       amIPresenter,
@@ -61,6 +105,18 @@ class ActionsBar extends PureComponent {
             )
             : null
           }
+        </div>
+        <div>
+          <Button
+              hideLabel
+              label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
+              description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
+              icon="logout"
+              color="danger"
+              size="lg"
+              circle
+              onClick={() => this.leaveSession()}
+          />
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
