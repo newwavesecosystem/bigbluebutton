@@ -13,10 +13,13 @@ import { makeCall } from '/imports/ui/services/api';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
 import _ from 'lodash';
+import UserOptionsContainer from "../user-list/user-list-content/user-participants/user-options/container";
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
 };
+
+const ROLE_MODERATOR = Meteor.settings.public.user.role_moderator;
 
 const intlMessages = defineMessages({
   selectleaveSessionLabel: {
@@ -73,6 +76,9 @@ class ActionsBar extends PureComponent {
       isPresentationDisabled,
       isThereCurrentPresentation,
       allowExternalVideo,
+      users,
+      setEmojiStatus,
+      meetingIsBreakout,
     } = this.props;
 
     const actionBarClasses = {};
@@ -119,6 +125,18 @@ class ActionsBar extends PureComponent {
               circle
               onClick={() => this.leaveSession()}
           />
+        </div>
+        <div>
+          {currentUser.role === ROLE_MODERATOR
+              ? (
+                  <UserOptionsContainer {...{
+                    users,
+                    setEmojiStatus,
+                    meetingIsBreakout,
+                  }}
+                  />
+              ) : null
+          }
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />

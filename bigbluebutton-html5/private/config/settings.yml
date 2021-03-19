@@ -246,7 +246,7 @@ public:
     enableVideo: true
     enableVideoMenu: true
     enableListenOnly: true
-    autoShareWebcam: true
+    autoShareWebcam: false
     skipVideoPreview: false
     skipVideoPreviewOnFirstJoin: false
     # Entry `thresholds` is an array of:
