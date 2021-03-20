@@ -119,18 +119,15 @@ class AudioControls extends PureComponent {
 
     return (
       <span className={styles.container}>
-        {allowedToEndMeeting
-              ? <Button
-            label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
-            : intl.formatMessage(intlMessages.joinAudio)}
-            description={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
-                : intl.formatMessage(intlMessages.joinAudio)}
+        <Button
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
             icon="application"
             color="danger"
             size="lg"
             circle
             onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        /> : null }
+        />
 
         {inputStream && muteAlertEnabled ? (
           <MutedAlert {...{
