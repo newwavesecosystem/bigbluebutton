@@ -25,13 +25,6 @@ const propTypes = {
 
 const ROLE_MODERATOR = Meteor.settings.public.user.role_moderator;
 
-const {
-  users,
-  setEmojiStatus,
-  meetingIsBreakout,
-  currentUser,
-} = this.props;
-
 const intlMessages = defineMessages({
   selectleaveSessionLabel: {
     id: 'app.navBar.settingsDropdown.leaveSessionLabel',
@@ -87,6 +80,10 @@ class ActionsBar extends PureComponent {
       isPresentationDisabled,
       isThereCurrentPresentation,
       allowExternalVideo,
+      users,
+      setEmojiStatus,
+      meetingIsBreakout,
+      currentUser,
     } = this.props;
 
     const actionBarClasses = {};
@@ -134,18 +131,18 @@ class ActionsBar extends PureComponent {
               onClick={() => this.leaveSession()}
           />
         </div>
-        <div>
-          {currentUser.role === ROLE_MODERATOR
-              ? (
-                  <UserOptionsContainer {...{
-                    users,
-                    setEmojiStatus,
-                    meetingIsBreakout,
-                  }}
-                  />
-              ) : null
-          }
-        </div>
+        {/*<div>*/}
+        {/*  {currentUser.role === ROLE_MODERATOR*/}
+        {/*      ? (*/}
+        {/*          <UserOptionsContainer {...{*/}
+        {/*            users,*/}
+        {/*            setEmojiStatus,*/}
+        {/*            meetingIsBreakout,*/}
+        {/*          }}*/}
+        {/*          />*/}
+        {/*      ) : null*/}
+        {/*  }*/}
+        {/*</div>*/}
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
           {enableVideo
