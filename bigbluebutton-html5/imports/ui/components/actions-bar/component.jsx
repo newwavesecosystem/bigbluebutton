@@ -132,16 +132,12 @@ class ActionsBar extends PureComponent {
           />
         </div>
         <div>
-          {currentUser.role === ROLE_MODERATOR
-              ? (
-                  <UserOptionsContainer {...{
+          <UserOptionsContainer {...{
                     users,
                     setEmojiStatus,
                     meetingIsBreakout,
                   }}
                   />
-              ) : null
-          }
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
