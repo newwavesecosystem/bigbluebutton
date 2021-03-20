@@ -117,12 +117,16 @@ class AudioControls extends PureComponent {
 
     const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
 
+
+    console.log("amIModerator:"+amIModerator);
+    console.log("isBreakoutRoom:"+isBreakoutRoom);
+    console.log("isMeteorConnected:"+isMeteorConnected);
+
     return (
       <span className={styles.container}>
         <Button
             label={intl.formatMessage(intlMessages.endMeetingLabel)}
             description={intl.formatMessage(intlMessages.endMeetingDesc)}
-            icon="application"
             color="danger"
             size="lg"
             circle
