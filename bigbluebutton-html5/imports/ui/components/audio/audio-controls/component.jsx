@@ -78,6 +78,9 @@ class AudioControls extends PureComponent {
       isViewer,
       isPresenter,
       mountModal,
+      isMeteorConnected,
+      amIModerator,
+      isBreakoutRoom,
     } = this.props;
 
     let joinIcon = 'audio_off';
@@ -112,20 +115,22 @@ class AudioControls extends PureComponent {
     const MUTE_ALERT_CONFIG = Meteor.settings.public.app.mutedAlert;
     const { enabled: muteAlertEnabled } = MUTE_ALERT_CONFIG;
 
+    const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
+
     return (
       <span className={styles.container}>
-        <Button
-            hideLabel
+        {allowedToEndMeeting
+              ? <Button
             label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
             : intl.formatMessage(intlMessages.joinAudio)}
             description={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
                 : intl.formatMessage(intlMessages.joinAudio)}
-            icon="logout"
+            icon="application"
             color="danger"
             size="lg"
             circle
             onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        />
+        /> : null }
 
         {inputStream && muteAlertEnabled ? (
           <MutedAlert {...{
