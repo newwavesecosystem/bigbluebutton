@@ -79,7 +79,6 @@ class ActionsBar extends PureComponent {
       isThereCurrentPresentation,
       allowExternalVideo,
       isBreakoutRoom,
-      mountModal,
     } = this.props;
 
     const actionBarClasses = {};
@@ -87,8 +86,6 @@ class ActionsBar extends PureComponent {
     actionBarClasses[styles.centerWithActions] = amIPresenter;
     actionBarClasses[styles.center] = true;
     actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;
-
-    const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
 
     return (
       <div
@@ -128,19 +125,6 @@ class ActionsBar extends PureComponent {
               circle
               onClick={() => this.leaveSession()}
           />
-
-          {allowedToEndMeeting
-              ?
-              (<Button
-                  label={intl.formatMessage(intlMessages.endMeetingLabel)}
-                  description={intl.formatMessage(intlMessages.endMeetingDesc)}
-                  icon="application"
-                  color="danger"
-                  size="lg"
-                  circle
-                  onClick={() => <EndMeetingConfirmationContainer/>}
-              />) : null
-          },
 
         </div>
         {/*<div>*/}

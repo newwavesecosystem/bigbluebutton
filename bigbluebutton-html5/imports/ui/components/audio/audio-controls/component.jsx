@@ -103,6 +103,19 @@ class AudioControls extends PureComponent {
 
     return (
       <span className={styles.container}>
+        <Button
+            hideLabel
+            label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
+            : intl.formatMessage(intlMessages.joinAudio)}
+            description={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
+                : intl.formatMessage(intlMessages.joinAudio)}
+            icon="logout"
+            color="danger"
+            size="lg"
+            circle
+            onClick={() => alert('you click me')}
+        />
+
         {inputStream && muteAlertEnabled ? (
           <MutedAlert {...{
             muted, inputStream, isViewer, isPresenter,
