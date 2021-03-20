@@ -6,7 +6,7 @@ public:
     autoJoin: true
     listenOnlyMode: true
     forceListenOnly: false
-    skipCheck: true
+    skipCheck: false
     skipCheckOnJoin: true
     clientTitle: konn3ct
     appName: konn3ct

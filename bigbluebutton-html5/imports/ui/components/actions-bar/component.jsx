@@ -132,13 +132,15 @@ class ActionsBar extends PureComponent {
           {allowedToEndMeeting
               ?
               (<Button
-                      icon="application"
-                      label={intl.formatMessage(intlMessages.endMeetingLabel)}
-                      description={intl.formatMessage(intlMessages.endMeetingDesc)}
-                      key={this.endLeaveMeeting}
-                      onClick={() => mountModal(<EndMeetingConfirmationContainer/>)}
-                  />
-              ) : null
+                  hideLabel
+                  label={intl.formatMessage(intlMessages.endMeetingLabel)}
+                  description={intl.formatMessage(intlMessages.endMeetingDesc)}
+                  icon="application"
+                  color="danger"
+                  size="lg"
+                  circle
+                  onClick={() => mountModal(<EndMeetingConfirmationContainer/>)}
+              />) : null
           },
 
         </div>
