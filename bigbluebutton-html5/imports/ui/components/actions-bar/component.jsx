@@ -90,6 +90,18 @@ class ActionsBar extends PureComponent {
 
     const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
 
+    const em=(allowedToEndMeeting
+        ?
+        (<Button
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            icon="application"
+            color="danger"
+            size="lg"
+            circle
+            onClick={() => mountModal(<EndMeetingConfirmationContainer/>)}
+        />) : null);
+
     return (
       <div
         className={styles.actionsbar}
@@ -129,19 +141,7 @@ class ActionsBar extends PureComponent {
               onClick={() => this.leaveSession()}
           />
 
-          {allowedToEndMeeting
-              ?
-              (<Button
-                  hideLabel
-                  label={intl.formatMessage(intlMessages.endMeetingLabel)}
-                  description={intl.formatMessage(intlMessages.endMeetingDesc)}
-                  icon="application"
-                  color="danger"
-                  size="lg"
-                  circle
-                  onClick={() => mountModal(<EndMeetingConfirmationContainer/>)}
-              />) : null
-          },
+          {em},
 
         </div>
         {/*<div>*/}
