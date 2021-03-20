@@ -10,20 +10,8 @@ import PresentationOptionsContainer from './presentation-options/component';
 import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager';
 import Button from '/imports/ui/components/button/component';
 import { makeCall } from '/imports/ui/services/api';
-import PropTypes from 'prop-types';
+import { defineMessages } from 'react-intl';
 
-const propTypes = {
-  amIPresenter: PropTypes.bool.isRequired,
-  intl: PropTypes.object.isRequired,
-  mountModal: PropTypes.func.isRequired,
-  amIModerator: PropTypes.bool.isRequired,
-  shortcuts: PropTypes.string,
-  handleTakePresenter: PropTypes.func.isRequired,
-  allowExternalVideo: PropTypes.bool.isRequired,
-  stopExternalVideoShare: PropTypes.func.isRequired,
-  isBreakoutRoom: PropTypes.bool,
-  isMeteorConnected: PropTypes.bool.isRequired,
-};
 
 const intlMessages = defineMessages({
   selectleaveSessionLabel: {
