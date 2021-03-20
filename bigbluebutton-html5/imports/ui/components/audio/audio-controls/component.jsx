@@ -7,6 +7,7 @@ import getFromUserSettings from '/imports/ui/services/users-settings';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
+import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -25,6 +26,14 @@ const intlMessages = defineMessages({
     id: 'app.actionsBar.unmuteLabel',
     description: 'Unmute audio button label',
   },
+  endMeetingLabel: {
+    id: 'app.navBar.settingsDropdown.endMeetingLabel',
+    description: 'End meeting options label',
+  },
+  endMeetingDesc: {
+    id: 'app.navBar.settingsDropdown.endMeetingDesc',
+    description: 'Describes settings option closing the current meeting',
+  },
 });
 
 const propTypes = {
@@ -39,6 +48,7 @@ const propTypes = {
   listenOnly: PropTypes.bool.isRequired,
   intl: PropTypes.object.isRequired,
   talking: PropTypes.bool.isRequired,
+  mountModal: PropTypes.func.isRequired,
 };
 
 class AudioControls extends PureComponent {
@@ -67,6 +77,7 @@ class AudioControls extends PureComponent {
       inputStream,
       isViewer,
       isPresenter,
+      mountModal,
     } = this.props;
 
     let joinIcon = 'audio_off';
@@ -113,7 +124,7 @@ class AudioControls extends PureComponent {
             color="danger"
             size="lg"
             circle
-            onClick={() => alert('you click me')}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
         />
 
         {inputStream && muteAlertEnabled ? (
