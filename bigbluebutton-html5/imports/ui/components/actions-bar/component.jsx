@@ -13,11 +13,13 @@ import { makeCall } from '/imports/ui/services/api';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
 import _ from 'lodash';
+import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import UserOptionsContainer from "../user-list/user-list-content/user-participants/user-options/container";
 import UserParticipants from "../user-list/user-list-content/user-participants/component";
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
+  mountModal: PropTypes.func.isRequired,
 };
 
 
@@ -76,6 +78,8 @@ class ActionsBar extends PureComponent {
       isPresentationDisabled,
       isThereCurrentPresentation,
       allowExternalVideo,
+      isBreakoutRoom,
+      mountModal,
     } = this.props;
 
     const actionBarClasses = {};
@@ -83,6 +87,8 @@ class ActionsBar extends PureComponent {
     actionBarClasses[styles.centerWithActions] = amIPresenter;
     actionBarClasses[styles.center] = true;
     actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;
+
+    const allowedToEndMeeting = amIModerator && !isBreakoutRoom && isMeteorConnected;
 
     return (
       <div
@@ -122,6 +128,19 @@ class ActionsBar extends PureComponent {
               circle
               onClick={() => this.leaveSession()}
           />
+
+          (allowedToEndMeeting
+          ?
+          (<Button
+            icon="application"
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            key={this.endLeaveMeeting}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+        />
+          ):null
+          ),
+
         </div>
         {/*<div>*/}
         {/*  {currentUser.role === ROLE_MODERATOR*/}
