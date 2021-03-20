@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Component } from 'react';
 import cx from 'classnames';
 import { styles } from './styles.scss';
 import ActionsDropdown from './actions-dropdown/container';
@@ -17,11 +17,17 @@ import UserOptionsContainer from "../user-list/user-list-content/user-participan
 import UserParticipants from "../user-list/user-list-content/user-participants/component";
 
 const propTypes = {
+  compact: PropTypes.bool,
   intl: PropTypes.object.isRequired,
   currentUser: PropTypes.shape({}).isRequired,
   users: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   setEmojiStatus: PropTypes.func.isRequired,
 };
+
+const defaultProps = {
+  compact: false,
+};
+
 
 const ROLE_MODERATOR = Meteor.settings.public.user.role_moderator;
 
@@ -44,7 +50,7 @@ const intlMessages = defineMessages({
   },
 });
 
-class ActionsBar extends PureComponent {
+class ActionsBar extends Component {
   constructor(props) {
     super(props);
 
@@ -131,18 +137,18 @@ class ActionsBar extends PureComponent {
               onClick={() => this.leaveSession()}
           />
         </div>
-        {/*<div>*/}
-        {/*  {currentUser.role === ROLE_MODERATOR*/}
-        {/*      ? (*/}
-        {/*          <UserOptionsContainer {...{*/}
-        {/*            users,*/}
-        {/*            setEmojiStatus,*/}
-        {/*            meetingIsBreakout,*/}
-        {/*          }}*/}
-        {/*          />*/}
-        {/*      ) : null*/}
-        {/*  }*/}
-        {/*</div>*/}
+        <div>
+          {amIModerator
+              ? (
+                  <UserOptionsContainer {...{
+                    users,
+                    setEmojiStatus,
+                    meetingIsBreakout,
+                  }}
+                  />
+              ) : null
+          }
+        </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
           {enableVideo
@@ -173,5 +179,6 @@ class ActionsBar extends PureComponent {
 }
 
 ActionsBar.propTypes = propTypes;
+ActionsBar.defaultProps = defaultProps;
 
 export default ActionsBar;
