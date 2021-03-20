@@ -1,4 +1,4 @@
-import React, { PureComponent, Component } from 'react';
+import React, { PureComponent } from 'react';
 import cx from 'classnames';
 import { styles } from './styles.scss';
 import ActionsDropdown from './actions-dropdown/container';
@@ -11,25 +11,19 @@ import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager'
 import Button from '/imports/ui/components/button/component';
 import { makeCall } from '/imports/ui/services/api';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
-import _ from 'lodash';
-import UserOptionsContainer from "../user-list/user-list-content/user-participants/user-options/container";
-import UserParticipants from "../user-list/user-list-content/user-participants/component";
 
 const propTypes = {
-  compact: PropTypes.bool,
+  amIPresenter: PropTypes.bool.isRequired,
   intl: PropTypes.object.isRequired,
-  currentUser: PropTypes.shape({}).isRequired,
-  users: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  setEmojiStatus: PropTypes.func.isRequired,
+  mountModal: PropTypes.func.isRequired,
+  amIModerator: PropTypes.bool.isRequired,
+  shortcuts: PropTypes.string,
+  handleTakePresenter: PropTypes.func.isRequired,
+  allowExternalVideo: PropTypes.bool.isRequired,
+  stopExternalVideoShare: PropTypes.func.isRequired,
+  isBreakoutRoom: PropTypes.bool,
+  isMeteorConnected: PropTypes.bool.isRequired,
 };
-
-const defaultProps = {
-  compact: false,
-};
-
-
-const ROLE_MODERATOR = Meteor.settings.public.user.role_moderator;
 
 const intlMessages = defineMessages({
   selectleaveSessionLabel: {
@@ -50,7 +44,7 @@ const intlMessages = defineMessages({
   },
 });
 
-class ActionsBar extends Component {
+class ActionsBar extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -86,10 +80,6 @@ class ActionsBar extends Component {
       isPresentationDisabled,
       isThereCurrentPresentation,
       allowExternalVideo,
-      users,
-      setEmojiStatus,
-      meetingIsBreakout,
-      currentUser,
     } = this.props;
 
     const actionBarClasses = {};
@@ -137,18 +127,6 @@ class ActionsBar extends Component {
               onClick={() => this.leaveSession()}
           />
         </div>
-        <div>
-          {amIModerator
-              ? (
-                  <UserOptionsContainer {...{
-                    users,
-                    setEmojiStatus,
-                    meetingIsBreakout,
-                  }}
-                  />
-              ) : null
-          }
-        </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
           {enableVideo
@@ -177,8 +155,5 @@ class ActionsBar extends Component {
     );
   }
 }
-
-ActionsBar.propTypes = propTypes;
-ActionsBar.defaultProps = defaultProps;
 
 export default ActionsBar;
