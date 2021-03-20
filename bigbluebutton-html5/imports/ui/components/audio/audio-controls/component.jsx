@@ -49,6 +49,9 @@ const propTypes = {
   intl: PropTypes.object.isRequired,
   talking: PropTypes.bool.isRequired,
   mountModal: PropTypes.func.isRequired,
+  amIModerator: PropTypes.bool.isRequired,
+  isBreakoutRoom: PropTypes.bool,
+  isMeteorConnected: PropTypes.bool.isRequired,
 };
 
 class AudioControls extends PureComponent {
