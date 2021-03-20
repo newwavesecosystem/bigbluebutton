@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
 import _ from 'lodash';
 import UserOptionsContainer from "../user-list/user-list-content/user-participants/user-options/container";
+import UserParticipants from "../user-list/user-list-content/user-participants/component";
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -170,5 +171,7 @@ class ActionsBar extends PureComponent {
     );
   }
 }
+
+ActionsBar.propTypes = propTypes;
 
 export default ActionsBar;
