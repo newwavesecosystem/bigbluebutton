@@ -118,6 +118,7 @@ class ActionsDropdown extends PureComponent {
     this.selectUserRandId = _.uniqueId('action-item-');
     this.selectLeaveMeeting = _.uniqueId('action-item-');
     this.endLeaveMeeting = _.uniqueId('action-item-');
+    this.endLeaveMeetin = _.uniqueId('action-item-');
     // Set the logout code to 680 because it's not a real code and can be matched on the other side
     this.LOGOUT_CODE = '680';
 
@@ -347,7 +348,18 @@ class ActionsDropdown extends PureComponent {
             {children}
           </DropdownList>
         </DropdownContent>
-      </Dropdown>
+      </Dropdown>,
+
+          <Button
+              icon="application"
+              label={intl.formatMessage(intlMessages.endMeetingLabel)}
+              description={intl.formatMessage(intlMessages.endMeetingDesc)}
+              key={this.endLeaveMeetin}
+              onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+              color="danger"
+              size="lg"
+              circle
+          />
     );
   }
 }
