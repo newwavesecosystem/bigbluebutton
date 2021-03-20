@@ -10,7 +10,15 @@ import PresentationOptionsContainer from './presentation-options/component';
 import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager';
 import Button from '/imports/ui/components/button/component';
 import { makeCall } from '/imports/ui/services/api';
+import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
+import _ from 'lodash';
+import UserOptionsContainer from "../user-list/user-list-content/user-participants/user-options/container";
+import UserParticipants from "../user-list/user-list-content/user-participants/component";
+
+const propTypes = {
+  intl: PropTypes.object.isRequired,
+};
 
 
 const intlMessages = defineMessages({
@@ -115,6 +123,18 @@ class ActionsBar extends PureComponent {
               onClick={() => this.leaveSession()}
           />
         </div>
+        {/*<div>*/}
+        {/*  {currentUser.role === ROLE_MODERATOR*/}
+        {/*      ? (*/}
+        {/*          <UserOptionsContainer {...{*/}
+        {/*            users,*/}
+        {/*            setEmojiStatus,*/}
+        {/*            meetingIsBreakout,*/}
+        {/*          }}*/}
+        {/*          />*/}
+        {/*      ) : null*/}
+        {/*  }*/}
+        {/*</div>*/}
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
           {enableVideo
@@ -143,5 +163,7 @@ class ActionsBar extends PureComponent {
     );
   }
 }
+
+ActionsBar.propTypes = propTypes;
 
 export default ActionsBar;
