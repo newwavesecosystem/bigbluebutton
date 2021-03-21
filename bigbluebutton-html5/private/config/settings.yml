@@ -55,7 +55,7 @@ public:
         animations: true
         chatAudioAlerts: true
         chatPushAlerts: true
-        userJoinAudioAlerts: true
+        userJoinAudioAlerts: false
         userJoinPushAlerts: true
         raiseHandAudioAlerts: true
         raiseHandPushAlerts: true

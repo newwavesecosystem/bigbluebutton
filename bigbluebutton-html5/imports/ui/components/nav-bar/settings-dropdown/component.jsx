@@ -224,6 +224,22 @@ class SettingsDropdown extends PureComponent {
       ? logoutOption
       : null;
 
+    const endMeeting = (
+        <Button
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            icon="application"
+            color="danger"
+            size="lg"
+            circle
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+        />
+    );
+
+    const shouldEndMeeting = (isMeteorConnected && allowedToEndMeeting)
+        ? endMeeting
+        : null;
+
     return _.compact([
       this.getFullscreenItem(),
       (<DropdownListItem
@@ -276,14 +292,16 @@ class SettingsDropdown extends PureComponent {
 
   render() {
     const {
-      intl, mountModal, isMeteorConnected, allowedToEndMeeting,
+      intl, mountModal, isMeteorConnected, amIModerator, isBreakoutRoom,
       shortcuts: OPEN_OPTIONS_AK,
     } = this.props;
 
     const { isSettingOpen } = this.state;
 
-    return (
-        (isMeteorConnected && allowedToEndMeeting ?
+
+    const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
+
+    const endMeeting = (
         <Button
             label={intl.formatMessage(intlMessages.endMeetingLabel)}
             description={intl.formatMessage(intlMessages.endMeetingDesc)}
@@ -292,8 +310,15 @@ class SettingsDropdown extends PureComponent {
             size="lg"
             circle
             onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        /> : null
-        )
+        />
+    );
+
+    const shouldEndMeeting = (allowedToEndMeeting)
+        ? endMeeting
+        : null;
+
+    return (
+        {shouldEndMeeting}
 
       // <Dropdown
       //   autoFocus
