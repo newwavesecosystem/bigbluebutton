@@ -198,20 +198,21 @@ class UserParticipants extends Component {
     const { isOpen, scrollArea } = this.state;
 
     return (
-      <div className={styles.userListColumn}>
-        <div className={styles.container}>
-        {currentUser.role === ROLE_MODERATOR
-            ? (
-                <UserOptionsContainer {...{
-                  users,
-                  setEmojiStatus,
-                  meetingIsBreakout,
-                }}
-                />
-            ) : null
-        }
-        </div>
+        <div>
+          <div className={styles.container}>
+            {currentUser.role === ROLE_MODERATOR
+                ? (
+                    <UserOptionsContainer {...{
+                      users,
+                      setEmojiStatus,
+                      meetingIsBreakout,
+                    }}
+                    />
+                ) : null
+            }
+          </div>
 
+          <div className={styles.userListColumn}>
         {
           !compact
             ? (
@@ -274,6 +275,7 @@ class UserParticipants extends Component {
           </AutoSizer>
         </div>
       </div>
+        </div>
     );
   }
 }
