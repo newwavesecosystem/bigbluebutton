@@ -352,12 +352,12 @@ class ActionsDropdown extends PureComponent {
       </Dropdown>
 
           <Button
+              hideLabel
               label="Settings"
               data-test="sett"
               icon="settings"
               color="dark"
               size="lg"
-              style={{float: "left"}}
               onClick={() => mountModal(<SettingsMenuContainer />)}
           />
         </div>
