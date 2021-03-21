@@ -298,6 +298,11 @@ class SettingsDropdown extends PureComponent {
 
     const { isSettingOpen } = this.state;
 
+    console.log("amIModerator on settings:"+amIModerator);
+    console.log("isBreakoutRoom:"+isBreakoutRoom);
+    console.log("isMeteorConnected:"+isMeteorConnected);
+
+
 
     const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
 
@@ -318,7 +323,7 @@ class SettingsDropdown extends PureComponent {
         : null;
 
     return (
-        {shouldEndMeeting}
+        {endMeeting}
 
       // <Dropdown
       //   autoFocus
