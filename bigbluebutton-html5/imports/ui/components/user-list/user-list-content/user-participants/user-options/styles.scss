@@ -39,6 +39,12 @@
   padding: 10px;
   margin: 10px;
 
+  i {
+    width: auto;
+    font-size: var(--font-size-base) !important;
+    color: var(--color-gray-dark) !important;
+    background-color: transparent !important;
+  }
 
   &:hover,
   &:focus {
