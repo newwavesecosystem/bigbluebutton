@@ -188,6 +188,43 @@ class SettingsDropdown extends PureComponent {
     );
   }
 
+  getEndMeeting() {
+    const {
+      intl, mountModal, isMeteorConnected, amIModerator, isBreakoutRoom,
+      shortcuts: OPEN_OPTIONS_AK,
+    } = this.props;
+
+    const { isSettingOpen } = this.state;
+
+    console.log("amIModerator on settings:"+amIModerator);
+    console.log("isBreakoutRoom:"+isBreakoutRoom);
+    console.log("isMeteorConnected:"+isMeteorConnected);
+
+
+
+    const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
+
+    const endMeeting = (
+        <Button
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            icon="application"
+            color="danger"
+            size="lg"
+            circle
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+        />
+    );
+
+    const shouldEndMeeting = (allowedToEndMeeting)
+        ? endMeeting
+        : null;
+
+    return (
+        shouldEndMeeting
+    );
+  }
+
   leaveSession() {
     makeCall('userLeftMeeting');
     // we don't check askForFeedbackOnLogout here,
@@ -223,22 +260,6 @@ class SettingsDropdown extends PureComponent {
     const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
       ? logoutOption
       : null;
-
-    const endMeeting = (
-        <Button
-            label={intl.formatMessage(intlMessages.endMeetingLabel)}
-            description={intl.formatMessage(intlMessages.endMeetingDesc)}
-            icon="application"
-            color="danger"
-            size="lg"
-            circle
-            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        />
-    );
-
-    const shouldEndMeeting = (isMeteorConnected && allowedToEndMeeting)
-        ? endMeeting
-        : null;
 
     return _.compact([
       this.getFullscreenItem(),
@@ -292,38 +313,14 @@ class SettingsDropdown extends PureComponent {
 
   render() {
     const {
-      intl, mountModal, isMeteorConnected, amIModerator, isBreakoutRoom,
+      intl,
       shortcuts: OPEN_OPTIONS_AK,
     } = this.props;
 
     const { isSettingOpen } = this.state;
 
-    console.log("amIModerator on settings:"+amIModerator);
-    console.log("isBreakoutRoom:"+isBreakoutRoom);
-    console.log("isMeteorConnected:"+isMeteorConnected);
-
-
-
-    const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
-
-    const endMeeting = (
-        <Button
-            label={intl.formatMessage(intlMessages.endMeetingLabel)}
-            description={intl.formatMessage(intlMessages.endMeetingDesc)}
-            icon="application"
-            color="danger"
-            size="lg"
-            circle
-            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        />
-    );
-
-    const shouldEndMeeting = (allowedToEndMeeting)
-        ? endMeeting
-        : null;
-
     return (
-        {endMeeting}
+        this.getEndMeeting()
 
       // <Dropdown
       //   autoFocus
