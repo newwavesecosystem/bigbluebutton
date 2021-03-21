@@ -72,7 +72,7 @@ class ActionsBar extends PureComponent {
               icon="settings"
               color="dark"
               size="lg"
-              onClick={() => mountModal(<SettingsMenuContainer />)}
+              onClick={() => <SettingsMenuContainer />}
           />
 
           {isCaptionsAvailable
