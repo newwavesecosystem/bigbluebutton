@@ -8,6 +8,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
 import { makeCall } from '/imports/ui/services/api';
+import _ from 'lodash';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -73,7 +74,6 @@ class AudioControls extends PureComponent {
     // we don't check askForFeedbackOnLogout here,
     // it is checked in meeting-ended component
     Session.set('codeError', this.LOGOUT_CODE);
-    // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
   }
 
   render() {

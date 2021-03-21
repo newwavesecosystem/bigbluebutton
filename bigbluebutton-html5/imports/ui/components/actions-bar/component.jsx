@@ -19,7 +19,6 @@ import UserParticipants from "../user-list/user-list-content/user-participants/c
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
-  mountModal: PropTypes.func.isRequired,
 };
 
 
