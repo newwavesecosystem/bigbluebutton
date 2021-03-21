@@ -23,6 +23,7 @@ import {
   NOTE_MAX_WIDTH,
 } from '/imports/ui/components/layout/layout-manager';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
+import Button from '/imports/ui/components/button/component';
 
 const intlMessages = defineMessages({
   chatLabel: {
@@ -292,7 +293,7 @@ class PanelManager extends Component {
       intl,
       enableResize,
       openPanel,
-      shouldAriaHide,
+      shouldAriaHide, mountModal
     } = this.props;
 
     const ariaHidden = shouldAriaHide() && openPanel !== 'userlist';
@@ -304,6 +305,15 @@ class PanelManager extends Component {
         key={enableResize ? null : this.userlistKey}
         aria-hidden={ariaHidden}
       >
+        <Button
+            label={intl.formatMessage(intlMessages.captionsLabel)}
+            description={intl.formatMessage(intlMessages.captionsLabel)}
+            icon="application"
+            color="danger"
+            size="lg"
+            circle
+            onClick={() => mountModal(<SettingsMenuContainer />)}
+        />
         <UserListContainer />
       </div>
     );
