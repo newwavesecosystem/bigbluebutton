@@ -331,14 +331,6 @@ class ActionsDropdown extends PureComponent {
 
     return (
         <div>
-          <Button
-              label="Settings"
-              data-test="sett"
-              icon="settings"
-              color="dark"
-              size="lg"
-              onClick={() => mountModal(<SettingsMenuContainer />)}
-          />
       <Dropdown className={styles.dropdown} ref={(ref) => { this._dropdown = ref; }}>
         <DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
           <Button
@@ -352,6 +344,15 @@ class ActionsDropdown extends PureComponent {
             onClick={() => null}
           />
         </DropdownTrigger>
+        <Button
+            hideLabel
+            label="Settings"
+            data-test="sett"
+            icon="settings"
+            color="dark"
+            size="lg"
+            onClick={() => mountModal(<SettingsMenuContainer />)}
+        />
         <DropdownContent placement="top left">
           <DropdownList>
             {children}
