@@ -373,7 +373,7 @@ class UserOptions extends PureComponent {
             ghost
             color="dark"
             className={styles.optionsButton}
-            size="jumbo"
+            size="lg"
             onClick={() => null}
           />
         </DropdownTrigger>

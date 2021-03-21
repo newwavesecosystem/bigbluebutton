@@ -199,6 +199,7 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
+        <div>
         {currentUser.role === ROLE_MODERATOR
             ? (
                 <UserOptionsContainer {...{
@@ -209,6 +210,7 @@ class UserParticipants extends Component {
                 />
             ) : null
         }
+        </div>
 
         {
           !compact
