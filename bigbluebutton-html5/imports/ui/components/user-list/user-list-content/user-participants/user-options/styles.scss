@@ -36,16 +36,9 @@
 .optionsButton{
   border-radius: 50%;
   display: block;
-  padding: 0;
+  padding: 10px;
   margin: 10px;
-  color: green;
 
-  i {
-    width: auto;
-    font-size: var(--font-size-base) !important;
-    color: var(--color-gray-dark) !important;
-    background-color: transparent !important;
-  }
 
   &:hover,
   &:focus {
