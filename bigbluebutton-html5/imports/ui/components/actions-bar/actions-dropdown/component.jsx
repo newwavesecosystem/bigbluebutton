@@ -314,7 +314,6 @@ class ActionsDropdown extends PureComponent {
     const {
       intl,
       amIPresenter,
-      amIModerator,
       shortcuts: OPEN_ACTIONS_AK,
       isMeteorConnected,
     } = this.props;
@@ -348,18 +347,7 @@ class ActionsDropdown extends PureComponent {
             {children}
           </DropdownList>
         </DropdownContent>
-      </Dropdown>,
-
-          <Button
-              icon="application"
-              label={intl.formatMessage(intlMessages.endMeetingLabel)}
-              description={intl.formatMessage(intlMessages.endMeetingDesc)}
-              key={this.endLeaveMeetin}
-              onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-              color="danger"
-              size="lg"
-              circle
-          />
+      </Dropdown>
     );
   }
 }

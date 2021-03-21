@@ -4,10 +4,10 @@ public:
     desktopFontSize: 14px
     audioChatNotification: true
     autoJoin: true
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     skipCheck: false
-    skipCheckOnJoin: true
+    skipCheckOnJoin: false
     clientTitle: konn3ct
     appName: konn3ct
     bbbServerVersion: 2.3-dev

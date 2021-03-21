@@ -276,39 +276,49 @@ class SettingsDropdown extends PureComponent {
 
   render() {
     const {
-      intl,
+      intl, mountModal,
       shortcuts: OPEN_OPTIONS_AK,
     } = this.props;
 
     const { isSettingOpen } = this.state;
 
     return (
-      <Dropdown
-        autoFocus
-        keepOpen={isSettingOpen}
-        onShow={this.onActionsShow}
-        onHide={this.onActionsHide}
-      >
-        <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            icon="more"
-            ghost
+        <Button
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            icon="application"
+            color="danger"
+            size="lg"
             circle
-            hideLabel
-            className={styles.btn}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+        />
 
-            // FIXME: Without onClick react proptypes keep warning
-            // even after the DropdownTrigger inject an onClick handler
-            onClick={() => null}
-          />
-        </DropdownTrigger>
-        <DropdownContent placement="bottom right">
-          <DropdownList>
-            {this.renderMenuItems()}
-          </DropdownList>
-        </DropdownContent>
-      </Dropdown>
+      // <Dropdown
+      //   autoFocus
+      //   keepOpen={isSettingOpen}
+      //   onShow={this.onActionsShow}
+      //   onHide={this.onActionsHide}
+      // >
+      //   <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
+      //     <Button
+      //       label={intl.formatMessage(intlMessages.optionsLabel)}
+      //       icon="more"
+      //       ghost
+      //       circle
+      //       hideLabel
+      //       className={styles.btn}
+      //
+      //       // FIXME: Without onClick react proptypes keep warning
+      //       // even after the DropdownTrigger inject an onClick handler
+      //       onClick={() => null}
+      //     />
+      //   </DropdownTrigger>
+      //   <DropdownContent placement="bottom right">
+      //     <DropdownList>
+      //       {this.renderMenuItems()}
+      //     </DropdownList>
+      //   </DropdownContent>
+      // </Dropdown>
     );
   }
 }
