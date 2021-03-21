@@ -48,10 +48,6 @@ const propTypes = {
   listenOnly: PropTypes.bool.isRequired,
   intl: PropTypes.object.isRequired,
   talking: PropTypes.bool.isRequired,
-  mountModal: PropTypes.func.isRequired,
-  amIModerator: PropTypes.bool.isRequired,
-  isBreakoutRoom: PropTypes.bool,
-  isMeteorConnected: PropTypes.bool.isRequired,
 };
 
 class AudioControls extends PureComponent {
@@ -80,10 +76,6 @@ class AudioControls extends PureComponent {
       inputStream,
       isViewer,
       isPresenter,
-      mountModal,
-      isMeteorConnected,
-      amIModerator,
-      isBreakoutRoom,
     } = this.props;
 
     let joinIcon = 'audio_off';
@@ -120,14 +112,6 @@ class AudioControls extends PureComponent {
 
     return (
       <span className={styles.container}>
-        {/*<Button*/}
-        {/*    label={intl.formatMessage(intlMessages.endMeetingLabel)}*/}
-        {/*    description={intl.formatMessage(intlMessages.endMeetingDesc)}*/}
-        {/*    color="danger"*/}
-        {/*    size="lg"*/}
-        {/*    circle*/}
-        {/*    onClick={() => mountModal(<EndMeetingConfirmationContainer />)}*/}
-        {/*/>*/}
 
         {inputStream && muteAlertEnabled ? (
           <MutedAlert {...{
