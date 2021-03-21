@@ -22,8 +22,6 @@ import {
   NOTE_MIN_WIDTH,
   NOTE_MAX_WIDTH,
 } from '/imports/ui/components/layout/layout-manager';
-import SettingsMenuContainer from '/imports/ui/components/settings/container';
-import Button from '/imports/ui/components/button/component';
 
 const intlMessages = defineMessages({
   chatLabel: {
@@ -77,7 +75,6 @@ class PanelManager extends Component {
     this.chatKey = _.uniqueId('chat-');
     this.pollKey = _.uniqueId('poll-');
     this.noteKey = _.uniqueId('note-');
-    this.settingsKey = _.uniqueId('samji-');
     this.captionsKey = _.uniqueId('captions-');
     this.waitingUsers = _.uniqueId('waitingUsers-');
 
@@ -293,7 +290,7 @@ class PanelManager extends Component {
       intl,
       enableResize,
       openPanel,
-      shouldAriaHide, mountModal
+      shouldAriaHide,
     } = this.props;
 
     const ariaHidden = shouldAriaHide() && openPanel !== 'userlist';
@@ -305,15 +302,6 @@ class PanelManager extends Component {
         key={enableResize ? null : this.userlistKey}
         aria-hidden={ariaHidden}
       >
-        <Button
-            label={intl.formatMessage(intlMessages.captionsLabel)}
-            description={intl.formatMessage(intlMessages.captionsLabel)}
-            icon="application"
-            color="danger"
-            size="lg"
-            circle
-            onClick={() => mountModal(<SettingsMenuContainer />)}
-        />
         <UserListContainer />
       </div>
     );
@@ -407,29 +395,6 @@ class PanelManager extends Component {
         key={enableResize ? null : this.noteKey}
       >
         <NoteContainer />
-      </section>
-    );
-  }
-
-  renderSamjiSettings() {
-    const { intl, enableResize, mountModal } = this.props;
-
-    return (
-      <section
-        className={styles.note}
-        aria-label={intl.formatMessage(intlMessages.noteLabel)}
-        key={enableResize ? null : this.settingsKey}
-      >
-        <Button
-            label={intl.formatMessage(intlMessages.captionsLabel)}
-            description={intl.formatMessage(intlMessages.captionsLabel)}
-            icon="application"
-            color="danger"
-            size="lg"
-            circle
-            onClick={() => mountModal(<SettingsMenuContainer />)}
-        />
-
       </section>
     );
   }

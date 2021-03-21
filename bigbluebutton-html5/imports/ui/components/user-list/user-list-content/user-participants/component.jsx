@@ -199,6 +199,17 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
+        {currentUser.role === ROLE_MODERATOR
+            ? (
+                <UserOptionsContainer {...{
+                  users,
+                  setEmojiStatus,
+                  meetingIsBreakout,
+                }}
+                />
+            ) : null
+        }
+
         {
           !compact
             ? (
