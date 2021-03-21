@@ -344,21 +344,21 @@ class ActionsDropdown extends PureComponent {
             onClick={() => null}
           />
         </DropdownTrigger>
-        <Button
-            hideLabel
-            label="Settings"
-            data-test="sett"
-            icon="settings"
-            color="dark"
-            size="lg"
-            onClick={() => mountModal(<SettingsMenuContainer />)}
-        />
         <DropdownContent placement="top left">
           <DropdownList>
             {children}
           </DropdownList>
         </DropdownContent>
       </Dropdown>
+
+          <Button
+              label="Settings"
+              data-test="sett"
+              icon="settings"
+              color="dark"
+              size="lg"
+              onClick={() => mountModal(<SettingsMenuContainer />)}
+          />
         </div>
     );
   }
