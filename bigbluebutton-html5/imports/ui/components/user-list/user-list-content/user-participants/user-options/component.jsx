@@ -369,12 +369,10 @@ class UserOptions extends PureComponent {
           <Button
             label={intl.formatMessage(intlMessages.optionsLabel)}
             data-test="manageUsers"
-            icon="settings"
             ghost
             color="primary"
-            hideLabel
             className={styles.optionsButton}
-            size="sm"
+            size="lg"
             onClick={() => null}
           />
         </DropdownTrigger>
