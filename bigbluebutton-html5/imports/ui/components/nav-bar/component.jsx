@@ -107,7 +107,7 @@ class NavBar extends Component {
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={intl.formatMessage(intlMessages.toggleUserListLabel)}
               aria-label={ariaLabel}
-              icon="user"
+              icon="left_arrow"
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}

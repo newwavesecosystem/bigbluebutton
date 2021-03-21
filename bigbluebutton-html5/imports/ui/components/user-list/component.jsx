@@ -5,6 +5,8 @@ import injectWbResizeEvent from '/imports/ui/components/presentation/resize-wrap
 import { styles } from './styles.scss';
 import CustomLogo from './custom-logo/component';
 import UserContentContainer from './user-list-content/container';
+import SettingsMenuContainer from '/imports/ui/components/settings/container';
+import Button from '/imports/ui/components/button/component';
 
 const propTypes = {
   compact: PropTypes.bool,
@@ -17,6 +19,7 @@ const propTypes = {
   roving: PropTypes.func.isRequired,
   showBranding: PropTypes.bool.isRequired,
   requestUserInformation: PropTypes.func.isRequired,
+  mountModal: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -35,6 +38,7 @@ class UserList extends PureComponent {
       showBranding,
       hasBreakoutRoom,
       requestUserInformation,
+      mountModal
     } = this.props;
 
     return (
@@ -45,6 +49,16 @@ class UserList extends PureComponent {
             && CustomLogoUrl
             ? <CustomLogo CustomLogoUrl={CustomLogoUrl} /> : null
         }
+
+        <Button
+            label="Settings"
+            data-test="sett"
+            icon="settings"
+            color="dark"
+            size="lg"
+            onClick={() => mountModal(<SettingsMenuContainer />)}
+        />
+
         {<UserContentContainer
           {...{
             intl,
