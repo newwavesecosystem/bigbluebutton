@@ -276,13 +276,14 @@ class SettingsDropdown extends PureComponent {
 
   render() {
     const {
-      intl, mountModal,
+      intl, mountModal, isMeteorConnected, allowedToEndMeeting,
       shortcuts: OPEN_OPTIONS_AK,
     } = this.props;
 
     const { isSettingOpen } = this.state;
 
     return (
+        (isMeteorConnected && allowedToEndMeeting ?
         <Button
             label={intl.formatMessage(intlMessages.endMeetingLabel)}
             description={intl.formatMessage(intlMessages.endMeetingDesc)}
@@ -291,7 +292,8 @@ class SettingsDropdown extends PureComponent {
             size="lg"
             circle
             onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        />
+        /> : null
+        )
 
       // <Dropdown
       //   autoFocus
