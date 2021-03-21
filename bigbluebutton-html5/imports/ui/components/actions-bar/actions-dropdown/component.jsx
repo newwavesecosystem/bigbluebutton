@@ -17,6 +17,7 @@ import RandomUserSelectContainer from '/imports/ui/components/modal/random-user/
 import cx from 'classnames';
 import { styles } from '../styles';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
+import SettingsMenuContainer from '/imports/ui/components/settings/container';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -315,7 +316,7 @@ class ActionsDropdown extends PureComponent {
       intl,
       amIPresenter,
       shortcuts: OPEN_ACTIONS_AK,
-      isMeteorConnected,
+      isMeteorConnected, mountModal
     } = this.props;
 
     const availableActions = this.getAvailableActions();
@@ -329,6 +330,15 @@ class ActionsDropdown extends PureComponent {
     }
 
     return (
+        <div>
+          <Button
+              label="Settings"
+              data-test="sett"
+              icon="settings"
+              color="dark"
+              size="lg"
+              onClick={() => mountModal(<SettingsMenuContainer />)}
+          />
       <Dropdown className={styles.dropdown} ref={(ref) => { this._dropdown = ref; }}>
         <DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
           <Button
@@ -348,6 +358,7 @@ class ActionsDropdown extends PureComponent {
           </DropdownList>
         </DropdownContent>
       </Dropdown>
+        </div>
     );
   }
 }

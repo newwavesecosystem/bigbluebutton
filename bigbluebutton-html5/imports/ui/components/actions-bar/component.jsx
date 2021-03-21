@@ -9,12 +9,9 @@ import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions
 import PresentationOptionsContainer from './presentation-options/component';
 import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager';
 import PropTypes from 'prop-types';
-import SettingsMenuContainer from '/imports/ui/components/settings/container';
-import Button from '/imports/ui/components/button/component';
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
-  mountModal: PropTypes.func.isRequired,
 };
 
 
@@ -36,7 +33,6 @@ class ActionsBar extends PureComponent {
       isPresentationDisabled,
       isThereCurrentPresentation,
       allowExternalVideo,
-      mountModal
     } = this.props;
 
     const actionBarClasses = {};
@@ -66,14 +62,6 @@ class ActionsBar extends PureComponent {
           }}
           />
 
-          <Button
-              label="Settings"
-              data-test="sett"
-              icon="settings"
-              color="dark"
-              size="lg"
-              onClick={() => <SettingsMenuContainer />}
-          />
 
           {isCaptionsAvailable
             ? (
