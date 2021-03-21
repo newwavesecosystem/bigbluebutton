@@ -191,16 +191,7 @@ class SettingsDropdown extends PureComponent {
   getEndMeeting() {
     const {
       intl, mountModal, isMeteorConnected, amIModerator, isBreakoutRoom,
-      shortcuts: OPEN_OPTIONS_AK,
     } = this.props;
-
-    const { isSettingOpen } = this.state;
-
-    console.log("amIModerator on settings:"+amIModerator);
-    console.log("isBreakoutRoom:"+isBreakoutRoom);
-    console.log("isMeteorConnected:"+isMeteorConnected);
-
-
 
     const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
 
@@ -216,7 +207,7 @@ class SettingsDropdown extends PureComponent {
         />
     );
 
-    const shouldEndMeeting = (allowedToEndMeeting)
+    const shouldEndMeeting = (isMeteorConnected && allowedToEndMeeting)
         ? endMeeting
         : null;
 
