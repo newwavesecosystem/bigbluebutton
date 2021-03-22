@@ -204,7 +204,7 @@ class SettingsDropdown extends PureComponent {
             icon="logout"
             color="danger"
             size="sm"
-            block
+            circle
             onClick={() => this.leaveSession()}
         />
     );
