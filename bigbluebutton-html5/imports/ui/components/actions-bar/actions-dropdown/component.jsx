@@ -105,6 +105,14 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.endMeetingDesc',
     description: 'Describes settings option closing the current meeting',
   },
+  settingsLabel: {
+    id: 'app.navBar.settingsDropdown.settingsLabel',
+    description: 'Open settings option label',
+  },
+  settingsDesc: {
+    id: 'app.navBar.settingsDropdown.settingsDesc',
+    description: 'Describes settings option',
+  },
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -119,7 +127,7 @@ class ActionsDropdown extends PureComponent {
     this.selectUserRandId = _.uniqueId('action-item-');
     this.selectLeaveMeeting = _.uniqueId('action-item-');
     this.endLeaveMeeting = _.uniqueId('action-item-');
-    this.endLeaveMeetin = _.uniqueId('action-item-');
+    this.selectSettings = _.uniqueId('action-item-');
     // Set the logout code to 680 because it's not a real code and can be matched on the other side
     this.LOGOUT_CODE = '680';
 
@@ -259,6 +267,14 @@ class ActionsDropdown extends PureComponent {
           />
           ):null
         ),
+
+      <DropdownListItem
+          icon="Settings"
+          label={intl.formatMessage(intlMessages.settingsLabel)}
+          description={intl.formatMessage(intlMessages.settingsDesc)}
+          key={this.selectSettings}
+          onClick={() => mountModal(<SettingsMenuContainer />)}
+      />
     ]);
   }
 
@@ -350,16 +366,6 @@ class ActionsDropdown extends PureComponent {
           </DropdownList>
         </DropdownContent>
       </Dropdown>
-
-          <Button
-              hideLabel
-              label="Settings"
-              data-test="sett"
-              icon="settings"
-              color="dark"
-              size="lg"
-              onClick={() => mountModal(<SettingsMenuContainer />)}
-          />
         </div>
     );
   }

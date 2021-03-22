@@ -6,8 +6,8 @@ public:
     autoJoin: true
     listenOnlyMode: true
     forceListenOnly: false
-    skipCheck: false
-    skipCheckOnJoin: false
+    skipCheck: true
+    skipCheckOnJoin: true
     clientTitle: konn3ct
     appName: konn3ct
     bbbServerVersion: 2.3-dev
