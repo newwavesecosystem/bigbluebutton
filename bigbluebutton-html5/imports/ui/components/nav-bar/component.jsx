@@ -104,9 +104,8 @@ class NavBar extends Component {
               ghost
               circle
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
-              label={intl.formatMessage(intlMessages.toggleUserListLabel)}
+              label={isExpanded ? 'Chats' : 'Menu'}
               aria-label={ariaLabel}
-              icon="circle_tool"
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
