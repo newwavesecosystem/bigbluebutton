@@ -103,11 +103,10 @@ class NavBar extends Component {
               onClick={NavBar.handleToggleUserList}
               ghost
               circle
-              hideLabel
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={intl.formatMessage(intlMessages.toggleUserListLabel)}
               aria-label={ariaLabel}
-              icon="left_arrow"
+              icon="circle_tool"
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
