@@ -129,18 +129,6 @@ class AudioControls extends PureComponent {
 
     return (
       <span className={styles.container}>
-
-        <Button
-            hideLabel
-            label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
-            description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
-            icon="logout"
-            color="danger"
-            size="lg"
-            circle
-            onClick={() => this.leaveSession()}
-        />
-
         {inputStream && muteAlertEnabled ? (
           <MutedAlert {...{
             muted, inputStream, isViewer, isPresenter,
