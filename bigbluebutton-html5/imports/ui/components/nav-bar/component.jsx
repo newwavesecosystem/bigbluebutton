@@ -102,6 +102,7 @@ class NavBar extends Component {
               data-test="userListToggleButton"
               onClick={NavBar.handleToggleUserList}
               ghost
+              circle
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
