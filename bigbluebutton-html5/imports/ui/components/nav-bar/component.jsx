@@ -104,8 +104,9 @@ class NavBar extends Component {
               ghost
               circle
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
-              label={isExpanded ? 'Chats' : 'Menu'}
+              label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
+              icon="more"
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
