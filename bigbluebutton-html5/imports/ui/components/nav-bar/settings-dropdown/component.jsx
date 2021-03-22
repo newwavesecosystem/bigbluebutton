@@ -190,30 +190,34 @@ class SettingsDropdown extends PureComponent {
 
   getEndMeeting() {
     const {
-      intl, mountModal, isMeteorConnected, amIModerator, isBreakoutRoom,
+      intl, isMeteorConnected,
     } = this.props;
 
-    const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
+    const {
+      allowLogout: allowLogoutSetting,
+    } = Meteor.settings.public.app;
 
-    const endMeeting = (
+    const logoutOption = (
         <Button
-            label={intl.formatMessage(intlMessages.endMeetingLabel)}
-            description={intl.formatMessage(intlMessages.endMeetingDesc)}
-            icon="application"
+            label={intl.formatMessage(intlMessages.leaveSessionLabel)}
+            description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+            icon="logout"
             color="danger"
-            size="lg"
+            size="md"
             circle
-            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+            onClick={() => this.leaveSession()}
         />
     );
 
-    const shouldEndMeeting = (isMeteorConnected && allowedToEndMeeting)
-        ? endMeeting
+    const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
+        ? logoutOption
         : null;
 
     return (
-        shouldEndMeeting
+        shouldRenderLogoutOption
     );
+
+
   }
 
   leaveSession() {
