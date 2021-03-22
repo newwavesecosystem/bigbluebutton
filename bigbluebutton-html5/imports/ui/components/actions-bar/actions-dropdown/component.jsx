@@ -269,7 +269,8 @@ class ActionsDropdown extends PureComponent {
         ),
 
       <DropdownListItem
-          icon="Settings"
+          icon="settings"
+          data-test="settings"
           label={intl.formatMessage(intlMessages.settingsLabel)}
           description={intl.formatMessage(intlMessages.settingsDesc)}
           key={this.selectSettings}
