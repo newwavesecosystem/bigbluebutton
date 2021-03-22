@@ -101,12 +101,9 @@ class NavBar extends Component {
             <Button
               data-test="userListToggleButton"
               onClick={NavBar.handleToggleUserList}
-              ghost
-              circle
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
-              icon="more"
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
