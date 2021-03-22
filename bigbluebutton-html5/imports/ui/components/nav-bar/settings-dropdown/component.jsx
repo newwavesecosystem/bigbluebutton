@@ -203,7 +203,7 @@ class SettingsDropdown extends PureComponent {
             description={intl.formatMessage(intlMessages.leaveSessionDesc)}
             icon="logout"
             color="danger"
-            size="md"
+            size="sm"
             circle
             onClick={() => this.leaveSession()}
         />
