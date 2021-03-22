@@ -199,12 +199,11 @@ class SettingsDropdown extends PureComponent {
 
     const logoutOption = (
         <Button
-            label={intl.formatMessage(intlMessages.leaveSessionLabel)}
-            description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+            label= {intl.formatMessage(intlMessages.leaveSessionLabel)}
+            description= {intl.formatMessage(intlMessages.leaveSessionDesc)}
             icon="logout"
             color="danger"
             size="sm"
-            circle
             onClick={() => this.leaveSession()}
         />
     );
