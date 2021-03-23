@@ -188,7 +188,7 @@ class SettingsDropdown extends PureComponent {
     );
   }
 
-  getEndMeeting() {
+  showLogout() {
     const {
       intl, isMeteorConnected,
     } = this.props;
@@ -314,7 +314,7 @@ class SettingsDropdown extends PureComponent {
     const { isSettingOpen } = this.state;
 
     return (
-        this.getEndMeeting()
+        this.showLogout()
 
       // <Dropdown
       //   autoFocus
