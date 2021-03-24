@@ -542,7 +542,7 @@ class AudioModal extends Component {
           contentLabel={intl.formatMessage(intlMessages.ariaModalTitle)}
         >
           <FontAwesomeIcon icon={faCoffee} size="lg" color="orange" />
-          <FontAwesomeIcon icon={faThumbsUp} />
+          <FontAwesomeIcon icon="faThumbsUp" />
           <FontAwesomeIcon icon="spinner" spin />
           <FontAwesomeIcon icon="spinner" pulse />
           {isIEOrEdge ? (
