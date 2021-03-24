@@ -541,7 +541,10 @@ class AudioModal extends Component {
           hideBorder
           contentLabel={intl.formatMessage(intlMessages.ariaModalTitle)}
         >
-          <FontAwesomeIcon icon={faCoffee} />
+          <FontAwesomeIcon icon={faCoffee} size="lg" color="orange" />
+          <FontAwesomeIcon icon={faThumbsUp} />
+          <FontAwesomeIcon icon="spinner" spin />
+          <FontAwesomeIcon icon="spinner" pulse />
           {isIEOrEdge ? (
             <p className={cx(styles.text, styles.browserWarning)}>
               <FormattedMessage
