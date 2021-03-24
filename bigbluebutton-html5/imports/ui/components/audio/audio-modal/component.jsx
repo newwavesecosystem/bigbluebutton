@@ -367,7 +367,7 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
-                customIcon="fa square"
+                customIcon="fas fa-headset"
                 circle
                 size="sm"
                 color="success"
@@ -540,8 +540,9 @@ class AudioModal extends Component {
           hideBorder
           contentLabel={intl.formatMessage(intlMessages.ariaModalTitle)}
         >
-          <FontAwesomeIcon icon={['fas', 'coffee']} />
-          <FontAwesomeIcon icon="coffee" />
+          <FontAwesomeIcon icon={['fas', 'headset']} />
+          <FontAwesomeIcon icon="headset" />
+          <i className="fas fa-fish"></i>
           {isIEOrEdge ? (
             <p className={cx(styles.text, styles.browserWarning)}>
               <FormattedMessage
