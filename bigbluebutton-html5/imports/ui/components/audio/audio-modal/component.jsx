@@ -367,7 +367,7 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
-                customIcon=""
+                customIcon="fa square"
                 circle
                 size="sm"
                 color="success"
@@ -381,7 +381,7 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
-                icon="unmute"
+                icon="mute"
                 circle
                 size="sm"
                 color="dark"
@@ -540,6 +540,7 @@ class AudioModal extends Component {
           hideBorder
           contentLabel={intl.formatMessage(intlMessages.ariaModalTitle)}
         >
+          <FontAwesomeIcon icon={['fas', 'coffee']} />
           <FontAwesomeIcon icon="coffee" />
           {isIEOrEdge ? (
             <p className={cx(styles.text, styles.browserWarning)}>
