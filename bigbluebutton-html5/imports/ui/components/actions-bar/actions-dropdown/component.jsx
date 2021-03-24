@@ -199,7 +199,7 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
-      (amIModerator
+      (amIModerator && !amIPresenter
         ? (
           <DropdownListItem
             icon="presentation"

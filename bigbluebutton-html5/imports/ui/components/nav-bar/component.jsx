@@ -95,9 +95,9 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           <div className={styles.left}>
-            {!isExpanded ? null
-              : <Icon iconName="left_arrow" className={styles.arrowLeft} />
-            }
+            {/*{!isExpanded ? null*/}
+            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />*/}
+            {/*}*/}
             <Button
               data-test="userListToggleButton"
               onClick={NavBar.handleToggleUserList}
@@ -106,13 +106,14 @@ class NavBar extends Component {
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
+              icon={isExpanded ? "left_arrow" : "right_arrow"}
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
             />
-            {isExpanded ? null
-              : <Icon iconName="right_arrow" className={styles.arrowRight} />
-            }
+            {/*{isExpanded ? null*/}
+            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />*/}
+            {/*}*/}
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
