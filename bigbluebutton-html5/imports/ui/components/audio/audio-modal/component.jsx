@@ -543,6 +543,9 @@ class AudioModal extends Component {
           <FontAwesomeIcon icon={['fas', 'headset']} />
           <FontAwesomeIcon icon="headset" />
           <i className="fas fa-fish"></i>
+          <i className="fa fa-car"></i>
+<i className="fa fa-car" style="font-size:48px;"></i>
+<i className="fa fa-car" style="font-size:60px;color:red;"></i>
           {isIEOrEdge ? (
             <p className={cx(styles.text, styles.browserWarning)}>
               <FormattedMessage
