@@ -110,6 +110,7 @@ class NavBar extends Component {
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
+              size="sm"
             />
             {/*{isExpanded ? null*/}
             {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />*/}

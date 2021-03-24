@@ -56,7 +56,7 @@ public:
         chatAudioAlerts: true
         chatPushAlerts: true
         userJoinAudioAlerts: false
-        userJoinPushAlerts: true
+        userJoinPushAlerts: false
         raiseHandAudioAlerts: true
         raiseHandPushAlerts: true
         guestWaitingAudioAlerts: true

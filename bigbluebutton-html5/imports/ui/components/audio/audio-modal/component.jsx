@@ -368,7 +368,8 @@ class AudioModal extends Component {
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
                 icon="unmute"
                 circle
-                size="jumbo"
+                size="sm"
+                color="success"
                 disabled={audioLocked}
                 onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
               />
@@ -381,7 +382,8 @@ class AudioModal extends Component {
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
                 icon="listen"
                 circle
-                size="jumbo"
+                size="sm"
+                color="dark"
                 onClick={this.handleJoinListenOnly}
               />
             )
