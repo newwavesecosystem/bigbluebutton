@@ -14,7 +14,8 @@ import EchoTest from '../echo-test/component';
 import Help from '../help/component';
 import AudioDial from '../audio-dial/component';
 import AudioAutoplayPrompt from '../autoplay/component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -540,12 +541,7 @@ class AudioModal extends Component {
           hideBorder
           contentLabel={intl.formatMessage(intlMessages.ariaModalTitle)}
         >
-          <FontAwesomeIcon icon={['fas', 'headset']} />
-          <FontAwesomeIcon icon="headset" />
-          <i className="fas fa-fish"></i>
-          <i className="fa fa-car"></i>
-<i className="fa fa-car" style="font-size:48px;"></i>
-<i className="fa fa-car" style="font-size:60px;color:red;"></i>
+          <FontAwesomeIcon icon={faCoffee} />
           {isIEOrEdge ? (
             <p className={cx(styles.text, styles.browserWarning)}>
               <FormattedMessage
