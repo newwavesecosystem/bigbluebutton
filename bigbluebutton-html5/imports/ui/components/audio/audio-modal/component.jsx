@@ -15,7 +15,7 @@ import Help from '../help/component';
 import AudioDial from '../audio-dial/component';
 import AudioAutoplayPrompt from '../autoplay/component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faThumbsUp, faHome, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -541,10 +541,15 @@ class AudioModal extends Component {
           hideBorder
           contentLabel={intl.formatMessage(intlMessages.ariaModalTitle)}
         >
-          <FontAwesomeIcon icon={faCoffee} size="lg" color="orange" />
-          <FontAwesomeIcon icon="faThumbsUp" />
-          <FontAwesomeIcon icon="spinner" spin />
-          <FontAwesomeIcon icon="spinner" pulse />
+          <FontAwesomeIcon icon={faCoffee} size="5x" color="orange" />
+          <FontAwesomeIcon icon={faThumbsUp} size="4x" spin />
+          <FontAwesomeIcon icon={faThumbsUp} size="2x" pulse />
+          <FontAwesomeIcon icon={faHome} style={{ color: 'red' }} spin />
+          <FontAwesomeIcon icon={faMicrophoneSlash} border />
+          <span className="fa-layers fa-fw">
+  <FontAwesomeIcon icon="square" color="green" />
+  <FontAwesomeIcon icon="check" inverse transform="shrink-6" />
+</span>
           {isIEOrEdge ? (
             <p className={cx(styles.text, styles.browserWarning)}>
               <FormattedMessage
