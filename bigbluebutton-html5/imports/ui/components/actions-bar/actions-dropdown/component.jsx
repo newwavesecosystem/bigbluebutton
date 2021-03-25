@@ -347,7 +347,7 @@ class ActionsDropdown extends PureComponent {
       || !isMeteorConnected) {
       return null;
     }
-    const arrowUp=<FontAwesomeIcon icon={faAngleDoubleUp} size="sm" />;
+    const arrowUp=<FontAwesomeIcon icon={faAngleDoubleUp} size="lg" />;
     return (
         <div>
       <Dropdown className={styles.dropdown} ref={(ref) => { this._dropdown = ref; }}>
