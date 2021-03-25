@@ -199,7 +199,7 @@ class SettingsDropdown extends PureComponent {
       allowLogout: allowLogoutSetting,
     } = Meteor.settings.public.app;
 
-    const exitIcon=<FontAwesomeIcon icon={faTimesCircle} size="2x" /> ;
+    const exitIcon=<FontAwesomeIcon icon={faTimesCircle} size="sm" />;
 
     const logoutOption = (
         <Button
