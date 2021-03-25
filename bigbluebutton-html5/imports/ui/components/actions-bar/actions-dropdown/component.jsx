@@ -18,6 +18,8 @@ import cx from 'classnames';
 import { styles } from '../styles';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -345,7 +347,7 @@ class ActionsDropdown extends PureComponent {
       || !isMeteorConnected) {
       return null;
     }
-
+    const arrowUp=<FontAwesomeIcon icon={faAngleDoubleUp} size="sm" />;
     return (
         <div>
       <Dropdown className={styles.dropdown} ref={(ref) => { this._dropdown = ref; }}>
@@ -354,7 +356,7 @@ class ActionsDropdown extends PureComponent {
             hideLabel
             aria-label={intl.formatMessage(intlMessages.actionsLabel)}
             label={intl.formatMessage(intlMessages.actionsLabel)}
-            icon="plus"
+            customIcon={arrowUp}
             color="primary"
             size="lg"
             circle

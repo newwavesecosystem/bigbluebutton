@@ -112,7 +112,7 @@ class NavBar extends Component {
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
-              icon={isExpanded ? leftIcon : rightIcon}
+              customIcon={isExpanded ? leftIcon : rightIcon}
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}

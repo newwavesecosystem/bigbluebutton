@@ -18,7 +18,7 @@ import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/componen
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '../../fullscreen-button/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faDoorOpen} from '@fortawesome/free-solid-svg-icons'
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 
 import { styles } from '../styles';
 
@@ -199,7 +199,7 @@ class SettingsDropdown extends PureComponent {
       allowLogout: allowLogoutSetting,
     } = Meteor.settings.public.app;
 
-    const exitIcon=<FontAwesomeIcon icon={faDoorOpen} size="sm" />;
+    const exitIcon=<FontAwesomeIcon icon={faTimesCircle} size="sm" />;
 
     const logoutOption = (
         <Button

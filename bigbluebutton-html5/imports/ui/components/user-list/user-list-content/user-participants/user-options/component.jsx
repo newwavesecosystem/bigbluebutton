@@ -19,6 +19,9 @@ import CaptionsWriterMenu from '/imports/ui/components/captions/writer-menu/cont
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import { styles } from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faUsersCog} from '@fortawesome/free-solid-svg-icons'
+
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -356,6 +359,8 @@ class UserOptions extends PureComponent {
     const { isUserOptionsOpen } = this.state;
     const { intl } = this.props;
 
+    const usersetIcon=<FontAwesomeIcon icon={faUsersCog} size="sm" spin />
+
     return (
       <Dropdown
         ref={(ref) => { this.dropdown = ref; }}
@@ -369,7 +374,7 @@ class UserOptions extends PureComponent {
           <Button
             label={intl.formatMessage(intlMessages.optionsLabel)}
             data-test="manageUsers"
-            icon="settings"
+            customIcon={usersetIcon}
             ghost
             color="dark"
             className={styles.optionsButton}
