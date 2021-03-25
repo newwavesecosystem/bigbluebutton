@@ -91,8 +91,8 @@ class NavBar extends Component {
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
-    const leftIcon=<FontAwesomeIcon icon={faCaretSquareLeft} size="sm" />;
-    const rightIcon=<FontAwesomeIcon icon={faCaretSquareRight} size="sm" />;
+    const leftIcon=<FontAwesomeIcon icon={faCaretSquareLeft} size="lg" />;
+    const rightIcon=<FontAwesomeIcon icon={faCaretSquareRight} size="lg" />;
 
 
     return (
