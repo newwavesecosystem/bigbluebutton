@@ -419,14 +419,14 @@ class UserDropdown extends PureComponent {
       ));
     }
 
-    if (allowUserLookup && isMeteorConnected) {
-      actions.push(this.makeDropdownItem(
-        'directoryLookup',
-        intl.formatMessage(messages.DirectoryLookupLabel),
-        () => this.onActionsHide(requestUserInformation(user.extId)),
-        'user',
-      ));
-    }
+    // if (allowUserLookup && isMeteorConnected) {
+    //   actions.push(this.makeDropdownItem(
+    //     'directoryLookup',
+    //     intl.formatMessage(messages.DirectoryLookupLabel),
+    //     () => this.onActionsHide(requestUserInformation(user.extId)),
+    //     'user',
+    //   ));
+    // }
 
     if (allowedToRemove && isMeteorConnected) {
       actions.push(this.makeDropdownItem(

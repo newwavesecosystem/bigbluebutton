@@ -12,6 +12,8 @@ import Button from '/imports/ui/components/button/component';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
 import SettingsDropdownContainer from './settings-dropdown/container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -89,32 +91,36 @@ class NavBar extends Component {
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
+    const leftIcon=<FontAwesomeIcon icon={faCaretSquareLeft} size="lg" />;
+    const rightIcon=<FontAwesomeIcon icon={faCaretSquareRight} size="lg" />;
+
+
     return (
       <div
         className={styles.navbar}
       >
         <div className={styles.top}>
           <div className={styles.left}>
-            {!isExpanded ? null
-              : <Icon iconName="left_arrow" className={styles.arrowLeft} />
-            }
+            {/*{!isExpanded ? null*/}
+            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />*/}
+            {/*}*/}
             <Button
               data-test="userListToggleButton"
               onClick={NavBar.handleToggleUserList}
               ghost
               circle
-              hideLabel
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
-              label={intl.formatMessage(intlMessages.toggleUserListLabel)}
+              label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
-              icon="user"
+              customIcon={isExpanded ? leftIcon : rightIcon}
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
+              size="sm"
             />
-            {isExpanded ? null
-              : <Icon iconName="right_arrow" className={styles.arrowRight} />
-            }
+            {/*{isExpanded ? null*/}
+            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />*/}
+            {/*}*/}
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>

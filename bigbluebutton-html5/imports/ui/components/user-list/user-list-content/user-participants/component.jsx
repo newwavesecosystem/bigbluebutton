@@ -202,6 +202,19 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
+        <div className={styles.container}>
+          {currentUser.role === ROLE_MODERATOR
+              ? (
+                  <UserOptionsContainer {...{
+                    users,
+                    setEmojiStatus,
+                    meetingIsBreakout,
+                  }}
+                  />
+              ) : null
+          }
+        </div>
+
         {
           !compact
             ? (
@@ -212,16 +225,16 @@ class UserParticipants extends Component {
                   {users.length}
                   )
                 </h2>
-                {currentUser.role === ROLE_MODERATOR
-                  ? (
-                    <UserOptionsContainer {...{
-                      users,
-                      setEmojiStatus,
-                      meetingIsBreakout,
-                    }}
-                    />
-                  ) : null
-                }
+                {/*{currentUser.role === ROLE_MODERATOR*/}
+                {/*  ? (*/}
+                {/*    <UserOptionsContainer {...{*/}
+                {/*      users,*/}
+                {/*      setEmojiStatus,*/}
+                {/*      meetingIsBreakout,*/}
+                {/*    }}*/}
+                {/*    />*/}
+                {/*  ) : null*/}
+                {/*}*/}
 
               </div>
             )

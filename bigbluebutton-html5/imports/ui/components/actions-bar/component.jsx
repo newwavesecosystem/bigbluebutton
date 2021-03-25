@@ -10,6 +10,12 @@ import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/scree
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  intl: PropTypes.object.isRequired,
+};
+
 
 class ActionsBar extends PureComponent {
   render() {

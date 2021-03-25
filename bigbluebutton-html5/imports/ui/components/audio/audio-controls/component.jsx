@@ -7,6 +7,8 @@ import getFromUserSettings from '/imports/ui/services/users-settings';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
+import { makeCall } from '/imports/ui/services/api';
+import _ from 'lodash';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -25,6 +27,14 @@ const intlMessages = defineMessages({
     id: 'app.actionsBar.unmuteLabel',
     description: 'Unmute audio button label',
   },
+  selectleaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
+  },
 });
 
 const propTypes = {
@@ -42,12 +52,28 @@ const propTypes = {
 };
 
 class AudioControls extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.selectLeaveMeeting = _.uniqueId('action-item-');
+    // Set the logout code to 680 because it's not a real code and can be matched on the other side
+    this.LOGOUT_CODE = '680';
+
+    this.leaveSession = this.leaveSession.bind(this);
+  }
   componentDidMount() {
     const { processToggleMuteFromOutside } = this.props;
     if (Meteor.settings.public.allowOutsideCommands.toggleSelfVoice
       || getFromUserSettings('bbb_outside_toggle_self_voice', false)) {
       window.addEventListener('message', processToggleMuteFromOutside);
     }
+  }
+
+  leaveSession() {
+    makeCall('userLeftMeeting');
+    // we don't check askForFeedbackOnLogout here,
+    // it is checked in meeting-ended component
+    Session.set('codeError', this.LOGOUT_CODE);
   }
 
   render() {

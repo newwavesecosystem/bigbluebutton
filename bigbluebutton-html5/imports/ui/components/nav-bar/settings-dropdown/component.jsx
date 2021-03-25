@@ -17,6 +17,8 @@ import DropdownListSeparator from '/imports/ui/components/dropdown/list/separato
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '../../fullscreen-button/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 
 import { styles } from '../styles';
 
@@ -188,6 +190,39 @@ class SettingsDropdown extends PureComponent {
     );
   }
 
+  showLogout() {
+    const {
+      intl, isMeteorConnected,
+    } = this.props;
+
+    const {
+      allowLogout: allowLogoutSetting,
+    } = Meteor.settings.public.app;
+
+    const exitIcon=<FontAwesomeIcon icon={faTimesCircle} size="sm" />;
+
+    const logoutOption = (
+        <Button
+            label= {intl.formatMessage(intlMessages.leaveSessionLabel)}
+            description= {intl.formatMessage(intlMessages.leaveSessionDesc)}
+            customIcon={exitIcon}
+            color="danger"
+            size="sm"
+            onClick={() => this.leaveSession()}
+        />
+    );
+
+    const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
+        ? logoutOption
+        : null;
+
+    return (
+        shouldRenderLogoutOption
+    );
+
+
+  }
+
   leaveSession() {
     makeCall('userLeftMeeting');
     // we don't check askForFeedbackOnLogout here,
@@ -283,32 +318,34 @@ class SettingsDropdown extends PureComponent {
     const { isSettingOpen } = this.state;
 
     return (
-      <Dropdown
-        autoFocus
-        keepOpen={isSettingOpen}
-        onShow={this.onActionsShow}
-        onHide={this.onActionsHide}
-      >
-        <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            icon="more"
-            ghost
-            circle
-            hideLabel
-            className={styles.btn}
+        this.showLogout()
 
-            // FIXME: Without onClick react proptypes keep warning
-            // even after the DropdownTrigger inject an onClick handler
-            onClick={() => null}
-          />
-        </DropdownTrigger>
-        <DropdownContent placement="bottom right">
-          <DropdownList>
-            {this.renderMenuItems()}
-          </DropdownList>
-        </DropdownContent>
-      </Dropdown>
+      // <Dropdown
+      //   autoFocus
+      //   keepOpen={isSettingOpen}
+      //   onShow={this.onActionsShow}
+      //   onHide={this.onActionsHide}
+      // >
+      //   <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
+      //     <Button
+      //       label={intl.formatMessage(intlMessages.optionsLabel)}
+      //       icon="more"
+      //       ghost
+      //       circle
+      //       hideLabel
+      //       className={styles.btn}
+      //
+      //       // FIXME: Without onClick react proptypes keep warning
+      //       // even after the DropdownTrigger inject an onClick handler
+      //       onClick={() => null}
+      //     />
+      //   </DropdownTrigger>
+      //   <DropdownContent placement="bottom right">
+      //     <DropdownList>
+      //       {this.renderMenuItems()}
+      //     </DropdownList>
+      //   </DropdownContent>
+      // </Dropdown>
     );
   }
 }

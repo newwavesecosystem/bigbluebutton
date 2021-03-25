@@ -8,6 +8,9 @@ import _ from 'lodash';
 import TypingIndicatorContainer from './typing-indicator/container';
 import { styles } from './styles.scss';
 import Button from '../../button/component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -274,6 +277,8 @@ class MessageForm extends PureComponent {
 
     const { hasErrors, error, message } = this.state;
 
+    const sendIcon=<FontAwesomeIcon icon={faPaperPlane} size="md" />;
+
     return CHAT_ENABLED ? (
       <form
         ref={(ref) => { this.form = ref; }}
@@ -308,7 +313,7 @@ class MessageForm extends PureComponent {
             disabled={disabled}
             label={intl.formatMessage(messages.submitLabel)}
             color="primary"
-            icon="send"
+            customIcon={sendIcon}
             onClick={() => {}}
             data-test="sendMessageButton"
           />

@@ -4,8 +4,8 @@
   "license": "LGPL-3.0",
   "scripts": {
     "start": "if test \"$NODE_ENV\" = \"production\" ; then npm run start:prod; else npm run start:dev; fi",
-    "start:prod": "meteor reset && ROOT_URL=http://127.0.0.1/html5client meteor run --production --port=4100",
-    "start:dev": "ROOT_URL=http://127.0.0.1/html5client meteor run --port=4100",
+    "start:prod": "meteor reset && ROOT_URL=http://127.0.0.1/room meteor run --production --port=4100",
+    "start:dev": "ROOT_URL=http://127.0.0.1/room meteor run --port=4100",
     "start:dev-fast-mongo": "env ROOT_URL=http://127.0.0.1/html5client MONGO_OPLOG_URL=mongodb://127.0.1.1/local MONGO_URL=mongodb://127.0.1.1/meteor ROOT_URL=http://127.0.0.1/html5client NODE_ENV=development meteor run --port=4100",
     "test": "export REGRESSION_TESTING=false;env $(cat tests/puppeteer/.env | xargs)  jest all.test.js --color --detectOpenHandles --forceExit",
     "test:recording": "export WITH_RECORD=true;export REGRESSION_TESTING=false;env $(cat tests/puppeteer/.env | xargs)  jest all.test.js --color --detectOpenHandles --forceExit",
@@ -31,6 +31,10 @@
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@browser-bunyan/server-stream": "^1.6.1",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@jitsi/sdp-interop": "0.1.14",
     "autoprefixer": "~9.3.1",
     "axios": "^0.21.1",

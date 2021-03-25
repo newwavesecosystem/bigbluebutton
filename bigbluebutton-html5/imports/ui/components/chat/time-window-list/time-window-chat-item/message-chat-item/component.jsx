@@ -255,6 +255,7 @@ class MessageChatItem extends PureComponent {
         ref={(ref) => { this.text = ref; }}
         dangerouslySetInnerHTML={{ __html: text }}
         data-test={isSystemMessage ? systemMessageType : chatUserMessageItem ? 'chatUserMessageText' : ''}
+        style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}
       />
     );
   }

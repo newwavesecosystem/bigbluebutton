@@ -14,6 +14,8 @@ import EchoTest from '../echo-test/component';
 import Help from '../help/component';
 import AudioDial from '../audio-dial/component';
 import AudioAutoplayPrompt from '../autoplay/component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faMicrophoneAltSlash, faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -358,6 +360,9 @@ class AudioModal extends Component {
     const arrow = isRTL ? '←' : '→';
     const dialAudioLabel = `${intl.formatMessage(intlMessages.audioDialTitle)} ${arrow}`;
 
+    const mic=<FontAwesomeIcon icon={faMicrophoneAlt} size="sm" style={{ color: 'green' }} />;
+    const nomic=<FontAwesomeIcon icon={faMicrophoneAltSlash} size="sm" style={{ color: 'red' }} />;
+
     return (
       <div>
         <span className={styles.audioOptions}>
@@ -366,9 +371,9 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
-                icon="unmute"
+                customIcon={mic}
                 circle
-                size="jumbo"
+                size="sm"
                 disabled={audioLocked}
                 onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
               />
@@ -379,9 +384,9 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
-                icon="listen"
+                customIcon={nomic}
                 circle
-                size="jumbo"
+                size="sm"
                 onClick={this.handleJoinListenOnly}
               />
             )
