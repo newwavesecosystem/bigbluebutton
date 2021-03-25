@@ -17,6 +17,8 @@ import DropdownListSeparator from '/imports/ui/components/dropdown/list/separato
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '../../fullscreen-button/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 
 import { styles } from '../styles';
 
@@ -197,11 +199,13 @@ class SettingsDropdown extends PureComponent {
       allowLogout: allowLogoutSetting,
     } = Meteor.settings.public.app;
 
+    const exitIcon=<FontAwesomeIcon icon={faDoorOpen} size="sm" />;
+
     const logoutOption = (
         <Button
             label= {intl.formatMessage(intlMessages.leaveSessionLabel)}
             description= {intl.formatMessage(intlMessages.leaveSessionDesc)}
-            icon="logout"
+            customIcon={exitIcon}
             color="danger"
             size="sm"
             onClick={() => this.leaveSession()}

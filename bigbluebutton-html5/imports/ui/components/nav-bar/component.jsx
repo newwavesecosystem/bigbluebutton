@@ -12,6 +12,8 @@ import Button from '/imports/ui/components/button/component';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
 import SettingsDropdownContainer from './settings-dropdown/container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -89,6 +91,10 @@ class NavBar extends Component {
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
+    const leftIcon=<FontAwesomeIcon icon={faCaretSquareLeft} size="sm" />;
+    const rightIcon=<FontAwesomeIcon icon={faCaretSquareRight} size="sm" />;
+
+
     return (
       <div
         className={styles.navbar}
@@ -106,7 +112,7 @@ class NavBar extends Component {
               data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
               label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
-              icon={isExpanded ? "left_arrow" : "right_arrow"}
+              icon={isExpanded ? leftIcon : rightIcon}
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
