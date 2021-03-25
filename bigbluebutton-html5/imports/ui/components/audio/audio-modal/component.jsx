@@ -360,7 +360,8 @@ class AudioModal extends Component {
     const arrow = isRTL ? '←' : '→';
     const dialAudioLabel = `${intl.formatMessage(intlMessages.audioDialTitle)} ${arrow}`;
 
-    const mic=<FontAwesomeIcon icon={faMicrophoneAlt} size="5x" style={{ color: 'red' }} />;
+    const mic=<FontAwesomeIcon icon={faMicrophoneAlt} size="2x" style={{ color: 'green' }} />;
+    const nomic=<FontAwesomeIcon icon={faMicrophoneAltSlash} size="2x" style={{ color: 'red' }} />;
 
     return (
       <div>
@@ -384,7 +385,7 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
-                icon="mute"
+                customIcon={nomic}
                 circle
                 size="sm"
                 color="dark"
