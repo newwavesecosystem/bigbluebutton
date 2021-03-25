@@ -367,7 +367,16 @@ class AudioModal extends Component {
         <span className={styles.audioOptions}>
           {!showMicrophone && !isMobileNative
             ? (
-                  mic
+              <Button
+                className={styles.audioBtn}
+                label={intl.formatMessage(intlMessages.microphoneLabel)}
+                customIcon={mic}
+                circle
+                size="sm"
+                color="success"
+                disabled={audioLocked}
+                onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
+              />
             )
             : null}
           {listenOnlyMode
