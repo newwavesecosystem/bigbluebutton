@@ -34,7 +34,7 @@ public:
     allowFullscreen: true
     preloadNextSlides: 2
     mutedAlert:
-      enabled: true
+      enabled: false
       interval: 200
       threshold: -50
       duration: 4000
@@ -45,7 +45,7 @@ public:
     # can generate excessive overhead to the server. We recommend
     # this value to be kept under 12.
     breakouts:
-      breakoutRoomLimit: 2
+      breakoutRoomLimit: 8
       sendInvitationToIncludedModerators: false
     # https://github.com/bigbluebutton/bigbluebutton/pull/10826
     customHeartbeat: false
@@ -378,7 +378,7 @@ public:
     typingIndicator:
       enabled: true
   note:
-    enabled: false
+    enabled: true
     url: https://dev.konn3ct.net/pad
   layout:
     autoSwapLayout: false
@@ -591,7 +591,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: 44ggXFYRrZfhgQe0IMIxeyljlwLbvMK7aHyL8C2aeRbZ7jrDjIFudAM8sEIkp1X
+    apikey: BYEPHNterSjgRppXotHxR1lUhGax3ryE9C2RUMEEnUwZLCPAFF2AnFtVZ0W
     version: 1.2.13
     host: 127.0.0.1
     port: 9001
