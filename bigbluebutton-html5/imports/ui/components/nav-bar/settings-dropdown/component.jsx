@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 
 import { styles } from '../styles';
+import {closeModal} from "../../audio/audio-modal/service";
 
 const intlMessages = defineMessages({
   optionsLabel: {
@@ -128,6 +129,7 @@ class SettingsDropdown extends PureComponent {
     this.onActionsShow = this.onActionsShow.bind(this);
     this.onActionsHide = this.onActionsHide.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
+    this.leavemeetingDialog = this.leavemeetingDialog.bind(this);
     this.onFullscreenChange = this.onFullscreenChange.bind(this);
   }
 
@@ -149,6 +151,38 @@ class SettingsDropdown extends PureComponent {
     this.setState({
       isSettingOpen: false,
     });
+  }
+
+  leavemeetingDialog(){
+    return(
+    <Modal
+        overlayClassName={styles.overlay}
+        className={styles.modal}
+        onRequestClose={closeModal}
+        hideBorder
+        title="Leave meeting"
+    >
+      <div className={styles.container}>
+        <div className={styles.description}>
+          Are you  sure you want to leave the meeting
+        </div>
+        <div className={styles.footer}>
+          <Button
+              data-test="confirmEndMeeting"
+              color="primary"
+              className={styles.button}
+              label={intl.formatMessage(intlMessages.yesLabel)}
+              onClick={() => this.leaveSession()}
+          />
+          <Button
+              label={intl.formatMessage(intlMessages.noLabel)}
+              className={styles.button}
+              onClick={closeModal}
+          />
+        </div>
+      </div>
+    </Modal>
+    );
   }
 
   onFullscreenChange() {
@@ -208,7 +242,7 @@ class SettingsDropdown extends PureComponent {
             customIcon={exitIcon}
             color="danger"
             size="sm"
-            onClick={() => this.leaveSession()}
+            onClick={() => this.leavemeetingDialog()}
         />
     );
 
