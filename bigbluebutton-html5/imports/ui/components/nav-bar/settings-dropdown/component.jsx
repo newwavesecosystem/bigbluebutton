@@ -19,6 +19,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '../../fullscreen-button/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
+import Modal from '/imports/ui/components/modal/simple/component';
 
 import { styles } from '../styles';
 import {closeModal} from "../../audio/audio-modal/service";
@@ -103,6 +104,7 @@ const propTypes = {
   shortcuts: PropTypes.string,
   isBreakoutRoom: PropTypes.bool,
   isMeteorConnected: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -154,6 +156,10 @@ class SettingsDropdown extends PureComponent {
   }
 
   leavemeetingDialog(){
+    const {
+      intl, closeModal,
+    } = this.props;
+
     return(
     <Modal
         overlayClassName={styles.overlay}

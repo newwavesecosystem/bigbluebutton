@@ -11,6 +11,8 @@ import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faHandPointUp} from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -42,6 +44,8 @@ class ActionsBar extends PureComponent {
     } = this.props;
 
     const actionBarClasses = {};
+
+    const handIcon=<FontAwesomeIcon icon={faHandPointUp} size="2x" />;
 
     actionBarClasses[styles.center] = true;
     actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;
@@ -90,7 +94,7 @@ class ActionsBar extends PureComponent {
         <div className={styles.right}>
           {
             <Button
-              icon="hand"
+              customIcon={handIcon}
               label={intl.formatMessage({
                 id: `app.actionsBar.emojiMenu.${
                   currentUser.emoji === 'raiseHand'
@@ -99,7 +103,7 @@ class ActionsBar extends PureComponent {
                 }`,
               })}
               accessKey={shortcuts.raisehand}
-              color="primary"
+              color="secondary"
               hideLabel
               circle
               size="lg"
