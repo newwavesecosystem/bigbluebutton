@@ -382,7 +382,7 @@ class UserOptions extends PureComponent {
           >
             <Icon iconName="copy" />
             <div aria-hidden>
-              <div className={stylesb.noteTitle} data-test="sharedNotes">
+              <div className={styles.noteTitle} data-test="sharedNotes">
                 Manage users
               </div>
             </div>
