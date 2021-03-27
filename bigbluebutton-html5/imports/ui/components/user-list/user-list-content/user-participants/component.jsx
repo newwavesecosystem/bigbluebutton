@@ -203,40 +203,6 @@ class UserParticipants extends Component {
 
     return (
       <div>
-        <div
-            aria-label="meni"
-            aria-describedby="lockedNote"
-            role="button"
-            tabIndex={0}
-            className={styles.listItem}
-        >
-          <Icon iconName="copy" />
-          <div aria-hidden>
-            <div className={styles.noteTitle} data-test="sharedNotes">
-              <UserOptionsContainer {...{
-                users,
-                setEmojiStatus,
-                meetingIsBreakout,
-              }}
-              />
-            </div>
-
-          </div>
-
-        </div>
-
-        <div className={styles.noteLock}>
-          <Icon iconName="lock" />
-          <span id="lockedNote">
-            <UserOptionsContainer {...{
-              users,
-              setEmojiStatus,
-              meetingIsBreakout,
-            }}
-            />
-          </span>
-        </div>
-
         <div className={styles.container}>
           {currentUser.role === ROLE_MODERATOR
               ? (
