@@ -1,4 +1,5 @@
 @import "/imports/ui/stylesheets/variables/breakpoints";
+@import "/imports/ui/components/user-list/styles.scss";
 
 .listItem {
   @extend %list-item;
