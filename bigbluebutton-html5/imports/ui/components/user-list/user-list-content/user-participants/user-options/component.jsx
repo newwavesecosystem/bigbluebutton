@@ -22,7 +22,6 @@ import { getUserNamesLink } from '/imports/ui/components/user-list/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUsersCog} from '@fortawesome/free-solid-svg-icons'
 import Icon from "../../../../icon/component";
-import { stylesb } from '/imports/ui/components/user-list/user-list-content/styles';
 
 
 const propTypes = {
@@ -378,7 +377,7 @@ class UserOptions extends PureComponent {
               aria-describedby="manageUsers"
               role="button"
               tabIndex={0}
-              className={stylesb.listItem}
+              className={styles.listItem}
               onClick={() => null}
           >
             <Icon iconName="copy" />
