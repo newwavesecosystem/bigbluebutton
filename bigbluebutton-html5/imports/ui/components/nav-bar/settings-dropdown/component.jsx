@@ -180,13 +180,12 @@ class SettingsDropdown extends PureComponent {
       intl, mountModal
     } = this.props;
 
-    const closeModal =mountModal(null);
 
     return(
     <Modal
         overlayClassName={styles.overlay}
         className={styles.modal}
-        onRequestClose={closeModal}
+        onRequestClose={mountModal(null)}
         hideBorder
         title="Leave meeting"
     >
@@ -205,7 +204,7 @@ class SettingsDropdown extends PureComponent {
           <Button
               label={intl.formatMessage(intlMessages.noLabel)}
               className={styles.button}
-              onClick={closeModal}
+              onClick={mountModal(null)}
           />
         </div>
       </div>

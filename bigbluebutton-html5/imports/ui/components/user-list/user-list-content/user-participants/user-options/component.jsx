@@ -359,7 +359,7 @@ class UserOptions extends PureComponent {
     const { isUserOptionsOpen } = this.state;
     const { intl } = this.props;
 
-    const usersetIcon=<FontAwesomeIcon icon={faUsersCog} size="md"/>
+    const usersetIcon=<FontAwesomeIcon icon={faUsersCog}/>
 
     return (
       <Dropdown
