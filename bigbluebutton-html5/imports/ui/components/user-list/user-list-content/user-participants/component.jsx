@@ -13,6 +13,7 @@ import {
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
 import Settings from '/imports/ui/services/settings';
+import Icon from "../../../icon/component";
 
 const propTypes = {
   compact: PropTypes.bool,
