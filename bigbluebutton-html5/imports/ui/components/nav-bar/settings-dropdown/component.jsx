@@ -152,6 +152,7 @@ class SettingsDropdown extends PureComponent {
     this.onActionsHide = this.onActionsHide.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
     this.leavemeetingDialog = this.leavemeetingDialog.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.onFullscreenChange = this.onFullscreenChange.bind(this);
   }
 
@@ -175,6 +176,16 @@ class SettingsDropdown extends PureComponent {
     });
   }
 
+  closeModal () {
+  const {
+  intl, mountModal
+} = this.props;
+
+  return(
+    mountModal(null)
+  );
+  }
+
   leavemeetingDialog(){
     const {
       intl, mountModal
@@ -186,7 +197,7 @@ class SettingsDropdown extends PureComponent {
         overlayClassName={styles.overlay}
         className={styles.modal}
         hideBorder
-        shouldShowCloseButton={true}
+        shouldShowCloseButton={false}
         title="Leave meeting"
     >
       <div className={styles.container}>
@@ -204,7 +215,7 @@ class SettingsDropdown extends PureComponent {
           <Button
               label={intl.formatMessage(intlMessages.noLabel)}
               className={styles.button}
-              onClick={mountModal(null)}
+              onClick={() => this.closeModal()}
           />
         </div>
       </div>
