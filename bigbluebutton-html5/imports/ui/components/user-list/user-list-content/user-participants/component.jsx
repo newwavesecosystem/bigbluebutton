@@ -13,6 +13,7 @@ import {
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
 import Settings from '/imports/ui/services/settings';
+import { stylesb } from '/imports/ui/components/user-list/user-list-content/styles';
 
 const propTypes = {
   compact: PropTypes.bool,
@@ -201,7 +202,41 @@ class UserParticipants extends Component {
     const { isOpen, scrollArea } = this.state;
 
     return (
-      <div className={styles.userListColumn}>
+      <div>
+        <div
+            aria-label="meni"
+            aria-describedby="lockedNote"
+            role="button"
+            tabIndex={0}
+            className={stylesb.listItem}
+        >
+          <Icon iconName="copy" />
+          <div aria-hidden>
+            <div className={stylesb.noteTitle} data-test="sharedNotes">
+              <UserOptionsContainer {...{
+                users,
+                setEmojiStatus,
+                meetingIsBreakout,
+              }}
+              />
+            </div>
+
+          </div>
+
+        </div>
+
+        <div className={stylesb.noteLock}>
+          <Icon iconName="lock" />
+          <span id="lockedNote">
+            <UserOptionsContainer {...{
+              users,
+              setEmojiStatus,
+              meetingIsBreakout,
+            }}
+            />
+          </span>
+        </div>
+
         <div className={styles.container}>
           {currentUser.role === ROLE_MODERATOR
               ? (
