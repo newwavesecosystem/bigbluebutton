@@ -78,12 +78,13 @@
 
 .dropdown {
   position: absolute;
-  right: 0;
-  left: auto;
+  right: auto;
+  left: 0;
+  margin: 20px;
 
   [dir="rtl"] & {
-    left: 0;
-    right: auto;
+    left: auto;
+    right: 0;
   }
 }
 
