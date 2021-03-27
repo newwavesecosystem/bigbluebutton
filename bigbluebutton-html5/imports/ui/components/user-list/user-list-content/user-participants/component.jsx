@@ -13,7 +13,6 @@ import {
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
 import Settings from '/imports/ui/services/settings';
-import { stylesb } from '/imports/ui/components/user-list/user-list-content/styles';
 
 const propTypes = {
   compact: PropTypes.bool,
@@ -208,11 +207,11 @@ class UserParticipants extends Component {
             aria-describedby="lockedNote"
             role="button"
             tabIndex={0}
-            className={stylesb.listItem}
+            className={styles.listItem}
         >
           <Icon iconName="copy" />
           <div aria-hidden>
-            <div className={stylesb.noteTitle} data-test="sharedNotes">
+            <div className={styles.noteTitle} data-test="sharedNotes">
               <UserOptionsContainer {...{
                 users,
                 setEmojiStatus,
@@ -225,7 +224,7 @@ class UserParticipants extends Component {
 
         </div>
 
-        <div className={stylesb.noteLock}>
+        <div className={styles.noteLock}>
           <Icon iconName="lock" />
           <span id="lockedNote">
             <UserOptionsContainer {...{

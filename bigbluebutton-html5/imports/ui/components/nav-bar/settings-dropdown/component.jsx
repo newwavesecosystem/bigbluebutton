@@ -124,7 +124,6 @@ const propTypes = {
   shortcuts: PropTypes.string,
   isBreakoutRoom: PropTypes.bool,
   isMeteorConnected: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -178,7 +177,7 @@ class SettingsDropdown extends PureComponent {
 
   closeModal () {
   const {
-  intl, mountModal
+  mountModal
 } = this.props;
 
   return(
@@ -188,7 +187,7 @@ class SettingsDropdown extends PureComponent {
 
   leavemeetingDialog(){
     const {
-      intl, mountModal
+      intl
     } = this.props;
 
 
