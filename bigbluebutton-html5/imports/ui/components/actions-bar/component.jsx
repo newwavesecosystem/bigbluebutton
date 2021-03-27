@@ -45,7 +45,7 @@ class ActionsBar extends PureComponent {
 
     const actionBarClasses = {};
 
-    const handIcon=<FontAwesomeIcon icon={faHandPointUp} size="2x" />;
+    const handIcon=<FontAwesomeIcon icon={faHandPointUp} size="lg" />;
 
     actionBarClasses[styles.center] = true;
     actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;

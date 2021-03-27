@@ -252,7 +252,7 @@ class SettingsDropdown extends PureComponent {
 
   showLogout() {
     const {
-      intl, isMeteorConnected,
+      intl, isMeteorConnected, mountModal
     } = this.props;
 
     const {
@@ -268,7 +268,7 @@ class SettingsDropdown extends PureComponent {
             customIcon={exitIcon}
             color="danger"
             size="sm"
-            onClick={() => this.leavemeetingDialog()}
+            onClick={() => mountModal(this.leavemeetingDialog())}
         />
     );
 
