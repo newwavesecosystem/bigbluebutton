@@ -103,7 +103,7 @@ class ActionsBar extends PureComponent {
                 }`,
               })}
               accessKey={shortcuts.raisehand}
-              color="secondary"
+              color="primary"
               hideLabel
               circle
               size="lg"
