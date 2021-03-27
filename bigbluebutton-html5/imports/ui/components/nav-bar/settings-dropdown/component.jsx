@@ -177,8 +177,10 @@ class SettingsDropdown extends PureComponent {
 
   leavemeetingDialog(){
     const {
-      intl, closeModal,
+      intl, mountModal
     } = this.props;
+
+    const closeModal =mountModal(null);
 
     return(
     <Modal
