@@ -21,6 +21,8 @@ import { styles } from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUsersCog} from '@fortawesome/free-solid-svg-icons'
+import Icon from "../../../../icon/component";
+import { stylesb } from '/imports/ui/components/user-list/user-list-content/styles';
 
 
 const propTypes = {
@@ -371,16 +373,22 @@ class UserOptions extends PureComponent {
         className={styles.dropdown}
       >
         <DropdownTrigger tabIndex={0}>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            data-test="manageUsers"
-            customIcon={usersetIcon}
-            ghost
-            color="dark"
-            className={styles.optionsButton}
-            size="lg"
-            onClick={() => null}
-          />
+          <div
+              aria-label={intl.formatMessage(intlMessages.optionsLabel)}
+              aria-describedby="manageUsers"
+              role="button"
+              tabIndex={0}
+              className={stylesb.listItem}
+              onClick={() => null}
+          >
+            <Icon iconName="copy" />
+            <div aria-hidden>
+              <div className={stylesb.noteTitle} data-test="sharedNotes">
+                Manage users
+              </div>
+            </div>
+          </div>
+
         </DropdownTrigger>
         <DropdownContent
           className={styles.dropdownContent}
