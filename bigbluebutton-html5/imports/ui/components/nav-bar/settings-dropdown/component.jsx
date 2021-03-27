@@ -185,8 +185,8 @@ class SettingsDropdown extends PureComponent {
     <Modal
         overlayClassName={styles.overlay}
         className={styles.modal}
-        onRequestClose={mountModal(null)}
         hideBorder
+        shouldShowCloseButton={true}
         title="Leave meeting"
     >
       <div className={styles.container}>
