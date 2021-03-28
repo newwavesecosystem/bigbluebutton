@@ -277,7 +277,7 @@ class MessageForm extends PureComponent {
 
     const { hasErrors, error, message } = this.state;
 
-    const sendIcon=<FontAwesomeIcon icon={faPaperPlane} size="md" />;
+    const sendIcon=<FontAwesomeIcon icon={faPaperPlane} />;
 
     return CHAT_ENABLED ? (
       <form
