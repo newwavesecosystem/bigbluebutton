@@ -207,6 +207,7 @@ class UserParticipants extends Component {
           {currentUser.role === ROLE_MODERATOR
               ? (
                   <div>
+                    <div className={styles.container}></div>
                     <div className={styles.container}>
                       <UserOptionsContainer {...{
                         users,
