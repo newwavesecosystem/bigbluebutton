@@ -389,7 +389,7 @@ class AudioModal extends Component {
             ? (
                 <div>
               <Button
-                  hideLabel={}
+                  hideLabel
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
                 customIcon={nomic}
