@@ -368,7 +368,9 @@ class AudioModal extends Component {
         <span className={styles.audioOptions}>
           {!showMicrophone && !isMobileNative
             ? (
+                <div>
               <Button
+                  hideLabel
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
                 customIcon={mic}
@@ -377,6 +379,10 @@ class AudioModal extends Component {
                 disabled={audioLocked}
                 onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
               />
+              <div>
+                {intl.formatMessage(intlMessages.microphoneLabel)}
+              </div>
+                </div>
             )
             : null}
           {listenOnlyMode
