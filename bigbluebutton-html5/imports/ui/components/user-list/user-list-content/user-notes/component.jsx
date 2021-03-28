@@ -95,7 +95,8 @@ class UserNotes extends Component {
         className={styles.listItem}
         onClick={NoteService.toggleNotePanel}
       >
-        <FontAwesomeIcon icon={faFileWord}/>
+        <FontAwesomeIcon icon={faFileWord} size="3x"/>
+
         <div aria-hidden>
           <div className={styles.noteTitle} data-test="sharedNotes">
             {intl.formatMessage(intlMessages.sharedNotes)}
