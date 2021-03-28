@@ -5,7 +5,7 @@ import Icon from '/imports/ui/components/icon/component';
 import NoteService from '/imports/ui/components/note/service';
 import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faFileWord} from '@fortawesome/free-solid-svg-icons'
+import {faFileSignature} from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -95,7 +95,7 @@ class UserNotes extends Component {
         className={styles.listItem}
         onClick={NoteService.toggleNotePanel}
       >
-        <FontAwesomeIcon icon={faFileWord} size="2x"/>
+        <FontAwesomeIcon icon={faFileSignature} size="2x"/>
 
         <div aria-hidden>
           <div className={styles.noteTitle} data-test="sharedNotes">
