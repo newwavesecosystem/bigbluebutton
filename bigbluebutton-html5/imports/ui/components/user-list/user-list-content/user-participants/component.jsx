@@ -216,6 +216,9 @@ class UserParticipants extends Component {
           }
         </div>
 
+        <div className={styles.container}></div>
+
+
         {
           !compact
             ? (
