@@ -387,7 +387,9 @@ class AudioModal extends Component {
             : null}
           {listenOnlyMode
             ? (
+                <div>
               <Button
+                  hideLabel={}
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
                 customIcon={nomic}
@@ -395,6 +397,10 @@ class AudioModal extends Component {
                 size="sm"
                 onClick={this.handleJoinListenOnly}
               />
+                  <div>
+                    {intl.formatMessage(intlMessages.listenOnlyLabel)}
+                  </div>
+                </div>
             )
             : null}
         </span>
