@@ -4,6 +4,8 @@ import { defineMessages } from 'react-intl';
 import Icon from '/imports/ui/components/icon/component';
 import NoteService from '/imports/ui/components/note/service';
 import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faFileWord} from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -93,7 +95,7 @@ class UserNotes extends Component {
         className={styles.listItem}
         onClick={NoteService.toggleNotePanel}
       >
-        <Icon iconName="copy" />
+        <FontAwesomeIcon icon={faFileWord}/>
         <div aria-hidden>
           <div className={styles.noteTitle} data-test="sharedNotes">
             {intl.formatMessage(intlMessages.sharedNotes)}

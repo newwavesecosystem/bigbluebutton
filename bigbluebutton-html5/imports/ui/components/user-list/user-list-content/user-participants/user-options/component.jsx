@@ -21,7 +21,6 @@ import { styles } from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUsersCog} from '@fortawesome/free-solid-svg-icons'
-import Icon from "../../../../icon/component";
 
 
 const propTypes = {
@@ -380,9 +379,9 @@ class UserOptions extends PureComponent {
               className={styles.listItem}
               onClick={() => null}
           >
-            <Icon iconName="copy" />
+            <FontAwesomeIcon icon={faUsersCog}/>
             <div aria-hidden>
-              <div className={styles.noteTitle} data-test="sharedNotes">
+              <div className={styles.noteTitle} data-test="manage-users">
                 Manage users
               </div>
             </div>

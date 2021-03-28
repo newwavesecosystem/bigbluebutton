@@ -12,7 +12,7 @@ import JoinVideoOptionsContainer from '../video-provider/video-button/container'
 import PresentationOptionsContainer from './presentation-options/component';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHandPointUp} from '@fortawesome/free-solid-svg-icons'
+import {faHandPaper, faHandPointDown} from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -45,7 +45,8 @@ class ActionsBar extends PureComponent {
 
     const actionBarClasses = {};
 
-    const handIcon=<FontAwesomeIcon icon={faHandPointUp} size="lg" />;
+    const handIcon=<FontAwesomeIcon icon={faHandPaper} size="lg" />;
+    const handdownIcon=<FontAwesomeIcon icon={faHandPointDown} size="lg" />;
 
     actionBarClasses[styles.center] = true;
     actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;
@@ -94,7 +95,7 @@ class ActionsBar extends PureComponent {
         <div className={styles.right}>
           {
             <Button
-              customIcon={handIcon}
+              customIcon={currentUser.emoji === 'raiseHand' ? handdownIcon : handIcon}
               label={intl.formatMessage({
                 id: `app.actionsBar.emojiMenu.${
                   currentUser.emoji === 'raiseHand'
