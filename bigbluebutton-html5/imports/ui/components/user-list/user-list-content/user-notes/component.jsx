@@ -99,7 +99,7 @@ class UserNotes extends Component {
 
         <div aria-hidden>
           <div className={styles.noteTitle} data-test="sharedNotes">
-            {intl.formatMessage(intlMessages.sharedNotes)}
+             {intl.formatMessage(intlMessages.sharedNotes)}
           </div>
           {disableNote
             ? (

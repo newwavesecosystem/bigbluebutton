@@ -203,20 +203,20 @@ class UserParticipants extends Component {
 
     return (
       <div>
-        <div className={styles.container}>
-          {currentUser.role === ROLE_MODERATOR
-              ? (
-                  <UserOptionsContainer {...{
-                    users,
-                    setEmojiStatus,
-                    meetingIsBreakout,
-                  }}
-                  />
-              ) : null
-          }
-        </div>
+        {/*<div className={styles.container}>*/}
+        {/*  {currentUser.role === ROLE_MODERATOR*/}
+        {/*      ? (*/}
+        {/*          <UserOptionsContainer {...{*/}
+        {/*            users,*/}
+        {/*            setEmojiStatus,*/}
+        {/*            meetingIsBreakout,*/}
+        {/*          }}*/}
+        {/*          />*/}
+        {/*      ) : null*/}
+        {/*  }*/}
+        {/*</div>*/}
 
-        <div className={styles.container}></div>
+        {/*<div className={styles.container}></div>*/}
 
 
         {
