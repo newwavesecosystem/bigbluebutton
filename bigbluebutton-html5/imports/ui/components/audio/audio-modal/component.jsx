@@ -379,7 +379,7 @@ class AudioModal extends Component {
                 disabled={audioLocked}
                 onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
               />
-              <div>
+              <div style={{marginRight: 30}}>
                 {intl.formatMessage(intlMessages.microphoneLabel)}
               </div>
                 </div>
