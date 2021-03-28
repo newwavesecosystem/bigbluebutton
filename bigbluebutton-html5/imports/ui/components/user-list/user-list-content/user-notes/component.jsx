@@ -122,11 +122,11 @@ class UserNotes extends Component {
 
     return (
       <div className={styles.messages}>
-        <div className={styles.container}>
-          <h2 className={styles.smallTitle}>
-            {intl.formatMessage(intlMessages.title)}
-          </h2>
-        </div>
+        {/*<div className={styles.container}>*/}
+        {/*  <h2 className={styles.smallTitle}>*/}
+        {/*    {intl.formatMessage(intlMessages.title)}*/}
+        {/*  </h2>*/}
+        {/*</div>*/}
         <div className={styles.scrollableList}>
           <div className={styles.list}>
             {this.renderNotes()}
