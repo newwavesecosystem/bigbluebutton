@@ -379,7 +379,7 @@ class UserOptions extends PureComponent {
               className={styles.listItem}
               onClick={() => null}
           >
-            <FontAwesomeIcon icon={faUsersCog}/>
+            <FontAwesomeIcon icon={faUsersCog} size="2x"/>
             <div aria-hidden>
               <div className={styles.noteTitle} data-test="manage-users">
                 Manage users
