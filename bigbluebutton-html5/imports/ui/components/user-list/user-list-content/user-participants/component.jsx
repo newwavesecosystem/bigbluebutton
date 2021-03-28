@@ -203,22 +203,22 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
-        <div className={styles.container}>
+
           {currentUser.role === ROLE_MODERATOR
               ? (
                   <div>
-                  <div className={styles.container}></div>
-                  <UserOptionsContainer {...{
-                    users,
-                    setEmojiStatus,
-                    meetingIsBreakout,
-                  }}
-                  />
+                    <div className={styles.container}>
+                      <UserOptionsContainer {...{
+                        users,
+                        setEmojiStatus,
+                        meetingIsBreakout,
+                      }}
+                      />
+                    </div>
                     <div className={styles.container}></div>
                   </div>
               ) : null
           }
-        </div>
 
         {
           !compact
