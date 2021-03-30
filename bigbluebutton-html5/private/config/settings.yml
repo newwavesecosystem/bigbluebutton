@@ -293,11 +293,11 @@ public:
       # A page size of 0 (zero) means that the page size is unlimited (disabled).
       desktopPageSizes:
         moderator: 0
-        viewer: 5
+        viewer: 20
       # video page sizes for MOBILE endpoints
       mobilePageSizes:
-        moderator: 2
-        viewer: 2
+        moderator: 8
+        viewer: 8
     paginationThresholds:
       enabled: false
       thresholds:
@@ -345,7 +345,7 @@ public:
     allowDragAndDropFile: false
   captions:
     enabled: true
-    enableDictation: false
+    enableDictation: true
     backgroundColor: '#000000'
     fontColor: '#FFFFFF'
     fontFamily: Calibri

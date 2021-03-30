@@ -224,7 +224,8 @@ const WaitingUsers = (props) => {
     },
   ];
 
-  const buttonsData = authenticatedGuest ? _.concat(authGuestButtonsData , guestButtonsData) : guestButtonsData;
+  // const buttonsData = authenticatedGuest ? _.concat(authGuestButtonsData , guestButtonsData) : guestButtonsData;
+  const buttonsData = guestButtonsData;
 
   return (
     <div
