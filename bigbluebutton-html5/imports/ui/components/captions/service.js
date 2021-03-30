@@ -41,7 +41,7 @@ const getCaptionsData = () => {
 
 const getAvailableLocales = () => {
   const { meetingID } = Auth;
-  const locales = ["English",];
+  const locales = [];
   Captions.find({ meetingId: meetingID },
     { sort: { locale: 1 } },
     { fields: { ownerId: 1, locale: 1 } })
