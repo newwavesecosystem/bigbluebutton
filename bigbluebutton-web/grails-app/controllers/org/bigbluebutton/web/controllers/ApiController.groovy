@@ -1441,7 +1441,7 @@ class ApiController {
     UserSession us = getUserSession(sessionToken);
     Meeting meeting = null;
 
-    String respMessage = "Session not found."
+    String respMessage = "Sorry, your internet connection did not allow enough communication with our server. Kindly try again."
 
     if (!hasValidSession(sessionToken)) {
       reject = true;
