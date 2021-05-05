@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
-import { defineMessages } from 'react-intl';
+import React, {Component} from 'react';
+import {defineMessages} from 'react-intl';
 import PropTypes from 'prop-types';
-import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
+import {styles} from '/imports/ui/components/user-list/user-list-content/styles';
 import _ from 'lodash';
-import { findDOMNode } from 'react-dom';
-import {
-  List,
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache,
-} from 'react-virtualized';
+import {findDOMNode} from 'react-dom';
+import {AutoSizer, CellMeasurer, CellMeasurerCache, List,} from 'react-virtualized';
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
 import Settings from '/imports/ui/services/settings';
-import Icon from "../../../icon/component";
 
 const propTypes = {
   compact: PropTypes.bool,
@@ -196,7 +190,6 @@ class UserParticipants extends Component {
                     <div className={styles.container}>
                       <UserOptionsContainer {...{
                         users,
-                        setEmojiStatus,
                         meetingIsBreakout,
                       }}
                       />
