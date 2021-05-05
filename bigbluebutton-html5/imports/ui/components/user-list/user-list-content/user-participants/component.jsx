@@ -13,6 +13,7 @@ import {
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
 import Settings from '/imports/ui/services/settings';
+import Icon from "../../../icon/component";
 
 const propTypes = {
   compact: PropTypes.bool,
@@ -187,6 +188,24 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
+
+          {currentUser.role === ROLE_MODERATOR
+              ? (
+                  <div>
+                    <div className={styles.container}></div>
+                    <div className={styles.container}>
+                      <UserOptionsContainer {...{
+                        users,
+                        setEmojiStatus,
+                        meetingIsBreakout,
+                      }}
+                      />
+                    </div>
+                    <div className={styles.container}></div>
+                  </div>
+              ) : null
+          }
+
         {
           !compact
             ? (
@@ -197,16 +216,16 @@ class UserParticipants extends Component {
                   {users.length}
                   )
                 </h2>
-                {currentUser.role === ROLE_MODERATOR
-                  ? (
-                    <UserOptionsContainer {...{
-                      users,
-                      clearAllEmojiStatus,
-                      meetingIsBreakout,
-                    }}
-                    />
-                  ) : null
-                }
+                {/*{currentUser.role === ROLE_MODERATOR*/}
+                {/*  ? (*/}
+                {/*    <UserOptionsContainer {...{*/}
+                {/*      users,*/}
+                {/*      clearAllEmojiStatus,*/}
+                {/*      meetingIsBreakout,*/}
+                {/*    }}*/}
+                {/*    />*/}
+                {/*  ) : null*/}
+                {/*}*/}
 
               </div>
             )

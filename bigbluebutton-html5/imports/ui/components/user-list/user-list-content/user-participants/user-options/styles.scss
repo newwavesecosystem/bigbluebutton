@@ -1,4 +1,74 @@
 @import "/imports/ui/stylesheets/variables/breakpoints";
+@import "/imports/ui/components/user-list/styles.scss";
+
+.listItem {
+  @extend %list-item;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-flow: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-top: var(--lg-padding-y);
+  padding-bottom: var(--lg-padding-y);
+  padding-left: var(--lg-padding-y);
+  text-decoration: none;
+  width: 100%;
+  color: var(--color-gray-dark);
+  background-color: var(--color-off-white);
+
+  [dir="rtl"]  & {
+    padding-right: var(--lg-padding-y);
+    padding-left: 0;
+  }
+
+  > i {
+    display: flex;
+    font-size: 175%;
+    color: var(--color-gray-light);
+    flex: 0 0 2.2rem;
+    margin-right: var(--sm-padding-x);
+    [dir="rtl"]  & {
+      margin-right: 0;
+      margin-left: var(--sm-padding-x);
+    }
+  }
+
+  > span {
+    font-weight: 400;
+    font-size: var(--font-size-small);
+    color: var(--color-gray-dark);
+    position: relative;
+    flex-grow: 1;
+    line-height: 2;
+    text-align: left;
+    padding-left: var(--lg-padding-y);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    [dir="rtl"] & {
+      text-align: right;
+      padding-right: var(--md-padding-x);
+    }
+  }
+
+  div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:active {
+    background-color: var(--list-item-bg-hover);
+    box-shadow: inset 0 0 0 var(--border-size) var(--item-focus-border), inset 1px 0 0 1px var(--item-focus-border);
+  }
+}
+
+.noteTitle {
+  font-weight: 400;
+  font-size: var(--font-size-small);
+}
 
 :root {
   --user-manage-menu-top : -0.5rem;
@@ -8,12 +78,12 @@
 
 .dropdown {
   position: absolute;
-  right: 0;
-  left: auto;
+  right: auto;
+  left: 0;
 
   [dir="rtl"] & {
-    left: 0;
-    right: auto;
+    left: auto;
+    right: 0;
   }
 }
 
@@ -36,7 +106,8 @@
 .optionsButton{
   border-radius: 50%;
   display: block;
-  padding: 0;
+  padding: 10px;
+  margin: 10px;
 
   i {
     width: auto;

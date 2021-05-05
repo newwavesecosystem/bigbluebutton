@@ -10,6 +10,14 @@ import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/scree
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faHandPaper, faHandPointDown} from '@fortawesome/free-solid-svg-icons'
+
+const propTypes = {
+  intl: PropTypes.object.isRequired,
+};
+
 
 class ActionsBar extends PureComponent {
   render() {
@@ -35,6 +43,15 @@ class ActionsBar extends PureComponent {
       shortcuts,
     } = this.props;
 
+    const actionBarClasses = {};
+
+    const handIcon=<FontAwesomeIcon icon={faHandPaper} size="lg" />;
+    const handdownIcon=<FontAwesomeIcon icon={faHandPointDown} size="lg" />;
+
+    //you might need to remove this
+    actionBarClasses[styles.center] = true;
+    actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;
+    //end
     return (
       <div
         className={styles.actionsbar}
@@ -79,7 +96,7 @@ class ActionsBar extends PureComponent {
         <div className={styles.right}>
           {
             <Button
-              icon="hand"
+              customIcon={currentUser.emoji === 'raiseHand' ? handdownIcon : handIcon}
               label={intl.formatMessage({
                 id: `app.actionsBar.emojiMenu.${
                   currentUser.emoji === 'raiseHand'

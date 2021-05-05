@@ -2,12 +2,12 @@ public:
   app:
     mobileFontSize: 16px
     desktopFontSize: 14px
-    audioChatNotification: false
+    audioChatNotification: true
     autoJoin: true
     listenOnlyMode: true
     forceListenOnly: false
-    skipCheck: false
-    skipCheckOnJoin: false
+    skipCheck: true
+    skipCheckOnJoin: true
     #
     # Allow users to change microphone/speaker dinamically
     # The device is changed immediately, without the need to rejoin
@@ -16,22 +16,22 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    clientTitle: konn3ct
+    appName: konn3ct
     bbbServerVersion: 2.3-dev
-    copyright: '©2021 BigBlueButton Inc.'
-    html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    copyright: '©2021 konn3ct'
+    html5ClientBuild: 2.1
+    helpLink: https://konn3ct.com/contact
     lockOnJoin: true
     cdn: ''
-    basename: '/html5client'
+    basename: '/room'
     askForFeedbackOnLogout: false
     # the default logoutUrl matches window.location.origin i.e. bigbluebutton.org for demo.bigbluebutton.org
     # in some cases we want only custom logoutUrl to be used when provided on meeting create. Default value: true
     allowDefaultLogoutUrl: true
     allowUserLookup: false
     enableGuestLobbyMessage: true
-    enableNetworkInformation: false
+    enableNetworkInformation: true
     enableLimitOfViewersInWebcam: false
     enableMultipleCameras: true
     enableTalkingIndicator: true
@@ -61,8 +61,8 @@ public:
     defaultSettings:
       application:
         animations: true
-        chatAudioAlerts: false
-        chatPushAlerts: false
+        chatAudioAlerts: true
+        chatPushAlerts: true
         userJoinAudioAlerts: false
         userJoinPushAlerts: false
         raiseHandAudioAlerts: true
@@ -151,10 +151,10 @@ public:
   externalVideoPlayer:
     enabled: true
   networkMonitoring:
-    enableNetworkMonitoring: false
+    enableNetworkMonitoring: true
     packetLostThreshold: 10
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://dev.konn3ct.net/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
@@ -397,7 +397,7 @@ public:
       enabled: true
   note:
     enabled: true
-    url: ETHERPAD_HOST
+    url: https://dev.konn3ct.net/pad
   layout:
     autoSwapLayout: false
     hidePresentation: false
@@ -616,7 +616,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: ETHERPAD_APIKEY
+    apikey: BYEPHNterSjgRppXotHxR1lUhGax3ryE9C2RUMEEnUwZLCPAFF2AnFtVZ0W
     version: 1.2.13
     host: 127.0.0.1
     port: 9001

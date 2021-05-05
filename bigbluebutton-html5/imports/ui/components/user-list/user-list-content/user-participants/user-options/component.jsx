@@ -17,6 +17,9 @@ import CaptionsWriterMenu from '/imports/ui/components/captions/writer-menu/cont
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import { styles } from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faUsersCog} from '@fortawesome/free-solid-svg-icons'
+
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -345,6 +348,8 @@ class UserOptions extends PureComponent {
     const { isUserOptionsOpen } = this.state;
     const { intl } = this.props;
 
+    const usersetIcon=<FontAwesomeIcon icon={faUsersCog}/>
+
     return (
       <Dropdown
         ref={(ref) => { this.dropdown = ref; }}
@@ -355,17 +360,22 @@ class UserOptions extends PureComponent {
         className={styles.dropdown}
       >
         <DropdownTrigger tabIndex={0}>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            data-test="manageUsers"
-            icon="settings"
-            ghost
-            color="primary"
-            hideLabel
-            className={styles.optionsButton}
-            size="sm"
-            onClick={() => null}
-          />
+          <div
+              aria-label={intl.formatMessage(intlMessages.optionsLabel)}
+              aria-describedby="manageUsers"
+              role="button"
+              tabIndex={0}
+              className={styles.listItem}
+              onClick={() => null}
+          >
+            <FontAwesomeIcon icon={faUsersCog} size="2x"/>
+            <div aria-hidden>
+              <div className={styles.noteTitle} data-test="manage-users">
+                Manage users
+              </div>
+            </div>
+          </div>
+
         </DropdownTrigger>
         <DropdownContent
           className={styles.dropdownContent}

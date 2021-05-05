@@ -14,6 +14,8 @@ import EchoTest from '../echo-test/component';
 import Help from '../help/component';
 import AudioDial from '../audio-dial/component';
 import AudioAutoplayPrompt from '../autoplay/component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faMicrophoneAltSlash, faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -358,32 +360,47 @@ class AudioModal extends Component {
     const arrow = isRTL ? '←' : '→';
     const dialAudioLabel = `${intl.formatMessage(intlMessages.audioDialTitle)} ${arrow}`;
 
+    const mic=<FontAwesomeIcon icon={faMicrophoneAlt} size="sm" style={{ color: 'green' }} />;
+    const nomic=<FontAwesomeIcon icon={faMicrophoneAltSlash} size="sm" style={{ color: 'red' }} />;
+
     return (
       <div>
         <span className={styles.audioOptions}>
           {!showMicrophone && !isMobileNative
             ? (
+                <div>
               <Button
+                  hideLabel
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
-                icon="unmute"
+                customIcon={mic}
                 circle
                 size="jumbo"
                 disabled={audioLocked}
                 onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
               />
+              <div style={{marginRight: 30}}>
+                {intl.formatMessage(intlMessages.microphoneLabel)}
+              </div>
+                </div>
             )
             : null}
           {listenOnlyMode
             ? (
+                <div>
               <Button
+                  hideLabel
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
-                icon="listen"
+                customIcon={nomic}
                 circle
                 size="jumbo"
                 onClick={this.handleJoinListenOnly}
               />
+                  <div>
+                    {intl.formatMessage(intlMessages.listenOnlyLabel)}
+                  </div>
+                </div>
             )
             : null}
         </span>
