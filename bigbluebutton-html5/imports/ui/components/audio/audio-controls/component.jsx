@@ -9,6 +9,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMicrophoneSlash, faMicrophone} from "@fortawesome/free-solid-svg-icons";
 
 const intlMessages = defineMessages({
