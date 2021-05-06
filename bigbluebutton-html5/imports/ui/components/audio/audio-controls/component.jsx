@@ -9,8 +9,8 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
-import { makeCall } from '/imports/ui/services/api';
 import _ from 'lodash';
+import {faMicrophoneSlash, faMicrophone} from "@fortawesome/free-solid-svg-icons";
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -62,8 +62,6 @@ class AudioControls extends PureComponent {
 
     //from my own version
     this.selectLeaveMeeting = _.uniqueId('action-item-');
-    // Set the logout code to 680 because it's not a real code and can be matched on the other side
-    this.LOGOUT_CODE = '680';
 
     this.leaveSession = this.leaveSession.bind(this);
 
@@ -71,7 +69,6 @@ class AudioControls extends PureComponent {
     this.renderLeaveButtonWithoutLiveStreamSelector = this
       .renderLeaveButtonWithoutLiveStreamSelector.bind(this);
 
-    this.renderJoinLeaveButton = this.renderJoinLeaveButton.bind(this);
   }
 
   componentDidMount() {
@@ -82,12 +79,6 @@ class AudioControls extends PureComponent {
     }
   }
 
-  leaveSession() {
-    makeCall('userLeftMeeting');
-    // we don't check askForFeedbackOnLogout here,
-    // it is checked in meeting-ended component
-    Session.set('codeError', this.LOGOUT_CODE);
-  }
 
   renderJoinButton() {
     const {
@@ -210,6 +201,10 @@ class AudioControls extends PureComponent {
     const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
       : intl.formatMessage(intlMessages.muteAudio);
 
+    const micOn=<FontAwesomeIcon icon={faMicrophone} size="lg" />;
+    const micOff=<FontAwesomeIcon icon={faMicrophoneSlash} size="lg" />;
+
+
     const toggleMuteBtn = (
       <Button
         className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
@@ -218,9 +213,8 @@ class AudioControls extends PureComponent {
         hideLabel
         label={label}
         aria-label={label}
-        color={!muted ? 'primary' : 'default'}
         ghost={muted}
-        icon={muted ? 'mute' : 'unmute'}
+        customIcon={muted ? micOff : micOn}
         size="lg"
         circle
         accessKey={shortcuts.togglemute}
