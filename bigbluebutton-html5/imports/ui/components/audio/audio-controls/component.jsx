@@ -9,7 +9,6 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
-import _ from 'lodash';
 import {faMicrophoneSlash, faMicrophone} from "@fortawesome/free-solid-svg-icons";
 
 const intlMessages = defineMessages({
@@ -60,12 +59,6 @@ class AudioControls extends PureComponent {
   constructor(props) {
     super(props);
 
-    //from my own version
-    this.selectLeaveMeeting = _.uniqueId('action-item-');
-
-    this.leaveSession = this.leaveSession.bind(this);
-
-    // from the new version
     this.renderLeaveButtonWithoutLiveStreamSelector = this
       .renderLeaveButtonWithoutLiveStreamSelector.bind(this);
 
