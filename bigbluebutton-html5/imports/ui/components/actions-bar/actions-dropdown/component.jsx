@@ -20,6 +20,7 @@ import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons'
+import { Session } from 'meteor/session';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -136,7 +137,21 @@ class ActionsDropdown extends PureComponent {
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
+    this.handleToggleUserList = this.handleToggleUserList.bind(this);
   }
+
+  static handleToggleUserList() {
+    Session.set(
+        'openPanel',
+        Session.get('openPanel') !== ''
+            ? ''
+            : 'userlist',
+    );
+    Session.set('idChatOpen', '');
+
+    window.dispatchEvent(new Event('panelChanged'));
+  }
+
 
   componentDidUpdate(prevProps) {
     const { amIPresenter: wasPresenter } = prevProps;
@@ -189,6 +204,16 @@ class ActionsDropdown extends PureComponent {
     const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
     return _.compact([
+      (
+          <DropdownListItem
+            icon="user"
+            data-test="panel"
+            label={formatMessage(pollBtnLabel)}
+            description={formatMessage(pollBtnDesc)}
+            key={this.pollId}
+            onClick={() => this.handleToggleUserList()}
+          />
+        ),
       (amIPresenter && isPollingEnabled
         ? (
           <DropdownListItem
