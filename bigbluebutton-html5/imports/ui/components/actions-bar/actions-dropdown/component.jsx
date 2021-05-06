@@ -116,6 +116,14 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.settingsDesc',
     description: 'Describes settings option',
   },
+  panelLabel: {
+    id: 'app.navBar.settingsDropdown.panelLabel',
+    description: 'Open panel option label',
+  },
+  panelDesc: {
+    id: 'app.navBar.settingsDropdown.panelDesc',
+    description: 'Describes panel option',
+  },
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -126,6 +134,7 @@ class ActionsDropdown extends PureComponent {
 
     this.presentationItemId = _.uniqueId('action-item-');
     this.pollId = _.uniqueId('action-item-');
+    this.panel = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
     this.selectLeaveMeeting = _.uniqueId('action-item-');
@@ -196,9 +205,9 @@ class ActionsDropdown extends PureComponent {
           <DropdownListItem
             icon="user"
             data-test="panel"
-            label={formatMessage(pollBtnLabel)}
-            description={formatMessage(pollBtnDesc)}
-            key={this.pollId}
+            label={intl.formatMessage(intlMessages.panelLabel)}
+            description={intl.formatMessage(intlMessages.panelDesc)}
+            key={this.panel}
             onClick={() => this.handleToggleUserList()}
           />
         ),
