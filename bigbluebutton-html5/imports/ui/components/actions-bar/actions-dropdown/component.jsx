@@ -140,18 +140,6 @@ class ActionsDropdown extends PureComponent {
     this.handleToggleUserList = this.handleToggleUserList.bind(this);
   }
 
-  static handleToggleUserList() {
-    Session.set(
-        'openPanel',
-        Session.get('openPanel') !== ''
-            ? ''
-            : 'userlist',
-    );
-    Session.set('idChatOpen', '');
-
-    window.dispatchEvent(new Event('panelChanged'));
-  }
-
 
   componentDidUpdate(prevProps) {
     const { amIPresenter: wasPresenter } = prevProps;
@@ -363,6 +351,18 @@ class ActionsDropdown extends PureComponent {
     // it is checked in meeting-ended component
     Session.set('codeError', this.LOGOUT_CODE);
     // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
+  }
+
+  handleToggleUserList() {
+    Session.set(
+        'openPanel',
+        Session.get('openPanel') !== ''
+            ? ''
+            : 'userlist',
+    );
+    Session.set('idChatOpen', '');
+
+    window.dispatchEvent(new Event('panelChanged'));
   }
 
   render() {
