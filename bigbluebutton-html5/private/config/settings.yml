@@ -616,7 +616,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: BYEPHNterSjgRppXotHxR1lUhGax3ryE9C2RUMEEnUwZLCPAFF2AnFtVZ0W
+    apikey: KVmt0Rlr6EEEO72J8PWwZzHnXxnTVed626OfDXZ4WzZAub5778cLMdUgV0KFCK
     version: 1.2.13
     host: 127.0.0.1
     port: 9001
