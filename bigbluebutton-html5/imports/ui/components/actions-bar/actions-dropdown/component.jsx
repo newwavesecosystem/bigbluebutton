@@ -124,6 +124,14 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.panelDesc',
     description: 'Describes panel option',
   },
+  audiochangeLabel: {
+    id: 'app.navBar.settingsDropdown.audiochangeLabel',
+    description: 'Audiochange option label',
+  },
+  audiochangeDesc: {
+    id: 'app.navBar.settingsDropdown.audiochangeDesc',
+    description: 'Describes audiochange option',
+  },
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -135,6 +143,7 @@ class ActionsDropdown extends PureComponent {
     this.presentationItemId = _.uniqueId('action-item-');
     this.pollId = _.uniqueId('action-item-');
     this.panel = _.uniqueId('action-item-');
+    this.audiochange = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
     this.selectLeaveMeeting = _.uniqueId('action-item-');
@@ -209,6 +218,16 @@ class ActionsDropdown extends PureComponent {
             description={intl.formatMessage(intlMessages.panelDesc)}
             key={this.panel}
             onClick={() => this.handleToggleUserList()}
+          />
+        ),
+      (
+          <DropdownListItem
+            icon="phone"
+            data-test="audiochange"
+            label={intl.formatMessage(intlMessages.audiochangeLabel)}
+            description={intl.formatMessage(intlMessages.audiochangeDesc)}
+            key={this.audiochange}
+            onClick={}
           />
         ),
       (amIPresenter && isPollingEnabled

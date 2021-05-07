@@ -107,19 +107,19 @@ class NavBar extends Component {
             {/*{!isExpanded ? null*/}
             {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />*/}
             {/*}*/}
-            <Button
-              onClick={NavBar.handleToggleUserList}
-              ghost
-              circle
-              data-test={hasNotification ? 'hasUnreadMessages' : null}
-              label={isExpanded ? 'Hide' : 'Chats'}
-              aria-label={ariaLabel}
-              customIcon={isExpanded ? leftIcon : rightIcon}
-              className={cx(toggleBtnClasses)}
-              aria-expanded={isExpanded}
-              accessKey={TOGGLE_USERLIST_AK}
-              size="sm"
-            />
+            {/*<Button*/}
+            {/*  onClick={NavBar.handleToggleUserList}*/}
+            {/*  ghost*/}
+            {/*  circle*/}
+            {/*  data-test={hasNotification ? 'hasUnreadMessages' : null}*/}
+            {/*  label={isExpanded ? 'Hide' : 'Chats'}*/}
+            {/*  aria-label={ariaLabel}*/}
+            {/*  customIcon={isExpanded ? leftIcon : rightIcon}*/}
+            {/*  className={cx(toggleBtnClasses)}*/}
+            {/*  aria-expanded={isExpanded}*/}
+            {/*  accessKey={TOGGLE_USERLIST_AK}*/}
+            {/*  size="sm"*/}
+            {/*/>*/}
             {/*{isExpanded ? null*/}
             {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />*/}
             {/*}*/}
