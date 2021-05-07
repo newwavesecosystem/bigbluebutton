@@ -20,6 +20,7 @@ const APP_CONFIG = Meteor.settings.public.app;
 const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
 import Storage from '/imports/ui/services/storage/session';
+import AudioService from "../audio/service";
 
 const handleLeaveAudio = () => {
   const meetingIsBreakout = AppService.meetingIsBreakout();
@@ -34,7 +35,7 @@ const handleLeaveAudio = () => {
     Storage.setItem('getEchoTest', true);
   }
 
-  Service.exitAudio();
+  AudioService.exitAudio();
   logger.info({
     logCode: 'audiocontrols_leave_audio',
     extraInfo: { logType: 'user_action' },
