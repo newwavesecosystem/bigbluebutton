@@ -21,6 +21,7 @@ import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons'
 import { Session } from 'meteor/session';
+import InputStreamLiveSelectorContainer from "../../audio/audio-controls/input-stream-live-selector/container";
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -33,6 +34,7 @@ const propTypes = {
   stopExternalVideoShare: PropTypes.func.isRequired,
   isBreakoutRoom: PropTypes.bool,
   isMeteorConnected: PropTypes.bool.isRequired,
+  handleLeaveAudio: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -391,6 +393,14 @@ class ActionsDropdown extends PureComponent {
 
     window.dispatchEvent(new Event('panelChanged'));
   }
+
+  renderLeaveButtonWithLiveStreamSelector(props) {
+    const { handleLeaveAudio } = props;
+    return (
+        <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+    );
+  }
+
 
   render() {
     const {
