@@ -17,6 +17,7 @@ import SettingsDropdownContainer from './settings-dropdown/container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
 import InputStreamLiveSelectorContainer from "../audio/audio-controls/input-stream-live-selector/container";
+import Icon from 'react-eva-icons';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -108,6 +109,15 @@ class NavBar extends Component {
         <div className={styles.top}>
           <div className={styles.left}>
             <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+            <Icon
+                name="activity"
+                size="medium"     // small, medium, large, xlarge
+                animation={{
+                  type: "pulse",  // zoom, pulse, shake, flip
+                  hover: true,
+                  infinite: false
+                }}
+            />
             {/*{!isExpanded ? null*/}
             {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />*/}
             {/*}*/}
