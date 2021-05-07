@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons'
 import { Session } from 'meteor/session';
 import InputStreamLiveSelectorContainer from "../../audio/audio-controls/input-stream-live-selector/container";
+import Modal from '/imports/ui/components/modal/simple/component';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -189,7 +190,6 @@ class ActionsDropdown extends PureComponent {
       isMeteorConnected,
       amIModerator,
       isBreakoutRoom,
-      handleLeaveAudio
     } = this.props;
 
     const {
@@ -231,12 +231,9 @@ class ActionsDropdown extends PureComponent {
             label={intl.formatMessage(intlMessages.audiochangeLabel)}
             description={intl.formatMessage(intlMessages.audiochangeDesc)}
             key={this.audiochange}
-            onClick={() => this.renderLeaveButtonWithLiveStreamSelector()}
+            onClick={() => mountModal(this.renderLeaveButtonWithLiveStreamSelector())}
           />
         ),
-      (
-          <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-      ),
       (amIPresenter && isPollingEnabled
         ? (
           <DropdownListItem
@@ -402,9 +399,15 @@ class ActionsDropdown extends PureComponent {
 
   renderLeaveButtonWithLiveStreamSelector() {
     console.log("clicked on livestream");
-    const { handleLeaveAudio, mountModal } = this.props;
-        mountModal(<InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />)
-    console.log("done done");
+    const { handleLeaveAudio } = this.props;
+
+    return(<Modal
+        hideBorder
+        shouldShowCloseButton={false}
+        title="Change audio"
+    >
+      <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+    </Modal>);
 
   }
 
