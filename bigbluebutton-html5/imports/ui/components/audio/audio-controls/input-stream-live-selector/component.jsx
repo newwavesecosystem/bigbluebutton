@@ -305,7 +305,7 @@ class InputStreamLiveSelector extends Component {
         />,
       ]);
 
-    const aIcon=<AccessAlarm />;
+    const aIcon = <AccessAlarm />;
 
     return (
       <Dropdown>
