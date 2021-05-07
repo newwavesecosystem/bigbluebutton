@@ -21,8 +21,6 @@ import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons'
 import { Session } from 'meteor/session';
-import InputStreamLiveSelectorContainer from "../../audio/audio-controls/input-stream-live-selector/container";
-import Modal from '/imports/ui/components/modal/simple/component';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -35,7 +33,6 @@ const propTypes = {
   stopExternalVideoShare: PropTypes.func.isRequired,
   isBreakoutRoom: PropTypes.bool,
   isMeteorConnected: PropTypes.bool.isRequired,
-  handleLeaveAudio: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -146,7 +143,6 @@ class ActionsDropdown extends PureComponent {
     this.presentationItemId = _.uniqueId('action-item-');
     this.pollId = _.uniqueId('action-item-');
     this.panel = _.uniqueId('action-item-');
-    this.audiochange = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
     this.selectLeaveMeeting = _.uniqueId('action-item-');
@@ -159,7 +155,6 @@ class ActionsDropdown extends PureComponent {
     this.makePresentationItems = this.makePresentationItems.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
     this.handleToggleUserList = this.handleToggleUserList.bind(this);
-    this.renderLeaveButtonWithLiveStreamSelector = this.renderLeaveButtonWithLiveStreamSelector.bind(this);
   }
 
 
@@ -222,16 +217,6 @@ class ActionsDropdown extends PureComponent {
             description={intl.formatMessage(intlMessages.panelDesc)}
             key={this.panel}
             onClick={() => this.handleToggleUserList()}
-          />
-        ),
-      (
-          <DropdownListItem
-            icon="user"
-            data-test="audiochange"
-            label={intl.formatMessage(intlMessages.audiochangeLabel)}
-            description={intl.formatMessage(intlMessages.audiochangeDesc)}
-            key={this.audiochange}
-            onClick={() => mountModal(this.renderLeaveButtonWithLiveStreamSelector())}
           />
         ),
       (amIPresenter && isPollingEnabled
@@ -397,27 +382,12 @@ class ActionsDropdown extends PureComponent {
     window.dispatchEvent(new Event('panelChanged'));
   }
 
-  renderLeaveButtonWithLiveStreamSelector() {
-    console.log("clicked on livestream");
-    const { handleLeaveAudio } = this.props;
-
-    return(<Modal
-        hideBorder
-        shouldShowCloseButton={false}
-        title="Change audio"
-    >
-      <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-    </Modal>);
-
-  }
-
-
   render() {
     const {
       intl,
       amIPresenter,
       shortcuts: OPEN_ACTIONS_AK,
-      isMeteorConnected, mountModal
+      isMeteorConnected,
     } = this.props;
 
     const availableActions = this.getAvailableActions();

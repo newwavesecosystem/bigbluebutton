@@ -21,6 +21,7 @@ const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
 import Storage from '/imports/ui/services/storage/session';
 import AudioService from "../audio/service";
+import logger from '/imports/startup/client/logger';
 
 const handleLeaveAudio = () => {
   const meetingIsBreakout = AppService.meetingIsBreakout();
