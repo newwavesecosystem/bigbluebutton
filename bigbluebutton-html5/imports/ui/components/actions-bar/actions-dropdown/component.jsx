@@ -189,6 +189,7 @@ class ActionsDropdown extends PureComponent {
       isMeteorConnected,
       amIModerator,
       isBreakoutRoom,
+      handleLeaveAudio
     } = this.props;
 
     const {
@@ -233,6 +234,9 @@ class ActionsDropdown extends PureComponent {
             onClick={() => this.renderLeaveButtonWithLiveStreamSelector()}
           />
         ),
+      (
+          <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+      ),
       (amIPresenter && isPollingEnabled
         ? (
           <DropdownListItem
