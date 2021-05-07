@@ -311,14 +311,14 @@ class InputStreamLiveSelector extends Component {
             aria-label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             hideLabel
-            color="primary"
+            color="default"
             icon={isListenOnly ? 'listen' : 'audio_on'}
             size="lg"
             circle
             onClick={() => {}}
           />
         </DropdownTrigger>
-        <DropdownContent className={styles.dropdownContent}>
+        <DropdownContent className={styles.dropdownContent} placement="bottom left">
           <DropdownList className={cx(styles.scrollableList, styles.dropdownListContainer)}>
             {dropdownListComplete}
           </DropdownList>
