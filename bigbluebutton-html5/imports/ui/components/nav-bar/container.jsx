@@ -13,8 +13,33 @@ import NoteService from '/imports/ui/components/note/service';
 import Service from './service';
 import NavBar from './component';
 
+import {setUserSelectedListenOnly, setUserSelectedMicrophone} from "../audio/audio-modal/service";
+import AppService from '/imports/ui/components/app/service';
+const APP_CONFIG = Meteor.settings.public.app;
+
 const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
+
+const handleLeaveAudio = () => {
+  const meetingIsBreakout = AppService.meetingIsBreakout();
+
+  if (!meetingIsBreakout) {
+    setUserSelectedMicrophone(false);
+    setUserSelectedListenOnly(false);
+  }
+
+  const skipOnFistJoin = getFromUserSettings('bbb_skip_check_audio_on_first_join', APP_CONFIG.skipCheckOnJoin);
+  if (skipOnFistJoin && !Storage.getItem('getEchoTest')) {
+    Storage.setItem('getEchoTest', true);
+  }
+
+  Service.exitAudio();
+  logger.info({
+    logCode: 'audiocontrols_leave_audio',
+    extraInfo: { logType: 'user_action' },
+  }, 'audio connection closed by user');
+};
+
 
 const checkUnreadMessages = ({ groupChatsMessages, groupChats, users }) => {
   const activeChats = userListService.getActiveChats({ groupChatsMessages, groupChats, users });
@@ -78,5 +103,6 @@ export default withTracker(() => {
     meetingId,
     hasUnreadNotes,
     presentationTitle: meetingTitle,
+    handleLeaveAudio,
   };
 })(NavBarContainer);

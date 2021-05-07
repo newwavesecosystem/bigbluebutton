@@ -16,6 +16,7 @@ import ConnectionStatusService from '/imports/ui/components/connection-status/se
 import SettingsDropdownContainer from './settings-dropdown/container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
+import InputStreamLiveSelectorContainer from "../audio/audio-controls/input-stream-live-selector/container";
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -36,6 +37,7 @@ const propTypes = {
   presentationTitle: PropTypes.string,
   hasUnreadMessages: PropTypes.bool,
   shortcuts: PropTypes.string,
+  handleLeaveAudio: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -84,6 +86,7 @@ class NavBar extends Component {
       mountModal,
       presentationTitle,
       amIModerator,
+      handleLeaveAudio
     } = this.props;
 
     const hasNotification = hasUnreadMessages || hasUnreadNotes;
@@ -104,6 +107,7 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           <div className={styles.left}>
+            <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
             {/*{!isExpanded ? null*/}
             {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />*/}
             {/*}*/}
