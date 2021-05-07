@@ -13,7 +13,7 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListTitle from '/imports/ui/components/dropdown/list/title/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
-import Icon from 'react-eva-icons';
+import Iconi from 'react-eva-icons';
 
 import { styles } from '../styles';
 
@@ -306,7 +306,7 @@ class InputStreamLiveSelector extends Component {
       ]);
 
     const aIcon = (
-      <Icon
+      <Iconi
         name="speaker"
         size="medium" // small, medium, large, xlarge
         animation={{

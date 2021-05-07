@@ -6,6 +6,9 @@ import { withModalMounter } from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import { defineMessages, injectIntl } from 'react-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons';
+import Iconm from 'react-eva-icons';
 import Icon from '../icon/component';
 import { styles } from './styles.scss';
 import Button from '/imports/ui/components/button/component';
@@ -14,10 +17,7 @@ import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-in
 import ConnectionStatusButton from '/imports/ui/components/connection-status/button/container';
 import ConnectionStatusService from '/imports/ui/components/connection-status/service';
 import SettingsDropdownContainer from './settings-dropdown/container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
-import InputStreamLiveSelectorContainer from "../audio/audio-controls/input-stream-live-selector/container";
-import Icon from 'react-eva-icons';
+import InputStreamLiveSelectorContainer from '../audio/audio-controls/input-stream-live-selector/container';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -87,7 +87,7 @@ class NavBar extends Component {
       mountModal,
       presentationTitle,
       amIModerator,
-      handleLeaveAudio
+      handleLeaveAudio,
     } = this.props;
 
     const hasNotification = hasUnreadMessages || hasUnreadNotes;
@@ -98,9 +98,8 @@ class NavBar extends Component {
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasNotification ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
-    const leftIcon=<FontAwesomeIcon icon={faCaretSquareLeft} size="lg" />;
-    const rightIcon=<FontAwesomeIcon icon={faCaretSquareRight} size="lg" />;
-
+    const leftIcon = <FontAwesomeIcon icon={faCaretSquareLeft} size="lg" />;
+    const rightIcon = <FontAwesomeIcon icon={faCaretSquareRight} size="lg" />;
 
     return (
       <div
@@ -109,34 +108,34 @@ class NavBar extends Component {
         <div className={styles.top}>
           <div className={styles.left}>
             <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-            <Icon
-                name="activity"
-                size="medium"     // small, medium, large, xlarge
-                animation={{
-                  type: "pulse",  // zoom, pulse, shake, flip
-                  hover: true,
-                  infinite: false
-                }}
+            <Iconm
+              name="activity"
+              size="medium" // small, medium, large, xlarge
+              animation={{
+                type: 'pulse', // zoom, pulse, shake, flip
+                hover: true,
+                infinite: false,
+              }}
             />
-            {/*{!isExpanded ? null*/}
-            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />*/}
-            {/*}*/}
-            {/*<Button*/}
-            {/*  onClick={NavBar.handleToggleUserList}*/}
-            {/*  ghost*/}
-            {/*  circle*/}
-            {/*  data-test={hasNotification ? 'hasUnreadMessages' : null}*/}
-            {/*  label={isExpanded ? 'Hide' : 'Chats'}*/}
-            {/*  aria-label={ariaLabel}*/}
-            {/*  customIcon={isExpanded ? leftIcon : rightIcon}*/}
-            {/*  className={cx(toggleBtnClasses)}*/}
-            {/*  aria-expanded={isExpanded}*/}
-            {/*  accessKey={TOGGLE_USERLIST_AK}*/}
-            {/*  size="sm"*/}
-            {/*/>*/}
-            {/*{isExpanded ? null*/}
-            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />*/}
-            {/*}*/}
+            {/* {!isExpanded ? null */}
+            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} /> */}
+            {/* } */}
+            {/* <Button */}
+            {/*  onClick={NavBar.handleToggleUserList} */}
+            {/*  ghost */}
+            {/*  circle */}
+            {/*  data-test={hasNotification ? 'hasUnreadMessages' : null} */}
+            {/*  label={isExpanded ? 'Hide' : 'Chats'} */}
+            {/*  aria-label={ariaLabel} */}
+            {/*  customIcon={isExpanded ? leftIcon : rightIcon} */}
+            {/*  className={cx(toggleBtnClasses)} */}
+            {/*  aria-expanded={isExpanded} */}
+            {/*  accessKey={TOGGLE_USERLIST_AK} */}
+            {/*  size="sm" */}
+            {/* /> */}
+            {/* {isExpanded ? null */}
+            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} /> */}
+            {/* } */}
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
@@ -147,7 +146,7 @@ class NavBar extends Component {
             />
           </div>
           <div className={styles.right}>
-            {/*{ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null}*/}
+            {/* {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null} */}
             <SettingsDropdownContainer amIModerator={amIModerator} />
           </div>
         </div>
