@@ -158,6 +158,7 @@ class ActionsDropdown extends PureComponent {
     this.makePresentationItems = this.makePresentationItems.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
     this.handleToggleUserList = this.handleToggleUserList.bind(this);
+    this.renderLeaveButtonWithLiveStreamSelector = this.renderLeaveButtonWithLiveStreamSelector.bind(this);
   }
 
 
@@ -229,6 +230,7 @@ class ActionsDropdown extends PureComponent {
             label={intl.formatMessage(intlMessages.audiochangeLabel)}
             description={intl.formatMessage(intlMessages.audiochangeDesc)}
             key={this.audiochange}
+            onClick={() => this.renderLeaveButtonWithLiveStreamSelector()}
           />
         ),
       (amIPresenter && isPollingEnabled
@@ -394,8 +396,8 @@ class ActionsDropdown extends PureComponent {
     window.dispatchEvent(new Event('panelChanged'));
   }
 
-  renderLeaveButtonWithLiveStreamSelector(props) {
-    const { handleLeaveAudio } = props;
+  renderLeaveButtonWithLiveStreamSelector() {
+    const { handleLeaveAudio } = this.props;
     return (
         <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
     );
