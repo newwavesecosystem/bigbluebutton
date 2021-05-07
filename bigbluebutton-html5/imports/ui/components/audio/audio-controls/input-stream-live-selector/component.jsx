@@ -13,6 +13,7 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListTitle from '/imports/ui/components/dropdown/list/title/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 
 import { styles } from '../styles';
 
@@ -304,6 +305,8 @@ class InputStreamLiveSelector extends Component {
         />,
       ]);
 
+    const aIcon=<AccessAlarm />;
+
     return (
       <Dropdown>
         <DropdownTrigger>
@@ -312,7 +315,7 @@ class InputStreamLiveSelector extends Component {
             label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             hideLabel
             color="default"
-            icon={isListenOnly ? 'listen' : 'audio_on'}
+            customIcon={aIcon}
             size="lg"
             circle
             onClick={() => {}}
