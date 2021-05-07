@@ -13,7 +13,7 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListTitle from '/imports/ui/components/dropdown/list/title/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+import Icon from 'react-eva-icons';
 
 import { styles } from '../styles';
 
@@ -305,7 +305,17 @@ class InputStreamLiveSelector extends Component {
         />,
       ]);
 
-    const aIcon = <AccessAlarm />;
+    const aIcon = (
+      <Icon
+        name="speaker"
+        size="medium" // small, medium, large, xlarge
+        animation={{
+          type: 'pulse', // zoom, pulse, shake, flip
+          hover: true,
+          infinite: false,
+        }}
+      />
+    );
 
     return (
       <Dropdown>
