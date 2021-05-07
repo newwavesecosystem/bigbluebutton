@@ -398,10 +398,10 @@ class ActionsDropdown extends PureComponent {
 
   renderLeaveButtonWithLiveStreamSelector() {
     console.log("clicked on livestream");
-    const { handleLeaveAudio } = this.props;
-    return (
-        <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-    );
+    const { handleLeaveAudio, mountModal } = this.props;
+        mountModal(<InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />)
+    console.log("done done");
+
   }
 
 
