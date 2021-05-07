@@ -307,7 +307,7 @@ class InputStreamLiveSelector extends Component {
 
     const aIcon = (
       <Iconi
-        name="activity"
+        name="speaker"
         size="medium" // small, medium, large, xlarge
         animation={{
           type: 'pulse', // zoom, pulse, shake, flip
