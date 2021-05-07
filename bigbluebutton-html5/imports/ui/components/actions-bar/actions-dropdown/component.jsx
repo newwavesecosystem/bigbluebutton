@@ -222,12 +222,11 @@ class ActionsDropdown extends PureComponent {
         ),
       (
           <DropdownListItem
-            icon="phone"
+            icon="user"
             data-test="audiochange"
             label={intl.formatMessage(intlMessages.audiochangeLabel)}
             description={intl.formatMessage(intlMessages.audiochangeDesc)}
             key={this.audiochange}
-            onClick={}
           />
         ),
       (amIPresenter && isPollingEnabled
