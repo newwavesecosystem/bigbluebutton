@@ -9,6 +9,7 @@ import Service from "../../audio/service";
 import AppService from '/imports/ui/components/app/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 const APP_CONFIG = Meteor.settings.public.app;
+import Storage from '/imports/ui/services/storage/session';
 
 
 const handleLeaveAudio = () => {
