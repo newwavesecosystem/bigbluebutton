@@ -324,7 +324,7 @@ class InputStreamLiveSelector extends Component {
             aria-label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             hideLabel
-            color="default"
+            color="primary"
             customIcon={aIcon}
             size="lg"
             circle
