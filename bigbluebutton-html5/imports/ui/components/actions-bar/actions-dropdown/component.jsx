@@ -207,7 +207,7 @@ class ActionsDropdown extends PureComponent {
 
     const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
-    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" /> ;
+    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" key="customIcon" /> ;
 
     return _.compact([
       (

@@ -93,7 +93,8 @@ export default withTracker(() => {
     document.title = titleString;
   }
 
-  const { connectRecordingObserver, processOutsideToggleRecording, isConnected, isEchoTest, } = Service;
+  const { connectRecordingObserver, processOutsideToggleRecording } = Service;
+  const { isConnected, isEchoTest, } = AudioService;
   const openPanel = Session.get('openPanel');
   const isExpanded = openPanel !== '';
   const hasUnreadNotes = NoteService.hasUnreadNotes();
