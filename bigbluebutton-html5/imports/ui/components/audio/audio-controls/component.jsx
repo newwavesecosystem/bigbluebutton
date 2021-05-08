@@ -82,6 +82,8 @@ class AudioControls extends PureComponent {
       shortcuts,
     } = this.props;
 
+    const dialOff=<FontAwesomeIcon icon={faPhoneAlt} size="lg" />;
+
     return (
       <Button
         className={styles.btn}
@@ -92,7 +94,7 @@ class AudioControls extends PureComponent {
         label={intl.formatMessage(intlMessages.joinAudio)}
         color="default"
         ghost
-        icon="audio_off"
+        customIcon={dialOff}
         size="lg"
         circle
         accessKey={shortcuts.joinaudio}

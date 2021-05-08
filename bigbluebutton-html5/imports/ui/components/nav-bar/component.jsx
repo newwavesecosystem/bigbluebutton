@@ -127,8 +127,8 @@ class NavBar extends Component {
                 size="sm"
               />
             ) : null}
-            {isExpanded ? null
-              : <Icon iconName="right_arrow" className={styles.arrowRight} />}
+            {/*{isExpanded ? null*/}
+            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />}*/}
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
