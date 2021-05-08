@@ -93,7 +93,7 @@ export default withTracker(() => {
     document.title = titleString;
   }
 
-  const { connectRecordingObserver, processOutsideToggleRecording } = Service;
+  const { connectRecordingObserver, processOutsideToggleRecording, isConnected, isEchoTest, } = Service;
   const openPanel = Session.get('openPanel');
   const isExpanded = openPanel !== '';
   const hasUnreadNotes = NoteService.hasUnreadNotes();
@@ -107,5 +107,6 @@ export default withTracker(() => {
     hasUnreadNotes,
     presentationTitle: meetingTitle,
     handleLeaveAudio,
+    inAudio: isConnected() && !isEchoTest(),
   };
 })(NavBarContainer);

@@ -10,7 +10,7 @@ import InputStreamLiveSelectorContainer from './input-stream-live-selector/conta
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faMicrophoneSlash, faMicrophone} from "@fortawesome/free-solid-svg-icons";
+import {faMicrophoneSlash, faMicrophone, faPhoneAlt, faPhoneVolume} from "@fortawesome/free-solid-svg-icons";
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -127,6 +127,9 @@ class AudioControls extends PureComponent {
       }
     }
 
+    const dialOn=<FontAwesomeIcon icon={faPhoneVolume} size="lg" />;
+    const dialOff=<FontAwesomeIcon icon={faPhoneAlt} size="lg" />;
+
     return (
       <Button
         className={cx(inAudio || styles.btn)}
@@ -138,9 +141,9 @@ class AudioControls extends PureComponent {
           : intl.formatMessage(intlMessages.joinAudio)}
         label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
           : intl.formatMessage(intlMessages.joinAudio)}
-        color={inAudio ? 'primary' : 'default'}
+        customIcon={inAudio ? dialOn : dialOff}
+        color='default'
         ghost={!inAudio}
-        icon={joinIcon}
         size="lg"
         circle
         accessKey={inAudio ? shortcuts.leaveaudio : shortcuts.joinaudio}
@@ -165,10 +168,10 @@ class AudioControls extends PureComponent {
       && !isMobile;
 
     if (inAudio) {
-      if (_enableDynamicDeviceSelection) {
-        return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-          .props);
-      }
+      // if (_enableDynamicDeviceSelection) {
+      //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
+      //     .props);
+      // }
 
       return this.renderLeaveButtonWithoutLiveStreamSelector();
     }

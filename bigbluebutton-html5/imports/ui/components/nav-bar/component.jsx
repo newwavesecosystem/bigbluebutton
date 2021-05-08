@@ -36,6 +36,7 @@ const propTypes = {
   hasUnreadMessages: PropTypes.bool,
   shortcuts: PropTypes.string,
   handleLeaveAudio: PropTypes.func.isRequired,
+  inAudio: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -85,6 +86,7 @@ class NavBar extends Component {
       presentationTitle,
       amIModerator,
       handleLeaveAudio,
+      inAudio
     } = this.props;
 
     const hasNotification = hasUnreadMessages || hasUnreadNotes;
@@ -104,7 +106,9 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           <div className={styles.left}>
+            {inAudio ?
             <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+                : null }
 
             {!isExpanded ? null
               : <Icon iconName="left_arrow" className={styles.arrowLeft} />}
