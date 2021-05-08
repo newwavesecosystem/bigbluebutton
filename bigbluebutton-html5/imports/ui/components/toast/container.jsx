@@ -1,6 +1,7 @@
 import React from 'react';
 import { ToastContainer as Toastify } from 'react-toastify';
 
+import ReactToastMessages from 'react-toast-messages';
 import Icon from '../icon/component';
 import { styles } from './styles';
 

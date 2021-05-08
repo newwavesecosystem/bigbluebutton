@@ -401,7 +401,7 @@ public:
   layout:
     autoSwapLayout: false
     hidePresentation: false
-    showParticipantsOnLogin: true
+    showParticipantsOnLogin: false
   media:
     stunTurnServersFetchAddress: '/bigbluebutton/api/stuns'
     cacheStunTurnServers: true

@@ -86,7 +86,7 @@ class NavBar extends Component {
       presentationTitle,
       amIModerator,
       handleLeaveAudio,
-      inAudio
+      inAudio,
     } = this.props;
 
     const hasNotification = hasUnreadMessages || hasUnreadNotes;
@@ -106,12 +106,12 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           <div className={styles.left}>
-            {inAudio ?
-            <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-                : null }
+            {inAudio
+              ? <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+              : null }
 
-            {!isExpanded ? null
-              : <Icon iconName="left_arrow" className={styles.arrowLeft} />}
+            {/* {!isExpanded ? null */}
+            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />} */}
             {isExpanded ? (
               <Button
                 onClick={NavBar.handleToggleUserList}
@@ -127,8 +127,8 @@ class NavBar extends Component {
                 size="sm"
               />
             ) : null}
-            {/*{isExpanded ? null*/}
-            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />}*/}
+            {/* {isExpanded ? null */}
+            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />} */}
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>

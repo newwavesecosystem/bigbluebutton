@@ -117,19 +117,19 @@ const intlMessages = defineMessages({
     description: 'Describes settings option',
   },
   openpanelLabel: {
-    id: 'app.navBar.settingsDropdown.panelLabel',
+    id: 'app.navBar.settingsDropdown.openpanelLabel',
     description: 'Open panel option label',
   },
   openpanelDesc: {
-    id: 'app.navBar.settingsDropdown.panelDesc',
+    id: 'app.navBar.settingsDropdown.openpanelDesc',
     description: 'Describes panel option',
   },
   closepanelLabel: {
-    id: 'app.navBar.settingsDropdown.panelLabel',
+    id: 'app.navBar.settingsDropdown.closepanelLabel',
     description: 'Open panel option label',
   },
   closepanelDesc: {
-    id: 'app.navBar.settingsDropdown.panelDesc',
+    id: 'app.navBar.settingsDropdown.closepanelDesc',
     description: 'Describes panel option',
   },
   audiochangeLabel: {
@@ -151,7 +151,6 @@ class ActionsDropdown extends PureComponent {
     this.state = {
       panel: false,
     };
-
 
     this.presentationItemId = _.uniqueId('action-item-');
     this.pollId = _.uniqueId('action-item-');
@@ -224,7 +223,7 @@ class ActionsDropdown extends PureComponent {
 
     const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
-    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" key="customIcon" /> ;
+    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" key="customIcon" />;
 
     return _.compact([
       (
@@ -232,7 +231,7 @@ class ActionsDropdown extends PureComponent {
           customIcon={panelIcon}
           data-test="panel"
           label={panel ? intl.formatMessage(intlMessages.closepanelLabel) : intl.formatMessage(intlMessages.closepanelLabel)}
-          description={panel ? intl.formatMessage(intlMessages.openpanelDesc) : intl.formatMessage(intlMessages.closepanelDesc) }
+          description={panel ? intl.formatMessage(intlMessages.openpanelDesc) : intl.formatMessage(intlMessages.closepanelDesc)}
           key={this.panel}
           onClick={() => this.handleToggleUserList()}
         />
@@ -394,13 +393,13 @@ class ActionsDropdown extends PureComponent {
       panel,
     } = this.state;
 
-    if(panel){
-      console.log("panel is off");
+    if (panel) {
+      console.log('panel is off');
       this.setState({
         panel: false,
       });
-    }else{
-      console.log("panel is off");
+    } else {
+      console.log('panel is off');
       this.setState({
         panel: true,
       });
