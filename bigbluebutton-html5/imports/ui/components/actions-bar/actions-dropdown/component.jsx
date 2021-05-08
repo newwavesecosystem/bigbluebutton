@@ -15,12 +15,12 @@ import DropdownListSeparator from '/imports/ui/components/dropdown/list/separato
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 import RandomUserSelectContainer from '/imports/ui/components/modal/random-user/container';
 import cx from 'classnames';
-import { styles } from '../styles';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleUp, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Session } from 'meteor/session';
+import { styles } from '../styles';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -157,7 +157,6 @@ class ActionsDropdown extends PureComponent {
     this.handleToggleUserList = this.handleToggleUserList.bind(this);
   }
 
-
   componentDidUpdate(prevProps) {
     const { amIPresenter: wasPresenter } = prevProps;
     const { amIPresenter: isPresenter, mountModal } = this.props;
@@ -208,17 +207,19 @@ class ActionsDropdown extends PureComponent {
 
     const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
+    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" />;
+
     return _.compact([
       (
-          <DropdownListItem
-            icon="user"
-            data-test="panel"
-            label={intl.formatMessage(intlMessages.panelLabel)}
-            description={intl.formatMessage(intlMessages.panelDesc)}
-            key={this.panel}
-            onClick={() => this.handleToggleUserList()}
-          />
-        ),
+        <DropdownListItem
+          customIcon={panelIcon}
+          data-test="panel"
+          label={intl.formatMessage(intlMessages.panelLabel)}
+          description={intl.formatMessage(intlMessages.panelDesc)}
+          key={this.panel}
+          onClick={() => this.handleToggleUserList()}
+        />
+      ),
       (amIPresenter && isPollingEnabled
         ? (
           <DropdownListItem
@@ -285,36 +286,37 @@ class ActionsDropdown extends PureComponent {
         )
         : null),
       (shouldRenderLogoutOption
-          ?
-          (<DropdownListItem
-              icon="logout"
-              label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
-              description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
-              key={this.selectLeaveMeeting}
-              onClick={() => this.leaveSession()}
-          />):null
+        ? (
+          <DropdownListItem
+            icon="logout"
+            label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
+            description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
+            key={this.selectLeaveMeeting}
+            onClick={() => this.leaveSession()}
+          />
+        ) : null
       ),
 
       (allowedToEndMeeting
-              ?
-          (<DropdownListItem
+        ? (
+          <DropdownListItem
             icon="application"
             label={intl.formatMessage(intlMessages.endMeetingLabel)}
             description={intl.formatMessage(intlMessages.endMeetingDesc)}
             key={this.endLeaveMeeting}
             onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
           />
-          ):null
-        ),
+        ) : null
+      ),
 
       <DropdownListItem
-          icon="settings"
-          data-test="settings"
-          label={intl.formatMessage(intlMessages.settingsLabel)}
-          description={intl.formatMessage(intlMessages.settingsDesc)}
-          key={this.selectSettings}
-          onClick={() => mountModal(<SettingsMenuContainer />)}
-      />
+        icon="settings"
+        data-test="settings"
+        label={intl.formatMessage(intlMessages.settingsLabel)}
+        description={intl.formatMessage(intlMessages.settingsDesc)}
+        key={this.selectSettings}
+        onClick={() => mountModal(<SettingsMenuContainer />)}
+      />,
     ]);
   }
 
@@ -372,10 +374,10 @@ class ActionsDropdown extends PureComponent {
 
   handleToggleUserList() {
     Session.set(
-        'openPanel',
-        Session.get('openPanel') !== ''
-            ? ''
-            : 'userlist',
+      'openPanel',
+      Session.get('openPanel') !== ''
+        ? ''
+        : 'userlist',
     );
     Session.set('idChatOpen', '');
 
@@ -399,29 +401,34 @@ class ActionsDropdown extends PureComponent {
       || !isMeteorConnected) {
       return null;
     }
-    const arrowUp=<FontAwesomeIcon icon={faAngleDoubleUp} size="lg" />;
+    const arrowUp = <FontAwesomeIcon icon={faAngleDoubleUp} size="lg" />;
     return (
-        <div>
-      <Dropdown className={styles.dropdown} ref={(ref) => { this._dropdown = ref; }}>
-        <DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
-          <Button
-            hideLabel
-            aria-label={intl.formatMessage(intlMessages.actionsLabel)}
-            label={intl.formatMessage(intlMessages.actionsLabel)}
-            customIcon={arrowUp}
-            color="primary"
-            size="lg"
-            circle
-            onClick={() => null}
-          />
-        </DropdownTrigger>
-        <DropdownContent placement="top left">
-          <DropdownList className={styles.scrollableList}>
-            {children}
-          </DropdownList>
-        </DropdownContent>
-      </Dropdown>
-        </div>
+      <div>
+        <Dropdown
+          className={styles.dropdown}
+          ref={(ref) => {
+            this._dropdown = ref;
+          }}
+        >
+          <DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
+            <Button
+              hideLabel
+              aria-label={intl.formatMessage(intlMessages.actionsLabel)}
+              label={intl.formatMessage(intlMessages.actionsLabel)}
+              customIcon={arrowUp}
+              color="primary"
+              size="lg"
+              circle
+              onClick={() => null}
+            />
+          </DropdownTrigger>
+          <DropdownContent placement="top left">
+            <DropdownList className={styles.scrollableList}>
+              {children}
+            </DropdownList>
+          </DropdownContent>
+        </Dropdown>
+      </div>
     );
   }
 }

@@ -13,8 +13,9 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListTitle from '/imports/ui/components/dropdown/list/title/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
-import Iconi from 'react-eva-icons';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
@@ -305,17 +306,7 @@ class InputStreamLiveSelector extends Component {
         />,
       ]);
 
-    const aIcon = (
-      <Iconi
-        name="speaker"
-        size="medium" // small, medium, large, xlarge
-        animation={{
-          type: 'pulse', // zoom, pulse, shake, flip
-          hover: true,
-          infinite: false,
-        }}
-      />
-    );
+    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg" />;
 
     return (
       <Dropdown>
@@ -324,7 +315,7 @@ class InputStreamLiveSelector extends Component {
             aria-label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             hideLabel
-            color="primary"
+            color="default"
             customIcon={aIcon}
             size="lg"
             circle
