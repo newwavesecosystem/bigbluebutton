@@ -317,7 +317,7 @@ class InputStreamLiveSelector extends Component {
             hideLabel
             color="default"
             customIcon={aIcon}
-            size="lg"
+            size="sm"
             circle
             onClick={() => {}}
           />
