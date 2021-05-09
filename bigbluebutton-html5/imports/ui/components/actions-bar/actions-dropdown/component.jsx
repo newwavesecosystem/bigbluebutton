@@ -116,20 +116,12 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.settingsDesc',
     description: 'Describes settings option',
   },
-  openpanelLabel: {
-    id: 'app.navBar.settingsDropdown.openpanelLabel',
+  panelLabel: {
+    id: 'app.navBar.settingsDropdown.panelLabel',
     description: 'Open panel option label',
   },
-  openpanelDesc: {
-    id: 'app.navBar.settingsDropdown.openpanelDesc',
-    description: 'Describes panel option',
-  },
-  closepanelLabel: {
-    id: 'app.navBar.settingsDropdown.closepanelLabel',
-    description: 'Open panel option label',
-  },
-  closepanelDesc: {
-    id: 'app.navBar.settingsDropdown.closepanelDesc',
+  panelDesc: {
+    id: 'app.navBar.settingsDropdown.panelDesc',
     description: 'Describes panel option',
   },
   audiochangeLabel: {
@@ -147,10 +139,6 @@ const handlePresentationClick = () => Session.set('showUploadPresentationView', 
 class ActionsDropdown extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      panel: false,
-    };
 
     this.presentationItemId = _.uniqueId('action-item-');
     this.pollId = _.uniqueId('action-item-');
@@ -230,8 +218,8 @@ class ActionsDropdown extends PureComponent {
         <DropdownListItem
           customIcon={panelIcon}
           data-test="panel"
-          label={panel ? intl.formatMessage(intlMessages.closepanelLabel) : intl.formatMessage(intlMessages.closepanelLabel)}
-          description={panel ? intl.formatMessage(intlMessages.openpanelDesc) : intl.formatMessage(intlMessages.closepanelDesc)}
+          label={intl.formatMessage(intlMessages.panelLabel)}
+          description={intl.formatMessage(intlMessages.panelDesc)}
           key={this.panel}
           onClick={() => this.handleToggleUserList()}
         />
@@ -389,22 +377,6 @@ class ActionsDropdown extends PureComponent {
   }
 
   handleToggleUserList() {
-    const {
-      panel,
-    } = this.state;
-
-    if (panel) {
-      console.log('panel is off');
-      this.setState({
-        panel: false,
-      });
-    } else {
-      console.log('panel is off');
-      this.setState({
-        panel: true,
-      });
-    }
-
     Session.set(
       'openPanel',
       Session.get('openPanel') !== ''
