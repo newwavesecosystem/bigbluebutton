@@ -200,10 +200,6 @@ class ActionsDropdown extends PureComponent {
     } = intl;
 
     const {
-      panel,
-    } = this.state;
-
-    const {
       allowLogout: allowLogoutSetting,
     } = Meteor.settings.public.app;
 
