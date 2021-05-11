@@ -305,7 +305,7 @@ class InputStreamLiveSelector extends Component {
         />,
       ]).concat(outputDeviceList);
 
-    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg" />;
+    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="1x" />;
 
     return (
       <Dropdown>
