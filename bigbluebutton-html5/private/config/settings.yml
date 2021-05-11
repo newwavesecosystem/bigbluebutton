@@ -61,7 +61,7 @@ public:
     defaultSettings:
       application:
         animations: true
-        chatAudioAlerts: true
+        chatAudioAlerts: false
         chatPushAlerts: true
         userJoinAudioAlerts: false
         userJoinPushAlerts: false

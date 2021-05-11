@@ -292,7 +292,7 @@
     "app.navBar.settingsDropdown.optionsLabel": "Options",
     "app.navBar.settingsDropdown.fullscreenLabel": "Make fullscreen",
     "app.navBar.settingsDropdown.settingsLabel": "Settings",
-    "app.navBar.settingsDropdown.panelLabel": "Open/Close Chat Panel",
+    "app.navBar.settingsDropdown.panelLabel": "Open Chat Panel",
     "app.navBar.settingsDropdown.audiochangeLabel": "Change Audio Source",
     "app.navBar.settingsDropdown.aboutLabel": "About",
     "app.navBar.settingsDropdown.leaveSessionLabel": "Leave",
