@@ -376,7 +376,7 @@ public:
     itemsPerPage: 100
     timeBetweenFetchs: 1000
     bufferChatInsertsMs: 0
-    startClosed: false
+    startClosed: true
     min_message_length: 1
     max_message_length: 5000
     grouping_messages_window: 10000
@@ -401,7 +401,7 @@ public:
   layout:
     autoSwapLayout: false
     hidePresentation: false
-    showParticipantsOnLogin: false
+    showParticipantsOnLogin: true
   media:
     stunTurnServersFetchAddress: '/bigbluebutton/api/stuns'
     cacheStunTurnServers: true

@@ -106,9 +106,6 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           <div className={styles.left}>
-            {inAudio
-              ? <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-              : null }
 
             {/* {!isExpanded ? null */}
             {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />} */}
@@ -129,6 +126,10 @@ class NavBar extends Component {
             ) : null}
             {/* {isExpanded ? null */}
             {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />} */}
+
+            {inAudio
+                ? <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+                : null }
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
