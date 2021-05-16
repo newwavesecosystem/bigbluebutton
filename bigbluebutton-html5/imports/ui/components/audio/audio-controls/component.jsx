@@ -102,10 +102,13 @@ class AudioControls extends PureComponent {
     );
   }
 
-  static renderLeaveButtonWithLiveStreamSelector(props) {
+   renderLeaveButtonWithLiveStreamSelector(props) {
     const { handleLeaveAudio } = props;
     return (
+        <span>
+          {this.renderLeaveButtonWithoutLiveStreamSelector()}
       <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
+          </span>
     );
   }
 
@@ -169,15 +172,13 @@ class AudioControls extends PureComponent {
     const _enableDynamicDeviceSelection = enableDynamicAudioDeviceSelection
       && !isMobile;
 
-    const hep = AudioControls.renderLeaveButtonWithLiveStreamSelector(this.props) + this.renderLeaveButtonWithoutLiveStreamSelector();
-
     if (inAudio) {
       // if (_enableDynamicDeviceSelection) {
       //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
       //     .props);
       // }
 
-      return hep;
+      return this.renderLeaveButtonWithLiveStreamSelector(this.props);
 
       // return this.renderLeaveButtonWithoutLiveStreamSelector();
     }
