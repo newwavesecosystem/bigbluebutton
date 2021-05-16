@@ -109,27 +109,24 @@ class NavBar extends Component {
 
             {/* {!isExpanded ? null */}
             {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />} */}
-            {isExpanded ? (
-              <Button
-                onClick={NavBar.handleToggleUserList}
-                ghost
-                circle
-                data-test={hasNotification ? 'hasUnreadMessages' : null}
-                label={isExpanded ? 'Hide' : 'Chats'}
-                aria-label={ariaLabel}
-                customIcon={isExpanded ? leftIcon : rightIcon}
-                className={cx(toggleBtnClasses)}
-                aria-expanded={isExpanded}
-                accessKey={TOGGLE_USERLIST_AK}
-                size="sm"
-              />
-            ) : null}
+
+            <Button
+              onClick={NavBar.handleToggleUserList}
+              ghost
+              circle
+              data-test={hasNotification ? 'hasUnreadMessages' : null}
+              label={isExpanded ? 'Hide' : 'Chats'}
+              aria-label={ariaLabel}
+              customIcon={isExpanded ? leftIcon : rightIcon}
+              className={cx(toggleBtnClasses)}
+              aria-expanded={isExpanded}
+              accessKey={TOGGLE_USERLIST_AK}
+              size="sm"
+            />
+
             {/* {isExpanded ? null */}
             {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />} */}
 
-            {inAudio
-                ? <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-                : null }
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
