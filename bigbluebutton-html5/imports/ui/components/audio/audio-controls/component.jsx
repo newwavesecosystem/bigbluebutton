@@ -105,10 +105,10 @@ class AudioControls extends PureComponent {
    renderLeaveButtonWithLiveStreamSelector(props) {
     const { handleLeaveAudio } = props;
     return (
-        <span>
+        <div className="d-flex justify-content-center">
           {this.renderLeaveButtonWithoutLiveStreamSelector()}
       <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-          </span>
+          </div>
     );
   }
 

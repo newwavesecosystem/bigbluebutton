@@ -15,7 +15,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
+import {faCaretUp} from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
@@ -305,7 +305,7 @@ class InputStreamLiveSelector extends Component {
         />,
       ]).concat(outputDeviceList);
 
-    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="1x" />;
+    const aIcon = <FontAwesomeIcon icon={faCaretUp} size="1x" />;
 
     return (
       <Dropdown>
@@ -321,7 +321,7 @@ class InputStreamLiveSelector extends Component {
             onClick={() => {}}
           />
         </DropdownTrigger>
-        <DropdownContent className={styles.dropdownContent} placement="bottom left">
+        <DropdownContent className={styles.dropdownContent} placement="top left">
           <DropdownList className={cx(styles.scrollableList, styles.dropdownListContainer)}>
             {dropdownListComplete}
           </DropdownList>
