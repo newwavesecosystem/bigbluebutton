@@ -256,7 +256,7 @@ class InputStreamLiveSelector extends Component {
       <DropdownListSeparator key={`audioDeviceListSeparator-${deviceKind}`} />,
     ];
 
-    return listSeparator.concat(deviceList).concat(listTitle);
+    return listSeparator.concat(listTitle).concat(deviceList);
   }
 
   render() {
