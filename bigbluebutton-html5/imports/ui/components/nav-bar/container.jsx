@@ -12,43 +12,16 @@ import userListService from '../user-list/service';
 import NoteService from '/imports/ui/components/note/service';
 import Service from './service';
 import NavBar from './component';
-
-import {setUserSelectedListenOnly, setUserSelectedMicrophone} from "../audio/audio-modal/service";
-import AppService from '/imports/ui/components/app/service';
-const APP_CONFIG = Meteor.settings.public.app;
+import AudioService from '../audio/service';
 
 const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
-import Storage from '/imports/ui/services/storage/session';
-import AudioService from "../audio/service";
-import logger from '/imports/startup/client/logger';
-
-const handleLeaveAudio = () => {
-  const meetingIsBreakout = AppService.meetingIsBreakout();
-
-  if (!meetingIsBreakout) {
-    setUserSelectedMicrophone(false);
-    setUserSelectedListenOnly(false);
-  }
-
-  const skipOnFistJoin = getFromUserSettings('bbb_skip_check_audio_on_first_join', APP_CONFIG.skipCheckOnJoin);
-  if (skipOnFistJoin && !Storage.getItem('getEchoTest')) {
-    Storage.setItem('getEchoTest', true);
-  }
-
-  AudioService.exitAudio();
-  logger.info({
-    logCode: 'audiocontrols_leave_audio',
-    extraInfo: { logType: 'user_action' },
-  }, 'audio connection closed by user');
-};
-
 
 const checkUnreadMessages = ({ groupChatsMessages, groupChats, users }) => {
   const activeChats = userListService.getActiveChats({ groupChatsMessages, groupChats, users });
   const hasUnreadMessages = activeChats
-    .filter(chat => chat.userId !== Session.get('idChatOpen'))
-    .some(chat => chat.unreadCounter > 0);
+    .filter((chat) => chat.userId !== Session.get('idChatOpen'))
+    .some((chat) => chat.unreadCounter > 0);
 
   return hasUnreadMessages;
 };
@@ -60,7 +33,7 @@ const NavBarContainer = ({ children, ...props }) => {
   const { chats: groupChatsMessages } = usingChatContext;
   const { users } = usingUsersContext;
   const { groupChat: groupChats } = usingGroupChatContext;
-  const hasUnreadMessages = checkUnreadMessages({ groupChatsMessages, groupChats, users:users[Auth.meetingID] });
+  const hasUnreadMessages = checkUnreadMessages({ groupChatsMessages, groupChats, users: users[Auth.meetingID] });
 
   const currentUser = users[Auth.meetingID][Auth.userID];
   const amIModerator = currentUser.role === ROLE_MODERATOR;
@@ -70,7 +43,7 @@ const NavBarContainer = ({ children, ...props }) => {
       {children}
     </NavBar>
   );
-}
+};
 
 export default withTracker(() => {
   const CLIENT_TITLE = getFromUserSettings('bbb_client_title', PUBLIC_CONFIG.app.clientTitle);
@@ -94,7 +67,7 @@ export default withTracker(() => {
   }
 
   const { connectRecordingObserver, processOutsideToggleRecording } = Service;
-  const { isConnected, isEchoTest, } = AudioService;
+  const { isConnected, isEchoTest } = AudioService;
   const openPanel = Session.get('openPanel');
   const isExpanded = openPanel !== '';
   const hasUnreadNotes = NoteService.hasUnreadNotes();
@@ -107,7 +80,6 @@ export default withTracker(() => {
     meetingId,
     hasUnreadNotes,
     presentationTitle: meetingTitle,
-    handleLeaveAudio,
     inAudio: isConnected() && !isEchoTest(),
   };
 })(NavBarContainer);

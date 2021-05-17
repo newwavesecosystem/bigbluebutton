@@ -8,13 +8,11 @@ import getFromUserSettings from '/imports/ui/services/users-settings';
 import { defineMessages, injectIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons';
-import Icon from '../icon/component';
 import { styles } from './styles.scss';
 import Button from '/imports/ui/components/button/component';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
 import SettingsDropdownContainer from './settings-dropdown/container';
-import InputStreamLiveSelectorContainer from '../audio/audio-controls/input-stream-live-selector/container';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -35,7 +33,6 @@ const propTypes = {
   presentationTitle: PropTypes.string,
   hasUnreadMessages: PropTypes.bool,
   shortcuts: PropTypes.string,
-  handleLeaveAudio: PropTypes.func.isRequired,
   inAudio: PropTypes.bool.isRequired,
 };
 
@@ -85,8 +82,6 @@ class NavBar extends Component {
       mountModal,
       presentationTitle,
       amIModerator,
-      handleLeaveAudio,
-      inAudio,
     } = this.props;
 
     const hasNotification = hasUnreadMessages || hasUnreadNotes;

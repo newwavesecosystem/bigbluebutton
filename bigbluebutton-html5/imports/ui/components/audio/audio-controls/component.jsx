@@ -102,11 +102,11 @@ class AudioControls extends PureComponent {
     );
   }
 
-  renderLeaveButtonWithLiveStreamSelector(props) {
+  static renderLeaveButtonWithLiveStreamSelector(props) {
     const { handleLeaveAudio } = props;
     return (
       <div className="text-center">
-          {this.renderLeaveButtonWithoutLiveStreamSelector()}
+        {this.renderLeaveButtonWithoutLiveStreamSelector()}
         <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
       </div>
     );
@@ -173,12 +173,10 @@ class AudioControls extends PureComponent {
       && !isMobile;
 
     if (inAudio) {
-      // if (_enableDynamicDeviceSelection) {
-      //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-      //     .props);
-      // }
-
-      // return this.renderLeaveButtonWithLiveStreamSelector(this.props);
+      if (_enableDynamicDeviceSelection) {
+        return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
+          .props);
+      }
 
       return this.renderLeaveButtonWithoutLiveStreamSelector();
     }
@@ -200,7 +198,7 @@ class AudioControls extends PureComponent {
       inputStream,
       isViewer,
       isPresenter,
-      handleLeaveAudio
+      handleLeaveAudio,
     } = this.props;
 
     const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
@@ -210,7 +208,6 @@ class AudioControls extends PureComponent {
     const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg" />;
 
     const toggleMuteBtn = (
-        <div className="text-center">
       <Button
         className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
         onClick={handleToggleMuteMicrophone}
@@ -224,8 +221,6 @@ class AudioControls extends PureComponent {
         circle
         accessKey={shortcuts.togglemute}
       />
-          <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-        </div>
     );
 
     const MUTE_ALERT_CONFIG = Meteor.settings.public.app.mutedAlert;

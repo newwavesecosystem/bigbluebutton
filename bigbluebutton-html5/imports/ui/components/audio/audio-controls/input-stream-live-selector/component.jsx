@@ -15,7 +15,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
@@ -305,10 +305,9 @@ class InputStreamLiveSelector extends Component {
       />,
     ]).concat(outputDeviceList);
 
-    const aIcon = <FontAwesomeIcon icon={faCaretUp} size="1x" />;
+    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="1x" />;
 
     return (
-        <div className={{ top: -50, left: -30 }}>
       <Dropdown>
         <DropdownTrigger>
           <Button
@@ -328,7 +327,6 @@ class InputStreamLiveSelector extends Component {
           </DropdownList>
         </DropdownContent>
       </Dropdown>
-        </div>
     );
   }
 }
