@@ -308,7 +308,7 @@ class InputStreamLiveSelector extends Component {
     const aIcon = <FontAwesomeIcon icon={faCaretUp} size="1x" />;
 
     return (
-        <span style={{ top: -50, left: -30 }}>
+        <div className={{ top: -50, left: -30 }}>
       <Dropdown>
         <DropdownTrigger>
           <Button
@@ -328,7 +328,7 @@ class InputStreamLiveSelector extends Component {
           </DropdownList>
         </DropdownContent>
       </Dropdown>
-        </span>
+        </div>
     );
   }
 }
