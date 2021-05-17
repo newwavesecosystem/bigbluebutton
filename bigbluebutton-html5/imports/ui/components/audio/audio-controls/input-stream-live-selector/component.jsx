@@ -295,17 +295,17 @@ class InputStreamLiveSelector extends Component {
       selectedOutputDeviceId || currentOutputDeviceId,
     );
 
-    const dropdownListComplete = inputDeviceList.concat([
+    const dropdownListComplete = inputDeviceList.concat(outputDeviceList).concat([
       <DropdownListItem
-        key="leaveAudioButtonKey"
-        className={styles.stopButton}
-        label={intl.formatMessage(intlMessages.leaveAudio)}
-        onClick={() => handleLeaveAudio()}
-        accessKey={shortcuts.leaveaudio}
+          key="leaveAudioButtonKey"
+          className={styles.stopButton}
+          label={intl.formatMessage(intlMessages.leaveAudio)}
+          onClick={() => handleLeaveAudio()}
+          accessKey={shortcuts.leaveaudio}
       />,
-    ]).concat(outputDeviceList);
+    ]);
 
-    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="1x" />;
+    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg" />;
 
     return (
       <Dropdown>
@@ -316,7 +316,7 @@ class InputStreamLiveSelector extends Component {
             hideLabel
             color="default"
             customIcon={aIcon}
-            size="sm"
+            size="lg"
             circle
             onClick={() => {}}
           />
