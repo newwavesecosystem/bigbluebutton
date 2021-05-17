@@ -416,7 +416,7 @@ class ActionsDropdown extends PureComponent {
               aria-label={intl.formatMessage(intlMessages.actionsLabel)}
               label={intl.formatMessage(intlMessages.actionsLabel)}
               customIcon={arrowUp}
-              color="primary"
+              color="default"
               size="lg"
               circle
               onClick={() => null}
