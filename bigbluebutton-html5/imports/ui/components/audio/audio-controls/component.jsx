@@ -106,9 +106,9 @@ class AudioControls extends PureComponent {
     const { handleLeaveAudio } = props;
     return (
       <div className="flex-row">
-        <span style={{top: -50, left: -30}}>
-        {this.renderLeaveButtonWithoutLiveStreamSelector()}
-          </span>
+        <span style={{ top: -50, left: -30 }}>
+          {this.renderLeaveButtonWithoutLiveStreamSelector()}
+        </span>
         <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
       </div>
     );
