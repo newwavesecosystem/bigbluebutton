@@ -295,7 +295,7 @@ class InputStreamLiveSelector extends Component {
       selectedOutputDeviceId || currentOutputDeviceId,
     );
 
-    const dropdownListComplete = inputDeviceList.concat(outputDeviceList).concat([
+    const dropdownListComplete = [
       <DropdownListItem
           key="leaveAudioButtonKey"
           className={styles.stopButton}
@@ -303,7 +303,7 @@ class InputStreamLiveSelector extends Component {
           onClick={() => handleLeaveAudio()}
           accessKey={shortcuts.leaveaudio}
       />,
-    ]);
+    ].concat(outputDeviceList).concat(inputDeviceList);
 
     const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg" />;
 
