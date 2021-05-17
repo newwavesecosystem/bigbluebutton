@@ -105,10 +105,7 @@ class AudioControls extends PureComponent {
   static renderLeaveButtonWithLiveStreamSelector(props) {
     const { handleLeaveAudio } = props;
     return (
-      <div className="text-center">
-        {this.renderLeaveButtonWithoutLiveStreamSelector()}
         <InputStreamLiveSelectorContainer {...{ handleLeaveAudio }} />
-      </div>
     );
   }
 
@@ -173,12 +170,12 @@ class AudioControls extends PureComponent {
       && !isMobile;
 
     if (inAudio) {
-      if (_enableDynamicDeviceSelection) {
-        return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-          .props);
-      }
+      // if (_enableDynamicDeviceSelection) {
+      //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
+      //     .props);
+      // }
 
-      return this.renderLeaveButtonWithoutLiveStreamSelector();
+      return AudioControls.renderLeaveButtonWithLiveStreamSelector(this.props);
     }
 
     return this.renderJoinButton();
