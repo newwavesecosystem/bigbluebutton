@@ -15,7 +15,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCaretUp} from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
@@ -296,14 +296,14 @@ class InputStreamLiveSelector extends Component {
     );
 
     const dropdownListComplete = inputDeviceList.concat([
-        <DropdownListItem
-          key="leaveAudioButtonKey"
-          className={styles.stopButton}
-          label={intl.formatMessage(intlMessages.leaveAudio)}
-          onClick={() => handleLeaveAudio()}
-          accessKey={shortcuts.leaveaudio}
-        />,
-      ]).concat(outputDeviceList);
+      <DropdownListItem
+        key="leaveAudioButtonKey"
+        className={styles.stopButton}
+        label={intl.formatMessage(intlMessages.leaveAudio)}
+        onClick={() => handleLeaveAudio()}
+        accessKey={shortcuts.leaveaudio}
+      />,
+    ]).concat(outputDeviceList);
 
     const aIcon = <FontAwesomeIcon icon={faCaretUp} size="1x" />;
 
@@ -318,6 +318,7 @@ class InputStreamLiveSelector extends Component {
             customIcon={aIcon}
             size="sm"
             circle
+            style={{top: -50, left: -30}}
             onClick={() => {}}
           />
         </DropdownTrigger>
