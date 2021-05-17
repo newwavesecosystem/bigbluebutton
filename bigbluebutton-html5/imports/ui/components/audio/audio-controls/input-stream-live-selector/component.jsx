@@ -318,7 +318,6 @@ class InputStreamLiveSelector extends Component {
             customIcon={aIcon}
             size="sm"
             circle
-            style={{top: -50, left: -30}}
             onClick={() => {}}
           />
         </DropdownTrigger>
