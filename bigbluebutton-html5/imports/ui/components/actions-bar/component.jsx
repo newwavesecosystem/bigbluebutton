@@ -4,12 +4,19 @@ import Button from '/imports/ui/components/button/component';
 import { ACTIONSBAR_HEIGHT } from '/imports/ui/components/layout/layout-manager/component';
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHandPaper, faHandPointDown } from '@fortawesome/free-solid-svg-icons';
 import { styles } from './styles.scss';
 import ActionsDropdown from './actions-dropdown/container';
 import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/screenshare/container';
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
+
+const propTypes = {
+  intl: PropTypes.object.isRequired,
+};
 
 class ActionsBar extends PureComponent {
   render() {
@@ -35,6 +42,11 @@ class ActionsBar extends PureComponent {
       currentUser,
       shortcuts,
     } = this.props;
+
+    const actionBarClasses = {};
+
+    const handIcon = <FontAwesomeIcon icon={faHandPaper} size="lg" />;
+    const handdownIcon = <FontAwesomeIcon icon={faHandPointDown} size="lg" />;
 
     return (
       <div
@@ -88,7 +100,7 @@ class ActionsBar extends PureComponent {
           {isRaiseHandButtonEnabled
             ? (
               <Button
-                icon="hand"
+                customIcon={currentUser.emoji === 'raiseHand' ? handdownIcon : handIcon}
                 label={intl.formatMessage({
                   id: `app.actionsBar.emojiMenu.${
                     currentUser.emoji === 'raiseHand'
@@ -97,7 +109,6 @@ class ActionsBar extends PureComponent {
                   }`,
                 })}
                 accessKey={shortcuts.raisehand}
-                color={currentUser.emoji === 'raiseHand' ? 'primary' : 'default'}
                 data-test={currentUser.emoji === 'raiseHand' ? 'lowerHandLabel' : 'raiseHandLabel'}
                 ghost={currentUser.emoji !== 'raiseHand'}
                 className={cx(currentUser.emoji === 'raiseHand' || styles.btn)}

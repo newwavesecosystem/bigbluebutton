@@ -6,6 +6,10 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import Button from '/imports/ui/components/button/component';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMicrophoneSlash, faMicrophone, faPhoneAlt, faPhoneVolume,
+} from '@fortawesome/free-solid-svg-icons';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
@@ -26,6 +30,14 @@ const intlMessages = defineMessages({
   unmuteAudio: {
     id: 'app.actionsBar.unmuteLabel',
     description: 'Unmute audio button label',
+  },
+  selectleaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
   },
 });
 
@@ -49,10 +61,9 @@ const propTypes = {
 class AudioControls extends PureComponent {
   constructor(props) {
     super(props);
+
     this.renderLeaveButtonWithoutLiveStreamSelector = this
       .renderLeaveButtonWithoutLiveStreamSelector.bind(this);
-
-    this.renderJoinLeaveButton = this.renderJoinLeaveButton.bind(this);
   }
 
   componentDidMount() {
@@ -71,6 +82,8 @@ class AudioControls extends PureComponent {
       shortcuts,
     } = this.props;
 
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg" />;
+
     return (
       <Button
         className={styles.btn}
@@ -81,7 +94,7 @@ class AudioControls extends PureComponent {
         label={intl.formatMessage(intlMessages.joinAudio)}
         color="default"
         ghost
-        icon="audio_off"
+        customIcon={dialOff}
         size="lg"
         circle
         accessKey={shortcuts.joinaudio}
@@ -116,6 +129,9 @@ class AudioControls extends PureComponent {
       }
     }
 
+    const dialOn = <FontAwesomeIcon icon={faPhoneVolume} size="lg" />;
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg" />;
+
     return (
       <Button
         className={cx(inAudio || styles.btn)}
@@ -127,9 +143,9 @@ class AudioControls extends PureComponent {
           : intl.formatMessage(intlMessages.joinAudio)}
         label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
           : intl.formatMessage(intlMessages.joinAudio)}
-        color={inAudio ? 'primary' : 'default'}
+        customIcon={inAudio ? dialOn : dialOff}
+        color="default"
         ghost={!inAudio}
-        icon={joinIcon}
         size="lg"
         circle
         accessKey={inAudio ? shortcuts.leaveaudio : shortcuts.joinaudio}
@@ -154,12 +170,12 @@ class AudioControls extends PureComponent {
       && !isMobile;
 
     if (inAudio) {
-      if (_enableDynamicDeviceSelection) {
-        return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-          .props);
-      }
+      // if (_enableDynamicDeviceSelection) {
+      //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
+      //     .props);
+      // }
 
-      return this.renderLeaveButtonWithoutLiveStreamSelector();
+      return AudioControls.renderLeaveButtonWithLiveStreamSelector(this.props);
     }
 
     return this.renderJoinButton();
@@ -179,10 +195,14 @@ class AudioControls extends PureComponent {
       inputStream,
       isViewer,
       isPresenter,
+      handleLeaveAudio,
     } = this.props;
 
     const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
       : intl.formatMessage(intlMessages.muteAudio);
+
+    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg" />;
+    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg" />;
 
     const toggleMuteBtn = (
       <Button
@@ -192,9 +212,8 @@ class AudioControls extends PureComponent {
         hideLabel
         label={label}
         aria-label={label}
-        color={!muted ? 'primary' : 'default'}
         ghost={muted}
-        icon={muted ? 'mute' : 'unmute'}
+        customIcon={muted ? micOff : micOn}
         size="lg"
         circle
         accessKey={shortcuts.togglemute}

@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 const propTypes = {
   icon: PropTypes.string,
+  customIcon: PropTypes.string,
   label: PropTypes.string,
   description: PropTypes.string,
   accessKey: PropTypes.string,
@@ -15,6 +16,7 @@ const propTypes = {
 
 const defaultProps = {
   icon: '',
+  customIcon: '',
   label: '',
   description: '',
   tabIndex: 0,
@@ -36,11 +38,12 @@ class DropdownListItem extends Component {
 
   renderDefault() {
     const {
-      icon, label, iconRight, accessKey,
+      icon, label, iconRight, accessKey, customIcon,
     } = this.props;
 
     return [
       (icon ? <Icon iconName={icon} key="icon" className={styles.itemIcon} /> : null),
+      (customIcon || null),
       (
         <span className={styles.itemLabel} key="label" accessKey={accessKey}>
           {label}

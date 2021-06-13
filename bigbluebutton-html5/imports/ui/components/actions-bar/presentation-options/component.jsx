@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import Button from '/imports/ui/components/button/component';
 import MediaService from '/imports/ui/components/media/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMinusSquare, faShareSquare, faVideo, faVideoSlash,
+} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -22,15 +26,18 @@ const intlMessages = defineMessages({
 
 const shouldUnswapLayout = () => MediaService.shouldShowScreenshare() || MediaService.shouldShowExternalVideo();
 
+const shareOff = <FontAwesomeIcon icon={faShareSquare} size="lg" />;
+const shareOn = <FontAwesomeIcon icon={faMinusSquare} size="lg" />;
+
 const PresentationOptionsContainer = ({ intl, toggleSwapLayout, isThereCurrentPresentation }) => {
   if (shouldUnswapLayout()) toggleSwapLayout();
   return (
     <Button
-      icon="presentation"
+      customIcon={shareOff}
       data-test="restorePresentationButton"
       label={intl.formatMessage(intlMessages.restorePresentationLabel)}
       description={intl.formatMessage(intlMessages.restorePresentationDesc)}
-      color="primary"
+      color="default"
       hideLabel
       circle
       size="lg"

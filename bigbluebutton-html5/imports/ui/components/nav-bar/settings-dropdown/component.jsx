@@ -16,9 +16,13 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FullscreenService from '../../fullscreen-button/service';
+import Modal from '/imports/ui/components/modal/simple/component';
 
 import { styles } from '../styles';
+import { closeModal } from '../../audio/audio-modal/service';
 
 const intlMessages = defineMessages({
   optionsLabel: {
@@ -89,6 +93,26 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.endMeetingDesc',
     description: 'Describes settings option closing the current meeting',
   },
+  endMeetingTitle: {
+    id: 'app.endMeeting.title',
+    description: 'end meeting title',
+  },
+  endMeetingDescription: {
+    id: 'app.endMeeting.description',
+    description: 'end meeting description with affected users information',
+  },
+  endMeetingNoUserDescription: {
+    id: 'app.endMeeting.noUserDescription',
+    description: 'end meeting description',
+  },
+  yesLabel: {
+    id: 'app.endMeeting.yesLabel',
+    description: 'label for yes button for end meeting',
+  },
+  noLabel: {
+    id: 'app.endMeeting.noLabel',
+    description: 'label for no button for end meeting',
+  },
 });
 
 const propTypes = {
@@ -126,6 +150,8 @@ class SettingsDropdown extends PureComponent {
     this.onActionsShow = this.onActionsShow.bind(this);
     this.onActionsHide = this.onActionsHide.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
+    this.leavemeetingDialog = this.leavemeetingDialog.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.onFullscreenChange = this.onFullscreenChange.bind(this);
   }
 
@@ -147,6 +173,52 @@ class SettingsDropdown extends PureComponent {
     this.setState({
       isSettingOpen: false,
     });
+  }
+
+  closeModal() {
+    const {
+      mountModal,
+    } = this.props;
+
+    return (
+      mountModal(null)
+    );
+  }
+
+  leavemeetingDialog() {
+    const {
+      intl,
+    } = this.props;
+
+    return (
+      <Modal
+        overlayClassName={styles.overlay}
+        className={styles.modal}
+        hideBorder
+        shouldShowCloseButton={false}
+        title="Leave meeting"
+      >
+        <div className={styles.container}>
+          <div className={styles.description}>
+            Are you  sure you want to leave the meeting
+          </div>
+          <div className={styles.footer}>
+            <Button
+              data-test="confirmEndMeeting"
+              color="primary"
+              className={styles.button}
+              label={intl.formatMessage(intlMessages.yesLabel)}
+              onClick={() => this.leaveSession()}
+            />
+            <Button
+              label={intl.formatMessage(intlMessages.noLabel)}
+              className={styles.button}
+              onClick={() => this.closeModal()}
+            />
+          </div>
+        </div>
+      </Modal>
+    );
   }
 
   onFullscreenChange() {
@@ -185,6 +257,37 @@ class SettingsDropdown extends PureComponent {
         description={fullscreenDesc}
         onClick={handleToggleFullscreen}
       />
+    );
+  }
+
+  showLogout() {
+    const {
+      intl, isMeteorConnected, mountModal,
+    } = this.props;
+
+    const {
+      allowLogout: allowLogoutSetting,
+    } = Meteor.settings.public.app;
+
+    const exitIcon = <FontAwesomeIcon icon={faTimesCircle} size="sm" />;
+
+    const logoutOption = (
+      <Button
+        label={intl.formatMessage(intlMessages.leaveSessionLabel)}
+        description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+        customIcon={exitIcon}
+        color="danger"
+        size="sm"
+        onClick={() => mountModal(this.leavemeetingDialog())}
+      />
+    );
+
+    const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
+      ? logoutOption
+      : null;
+
+    return (
+      shouldRenderLogoutOption
     );
   }
 
@@ -261,13 +364,14 @@ class SettingsDropdown extends PureComponent {
       />),
       (isMeteorConnected ? <DropdownListSeparator key={_.uniqueId('list-separator-')} /> : null),
       allowedToEndMeeting && isMeteorConnected
-        ? (<DropdownListItem
-          key="list-item-end-meeting"
-          icon="application"
-          label={intl.formatMessage(intlMessages.endMeetingLabel)}
-          description={intl.formatMessage(intlMessages.endMeetingDesc)}
-          onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
-        />
+        ? (
+          <DropdownListItem
+            key="list-item-end-meeting"
+            icon="application"
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+          />
         )
         : null,
       shouldRenderLogoutOption,
@@ -284,33 +388,34 @@ class SettingsDropdown extends PureComponent {
     const { isSettingOpen } = this.state;
 
     return (
-      <Dropdown
-        className={styles.dropdown}
-        autoFocus
-        keepOpen={isSettingOpen}
-        onShow={this.onActionsShow}
-        onHide={this.onActionsHide}
-      >
-        <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            icon="more"
-            ghost
-            circle
-            hideLabel
-            className={isDropdownOpen ? styles.hideDropdownButton : styles.btn}
-
-            // FIXME: Without onClick react proptypes keep warning
-            // even after the DropdownTrigger inject an onClick handler
-            onClick={() => null}
-          />
-        </DropdownTrigger>
-        <DropdownContent placement="bottom right">
-          <DropdownList>
-            {this.renderMenuItems()}
-          </DropdownList>
-        </DropdownContent>
-      </Dropdown>
+      this.showLogout()
+      // <Dropdown
+      //   className={styles.dropdown}
+      //   autoFocus
+      //   keepOpen={isSettingOpen}
+      //   onShow={this.onActionsShow}
+      //   onHide={this.onActionsHide}
+      // >
+      //   <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
+      //     <Button
+      //       label={intl.formatMessage(intlMessages.optionsLabel)}
+      //       icon="more"
+      //       ghost
+      //       circle
+      //       hideLabel
+      //       className={isDropdownOpen ? styles.hideDropdownButton : styles.btn}
+      //
+      //       // FIXME: Without onClick react proptypes keep warning
+      //       // even after the DropdownTrigger inject an onClick handler
+      //       onClick={() => null}
+      //     />
+      //   </DropdownTrigger>
+      //   <DropdownContent placement="bottom right">
+      //     <DropdownList>
+      //       {this.renderMenuItems()}
+      //     </DropdownList>
+      //   </DropdownContent>
+      // </Dropdown>
     );
   }
 }
