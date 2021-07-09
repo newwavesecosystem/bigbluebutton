@@ -5,6 +5,8 @@ import TextareaAutosize from 'react-autosize-textarea';
 import deviceInfo from '/imports/utils/deviceInfo';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import TypingIndicatorContainer from './typing-indicator/container';
 import { styles } from './styles.scss';
 import Button from '../../button/component';
@@ -272,6 +274,8 @@ class MessageForm extends PureComponent {
 
     const { hasErrors, error, message } = this.state;
 
+    const sendIcon = <FontAwesomeIcon icon={faPaperPlane} />;
+
     return CHAT_ENABLED ? (
       <form
         ref={(ref) => { this.form = ref; }}
@@ -304,7 +308,7 @@ class MessageForm extends PureComponent {
             disabled={disabled || partnerIsLoggedOut}
             label={intl.formatMessage(messages.submitLabel)}
             color="primary"
-            icon="send"
+            customIcon={sendIcon}
             onClick={() => {}}
             data-test="sendMessageButton"
           />

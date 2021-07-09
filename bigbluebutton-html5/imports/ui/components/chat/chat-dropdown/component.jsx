@@ -111,7 +111,7 @@ class ChatDropdown extends PureComponent {
           const date = new Date();
           const time = `${date.getHours()}-${date.getMinutes()}`;
           const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${time}`;
-          link.setAttribute('download', `bbb-${meetingName}[public-chat]_${dateString}.txt`);
+          link.setAttribute('download', `${meetingName}[public-chat]_${dateString}.txt`);
           link.setAttribute(
             'href',
             `data: ${mimeType} ;charset=utf-8,`

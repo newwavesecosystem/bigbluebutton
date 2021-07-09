@@ -5,10 +5,7 @@ import { styles } from '/imports/ui/components/user-list/user-list-content/style
 import _ from 'lodash';
 import { findDOMNode } from 'react-dom';
 import {
-  List,
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache,
+  AutoSizer, CellMeasurer, CellMeasurerCache, List,
 } from 'react-virtualized';
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
@@ -121,7 +118,7 @@ class UserParticipants extends Component {
     } = this.props;
     const { scrollArea } = this.state;
     const user = users[index];
-    const isRTL = Settings.application.isRTL;
+    const { isRTL } = Settings.application;
 
     return (
       <CellMeasurer
@@ -157,7 +154,7 @@ class UserParticipants extends Component {
   handleClickSelectedUser(event) {
     let selectedUser = null;
     if (event.path) {
-      selectedUser = event.path.find(p => p.className && p.className.includes('participantsList'));
+      selectedUser = event.path.find((p) => p.className && p.className.includes('participantsList'));
     }
     this.setState({ selectedUser });
   }
@@ -187,6 +184,22 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
+
+        {currentUser.role === ROLE_MODERATOR
+          ? (
+            <div>
+              <div className={styles.container} />
+              <div className={styles.container}>
+                <UserOptionsContainer {...{
+                  users,
+                  meetingIsBreakout,
+                }}
+                />
+              </div>
+              <div className={styles.container} />
+            </div>
+          ) : null}
+
         {
           !compact
             ? (
@@ -197,16 +210,16 @@ class UserParticipants extends Component {
                   {users.length}
                   )
                 </h2>
-                {currentUser.role === ROLE_MODERATOR
-                  ? (
-                    <UserOptionsContainer {...{
-                      users,
-                      clearAllEmojiStatus,
-                      meetingIsBreakout,
-                    }}
-                    />
-                  ) : null
-                }
+                {/* {currentUser.role === ROLE_MODERATOR */}
+                {/*  ? ( */}
+                {/*    <UserOptionsContainer {...{ */}
+                {/*      users, */}
+                {/*      clearAllEmojiStatus, */}
+                {/*      meetingIsBreakout, */}
+                {/*    }} */}
+                {/*    /> */}
+                {/*  ) : null */}
+                {/* } */}
 
               </div>
             )

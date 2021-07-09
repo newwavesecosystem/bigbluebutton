@@ -7,6 +7,8 @@ import { Session } from 'meteor/session';
 import {
   defineMessages, injectIntl, FormattedMessage,
 } from 'react-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMicrophoneAltSlash, faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { styles } from './styles';
 import PermissionsOverlay from '../permissions-overlay/component';
 import AudioSettings from '../audio-settings/component';
@@ -363,32 +365,47 @@ class AudioModal extends Component {
     const arrow = isRTL ? '←' : '→';
     const dialAudioLabel = `${intl.formatMessage(intlMessages.audioDialTitle)} ${arrow}`;
 
+    const mic = <FontAwesomeIcon icon={faMicrophoneAlt} size="sm" style={{ color: 'green' }} />;
+    const nomic = <FontAwesomeIcon icon={faMicrophoneAltSlash} size="sm" style={{ color: 'red' }} />;
+
     return (
       <div>
         <span className={styles.audioOptions}>
           {!showMicrophone && !isMobileNative
             ? (
-              <Button
-                className={styles.audioBtn}
-                label={intl.formatMessage(intlMessages.microphoneLabel)}
-                icon="unmute"
-                circle
-                size="jumbo"
-                disabled={audioLocked}
-                onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
-              />
+              <div>
+                <Button
+                  hideLabel
+                  className={styles.audioBtn}
+                  label={intl.formatMessage(intlMessages.microphoneLabel)}
+                  customIcon={mic}
+                  circle
+                  size="jumbo"
+                  disabled={audioLocked}
+                  onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
+                />
+                <div style={{ marginRight: 30 }}>
+                  {intl.formatMessage(intlMessages.microphoneLabel)}
+                </div>
+              </div>
             )
             : null}
           {listenOnlyMode
             ? (
-              <Button
-                className={styles.audioBtn}
-                label={intl.formatMessage(intlMessages.listenOnlyLabel)}
-                icon="listen"
-                circle
-                size="jumbo"
-                onClick={this.handleJoinListenOnly}
-              />
+              <div>
+                <Button
+                  hideLabel
+                  className={styles.audioBtn}
+                  label={intl.formatMessage(intlMessages.listenOnlyLabel)}
+                  customIcon={nomic}
+                  circle
+                  size="jumbo"
+                  onClick={this.handleJoinListenOnly}
+                />
+                <div>
+                  {intl.formatMessage(intlMessages.listenOnlyLabel)}
+                </div>
+              </div>
             )
             : null}
         </span>
@@ -428,7 +445,8 @@ class AudioModal extends Component {
           <div className={styles.text}>
             {intl.formatMessage(intlMessages.iOSErrorRecommendation)}
           </div>
-        </div>);
+        </div>
+      );
     }
 
     if (this.skipAudioOptions()) {
@@ -437,8 +455,7 @@ class AudioModal extends Component {
           <span data-test={!isEchoTest ? 'connecting' : 'connectingToEchoTest'}>
             {!isEchoTest
               ? intl.formatMessage(intlMessages.connecting)
-              : intl.formatMessage(intlMessages.connectingEchoTest)
-            }
+              : intl.formatMessage(intlMessages.connectingEchoTest)}
           </span>
           <span className={styles.connectingAnimation} />
         </div>
@@ -572,8 +589,7 @@ class AudioModal extends Component {
                 }
               </header>
             )
-            : null
-          }
+            : null}
           <div className={styles.content}>
             {this.renderContent()}
           </div>

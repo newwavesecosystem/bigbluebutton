@@ -4,6 +4,8 @@ import { defineMessages } from 'react-intl';
 import Icon from '/imports/ui/components/icon/component';
 import NoteService from '/imports/ui/components/note/service';
 import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileSignature } from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -98,7 +100,8 @@ class UserNotes extends Component {
         onClick={NoteService.toggleNotePanel}
         onKeyPress={() => { }}
       >
-        <Icon iconName="copy" />
+        <FontAwesomeIcon icon={faFileSignature} size="2x" />
+
         <div aria-hidden>
           <div className={styles.noteTitle} data-test="sharedNotes">
             {intl.formatMessage(intlMessages.sharedNotes)}
@@ -123,11 +126,11 @@ class UserNotes extends Component {
 
     return (
       <div className={styles.messages}>
-        <div className={styles.container}>
-          <h2 className={styles.smallTitle}>
-            {intl.formatMessage(intlMessages.title)}
-          </h2>
-        </div>
+        {/* <div className={styles.container}> */}
+        {/*  <h2 className={styles.smallTitle}> */}
+        {/*    {intl.formatMessage(intlMessages.title)} */}
+        {/*  </h2> */}
+        {/* </div> */}
         <div className={styles.scrollableList}>
           <div className={styles.list}>
             {this.renderNotes()}

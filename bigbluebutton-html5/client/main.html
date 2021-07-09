@@ -32,7 +32,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       height: 100%;
       font-family: 'Source Sans Pro', Arial, sans-serif;
       font-size: 1rem; /* 16px */
-      background-color: #06172A;
+      background-color: #35ac39;
     }
 
     a {
@@ -76,26 +76,48 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     }
   </style>
   <script>
-    document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-    });
+      window.onload = function () {
+          if (typeof history.pushState === "function") {
+              history.pushState("jibberish", null, null);
+              window.onpopstate = function () {
+                  history.pushState('newjibberish', null, null);
+                  // Handle the back (or forward) buttons here
+                  // Will NOT handle refresh, use onbeforeunload for this.
+                  var r = confirm("You pressed a Back button! Are you sure you want to leave the meeting room?");
+
+                  if (r === true) {
+                      // Call Back button programmatically as per user confirmation.
+                      window.location.replace("https://konn3ct.com");
+                      // Uncomment below line to redirect to the previous page instead.
+                      // window.location = document.referrer // Note: IE11 is not supporting this.
+                  } else {
+                      // Stay on the current page.
+                  }
+              };
+          }
+          else {
+              var ignoreHashChange = true;
+              window.onhashchange = function () {
+                  if (!ignoreHashChange) {
+                      ignoreHashChange = true;
+                      window.location.hash = Math.random();
+                      // Detect and redirect change here
+                      // Works in older FF and IE9
+                      // * it does mess with your hash symbol (anchor?) pound sign
+                      // delimiter on the end of the URL
+                  }
+                  else {
+                      ignoreHashChange = false;
+                  }
+              };
+          }
+      }
   </script>
   <script src="compatibility/adapter.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/sip.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/kurento-utils.js?v=VERSION" language="javascript"></script>
-  <!-- fonts -->
-  <link rel="preload" href="fonts/BbbIcons/bbb-icons.woff?j1ntjp" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Light.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Regular.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Semibold.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Bold.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-LightItalic.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Italic.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-SemiboldItalic.woff" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-BoldItalic.woff" as="font" crossorigin="anonymous"/>
-  <!-- fonts -->
 </head>
-<body style="background-color: #06172A">
+<body style="background-color: #35ac39">
   <div id="app" role="document"></div>
   <span id="destination"></span>
   <audio id="remote-media" autoplay>

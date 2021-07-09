@@ -14,6 +14,8 @@ import DropdownListTitle from '/imports/ui/components/dropdown/list/title/compon
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
@@ -254,7 +256,7 @@ class InputStreamLiveSelector extends Component {
       <DropdownListSeparator key={`audioDeviceListSeparator-${deviceKind}`} />,
     ];
 
-    return listTitle.concat(deviceList).concat(listSeparator);
+    return listSeparator.concat(listTitle).concat(deviceList);
   }
 
   render() {
@@ -293,17 +295,18 @@ class InputStreamLiveSelector extends Component {
       selectedOutputDeviceId || currentOutputDeviceId,
     );
 
-    const dropdownListComplete = inputDeviceList.concat(outputDeviceList)
-      .concat([
-        <DropdownListItem
-          key="leaveAudioButtonKey"
-          className={styles.stopButton}
-          data-test="disconnectAudio"
-          label={intl.formatMessage(intlMessages.leaveAudio)}
-          onClick={() => handleLeaveAudio()}
-          accessKey={shortcuts.leaveaudio}
-        />,
-      ]);
+    const dropdownListComplete = [
+      <DropdownListItem
+        key="leaveAudioButtonKey"
+        className={styles.stopButton}
+        data-test="disconnectAudio"
+        label={intl.formatMessage(intlMessages.leaveAudio)}
+        onClick={() => handleLeaveAudio()}
+        accessKey={shortcuts.leaveaudio}
+      />,
+    ].concat(outputDeviceList).concat(inputDeviceList);
+
+    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg" />;
 
     return (
       <Dropdown>
@@ -312,14 +315,14 @@ class InputStreamLiveSelector extends Component {
             aria-label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             label={intl.formatMessage(intlMessages.changeLeaveAudio)}
             hideLabel
-            color="primary"
-            icon={isListenOnly ? 'listen' : 'audio_on'}
+            color="default"
+            customIcon={aIcon}
             size="lg"
             circle
             onClick={() => {}}
           />
         </DropdownTrigger>
-        <DropdownContent className={styles.dropdownContent}>
+        <DropdownContent className={styles.dropdownContent} placement="top left">
           <DropdownList className={cx(styles.scrollableList, styles.dropdownListContainer)}>
             {dropdownListComplete}
           </DropdownList>
