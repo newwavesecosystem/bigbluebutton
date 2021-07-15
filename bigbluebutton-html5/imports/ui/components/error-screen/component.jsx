@@ -1,18 +1,18 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {defineMessages, injectIntl} from 'react-intl';
-import {Meteor} from 'meteor/meteor';
-import {Session} from 'meteor/session';
+import { defineMessages, injectIntl } from 'react-intl';
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import AudioManager from '/imports/ui/services/audio-manager';
 import logger from '/imports/startup/client/logger';
-import {styles} from './styles';
+import { styles } from './styles';
 
 const intlMessages = defineMessages({
-    500: {
-        id: 'app.error.500',
-        defaultMessage: 'Oops, something went wrong',
-    },
-    410: {
+  500: {
+    id: 'app.error.500',
+    defaultMessage: 'Oops, something went wrong',
+  },
+  410: {
     id: 'app.error.410',
   },
   408: {
@@ -102,24 +102,23 @@ class ErrorScreen extends PureComponent {
           {children}
         </div>
 
-          <a href={url} style={{marginTop: 5}}>
-              <button
-                  type="button"
-                  style={{
-                      backgroundColor: '#000000',
-                      color: '#ffffff',
-                      fontSize: 20,
-                      padding: 10,
-                      borderRadius: 25,
-                      margin: 10,
-                      marginLeft: 30,
-                      marginRight: 30,
-                  }}
-              >
-                  re-Konn3ct
-              </button>
-          </a>
-
+        <a href={url} style={{ marginTop: 5 }}>
+          <button
+            type="button"
+            style={{
+              backgroundColor: '#000000',
+              color: '#ffffff',
+              fontSize: 20,
+              padding: 10,
+              borderRadius: 25,
+              margin: 10,
+              marginLeft: 30,
+              marginRight: 30,
+            }}
+          >
+            re-Konn3ct
+          </button>
+        </a>
 
       </div>
     );
