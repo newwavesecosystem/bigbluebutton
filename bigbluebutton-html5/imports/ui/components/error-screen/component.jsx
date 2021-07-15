@@ -111,6 +111,20 @@ class ErrorScreen extends PureComponent {
           />
         </a>
 
+        <button
+          type="button"
+          style={{
+            backgroundColor: '#000000',
+            color: '#ffffff',
+            fontSize: 20,
+            padding: 10,
+            borderRadius: 5,
+            margin: 10,
+          }}
+        >
+          Click me
+        </button>
+
       </div>
     );
   }
