@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 import AudioManager from '/imports/ui/services/audio-manager';
 import logger from '/imports/startup/client/logger';
 import { styles } from './styles';
+import Button from "../button/component";
 
 const intlMessages = defineMessages({
   500: {
@@ -102,6 +103,16 @@ class ErrorScreen extends PureComponent {
           {children}
         </div>
 
+          <div>
+              <Button
+                  size="sm"
+                  color="primary"
+                  className={styles.button}
+                  onClick={() => window.location.reload()}
+                  label={intl.formatMessage(intlMessages.reloadButton)}
+              />
+          </div>
+
         <a href={url} style={{ marginTop: 5 }}>
           <button
             type="button"
@@ -110,10 +121,10 @@ class ErrorScreen extends PureComponent {
               color: '#ffffff',
               fontSize: 20,
               padding: 10,
-              borderRadius: 25,
+              borderRadius: 20,
               margin: 10,
-              marginLeft: 30,
-              marginRight: 30,
+              marginLeft: 20,
+              marginRight: 20,
             }}
           >
             re-Konn3ct

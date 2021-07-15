@@ -1,5 +1,6 @@
 import React from 'react';
 import { styles } from './styles.scss';
+import Button from "../button/component";
 
 const LoadingScreen = ({ children }) => (
   <div className={styles.background}>
@@ -11,6 +12,16 @@ const LoadingScreen = ({ children }) => (
     <div className={styles.message}>
       {children}
     </div>
+
+      <div>
+          <Button
+              size="sm"
+              color="primary"
+              className={styles.button}
+              onClick={() => window.location.reload()}
+              label="Reload"
+          />
+      </div>
   </div>
 );
 
