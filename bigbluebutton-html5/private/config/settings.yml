@@ -539,7 +539,7 @@ public:
     role_moderator: MODERATOR
     role_viewer: VIEWER
     label:
-      moderator: false
+      moderator: true
       mobile: true
       guest: true
   whiteboard:
