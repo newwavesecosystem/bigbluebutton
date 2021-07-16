@@ -1,18 +1,18 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
-import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
+import {defineMessages, injectIntl} from 'react-intl';
+import {Meteor} from 'meteor/meteor';
+import {Session} from 'meteor/session';
 import AudioManager from '/imports/ui/services/audio-manager';
 import logger from '/imports/startup/client/logger';
-import { styles } from './styles';
+import {styles} from './styles';
 import Button from '../button/component';
 
 const intlMessages = defineMessages({
-  500: {
-    id: 'app.error.500',
-    defaultMessage: 'Oops, something went wrong',
-  },
+    500: {
+        id: 'app.error.500',
+        defaultMessage: 'Oops, something went wrong',
+    },
   410: {
     id: 'app.error.410',
   },
@@ -105,11 +105,11 @@ class ErrorScreen extends PureComponent {
 
         <div>
           <Button
-            size="sm"
-            color="primary"
-            className={styles.button}
-            onClick={() => window.location.reload()}
-            label={intl.formatMessage(intlMessages.reloadButton)}
+              size="sm"
+              color="primary"
+              className={styles.button}
+              onClick={() => window.location.reload()}
+              label="re-Konn3ct"
           />
         </div>
 
