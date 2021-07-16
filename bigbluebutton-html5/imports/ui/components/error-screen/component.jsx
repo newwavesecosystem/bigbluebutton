@@ -1,18 +1,18 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {defineMessages, injectIntl} from 'react-intl';
-import {Meteor} from 'meteor/meteor';
-import {Session} from 'meteor/session';
+import { defineMessages, injectIntl } from 'react-intl';
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import AudioManager from '/imports/ui/services/audio-manager';
 import logger from '/imports/startup/client/logger';
-import {styles} from './styles';
+import { styles } from './styles';
 import Button from '../button/component';
 
 const intlMessages = defineMessages({
-    500: {
-        id: 'app.error.500',
-        defaultMessage: 'Oops, something went wrong',
-    },
+  500: {
+    id: 'app.error.500',
+    defaultMessage: 'Oops, something went wrong',
+  },
   410: {
     id: 'app.error.410',
   },
@@ -81,8 +81,6 @@ class ErrorScreen extends PureComponent {
       errorMessageDescription = intl.formatMessage(intlMessages[errorMessageDescription]);
     }
 
-    const url = window.location.href;
-
     return (
       <div className={styles.background}>
         <h1 className={styles.message}>
@@ -105,31 +103,13 @@ class ErrorScreen extends PureComponent {
 
         <div>
           <Button
-              size="sm"
-              color="primary"
-              className={styles.button}
-              onClick={() => window.location.reload()}
-              label="re-Konn3ct"
+            size="sm"
+            color="primary"
+            className={styles.button}
+            onClick={() => window.location.reload()}
+            label="re-Konn3ct"
           />
         </div>
-
-        <a href={url} style={{ marginTop: 5 }}>
-          <button
-            type="button"
-            style={{
-              backgroundColor: '#000000',
-              color: '#ffffff',
-              fontSize: 20,
-              padding: 10,
-              borderRadius: 20,
-              margin: 10,
-              marginLeft: 20,
-              marginRight: 20,
-            }}
-          >
-            re-Konn3ct
-          </button>
-        </a>
 
       </div>
     );
