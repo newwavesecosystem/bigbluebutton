@@ -1,18 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import _ from 'lodash';
-import { withModalMounter } from '/imports/ui/components/modal/service';
-import Button from '/imports/ui/components/button/component';
+import {withModalMounter} from '/imports/ui/components/modal/service';
 import Dropdown from '/imports/ui/components/dropdown/component';
 import LockViewersContainer from '/imports/ui/components/lock-viewers/container';
 import GuestPolicyContainer from '/imports/ui/components/waiting-users/guest-policy/container';
 import BreakoutRoom from '/imports/ui/components/actions-bar/create-breakout-room/container';
 import CaptionsService from '/imports/ui/components/captions/service';
 import CaptionsWriterMenu from '/imports/ui/components/captions/writer-menu/container';
-import { styles } from './styles';
-import { getUserNamesLink } from '/imports/ui/components/user-list/service';
+import {getUserNamesLink} from '/imports/ui/components/user-list/service';
 import Settings from '/imports/ui/services/settings';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUsersCog} from '@fortawesome/free-solid-svg-icons';
+import {styles} from './styles';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -363,31 +364,39 @@ class UserOptions extends PureComponent {
   }
 
   render() {
-    const { isUserOptionsOpen } = this.state;
-    const { intl } = this.props;
+    const {isUserOptionsOpen} = this.state;
+    const {intl} = this.props;
+
+    const usersetIcon = <FontAwesomeIcon icon={faUsersCog}/>;
 
     return (
-      <Dropdown
-        ref={(ref) => { this.dropdown = ref; }}
-        autoFocus={false}
-        isOpen={isUserOptionsOpen}
-        onShow={this.onActionsShow}
-        onHide={this.onActionsHide}
-        className={styles.dropdown}
-      >
-        <Dropdown.DropdownTrigger tabIndex={0}>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            data-test="manageUsers"
-            icon="settings"
-            ghost
-            color="primary"
-            hideLabel
-            className={styles.optionsButton}
-            size="sm"
-            onClick={() => null}
-          />
-        </Dropdown.DropdownTrigger>
+        <Dropdown
+            ref={(ref) => {
+              this.dropdown = ref;
+            }}
+            autoFocus={false}
+            isOpen={isUserOptionsOpen}
+            onShow={this.onActionsShow}
+            onHide={this.onActionsHide}
+            className={styles.dropdown}
+        >
+          <Dropdown.DropdownTrigger tabIndex={0}>
+            <div
+                aria-label={intl.formatMessage(intlMessages.optionsLabel)}
+                aria-describedby="manageUsers"
+                role="button"
+                tabIndex={0}
+                className={styles.listItem}
+                onClick={() => null}
+            >
+              <FontAwesomeIcon icon={faUsersCog} size="2x"/>
+              <div aria-hidden>
+                <div className={styles.noteTitle} data-test="manage-users">
+                  Manage users
+                </div>
+              </div>
+            </div>
+          </Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent
           className={styles.dropdownContent}
           placement="right top"

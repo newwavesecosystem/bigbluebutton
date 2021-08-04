@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
-import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
+import {defineMessages, injectIntl} from 'react-intl';
+import {Meteor} from 'meteor/meteor';
+import {Session} from 'meteor/session';
 import AudioManager from '/imports/ui/services/audio-manager';
 import logger from '/imports/startup/client/logger';
-import { styles } from './styles';
+import {styles} from './styles';
 
 const intlMessages = defineMessages({
   500: {
@@ -80,25 +80,30 @@ class ErrorScreen extends PureComponent {
       errorMessageDescription = intl.formatMessage(intlMessages[errorMessageDescription]);
     }
 
+    const url = 'https://konn3ct.com';
+
     return (
-      <div className={styles.background}>
-        <h1 className={styles.message}>
-          {formatedMessage}
-        </h1>
-        {
-          !errorMessageDescription || (
-            <div className={styles.sessionMessage}>
-              {errorMessageDescription}
-            </div>)
-        }
-        <div className={styles.separator} />
-        <h1 className={styles.codeError}>
-          {code}
-        </h1>
-        <div>
-          {children}
+        <div className={styles.background}>
+          <h1 className={styles.message}>
+            {formatedMessage}
+          </h1>
+          {
+            !errorMessageDescription || (
+                <div className={styles.sessionMessage}>
+                  {errorMessageDescription}
+                </div>
+            )
+          }
+          <div className={styles.separator}/>
+          <h1 className={styles.codeError}>
+            {code}
+          </h1>
+          <div>
+            {children}
+          </div>
+
+          <a href={url} style={{marginTop: 5}}>Go Home</a>
         </div>
-      </div>
     );
   }
 }

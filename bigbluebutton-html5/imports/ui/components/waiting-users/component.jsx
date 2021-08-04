@@ -1,12 +1,11 @@
-import _ from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import React, {useEffect, useState} from 'react';
+import {defineMessages, injectIntl} from 'react-intl';
 import injectWbResizeEvent from '/imports/ui/components/presentation/resize-wrapper/component';
 import UserAvatar from '/imports/ui/components/user-avatar/component';
 import TextInput from '/imports/ui/components/text-input/component';
 import Button from '/imports/ui/components/button/component';
-import { styles } from './styles';
-import { PANELS, ACTIONS } from '../layout/enums';
+import {styles} from './styles';
+import {ACTIONS, PANELS} from '../layout/enums';
 
 const intlMessages = defineMessages({
   waitingUsersTitle: {
@@ -237,17 +236,18 @@ const WaitingUsers = (props) => {
     },
   ];
 
-  const buttonsData = authenticatedGuest ? _.concat(authGuestButtonsData, guestButtonsData) : guestButtonsData;
+  // const buttonsData = authenticatedGuest ? _.concat(authGuestButtonsData , guestButtonsData) : guestButtonsData;
+  const buttonsData = guestButtonsData;
 
   return (
-    <div
-      data-test="note"
-      className={styles.panel}
-    >
-      <header className={styles.header}>
-        <div
-          data-test="noteTitle"
-          className={styles.title}
+      <div
+          data-test="note"
+          className={styles.panel}
+      >
+        <header className={styles.header}>
+          <div
+              data-test="noteTitle"
+              className={styles.title}
         >
           <Button
             onClick={() => {

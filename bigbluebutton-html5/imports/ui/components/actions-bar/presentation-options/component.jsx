@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import Button from '/imports/ui/components/button/component';
 import MediaService from '/imports/ui/components/media/service';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMinusSquare, faShareSquare,} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.object.isRequired,
@@ -22,26 +24,29 @@ const intlMessages = defineMessages({
 
 const shouldUnswapLayout = () => MediaService.shouldShowScreenshare() || MediaService.shouldShowExternalVideo();
 
+const shareOff = <FontAwesomeIcon icon={faShareSquare} size="lg"/>;
+const shareOn = <FontAwesomeIcon icon={faMinusSquare} size="lg"/>;
+
 const PresentationOptionsContainer = ({
-  intl,
-  toggleSwapLayout,
-  isThereCurrentPresentation,
-  newLayoutContextDispatch
-}) => {
+                                        intl,
+                                        toggleSwapLayout,
+                                        isThereCurrentPresentation,
+                                        newLayoutContextDispatch,
+                                      }) => {
   if (shouldUnswapLayout()) toggleSwapLayout();
   return (
-    <Button
-      icon="presentation"
-      data-test="restorePresentationButton"
-      label={intl.formatMessage(intlMessages.restorePresentationLabel)}
-      description={intl.formatMessage(intlMessages.restorePresentationDesc)}
-      color="primary"
-      hideLabel
-      circle
-      size="lg"
-      onClick={() => toggleSwapLayout(newLayoutContextDispatch)}
-      id="restore-presentation"
-      disabled={!isThereCurrentPresentation}
+      <Button
+          customIcon={shareOff}
+          data-test="restorePresentationButton"
+          label={intl.formatMessage(intlMessages.restorePresentationLabel)}
+          description={intl.formatMessage(intlMessages.restorePresentationDesc)}
+          color="default"
+          hideLabel
+          circle
+          size="lg"
+          onClick={() => toggleSwapLayout(newLayoutContextDispatch)}
+          id="restore-presentation"
+          disabled={!isThereCurrentPresentation}
     />
   );
 };

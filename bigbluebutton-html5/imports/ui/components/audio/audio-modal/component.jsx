@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Modal from '/imports/ui/components/modal/simple/component';
 import Button from '/imports/ui/components/button/component';
-import { Session } from 'meteor/session';
-import {
-  defineMessages, injectIntl, FormattedMessage,
-} from 'react-intl';
-import { styles } from './styles';
+import {Session} from 'meteor/session';
+import {defineMessages, FormattedMessage, injectIntl,} from 'react-intl';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophoneAlt, faMicrophoneAltSlash} from '@fortawesome/free-solid-svg-icons';
+import {styles} from './styles';
 import PermissionsOverlay from '../permissions-overlay/component';
 import AudioSettings from '../audio-settings/component';
 import EchoTest from '../echo-test/component';
@@ -365,33 +365,48 @@ class AudioModal extends Component {
     const arrow = isRTL ? '←' : '→';
     const dialAudioLabel = `${intl.formatMessage(intlMessages.audioDialTitle)} ${arrow}`;
 
+    const mic = <FontAwesomeIcon icon={faMicrophoneAlt} size="sm" style={{color: 'green'}}/>;
+    const nomic = <FontAwesomeIcon icon={faMicrophoneAltSlash} size="sm" style={{color: 'red'}}/>;
+
     return (
-      <div>
+        <div>
         <span className={styles.audioOptions}>
           {!showMicrophone && !isMobileNative
-            ? (
-              <Button
-                className={styles.audioBtn}
-                label={intl.formatMessage(intlMessages.microphoneLabel)}
-                icon="unmute"
-                circle
-                size="jumbo"
-                disabled={audioLocked}
-                onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
-              />
-            )
+              ? (
+                  <div>
+                    <Button
+                        hideLabel
+                        className={styles.audioBtn}
+                        label={intl.formatMessage(intlMessages.microphoneLabel)}
+                        customIcon={mic}
+                        circle
+                        size="jumbo"
+                        disabled={audioLocked}
+                        onClick={joinFullAudioImmediately ? this.handleJoinMicrophone : this.handleGoToEchoTest}
+                    />
+                    <div style={{marginRight: 30}}>
+                      {intl.formatMessage(intlMessages.microphoneLabel)}
+                    </div>
+                  </div>
+              )
             : null}
           {listenOnlyMode
             ? (
-              <Button
-                className={styles.audioBtn}
-                label={intl.formatMessage(intlMessages.listenOnlyLabel)}
-                icon="listen"
-                circle
-                size="jumbo"
-                onClick={this.handleJoinListenOnly}
-              />
-            )
+                  <div>
+                    <Button
+                        hideLabel
+                        className={styles.audioBtn}
+                        label={intl.formatMessage(intlMessages.listenOnlyLabel)}
+                        customIcon={nomic}
+                        circle
+                        size="jumbo"
+                        onClick={this.handleJoinListenOnly}
+                    />
+                    <div>
+                      {intl.formatMessage(intlMessages.listenOnlyLabel)}
+                    </div>
+                  </div>
+              )
             : null}
         </span>
         {formattedDialNum ? (
@@ -423,14 +438,15 @@ class AudioModal extends Component {
 
     if (isIOSChrome) {
       return (
-        <div>
-          <div className={styles.warning}>!</div>
-          <h4 className={styles.main}>{intl.formatMessage(intlMessages.iOSError)}</h4>
-          <div className={styles.text}>{intl.formatMessage(intlMessages.iOSErrorDescription)}</div>
-          <div className={styles.text}>
-            {intl.formatMessage(intlMessages.iOSErrorRecommendation)}
+          <div>
+            <div className={styles.warning}>!</div>
+            <h4 className={styles.main}>{intl.formatMessage(intlMessages.iOSError)}</h4>
+            <div className={styles.text}>{intl.formatMessage(intlMessages.iOSErrorDescription)}</div>
+            <div className={styles.text}>
+              {intl.formatMessage(intlMessages.iOSErrorRecommendation)}
+            </div>
           </div>
-        </div>);
+      );
     }
 
     if (this.skipAudioOptions()) {
@@ -438,9 +454,8 @@ class AudioModal extends Component {
         <div className={styles.connecting} role="alert">
           <span data-test={!isEchoTest ? 'connecting' : 'connectingToEchoTest'}>
             {!isEchoTest
-              ? intl.formatMessage(intlMessages.connecting)
-              : intl.formatMessage(intlMessages.connectingEchoTest)
-            }
+                ? intl.formatMessage(intlMessages.connecting)
+                : intl.formatMessage(intlMessages.connectingEchoTest)}
           </span>
           <span className={styles.connectingAnimation} />
         </div>
@@ -564,18 +579,17 @@ class AudioModal extends Component {
               >
                 {
                   isIOSChrome ? null
-                    : (
-                      <h2 className={styles.title}>
-                        {content
-                          ? intl.formatMessage(this.contents[content].title)
-                          : intl.formatMessage(intlMessages.audioChoiceLabel)}
-                      </h2>
-                    )
+                      : (
+                          <h2 className={styles.title}>
+                            {content
+                                ? intl.formatMessage(this.contents[content].title)
+                                : intl.formatMessage(intlMessages.audioChoiceLabel)}
+                          </h2>
+                      )
                 }
               </header>
-            )
-            : null
-          }
+              )
+              : null}
           <div className={styles.content}>
             {this.renderContent()}
           </div>

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logger from '/imports/startup/client/logger';
 import Auth from '/imports/ui/services/auth';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 import Button from '/imports/ui/components/button/component';
 import ButtonEmoji from '/imports/ui/components/button/button-emoji/ButtonEmoji';
@@ -9,7 +9,9 @@ import Dropdown from '/imports/ui/components/dropdown/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
 
-import { styles } from '../styles';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSlidersH} from '@fortawesome/free-solid-svg-icons';
+import {styles} from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -284,25 +286,27 @@ class InputStreamLiveSelector extends Component {
       ) : [];
 
     const outputDeviceList = this.renderDeviceList(
-      AUDIO_OUTPUT,
-      audioOutputDevices,
-      liveChangeOutputDevice,
-      intl.formatMessage(intlMessages.speakers),
-      selectedOutputDeviceId || currentOutputDeviceId,
-      false,
+        AUDIO_OUTPUT,
+        audioOutputDevices,
+        liveChangeOutputDevice,
+        intl.formatMessage(intlMessages.speakers),
+        selectedOutputDeviceId || currentOutputDeviceId,
+        false,
     );
 
-    const dropdownListComplete = inputDeviceList.concat(outputDeviceList);
+    const dropdownListComplete = outputDeviceList.concat(inputDeviceList);
+
+    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg"/>;
 
     return (
-      <Dropdown>
-        <Dropdown.DropdownTrigger>
-          <Button
-            aria-label={intl.formatMessage(intlMessages.leaveAudio)}
-            label={intl.formatMessage(intlMessages.leaveAudio)}
-            accessKey={shortcuts.leaveaudio}
-            hideLabel
-            color="primary"
+        <Dropdown>
+          <Dropdown.DropdownTrigger>
+            <Button
+                aria-label={intl.formatMessage(intlMessages.leaveAudio)}
+                label={intl.formatMessage(intlMessages.leaveAudio)}
+                accessKey={shortcuts.leaveaudio}
+                hideLabel
+                color="primary"
             icon={isListenOnly ? 'listen' : 'audio_on'}
             size="lg"
             circle

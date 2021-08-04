@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import {defineMessages} from 'react-intl';
 import Icon from '/imports/ui/components/icon/component';
 import NoteService from '/imports/ui/components/note/service';
-import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
-import { PANELS } from '../../../layout/enums';
+import {styles} from '/imports/ui/components/user-list/user-list-content/styles';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFileSignature} from '@fortawesome/free-solid-svg-icons';
+import {PANELS} from '../../../layout/enums';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -73,7 +75,7 @@ class UserNotes extends Component {
 
   renderNotes() {
     const {
-      intl, disableNote, sidebarContentPanel, newLayoutContextDispatch
+      intl, disableNote, sidebarContentPanel, newLayoutContextDispatch,
     } = this.props;
     const { unread } = this.state;
 
@@ -92,25 +94,28 @@ class UserNotes extends Component {
     }
 
     return (
-      <div
-        aria-label={intl.formatMessage(intlMessages.sharedNotes)}
-        aria-describedby="lockedNote"
-        role="button"
-        tabIndex={0}
-        className={styles.listItem}
-        onClick={() => NoteService.toggleNotePanel(sidebarContentPanel, newLayoutContextDispatch)}
-        onKeyPress={() => { }}
-      >
-        <Icon iconName="copy" />
-        <div aria-hidden>
-          <div className={styles.noteTitle} data-test="sharedNotes">
-            {intl.formatMessage(intlMessages.sharedNotes)}
-          </div>
-          {disableNote
-            ? (
-              <div className={styles.noteLock}>
-                <Icon iconName="lock" />
-                <span id="lockedNote">{`${intl.formatMessage(intlMessages.locked)} ${intl.formatMessage(intlMessages.byModerator)}`}</span>
+        <div
+            aria-label={intl.formatMessage(intlMessages.sharedNotes)}
+            aria-describedby="lockedNote"
+            role="button"
+            tabIndex={0}
+            className={styles.listItem}
+            onClick={() => NoteService.toggleNotePanel(sidebarContentPanel, newLayoutContextDispatch)}
+            onKeyPress={() => {
+            }}
+        >
+          <FontAwesomeIcon icon={faFileSignature} size="2x"/>
+
+          <div aria-hidden>
+            <div className={styles.noteTitle} data-test="sharedNotes">
+              {intl.formatMessage(intlMessages.sharedNotes)}
+            </div>
+            {disableNote
+                ? (
+                    <div className={styles.noteLock}>
+                      <Icon iconName="lock"/>
+                      <span
+                          id="lockedNote">{`${intl.formatMessage(intlMessages.locked)} ${intl.formatMessage(intlMessages.byModerator)}`}</span>
               </div>
             ) : null}
         </div>
@@ -125,18 +130,18 @@ class UserNotes extends Component {
     if (!NoteService.isEnabled()) return null;
 
     return (
-      <div className={styles.messages}>
-        <div className={styles.container}>
-          <h2 className={styles.smallTitle}>
-            {intl.formatMessage(intlMessages.title)}
-          </h2>
-        </div>
-        <div className={styles.scrollableList}>
-          <div className={styles.list}>
-            {this.renderNotes()}
+        <div className={styles.messages}>
+          {/* <div className={styles.container}> */}
+          {/*  <h2 className={styles.smallTitle}> */}
+          {/*    {intl.formatMessage(intlMessages.title)} */}
+          {/*  </h2> */}
+          {/* </div> */}
+          <div className={styles.scrollableList}>
+            <div className={styles.list}>
+              {this.renderNotes()}
+            </div>
           </div>
         </div>
-      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
-import { withModalMounter } from '/imports/ui/components/modal/service';
+import React, {PureComponent} from 'react';
+import {defineMessages, injectIntl} from 'react-intl';
+import {withModalMounter} from '/imports/ui/components/modal/service';
 import Clipboard from 'clipboard';
 import _ from 'lodash';
 import Dropdown from '/imports/ui/components/dropdown/component';
@@ -107,11 +107,11 @@ class ChatDropdown extends PureComponent {
           const date = new Date();
           const time = `${date.getHours()}-${date.getMinutes()}`;
           const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${time}`;
-          link.setAttribute('download', `bbb-${meetingName}[public-chat]_${dateString}.txt`);
+          link.setAttribute('download', `${meetingName}[public-chat]_${dateString}.txt`);
           link.setAttribute(
-            'href',
-            `data: ${mimeType} ;charset=utf-8,`
-            + `${encodeURIComponent(ChatService.exportChat(timeWindowsValues, users, intl))}`,
+              'href',
+              `data: ${mimeType} ;charset=utf-8,`
+              + `${encodeURIComponent(ChatService.exportChat(timeWindowsValues, users, intl))}`,
           );
           link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
         }}

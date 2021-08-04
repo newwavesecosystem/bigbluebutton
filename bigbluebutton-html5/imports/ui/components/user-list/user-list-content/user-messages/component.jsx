@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import React, {PureComponent} from 'react';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import {defineMessages} from 'react-intl';
 import cx from 'classnames';
-import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
-import { findDOMNode } from 'react-dom';
+import {styles} from '/imports/ui/components/user-list/user-list-content/styles';
+import {findDOMNode} from 'react-dom';
 import ChatListItemContainer from '../../chat-list-item/container';
 
 const propTypes = {
@@ -79,17 +79,17 @@ class UserMessages extends PureComponent {
 
     let index = -1;
 
-    return activeChats.map(chat => (
-      <CSSTransition
-        classNames={listTransition}
-        appear
-        enter
-        exit={false}
-        timeout={0}
-        component="div"
-        className={cx(styles.chatsList)}
-        key={chat.userId}
-      >
+    return activeChats.map((chat) => (
+        <CSSTransition
+            classNames={listTransition}
+            appear
+            enter
+            exit={false}
+            timeout={0}
+            component="div"
+            className={cx(styles.chatsList)}
+            key={chat.userId}
+        >
         <div ref={(node) => { this.activeChatRefs[index += 1] = node; }}>
           <ChatListItemContainer
             isPublicChat={isPublicChat}
@@ -120,28 +120,32 @@ class UserMessages extends PureComponent {
     } = this.props;
 
     return (
-      <div className={styles.messages}>
-        <div className={styles.container}>
-          {
-            !compact ? (
-              <h2 className={styles.smallTitle}>
-                {intl.formatMessage(intlMessages.messagesTitle)}
-              </h2>
-            ) : (
-              <hr className={styles.separator} />
-            )
-          }
-        </div>
-        <div
-          role="tabpanel"
-          tabIndex={0}
-          className={styles.scrollableList}
-          ref={(ref) => { this._msgsList = ref; }}
-        >
-          <div className={styles.list} aria-live="polite">
-            <TransitionGroup ref={(ref) => { this._msgItems = ref; }}>
-              {this.getActiveChats()}
-            </TransitionGroup>
+        <div className={styles.messages}>
+          {/* <div className={styles.container}> */}
+          {/*  { */}
+          {/*    !compact ? ( */}
+          {/*      <h2 className={styles.smallTitle}> */}
+          {/*        {intl.formatMessage(intlMessages.messagesTitle)} */}
+          {/*      </h2> */}
+          {/*    ) : ( */}
+          {/*      <hr className={styles.separator} /> */}
+          {/*    ) */}
+          {/*  } */}
+          {/* </div> */}
+          <div
+              role="tabpanel"
+              tabIndex={0}
+              className={styles.scrollableList}
+              ref={(ref) => {
+                this._msgsList = ref;
+              }}
+          >
+            <div className={styles.list} aria-live="polite">
+              <TransitionGroup ref={(ref) => {
+                this._msgItems = ref;
+              }}>
+                {this.getActiveChats()}
+              </TransitionGroup>
           </div>
         </div>
       </div>

@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
-import { defineMessages } from 'react-intl';
+import React, {Component} from 'react';
+import {defineMessages} from 'react-intl';
 import PropTypes from 'prop-types';
-import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
+import {styles} from '/imports/ui/components/user-list/user-list-content/styles';
 import _ from 'lodash';
-import { findDOMNode } from 'react-dom';
-import {
-  List,
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache,
-} from 'react-virtualized';
+import {findDOMNode} from 'react-dom';
+import {AutoSizer, CellMeasurer, CellMeasurerCache, List,} from 'react-virtualized';
 import UserListItemContainer from './user-list-item/container';
 import UserOptionsContainer from './user-options/container';
 import Settings from '/imports/ui/services/settings';
@@ -128,7 +123,7 @@ class UserParticipants extends Component {
     } = this.props;
     const { scrollArea } = this.state;
     const user = users[index];
-    const isRTL = Settings.application.isRTL;
+    const {isRTL} = Settings.application;
 
     return (
       <CellMeasurer
@@ -164,7 +159,7 @@ class UserParticipants extends Component {
   handleClickSelectedUser(event) {
     let selectedUser = null;
     if (event.path) {
-      selectedUser = event.path.find(p => p.className && p.className.includes('participantsList'));
+      selectedUser = event.path.find((p) => p.className && p.className.includes('participantsList'));
     }
     this.setState({ selectedUser });
   }
@@ -192,37 +187,53 @@ class UserParticipants extends Component {
     const { isOpen, scrollArea } = this.state;
 
     return (
-      <div className={styles.userListColumn}>
-        {
-          !compact
-            ? (
-              <div className={styles.container}>
-                <h2 className={styles.smallTitle}>
-                  {intl.formatMessage(intlMessages.usersTitle)}
-                  &nbsp;(
-                  {users.length}
-                  )
-                </h2>
-                {currentUser.role === ROLE_MODERATOR
-                  ? (
-                    <UserOptionsContainer {...{
-                      users,
-                      clearAllEmojiStatus,
-                      meetingIsBreakout,
-                    }}
-                    />
-                  ) : null
-                }
+        <div className={styles.userListColumn}>
 
-              </div>
+          {currentUser.role === ROLE_MODERATOR
+              ? (
+                  <div>
+                    <div className={styles.container}/>
+                    <div className={styles.container}>
+                      <UserOptionsContainer {...{
+                        users,
+                        meetingIsBreakout,
+                      }}
+                      />
+                    </div>
+                    <div className={styles.container}/>
+                  </div>
+              ) : null}
+
+          {
+            !compact
+                ? (
+                    <div className={styles.container}>
+                      <h2 className={styles.smallTitle}>
+                        {intl.formatMessage(intlMessages.usersTitle)}
+                        &nbsp;(
+                        {users.length}
+                        )
+                      </h2>
+                      {/* {currentUser.role === ROLE_MODERATOR */}
+                      {/*  ? ( */}
+                      {/*    <UserOptionsContainer {...{ */}
+                      {/*      users, */}
+                      {/*      clearAllEmojiStatus, */}
+                      {/*      meetingIsBreakout, */}
+                      {/*    }} */}
+                      {/*    /> */}
+                      {/*  ) : null */}
+                      {/* } */}
+
+                    </div>
             )
             : <hr className={styles.separator} />
         }
         <div
-          id={'user-list-virtualized-scroll'}
-          className={styles.virtulizedScrollableList}
-          tabIndex={0}
-          ref={(ref) => {
+            id="user-list-virtualized-scroll"
+            className={styles.virtulizedScrollableList}
+            tabIndex={0}
+            ref={(ref) => {
             this.refScrollContainer = ref;
           }}
         >

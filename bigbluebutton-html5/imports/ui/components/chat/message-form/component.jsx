@@ -1,12 +1,14 @@
-import React, { PureComponent } from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import React, {PureComponent} from 'react';
+import {defineMessages, injectIntl} from 'react-intl';
 import cx from 'classnames';
 import TextareaAutosize from 'react-autosize-textarea';
 import deviceInfo from '/imports/utils/deviceInfo';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 import TypingIndicatorContainer from './typing-indicator/container';
-import { styles } from './styles.scss';
+import {styles} from './styles.scss';
 import Button from '../../button/component';
 
 const propTypes = {
@@ -266,17 +268,21 @@ class MessageForm extends PureComponent {
       partnerIsLoggedOut,
     } = this.props;
 
-    const { hasErrors, error, message } = this.state;
+    const {hasErrors, error, message} = this.state;
+
+    const sendIcon = <FontAwesomeIcon icon={faPaperPlane}/>;
 
     return CHAT_ENABLED ? (
-      <form
-        ref={(ref) => { this.form = ref; }}
-        className={cx(className, styles.form)}
-        onSubmit={this.handleSubmit}
-      >
-        <div className={styles.wrapper}>
-          <TextareaAutosize
-            className={styles.input}
+        <form
+            ref={(ref) => {
+              this.form = ref;
+            }}
+            className={cx(className, styles.form)}
+            onSubmit={this.handleSubmit}
+        >
+          <div className={styles.wrapper}>
+            <TextareaAutosize
+                className={styles.input}
             id="message-input"
             innerRef={(ref) => { this.textarea = ref; return this.textarea; }}
             placeholder={intl.formatMessage(messages.inputPlaceholder, { 0: title })}
@@ -292,17 +298,18 @@ class MessageForm extends PureComponent {
             async
           />
           <Button
-            hideLabel
-            circle
-            className={styles.sendButton}
-            aria-label={intl.formatMessage(messages.submitLabel)}
-            type="submit"
-            disabled={disabled || partnerIsLoggedOut}
-            label={intl.formatMessage(messages.submitLabel)}
-            color="primary"
-            icon="send"
-            onClick={() => { }}
-            data-test="sendMessageButton"
+              hideLabel
+              circle
+              className={styles.sendButton}
+              aria-label={intl.formatMessage(messages.submitLabel)}
+              type="submit"
+              disabled={disabled || partnerIsLoggedOut}
+              label={intl.formatMessage(messages.submitLabel)}
+              color="primary"
+              customIcon={sendIcon}
+              onClick={() => {
+              }}
+              data-test="sendMessageButton"
           />
         </div>
         <TypingIndicatorContainer {...{ idChatOpen, error }} />

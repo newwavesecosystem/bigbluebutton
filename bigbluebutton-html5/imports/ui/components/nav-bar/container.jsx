@@ -1,28 +1,29 @@
-import React, { useContext } from 'react';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
+import React, {useContext} from 'react';
+import {Meteor} from 'meteor/meteor';
+import {withTracker} from 'meteor/react-meteor-data';
+import {Session} from 'meteor/session';
 import Meetings from '/imports/api/meetings';
 import Auth from '/imports/ui/services/auth';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import userListService from '/imports/ui/components/user-list/service';
-import { ChatContext } from '/imports/ui/components/components-data/chat-context/context';
-import { GroupChatContext } from '/imports/ui/components/components-data/group-chat-context/context';
-import { UsersContext } from '/imports/ui/components/components-data/users-context/context';
+import {ChatContext} from '/imports/ui/components/components-data/chat-context/context';
+import {GroupChatContext} from '/imports/ui/components/components-data/group-chat-context/context';
+import {UsersContext} from '/imports/ui/components/components-data/users-context/context';
 import NoteService from '/imports/ui/components/note/service';
 import Service from './service';
 import NavBar from './component';
-import { NLayoutContext } from '../layout/context/context';
+import {NLayoutContext} from '../layout/context/context';
+import AudioService from '../audio/service';
 
 const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
 
 const checkUnreadMessages = ({
-  groupChatsMessages, groupChats, users, idChatOpen,
-}) => {
-  const activeChats = userListService.getActiveChats({ groupChatsMessages, groupChats, users });
+                               groupChatsMessages, groupChats, users, idChatOpen,
+                             }) => {
+  const activeChats = userListService.getActiveChats({groupChatsMessages, groupChats, users});
   const hasUnreadMessages = activeChats
-    .filter((chat) => chat.userId !== idChatOpen)
+      .filter((chat) => chat.userId !== idChatOpen)
     .some((chat) => chat.unreadCounter > 0);
 
   return hasUnreadMessages;
@@ -101,16 +102,21 @@ export default withTracker(() => {
     document.title = titleString;
   }
 
-  const { connectRecordingObserver, processOutsideToggleRecording } = Service;
+  const {connectRecordingObserver, processOutsideToggleRecording} = Service;
 
   const layoutManagerLoaded = Session.get('layoutManagerLoaded');
+  const {isConnected, isEchoTest} = AudioService;
+  const openPanel = Session.get('openPanel');
+  const isExpanded = openPanel !== '';
 
   return {
+    isExpanded,
     currentUserId: Auth.userID,
     processOutsideToggleRecording,
     connectRecordingObserver,
     meetingId,
     presentationTitle: meetingTitle,
     layoutManagerLoaded,
+    inAudio: isConnected() && !isEchoTest(),
   };
 })(NavBarContainer);

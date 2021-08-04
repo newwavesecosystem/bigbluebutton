@@ -1,14 +1,16 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import deviceInfo from '/imports/utils/deviceInfo';
 import Button from '/imports/ui/components/button/component';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophone, faMicrophoneSlash, faPhoneAlt, faPhoneVolume,} from '@fortawesome/free-solid-svg-icons';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
-import { styles } from './styles';
+import {styles} from './styles';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -26,6 +28,14 @@ const intlMessages = defineMessages({
   unmuteAudio: {
     id: 'app.actionsBar.unmuteLabel',
     description: 'Unmute audio button label',
+  },
+  selectleaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
   },
 });
 
@@ -49,10 +59,9 @@ const propTypes = {
 class AudioControls extends PureComponent {
   constructor(props) {
     super(props);
+
     this.renderLeaveButtonWithoutLiveStreamSelector = this
       .renderLeaveButtonWithoutLiveStreamSelector.bind(this);
-
-    this.renderJoinLeaveButton = this.renderJoinLeaveButton.bind(this);
   }
 
   componentDidMount() {
@@ -71,20 +80,22 @@ class AudioControls extends PureComponent {
       shortcuts,
     } = this.props;
 
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg"/>;
+
     return (
-      <Button
-        className={styles.btn}
-        onClick={handleJoinAudio}
-        disabled={disable}
-        hideLabel
-        aria-label={intl.formatMessage(intlMessages.joinAudio)}
-        label={intl.formatMessage(intlMessages.joinAudio)}
-        color="default"
-        ghost
-        icon="audio_off"
-        size="lg"
-        circle
-        accessKey={shortcuts.joinaudio}
+        <Button
+            className={styles.btn}
+            onClick={handleJoinAudio}
+            disabled={disable}
+            hideLabel
+            aria-label={intl.formatMessage(intlMessages.joinAudio)}
+            label={intl.formatMessage(intlMessages.joinAudio)}
+            color="default"
+            ghost
+            customIcon={dialOff}
+            size="lg"
+            circle
+            accessKey={shortcuts.joinaudio}
       />
     );
   }
@@ -116,24 +127,27 @@ class AudioControls extends PureComponent {
       }
     }
 
+    const dialOn = <FontAwesomeIcon icon={faPhoneVolume} size="lg"/>;
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg"/>;
+
     return (
-      <Button
-        className={cx(inAudio || styles.btn)}
-        onClick={inAudio ? handleLeaveAudio : handleJoinAudio}
-        disabled={disable}
-        data-test={inAudio ? 'leaveAudio' : 'joinAudio'}
-        hideLabel
-        aria-label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
-          : intl.formatMessage(intlMessages.joinAudio)}
-        label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
-          : intl.formatMessage(intlMessages.joinAudio)}
-        color={inAudio ? 'primary' : 'default'}
-        ghost={!inAudio}
-        icon={joinIcon}
-        size="lg"
-        circle
-        accessKey={inAudio ? shortcuts.leaveaudio : shortcuts.joinaudio}
-      />
+        <Button
+            className={cx(inAudio || styles.btn)}
+            onClick={inAudio ? handleLeaveAudio : handleJoinAudio}
+            disabled={disable}
+            data-test={inAudio ? 'leaveAudio' : 'joinAudio'}
+            hideLabel
+            aria-label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
+                : intl.formatMessage(intlMessages.joinAudio)}
+            label={inAudio ? intl.formatMessage(intlMessages.leaveAudio)
+                : intl.formatMessage(intlMessages.joinAudio)}
+            customIcon={inAudio ? dialOn : dialOff}
+            color="default"
+            ghost={!inAudio}
+            size="lg"
+            circle
+            accessKey={inAudio ? shortcuts.leaveaudio : shortcuts.joinaudio}
+        />
     );
   }
 
@@ -154,12 +168,12 @@ class AudioControls extends PureComponent {
       && !isMobile;
 
     if (inAudio) {
-      if (_enableDynamicDeviceSelection) {
-        return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-          .props);
-      }
+      // if (_enableDynamicDeviceSelection) {
+      //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
+      //     .props);
+      // }
 
-      return this.renderLeaveButtonWithoutLiveStreamSelector();
+      return AudioControls.renderLeaveButtonWithLiveStreamSelector(this.props);
     }
 
     return this.renderJoinButton();
@@ -179,23 +193,26 @@ class AudioControls extends PureComponent {
       inputStream,
       isViewer,
       isPresenter,
+      handleLeaveAudio,
     } = this.props;
 
     const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
-      : intl.formatMessage(intlMessages.muteAudio);
+        : intl.formatMessage(intlMessages.muteAudio);
+
+    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg"/>;
+    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>;
 
     const toggleMuteBtn = (
-      <Button
-        className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
-        onClick={handleToggleMuteMicrophone}
-        disabled={disable}
-        hideLabel
-        label={label}
-        aria-label={label}
-        color={!muted ? 'primary' : 'default'}
-        ghost={muted}
-        icon={muted ? 'mute' : 'unmute'}
-        size="lg"
+        <Button
+            className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
+            onClick={handleToggleMuteMicrophone}
+            disabled={disable}
+            hideLabel
+            label={label}
+            aria-label={label}
+            ghost={muted}
+            customIcon={muted ? micOff : micOn}
+            size="lg"
         circle
         accessKey={shortcuts.togglemute}
       />
