@@ -1,22 +1,22 @@
 import _ from 'lodash';
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {defineMessages} from 'react-intl';
-import {makeCall} from '/imports/ui/services/api';
+import { defineMessages } from 'react-intl';
+import { makeCall } from '/imports/ui/services/api';
 import Button from '/imports/ui/components/button/component';
 import Dropdown from '/imports/ui/components/dropdown/component';
-import {withModalMounter} from '/imports/ui/components/modal/service';
+import { withModalMounter } from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 import RandomUserSelectContainer from '/imports/ui/components/modal/random-user/container';
 import cx from 'classnames';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faAngleDoubleUp, faBars} from '@fortawesome/free-solid-svg-icons';
-import {Session} from 'meteor/session';
-import {styles} from '../styles';
-import {ACTIONS, PANELS} from '../../layout/enums';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleUp, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Session } from 'meteor/session';
+import { styles } from '../styles';
+import { ACTIONS, PANELS } from '../../layout/enums';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -204,29 +204,29 @@ class ActionsDropdown extends PureComponent {
 
     const shouldRenderLogoutOption = isMeteorConnected && allowLogoutSetting;
 
-    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" key="customIcon"/>;
+    const panelIcon = <FontAwesomeIcon icon={faBars} size="lg" key="customIcon" />;
 
     return _.compact([
       (
-          <Dropdown.DropdownListItem
-              customIcon={panelIcon}
-              data-test="panel"
-              label={intl.formatMessage(intlMessages.panelLabel)}
-              description={intl.formatMessage(intlMessages.panelDesc)}
-              key={this.panel}
-              onClick={() => this.handleToggleUserList()}
-          />
+        <Dropdown.DropdownListItem
+          customIcon={panelIcon}
+          data-test="panel"
+          label={intl.formatMessage(intlMessages.panelLabel)}
+          description={intl.formatMessage(intlMessages.panelDesc)}
+          key={this.panel}
+          onClick={() => this.handleToggleUserList()}
+        />
       ),
       (amIPresenter && isPollingEnabled
-          ? (
-              <Dropdown.DropdownListItem
-                  icon="polling"
-                  data-test="polling"
-                  label={formatMessage(pollBtnLabel)}
-                  description={formatMessage(pollBtnDesc)}
-                  key={this.pollId}
-                  onClick={() => {
-                    if (Session.equals('pollInitiated', true)) {
+        ? (
+          <Dropdown.DropdownListItem
+            icon="polling"
+            data-test="polling"
+            label={formatMessage(pollBtnLabel)}
+            description={formatMessage(pollBtnDesc)}
+            key={this.pollId}
+            onClick={() => {
+              if (Session.equals('pollInitiated', true)) {
                 Session.set('resetPollPanel', true);
               }
               newLayoutContextDispatch({
@@ -243,16 +243,16 @@ class ActionsDropdown extends PureComponent {
         )
         : null),
       (amIModerator && !amIPresenter
-          ? (
-              <Dropdown.DropdownListItem
-                  icon="presentation"
-                  label={formatMessage(takePresenter)}
-                  description={formatMessage(takePresenterDesc)}
-                  key={this.takePresenterId}
-                  onClick={() => handleTakePresenter()}
-              />
-          )
-          : null),
+        ? (
+          <Dropdown.DropdownListItem
+            icon="presentation"
+            label={formatMessage(takePresenter)}
+            description={formatMessage(takePresenterDesc)}
+            key={this.takePresenterId}
+            onClick={() => handleTakePresenter()}
+          />
+        )
+        : null),
       (amIPresenter
         ? (
           <Dropdown.DropdownListItem
@@ -278,47 +278,47 @@ class ActionsDropdown extends PureComponent {
         )
         : null),
       (amIPresenter && isSelectRandomUserEnabled
-          ? (
-              <Dropdown.DropdownListItem
-                  icon="user"
-                  label={intl.formatMessage(intlMessages.selectRandUserLabel)}
-                  description={intl.formatMessage(intlMessages.selectRandUserDesc)}
-                  key={this.selectUserRandId}
-                  onClick={() => mountModal(<RandomUserSelectContainer isSelectedUser={false}/>)}
-              />
-          )
-          : null),
+        ? (
+          <Dropdown.DropdownListItem
+            icon="user"
+            label={intl.formatMessage(intlMessages.selectRandUserLabel)}
+            description={intl.formatMessage(intlMessages.selectRandUserDesc)}
+            key={this.selectUserRandId}
+            onClick={() => mountModal(<RandomUserSelectContainer isSelectedUser={false} />)}
+          />
+        )
+        : null),
       (shouldRenderLogoutOption
-              ? (
-                  <Dropdown.DropdownListItem
-                      icon="logout"
-                      label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
-                      description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
-                      key={this.selectLeaveMeeting}
-                      onClick={() => this.leaveSession()}
-                  />
-              ) : null
+        ? (
+          <Dropdown.DropdownListItem
+            icon="logout"
+            label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
+            description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
+            key={this.selectLeaveMeeting}
+            onClick={() => this.leaveSession()}
+          />
+        ) : null
       ),
 
       (allowedToEndMeeting
-              ? (
-                  <DropdownListItem
-                      icon="application"
-                      label={intl.formatMessage(intlMessages.endMeetingLabel)}
-                      description={intl.formatMessage(intlMessages.endMeetingDesc)}
-                      key={this.endLeaveMeeting}
-                      onClick={() => mountModal(<EndMeetingConfirmationContainer/>)}
-                  />
-              ) : null
+        ? (
+          <Dropdown.DropdownListItem
+            icon="application"
+            label={intl.formatMessage(intlMessages.endMeetingLabel)}
+            description={intl.formatMessage(intlMessages.endMeetingDesc)}
+            key={this.endLeaveMeeting}
+            onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+          />
+        ) : null
       ),
 
-      <DropdownListItem
-          icon="settings"
-          data-test="settings"
-          label={intl.formatMessage(intlMessages.settingsLabel)}
-          description={intl.formatMessage(intlMessages.settingsDesc)}
-          key={this.selectSettings}
-          onClick={() => mountModal(<SettingsMenuContainer/>)}
+      <Dropdown.DropdownListItem
+        icon="settings"
+        data-test="settings"
+        label={intl.formatMessage(intlMessages.settingsLabel)}
+        description={intl.formatMessage(intlMessages.settingsDesc)}
+        key={this.selectSettings}
+        onClick={() => mountModal(<SettingsMenuContainer />)}
       />,
     ]);
   }
@@ -358,7 +358,7 @@ class ActionsDropdown extends PureComponent {
         );
       });
 
-    presentationItemElements.push(<Dropdown.DropdownListSeparator key={_.uniqueId('list-separator-')}/>);
+    presentationItemElements.push(<Dropdown.DropdownListSeparator key={_.uniqueId('list-separator-')} />);
     return presentationItemElements;
   }
 
@@ -372,10 +372,10 @@ class ActionsDropdown extends PureComponent {
 
   handleToggleUserList() {
     Session.set(
-        'openPanel',
-        Session.get('openPanel') !== ''
-            ? ''
-            : 'userlist',
+      'openPanel',
+      Session.get('openPanel') !== ''
+        ? ''
+        : 'userlist',
     );
     Session.set('idChatOpen', '');
 
@@ -404,7 +404,7 @@ class ActionsDropdown extends PureComponent {
       || !isMeteorConnected) {
       return null;
     }
-    const arrowUp = <FontAwesomeIcon icon={faAngleDoubleUp} size="lg"/>;
+    const arrowUp = <FontAwesomeIcon icon={faAngleDoubleUp} size="lg" />;
     return (
       <Dropdown
         {...{
@@ -416,15 +416,15 @@ class ActionsDropdown extends PureComponent {
       >
         <Dropdown.DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
           <Button
-              className={isDropdownOpen ? styles.hideDropdownButton : ''}
-              hideLabel
-              aria-label={intl.formatMessage(intlMessages.actionsLabel)}
-              label={intl.formatMessage(intlMessages.actionsLabel)}
-              customIcon={arrowUp}
-              color="default"
-              size="lg"
-              circle
-              onClick={() => null}
+            className={isDropdownOpen ? styles.hideDropdownButton : ''}
+            hideLabel
+            aria-label={intl.formatMessage(intlMessages.actionsLabel)}
+            label={intl.formatMessage(intlMessages.actionsLabel)}
+            customIcon={arrowUp}
+            color="default"
+            size="lg"
+            circle
+            onClick={() => null}
           />
         </Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent placement="top left">
