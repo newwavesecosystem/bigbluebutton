@@ -1,7 +1,7 @@
 import React from 'react';
 import { styles } from './styles.scss';
 
-const Url = "/resources/images/animation_500_krj475tn.gif";
+const Url = "/room/resources/images/animation_500_krj475tn.gif";
 const LoadingScreen = ({ children }) => (
   <div className={styles.background}>
       <img src={Url} alt="loading logo" />
