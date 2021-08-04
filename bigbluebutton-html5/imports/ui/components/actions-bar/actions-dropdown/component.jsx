@@ -290,7 +290,7 @@ class ActionsDropdown extends PureComponent {
           : null),
       (shouldRenderLogoutOption
               ? (
-                  <DropdownListItem
+                  <Dropdown.DropdownListItem
                       icon="logout"
                       label={intl.formatMessage(intlMessages.selectleaveSessionLabel)}
                       description={intl.formatMessage(intlMessages.selectleaveSessionDesc)}
