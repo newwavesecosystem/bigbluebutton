@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import {defineMessages, injectIntl} from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import deviceInfo from '/imports/utils/deviceInfo';
 import Button from '/imports/ui/components/button/component';
 import getFromUserSettings from '/imports/ui/services/users-settings';
@@ -10,7 +10,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMicrophone, faMicrophoneSlash, faPhoneAlt, faPhoneVolume,} from '@fortawesome/free-solid-svg-icons';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
-import {styles} from './styles';
+import { styles } from './styles';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -59,9 +59,10 @@ const propTypes = {
 class AudioControls extends PureComponent {
   constructor(props) {
     super(props);
-
     this.renderLeaveButtonWithoutLiveStreamSelector = this
       .renderLeaveButtonWithoutLiveStreamSelector.bind(this);
+
+    this.renderJoinLeaveButton = this.renderJoinLeaveButton.bind(this);
   }
 
   componentDidMount() {
@@ -168,12 +169,12 @@ class AudioControls extends PureComponent {
       && !isMobile;
 
     if (inAudio) {
-      // if (_enableDynamicDeviceSelection) {
-      //   return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-      //     .props);
-      // }
+      if (_enableDynamicDeviceSelection) {
+        return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
+          .props);
+      }
 
-      return AudioControls.renderLeaveButtonWithLiveStreamSelector(this.props);
+      return this.renderLeaveButtonWithoutLiveStreamSelector();
     }
 
     return this.renderJoinButton();
@@ -213,6 +214,7 @@ class AudioControls extends PureComponent {
             ghost={muted}
             customIcon={muted ? micOff : micOn}
             size="lg"
+            color="default"
         circle
         accessKey={shortcuts.togglemute}
       />

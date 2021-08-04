@@ -8,9 +8,6 @@ import ButtonEmoji from '/imports/ui/components/button/button-emoji/ButtonEmoji'
 import Dropdown from '/imports/ui/components/dropdown/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import cx from 'classnames';
-
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSlidersH} from '@fortawesome/free-solid-svg-icons';
 import {styles} from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
@@ -296,8 +293,6 @@ class InputStreamLiveSelector extends Component {
 
     const dropdownListComplete = outputDeviceList.concat(inputDeviceList);
 
-    const aIcon = <FontAwesomeIcon icon={faSlidersH} size="lg"/>;
-
     return (
         <Dropdown>
           <Dropdown.DropdownTrigger>
@@ -306,7 +301,7 @@ class InputStreamLiveSelector extends Component {
                 label={intl.formatMessage(intlMessages.leaveAudio)}
                 accessKey={shortcuts.leaveaudio}
                 hideLabel
-                color="primary"
+                color="default"
             icon={isListenOnly ? 'listen' : 'audio_on'}
             size="lg"
             circle
