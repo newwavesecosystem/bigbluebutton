@@ -80,7 +80,7 @@ class ErrorScreen extends PureComponent {
       errorMessageDescription = intl.formatMessage(intlMessages[errorMessageDescription]);
     }
 
-    const url = 'https://konn3ct.com';
+    var url = window.location.origin;
 
     return (
         <div className={styles.background}>

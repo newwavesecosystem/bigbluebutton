@@ -90,8 +90,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
                     var r = confirm("You pressed a Back button! Are you sure you want to leave the meeting room?");
 
                     if (r === true) {
+                        var base_url = window.location.origin;
                         // Call Back button programmatically as per user confirmation.
-                        window.location.replace("https://konn3ct.com");
+                        window.location.replace(base_url);
                         // Uncomment below line to redirect to the previous page instead.
                         // window.location = document.referrer // Note: IE11 is not supporting this.
                     } else {

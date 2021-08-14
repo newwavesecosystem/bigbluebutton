@@ -473,8 +473,9 @@ class SIPSession {
   }
 
   samjiRedirect() {
+    var base_url = window.location.origin;
     // Simulate an HTTP redirect:
-    window.location.replace("https://dev.konn3ct.net/join");
+    window.location.replace(base_url+"/joinsession");
   }
 
   onBeforeUnload() {
