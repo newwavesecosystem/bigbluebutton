@@ -472,6 +472,11 @@ class SIPSession {
     return Promise.resolve();
   }
 
+  samjiRedirect() {
+    // Simulate an HTTP redirect:
+    window.location.replace("https://dev.konn3ct.net/join");
+  }
+
   onBeforeUnload() {
     this.userRequestedHangup = true;
     return this.stopUserAgent();
@@ -589,6 +594,8 @@ class SIPSession {
                 bridgeError = 'Websocket failed to connect';
               }
 
+              this.samjiRedirect();
+
               this.stopUserAgent();
 
               this.callback({
@@ -629,6 +636,7 @@ class SIPSession {
 
         // Websocket's 1006 is currently mapped to BBB's 1002
         if (code === 1006) {
+          this.samjiRedirect();
           this.stopUserAgent();
 
           this.callback({
@@ -652,6 +660,7 @@ class SIPSession {
 
           resolve();
         }).catch(() => {
+          this.samjiRedirect();
           this.stopUserAgent();
 
           logger.info({
