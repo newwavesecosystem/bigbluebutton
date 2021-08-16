@@ -649,6 +649,7 @@ public:
       - home.jpg
       - coffeeshop.jpg
       - board.jpg
+      - konn3ct.jpg
 private:
   analytics:
     includeChat: true
