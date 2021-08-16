@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { IntlProvider } from 'react-intl';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { IntlProvider } from "react-intl";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 
     this.state = {
       intlMessages: {},
-      intlLocale: 'en',
+      intlLocale: "en",
     };
 
     this.setMessages();
@@ -22,19 +22,20 @@ class Dashboard extends React.Component {
 
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    if (typeof params.lang !== 'undefined') {
+    if (typeof params.lang !== "undefined") {
       language = params.lang;
     }
 
-    const fetchMessages = (lang) => new Promise((resolve, reject) => {
-      const url = `/html5client/locales/${lang.replace('-', '_')}.json`;
-      fetch(url).then((response) => {
-        if (!response.ok) return reject();
-        return resolve(response.json());
+    const fetchMessages = (lang) =>
+      new Promise((resolve, reject) => {
+        const url = `/html5client/locales/${lang.replace("-", "_")}.json`;
+        fetch(url).then((response) => {
+          if (!response.ok) return reject();
+          return resolve(response.json());
+        });
       });
-    });
 
-    Promise.all([fetchMessages('en'), fetchMessages(language)])
+    Promise.all([fetchMessages("en"), fetchMessages(language)])
       .then((values) => {
         let mergedMessages = {};
 
@@ -47,21 +48,26 @@ class Dashboard extends React.Component {
         }
 
         this.setState({ intlMessages: mergedMessages, intlLocale: language });
-      }).catch(() => {});
+      })
+      .catch(() => {});
   }
 
   render() {
     const { intlLocale, intlMessages } = this.state;
 
     return (
-      <IntlProvider defaultLocale="en" locale={intlLocale} messages={intlMessages}>
+      <IntlProvider
+        defaultLocale="en"
+        locale={intlLocale}
+        messages={intlMessages}
+      >
         <App />
       </IntlProvider>
     );
   }
 }
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 ReactDOM.render(<Dashboard />, rootElement);
 
 reportWebVitals();

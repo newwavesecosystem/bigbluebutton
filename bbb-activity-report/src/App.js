@@ -1,17 +1,17 @@
-import React from 'react';
-import './App.css';
-import './bbb-icons.css';
-import {FormattedDate, FormattedMessage, injectIntl} from 'react-intl';
-import Card from './components/Card';
-import UsersTable from './components/UsersTable';
-import PollsTable from './components/PollsTable';
+import React from "react";
+import "./App.css";
+import "./bbb-icons.css";
+import { FormattedDate, FormattedMessage, injectIntl } from "react-intl";
+import Card from "./components/Card";
+import UsersTable from "./components/UsersTable";
+import PollsTable from "./components/PollsTable";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       activitiesJson: {},
-      tab: 'overview',
+      tab: "overview",
     };
   }
 
@@ -25,13 +25,13 @@ class App extends React.Component {
   fetchActivitiesJson() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    if (typeof params.meeting === 'undefined') return;
-    if (typeof params.report === 'undefined') return;
+    if (typeof params.meeting === "undefined") return;
+    if (typeof params.report === "undefined") return;
 
     fetch(`${params.meeting}/${params.report}/activity_report.json`)
       .then((response) => response.json())
       .then((json) => {
-        this.setState({activitiesJson: json});
+        this.setState({ activitiesJson: json });
         document.title = `Meeting Report - ${json.name}`;
       });
   }
@@ -42,27 +42,38 @@ class App extends React.Component {
 
     function totalOfRaiseHand() {
       if (activitiesJson && activitiesJson.users) {
-        return Object.values(activitiesJson.users)
-          .reduce((prevVal, elem) => prevVal + elem.emojis.filter((emoji) => emoji.name === 'raiseHand').length, 0);
+        return Object.values(activitiesJson.users).reduce(
+          (prevVal, elem) =>
+            prevVal +
+            elem.emojis.filter((emoji) => emoji.name === "raiseHand").length,
+          0
+        );
       }
       return 0;
     }
 
     function tsToHHmmss(ts) {
-      return (new Date(ts).toISOString().substr(11, 8));
+      return new Date(ts).toISOString().substr(11, 8);
     }
 
     function totalOfActivity() {
-      const minTime = Object.values(activitiesJson.users || {}).reduce((prevVal, elem) => {
-        if (prevVal === 0 || elem.registeredOn < prevVal) return elem.registeredOn;
-        return prevVal;
-      }, 0);
+      const minTime = Object.values(activitiesJson.users || {}).reduce(
+        (prevVal, elem) => {
+          if (prevVal === 0 || elem.registeredOn < prevVal)
+            return elem.registeredOn;
+          return prevVal;
+        },
+        0
+      );
 
-      const maxTime = Object.values(activitiesJson.users || {}).reduce((prevVal, elem) => {
-        if (elem.leftOn === 0) return (new Date()).getTime();
-        if (elem.leftOn > prevVal) return elem.leftOn;
-        return prevVal;
-      }, 0);
+      const maxTime = Object.values(activitiesJson.users || {}).reduce(
+        (prevVal, elem) => {
+          if (elem.leftOn === 0) return new Date().getTime();
+          if (elem.leftOn > prevVal) return elem.leftOn;
+          return prevVal;
+        },
+        0
+      );
 
       return maxTime - minTime;
     }
@@ -71,9 +82,14 @@ class App extends React.Component {
       <div className="mx-10">
         <div className="flex items-start justify-between pb-3">
           <h1 className="mt-3 text-2xl font-semibold whitespace-nowrap inline-block">
-            <FormattedMessage id="app.learningDashboard.dashboardTitle" defaultMessage="Learning Dashboard" />
+            <FormattedMessage
+              id="app.learningDashboard.dashboardTitle"
+              defaultMessage="Learning Dashboard"
+            />
             <br />
-            <span className="text-sm font-medium">{activitiesJson.name || ''}</span>
+            <span className="text-sm font-medium">
+              {activitiesJson.name || ""}
+            </span>
           </h1>
           <div className="mt-3 text-right px-4 py-1 text-gray-500 inline-block">
             <p className="font-bold">
@@ -83,22 +99,27 @@ class App extends React.Component {
                 month="short"
                 day="numeric"
               />
-              {
-                        activitiesJson.endedOn > 0
-                          ? (
-                            <span className="px-2 py-1 ml-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">
-                              <FormattedMessage id="app.learningDashboard.indicators.meetingStatusEnded" defaultMessage="Ended" />
-                            </span>
-                          )
-                          : (
-                            <span className="px-2 py-1 ml-3 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
-                              <FormattedMessage id="app.learningDashboard.indicators.meetingStatusActive" defaultMessage="Active" />
-                            </span>
-                          )
-                    }
+              {activitiesJson.endedOn > 0 ? (
+                <span className="px-2 py-1 ml-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">
+                  <FormattedMessage
+                    id="app.learningDashboard.indicators.meetingStatusEnded"
+                    defaultMessage="Ended"
+                  />
+                </span>
+              ) : (
+                <span className="px-2 py-1 ml-3 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
+                  <FormattedMessage
+                    id="app.learningDashboard.indicators.meetingStatusActive"
+                    defaultMessage="Active"
+                  />
+                </span>
+              )}
             </p>
             <p>
-              <FormattedMessage id="app.learningDashboard.indicators.duration" defaultMessage="Duration" />
+              <FormattedMessage
+                id="app.learningDashboard.indicators.duration"
+                defaultMessage="Duration"
+              />
               :&nbsp;
               {tsToHHmmss(totalOfActivity())}
             </p>
@@ -106,14 +127,23 @@ class App extends React.Component {
         </div>
 
         <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-          <div aria-hidden="true" className="cursor-pointer" onClick={() => { this.setState({ tab: 'overview' }); }}>
+          <div
+            aria-hidden="true"
+            className="cursor-pointer"
+            onClick={() => {
+              this.setState({ tab: "overview" });
+            }}
+          >
             <Card
-              name={intl.formatMessage({ id: 'app.learningDashboard.indicators.participants', defaultMessage: 'Participants' })}
+              name={intl.formatMessage({
+                id: "app.learningDashboard.indicators.participants",
+                defaultMessage: "Participants",
+              })}
               number={Object.values(activitiesJson.users || {}).length}
               cardClass="border-pink-500"
               iconClass="bg-pink-50 text-pink-500"
               onClick={() => {
-                this.setState({ tab: 'overview' });
+                this.setState({ tab: "overview" });
               }}
             >
               <svg
@@ -124,10 +154,10 @@ class App extends React.Component {
                 stroke="currentColor"
               >
                 <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
             </Card>
@@ -156,18 +186,18 @@ class App extends React.Component {
           {/*  </Card>*/}
           {/*</div>*/}
           <Card
-              name={intl.formatMessage({
-                id: 'app.learningDashboard.indicators.raiseHand',
-                defaultMessage: 'Raise Hand'
-              })}
-              number={totalOfRaiseHand()}
-              cardClass="border-purple-500"
-              iconClass="bg-purple-200 text-purple-500"
+            name={intl.formatMessage({
+              id: "app.learningDashboard.indicators.raiseHand",
+              defaultMessage: "Raise Hand",
+            })}
+            number={totalOfRaiseHand()}
+            cardClass="border-purple-500"
+            iconClass="bg-purple-200 text-purple-500"
           >
             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
@@ -181,26 +211,33 @@ class App extends React.Component {
           </Card>
         </div>
         <h1 className="block my-1 pr-2 text-xl font-semibold">
-          { tab === 'overview'
-            ? <FormattedMessage id="app.learningDashboard.participantsTable.title" defaultMessage="Overview" />
-            : null }
-          { tab === 'polling'
-            ? <FormattedMessage id="app.learningDashboard.pollsTable.title" defaultMessage="Polling" />
-            : null }
+          {tab === "overview" ? (
+            <FormattedMessage
+              id="app.learningDashboard.participantsTable.title"
+              defaultMessage="Overview"
+            />
+          ) : null}
+          {tab === "polling" ? (
+            <FormattedMessage
+              id="app.learningDashboard.pollsTable.title"
+              defaultMessage="Polling"
+            />
+          ) : null}
         </h1>
         <div className="w-full overflow-hidden rounded-md shadow-xs border-2 border-gray-100">
           <div className="w-full overflow-x-auto">
-            { tab === 'overview'
-              ? (
-                <UsersTable
-                  allUsers={activitiesJson.users}
-                  totalOfActivityTime={totalOfActivity()}
-                />
-              )
-              : null }
-            { tab === 'polling'
-              ? <PollsTable polls={activitiesJson.polls} allUsers={activitiesJson.users} />
-              : null }
+            {tab === "overview" ? (
+              <UsersTable
+                allUsers={activitiesJson.users}
+                totalOfActivityTime={totalOfActivity()}
+              />
+            ) : null}
+            {tab === "polling" ? (
+              <PollsTable
+                polls={activitiesJson.polls}
+                allUsers={activitiesJson.users}
+              />
+            ) : null}
           </div>
         </div>
       </div>
