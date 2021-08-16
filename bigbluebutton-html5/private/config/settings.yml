@@ -646,9 +646,6 @@ public:
     imagesPath: /resources/images/virtual-backgrounds/
     thumbnailsPath: /resources/images/virtual-backgrounds/thumbnails/
     fileNames:
-      - home.jpg
-      - coffeeshop.jpg
-      - board.jpg
       - konn3ct.jpg
 private:
   analytics:
