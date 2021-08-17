@@ -77,10 +77,6 @@ const VirtualBgSelector = ({
             {intl.formatMessage(intlMessages.noneLabel)}
           </option>
 
-          <option value={JSON.stringify({type: EFFECT_TYPES.BLUR_TYPE})}>
-            {intl.formatMessage(intlMessages.blurLabel)}
-          </option>
-
           {IMAGE_NAMES.map((imageName, index) => (
               <option
                   key={`${imageName}-${index}`}
@@ -92,6 +88,11 @@ const VirtualBgSelector = ({
                 {imageName.split('.')[0]}
               </option>
           ))}
+
+          <option value={JSON.stringify({type: EFFECT_TYPES.BLUR_TYPE})}>
+            {intl.formatMessage(intlMessages.blurLabel)}
+          </option>
+
         </select>
       </div>
   );
