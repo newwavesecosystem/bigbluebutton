@@ -646,6 +646,7 @@ public:
     imagesPath: /resources/images/virtual-backgrounds/
     thumbnailsPath: /resources/images/virtual-backgrounds/thumbnails/
     fileNames:
+      - white.jpg
       - konn3ct.jpg
 private:
   analytics:
