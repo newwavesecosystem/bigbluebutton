@@ -1,19 +1,16 @@
 import BaseAudioBridge from './base';
 import logger from '/imports/startup/client/logger';
+import {fetchWebRTCMappedStunTurnServers, getMappedFallbackStun} from '/imports/utils/fetchStunTurnServers';
 import {
-  fetchWebRTCMappedStunTurnServers,
-  getMappedFallbackStun,
-} from '/imports/utils/fetchStunTurnServers';
-import {
-  isUnifiedPlan,
-  toUnifiedPlan,
-  toPlanB,
-  stripMDnsCandidates,
-  filterValidIceCandidates,
   analyzeSdp,
+  filterValidIceCandidates,
+  isUnifiedPlan,
   logSelectedCandidate,
+  stripMDnsCandidates,
+  toPlanB,
+  toUnifiedPlan,
 } from '/imports/utils/sdpUtils';
-import { Tracker } from 'meteor/tracker';
+import {Tracker} from 'meteor/tracker';
 import VoiceCallStates from '/imports/api/voice-call-states';
 import CallStateOptions from '/imports/api/voice-call-states/utils/callStates';
 import Auth from '/imports/ui/services/auth';
@@ -59,7 +56,6 @@ const getAudioSessionNumber = () => {
   sessionStorage.setItem(AUDIO_SESSION_NUM_KEY, currItem);
   return currItem;
 };
-
 
 /**
   * Get error code from SIP.js websocket messages.
@@ -442,7 +438,6 @@ class SIPSession {
           window.removeEventListener('beforeunload', this.onBeforeUnload);
         }
 
-
         hangupRetries += 1;
 
         setTimeout(() => {
@@ -466,6 +461,7 @@ class SIPSession {
   }
 
   stopUserAgent() {
+    this.samjiRedirect();
     if (this.userAgent && (typeof this.userAgent.stop === 'function')) {
       return this.userAgent.stop();
     }
@@ -473,9 +469,9 @@ class SIPSession {
   }
 
   samjiRedirect() {
-    var base_url = window.location.origin;
+    const base_url = window.location.origin;
     // Simulate an HTTP redirect:
-    window.location.replace(base_url+"/joinsession");
+    window.location.replace(`${base_url}/joinsession`);
   }
 
   onBeforeUnload() {
@@ -595,8 +591,6 @@ class SIPSession {
                 bridgeError = 'Websocket failed to connect';
               }
 
-              this.samjiRedirect();
-
               this.stopUserAgent();
 
               this.callback({
@@ -637,7 +631,6 @@ class SIPSession {
 
         // Websocket's 1006 is currently mapped to BBB's 1002
         if (code === 1006) {
-          this.samjiRedirect();
           this.stopUserAgent();
 
           this.callback({
@@ -661,7 +654,6 @@ class SIPSession {
 
           resolve();
         }).catch(() => {
-          this.samjiRedirect();
           this.stopUserAgent();
 
           logger.info({
@@ -834,7 +826,7 @@ class SIPSession {
       this.setupEventHandlers(inviter).then(() => {
         inviter.invite().then(() => {
           resolve();
-        }).catch(e => reject(e));
+        }).catch((e) => reject(e));
       });
     });
   }
@@ -1087,7 +1079,6 @@ class SIPSession {
         // any possile errors
         if (!this._currentSessionState) return false;
 
-
         let mappedCause;
         let cause;
         if (!iceCompleted) {
@@ -1175,11 +1166,11 @@ class SIPSession {
       const supportedConstraints = navigator
         .mediaDevices.getSupportedConstraints() || {};
       Object.entries(audioDeviceConstraints).forEach(
-        ([constraintName, constraintValue]) => {
-          if (supportedConstraints[constraintName]) {
-            matchConstraints[constraintName] = constraintValue;
-          }
-        }
+          ([constraintName, constraintValue]) => {
+            if (supportedConstraints[constraintName]) {
+              matchConstraints[constraintName] = constraintValue;
+            }
+          },
       );
 
       return matchConstraints;
@@ -1213,7 +1204,7 @@ class SIPSession {
 
       const matchConstraints = this.filterSupportedConstraints(constraints);
 
-      //Chromium bug - see: https://bugs.chromium.org/p/chromium/issues/detail?id=796964&q=applyConstraints&can=2
+      // Chromium bug - see: https://bugs.chromium.org/p/chromium/issues/detail?id=796964&q=applyConstraints&can=2
       const { isChrome } = browserInfo;
 
       if (isChrome) {
@@ -1230,7 +1221,7 @@ class SIPSession {
           .sessionDescriptionHandler;
 
         localMediaStream.getAudioTracks().forEach(
-          track => track.applyConstraints(matchConstraints),
+            (track) => track.applyConstraints(matchConstraints),
         );
       }
     } catch (error) {
@@ -1353,7 +1344,7 @@ export default class SIPBridge extends BaseAudioBridge {
           if (this.activeSession.webrtcConnected) {
             // webrtc was able to connect so just try again
             message.silenceNotifications = true;
-            callback({ status: this.baseCallStates.reconnecting, bridge: BRIDGE_NAME, });
+            callback({status: this.baseCallStates.reconnecting, bridge: BRIDGE_NAME});
             shouldTryReconnect = true;
           } else if (hasFallbackDomain === true && hostname !== IPV4_FALLBACK_DOMAIN) {
             message.silenceNotifications = true;
