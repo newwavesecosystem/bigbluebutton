@@ -16,13 +16,13 @@ const LoadingScreen = ({children}) => (
         </div>
 
         <div>
-            Taking longer time? <Button
-            label="Reload"
-            size="lg"
-            onClick={() => {
-                window.location.reload();
-            }}
-        />
+            <Button
+                label="Taking longer time? Re-konn3ct"
+                size="jumbo"
+                onClick={() => {
+                    window.location.reload();
+                }}
+            />
         </div>
     </div>
 );
