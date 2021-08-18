@@ -17,7 +17,7 @@ const LoadingScreen = ({children}) => (
 
         <div>
             <Button
-                label="Taking longer time? Re-konn3ct"
+                label="Re-konn3ct"
                 size="jumbo"
                 onClick={() => {
                     window.location.reload();
