@@ -145,6 +145,7 @@ class SettingsDropdown extends PureComponent {
     this.onActionsHide = this.onActionsHide.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
     this.leavemeetingDialog = this.leavemeetingDialog.bind(this);
+    this.reloadmeetingDialog = this.reloadmeetingDialog.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onFullscreenChange = this.onFullscreenChange.bind(this);
   }
@@ -195,6 +196,42 @@ class SettingsDropdown extends PureComponent {
           <div className={styles.container}>
             <div className={styles.description}>
               Are you sure you want to leave the meeting
+            </div>
+            <div className={styles.footer}>
+              <Button
+                  data-test="confirmEndMeeting"
+                  color="primary"
+                  className={styles.button}
+                  label={intl.formatMessage(intlMessages.yesLabel)}
+                  onClick={() => this.leaveSession()}
+              />
+              <Button
+                  label={intl.formatMessage(intlMessages.noLabel)}
+                  className={styles.button}
+                  onClick={() => this.closeModal()}
+              />
+            </div>
+          </div>
+        </Modal>
+    );
+  }
+
+  reloadmeetingDialog() {
+    const {
+      intl,
+    } = this.props;
+
+    return (
+        <Modal
+            overlayClassName={styles.overlay}
+            className={styles.modal}
+            hideBorder
+            shouldShowCloseButton={false}
+            title="Reload meeting"
+        >
+          <div className={styles.container}>
+            <div className={styles.description}>
+              Are you sure you want to reload the meeting
             </div>
             <div className={styles.footer}>
               <Button
@@ -266,14 +303,24 @@ class SettingsDropdown extends PureComponent {
     const exitIcon = <FontAwesomeIcon icon={faTimesCircle} size="sm"/>;
 
     const logoutOption = (
-        <Button
-            label={intl.formatMessage(intlMessages.leaveSessionLabel)}
-            description={intl.formatMessage(intlMessages.leaveSessionDesc)}
-            customIcon={exitIcon}
-            color="danger"
-            size="sm"
-            onClick={() => mountModal(this.leavemeetingDialog())}
-        />
+        <div>
+          <Button
+              label="Reload"
+              description="Reload meeting room"
+              customIcon={exitIcon}
+              color="primary"
+              size="sm"
+              onClick={() => mountModal(this.reloadmeetingDialog())}
+          />
+          <Button
+              label={intl.formatMessage(intlMessages.leaveSessionLabel)}
+              description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+              customIcon={exitIcon}
+              color="danger"
+              size="sm"
+              onClick={() => mountModal(this.leavemeetingDialog())}
+          />
+        </div>
     );
 
     const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
