@@ -144,6 +144,7 @@ class SettingsDropdown extends PureComponent {
     this.onActionsShow = this.onActionsShow.bind(this);
     this.onActionsHide = this.onActionsHide.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
+    this.reloadSession = this.reloadSession.bind(this);
     this.leavemeetingDialog = this.leavemeetingDialog.bind(this);
     this.reloadmeetingDialog = this.reloadmeetingDialog.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -235,11 +236,11 @@ class SettingsDropdown extends PureComponent {
             </div>
             <div className={styles.footer}>
               <Button
-                  data-test="confirmEndMeeting"
+                  data-test="confirmReload"
                   color="primary"
                   className={styles.button}
                   label={intl.formatMessage(intlMessages.yesLabel)}
-                  onClick={() => this.leaveSession()}
+                  onClick={() => this.reloadSession()}
               />
               <Button
                   label={intl.formatMessage(intlMessages.noLabel)}
@@ -301,13 +302,14 @@ class SettingsDropdown extends PureComponent {
     } = Meteor.settings.public.app;
 
     const exitIcon = <FontAwesomeIcon icon={faTimesCircle} size="sm"/>;
+    const reloadIcon = <FontAwesomeIcon icon={faRedo} size="sm"/>;
 
     const logoutOption = (
         <div style={{display: "flex", flexDirection: "row"}}>
           <Button
               label="Reload"
               description="Reload meeting room"
-              customIcon={exitIcon}
+              customIcon={reloadIcon}
               color="primary"
               size="sm"
               onClick={() => mountModal(this.reloadmeetingDialog())}
@@ -338,6 +340,10 @@ class SettingsDropdown extends PureComponent {
     // it is checked in meeting-ended component
     Session.set('codeError', this.LOGOUT_CODE);
     // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
+  }
+
+  reloadSession() {
+    location.reload();
   }
 
   renderMenuItems() {
