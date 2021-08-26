@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import browserInfo from '/imports/utils/browserInfo';
-import { Meteor } from 'meteor/meteor';
+import {Meteor} from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import cx from 'classnames';
@@ -8,8 +8,8 @@ import Dropdown from '/imports/ui/components/dropdown/component';
 import Icon from '/imports/ui/components/icon/component';
 import FullscreenService from '/imports/ui/components/fullscreen-button/service';
 import FullscreenButtonContainer from '/imports/ui/components/fullscreen-button/container';
-import { styles } from '../styles';
-import { withDraggableConsumer } from '/imports/ui/components/media/webcam-draggable-overlay/context';
+import {styles} from '../styles';
+import {withDraggableConsumer} from '/imports/ui/components/media/webcam-draggable-overlay/context';
 import VideoService from '../../service';
 import {
   isStreamStateUnhealthy,
@@ -23,7 +23,7 @@ const ALLOW_FULLSCREEN = Meteor.settings.public.app.allowFullscreen;
 class VideoListItem extends Component {
   constructor(props) {
     super(props);
-    this.videoTag = null;
+    this.videoTag = "https://konn3ct.com/assets/images/konn3ct_logo.png";
 
     this.state = {
       videoIsReady: false,
