@@ -23,7 +23,7 @@ const ALLOW_FULLSCREEN = Meteor.settings.public.app.allowFullscreen;
 class VideoListItem extends Component {
   constructor(props) {
     super(props);
-    this.videoTag = "https://konn3ct.com/assets/images/konn3ct_logo.png";
+    this.videoTag = null;
 
     this.state = {
       videoIsReady: false,
@@ -209,7 +209,7 @@ class VideoListItem extends Component {
                 [styles.talking]: voiceUser.talking,
               })}
             >
-              <span className={styles.loadingText}>{name}</span>
+              <span className={styles.loadingText}>Loading...</span>
             </div>
           )
 
