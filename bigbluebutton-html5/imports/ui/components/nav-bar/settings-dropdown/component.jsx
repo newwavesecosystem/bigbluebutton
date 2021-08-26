@@ -12,7 +12,7 @@ import Dropdown from '/imports/ui/components/dropdown/component';
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import {faRedo, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import FullscreenService from '../../fullscreen-button/service';
 import Modal from '/imports/ui/components/modal/simple/component';
 
@@ -305,7 +305,7 @@ class SettingsDropdown extends PureComponent {
     const reloadIcon = <FontAwesomeIcon icon={faRedo} size="sm"/>;
 
     const logoutOption = (
-        <div style={{display: "flex", flexDirection: "row"}}>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
           <Button
               label="Reload"
               description="Reload meeting room"
@@ -401,15 +401,15 @@ class SettingsDropdown extends PureComponent {
             description={intl.formatMessage(intlMessages.helpDesc)}
             onClick={() => window.open(`${helpLink}`)}
           />
-        ),
+          ),
       (<Dropdown.DropdownListItem
-        key="list-item-shortcuts"
-        icon="shortcuts"
-        label={intl.formatMessage(intlMessages.hotkeysLabel)}
-        description={intl.formatMessage(intlMessages.hotkeysDesc)}
-        onClick={() => mountModal(<ShortcutHelpComponent />)}
+          key="list-item-shortcuts"
+          icon="shortcuts"
+          label={intl.formatMessage(intlMessages.hotkeysLabel)}
+          description={intl.formatMessage(intlMessages.hotkeysDesc)}
+          onClick={() => mountModal(<ShortcutHelpComponent/>)}
       />),
-      (isMeteorConnected ? <Dropdown.DropdownListSeparator key={_.uniqueId('list-separator-')} /> : null),
+      (isMeteorConnected ? <Dropdown.DropdownListSeparator key={_.uniqueId('list-separator-')}/> : null),
       allowedToEndMeeting && isMeteorConnected
           ? (
               <Dropdown.DropdownListItem
