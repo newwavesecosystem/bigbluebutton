@@ -303,7 +303,7 @@ class SettingsDropdown extends PureComponent {
     const exitIcon = <FontAwesomeIcon icon={faTimesCircle} size="sm"/>;
 
     const logoutOption = (
-        <div>
+        <div style={{display: "flex", flexDirection: "row"}}>
           <Button
               label="Reload"
               description="Reload meeting room"
