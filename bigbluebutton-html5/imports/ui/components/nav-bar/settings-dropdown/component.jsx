@@ -307,7 +307,7 @@ class SettingsDropdown extends PureComponent {
     const logoutOption = (
         <div style={{display: 'flex', flexDirection: 'row'}}>
           <Button
-              label="Reload"
+              label="Re-konn3ct"
               description="Reload meeting room"
               customIcon={reloadIcon}
               color="primary"
