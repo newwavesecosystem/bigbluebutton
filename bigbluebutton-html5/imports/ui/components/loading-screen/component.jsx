@@ -1,6 +1,7 @@
 import React from 'react';
 import {styles} from './styles.scss';
 import FancyButton from 'react-fancy-button';
+import {MDBBtn} from 'mdb-react-ui-kit';
 
 const Url = '/room/resources/images/animation_500_krj475tn.gif';
 
@@ -27,17 +28,17 @@ const LoadingScreen = ({children}) => (
                 flexWrap: 'wrap',
                 justifyContent: 'center'
             }}
+            onClick={() => {
+                window.location.reload();
+            }}
         >
-            {/*<ParticleEffectButton*/}
-            {/*    color='#121019'*/}
-            {/*    hidden={this.state.hidden}*/}
-            {/*>*/}
+            <MDBBtn size='lg'>Re-konn3ct</MDBBtn>
+
             <FancyButton classes='btn btn--small btn-primary btn--full'
                          onClick={() => {
                              window.location.reload();
                          }}
                          label='Re-konn3ct'/>
-            {/*</ParticleEffectButton>*/}
 
         </div>
     </div>
