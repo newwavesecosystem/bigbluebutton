@@ -1,13 +1,8 @@
 import React from 'react';
 import {styles} from './styles.scss';
-import {Button} from "react-bootstrap";
+import Button from '../button/component';
 
 const Url = '/room/resources/images/animation_500_krj475tn.gif';
-
-state = {
-    hidden: false
-}
-
 const LoadingScreen = ({children}) => (
     <div className={styles.background}>
         <div className={styles.spinner}>
@@ -28,11 +23,13 @@ const LoadingScreen = ({children}) => (
                 justifyContent: 'center'
             }}
         >
-            <Button variant="primary" size="lg" onClick={() => {
-                window.location.reload();
-            }}>
-                Re-konn3ct
-            </Button>
+            <Button
+                label="Re-konn3ct"
+                size="jumbo"
+                onClick={() => {
+                    window.location.reload();
+                }}
+            />
 
             {/*<FancyButton classes='btn btn--small btn-primary btn--full'*/}
             {/*             onClick={() => {*/}
