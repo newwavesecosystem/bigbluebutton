@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles} from './styles.scss';
 import FancyButton from 'react-fancy-button';
-import {MDBBtn} from 'mdb-react-ui-kit';
+import {Button} from "react-bootstrap";
 
 const Url = '/room/resources/images/animation_500_krj475tn.gif';
 
@@ -28,11 +28,12 @@ const LoadingScreen = ({children}) => (
                 flexWrap: 'wrap',
                 justifyContent: 'center'
             }}
-            onClick={() => {
-                window.location.reload();
-            }}
         >
-            <MDBBtn size='lg'>Re-konn3ct</MDBBtn>
+            <Button variant="primary" size="lg" onClick={() => {
+                window.location.reload();
+            }}>
+                Re-konn3ct
+            </Button>
 
             <FancyButton classes='btn btn--small btn-primary btn--full'
                          onClick={() => {
