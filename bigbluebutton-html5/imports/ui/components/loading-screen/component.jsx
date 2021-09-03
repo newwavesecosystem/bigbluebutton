@@ -1,6 +1,5 @@
 import React from 'react';
 import {styles} from './styles.scss';
-import FancyButton from 'react-fancy-button';
 import {Button} from "react-bootstrap";
 
 const Url = '/room/resources/images/animation_500_krj475tn.gif';
@@ -35,11 +34,11 @@ const LoadingScreen = ({children}) => (
                 Re-konn3ct
             </Button>
 
-            <FancyButton classes='btn btn--small btn-primary btn--full'
-                         onClick={() => {
-                             window.location.reload();
-                         }}
-                         label='Re-konn3ct'/>
+            {/*<FancyButton classes='btn btn--small btn-primary btn--full'*/}
+            {/*             onClick={() => {*/}
+            {/*                 window.location.reload();*/}
+            {/*             }}*/}
+            {/*             label='Re-konn3ct'/>*/}
 
         </div>
     </div>
