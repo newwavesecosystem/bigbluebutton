@@ -1,7 +1,6 @@
 import React from 'react';
 import {styles} from './styles.scss';
 import FancyButton from 'react-fancy-button';
-import ParticleEffectButton from 'react-particle-effect-button'
 
 const Url = '/room/resources/images/animation_500_krj475tn.gif';
 
@@ -29,16 +28,16 @@ const LoadingScreen = ({children}) => (
                 justifyContent: 'center'
             }}
         >
-            <ParticleEffectButton
-                color='#121019'
-                hidden={this.state.hidden}
-            >
-                <FancyButton classes='btn btn--small btn-primary btn--full'
-                             onClick={() => {
-                                 window.location.reload();
-                             }}
-                             label='Re-konn3ct'/>
-            </ParticleEffectButton>
+            {/*<ParticleEffectButton*/}
+            {/*    color='#121019'*/}
+            {/*    hidden={this.state.hidden}*/}
+            {/*>*/}
+            <FancyButton classes='btn btn--small btn-primary btn--full'
+                         onClick={() => {
+                             window.location.reload();
+                         }}
+                         label='Re-konn3ct'/>
+            {/*</ParticleEffectButton>*/}
 
         </div>
     </div>
