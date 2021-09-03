@@ -1,8 +1,14 @@
 import React from 'react';
 import {styles} from './styles.scss';
-import Button from '../button/component';
+import FancyButton from 'react-fancy-button';
+import ParticleEffectButton from 'react-particle-effect-button'
 
 const Url = '/room/resources/images/animation_500_krj475tn.gif';
+
+state = {
+    hidden: false
+}
+
 const LoadingScreen = ({children}) => (
     <div className={styles.background}>
         <div className={styles.spinner}>
@@ -15,14 +21,25 @@ const LoadingScreen = ({children}) => (
             {children}
         </div>
 
-        <div>
-            <Button
-                label="Re-konn3ct"
-                size="jumbo"
-                onClick={() => {
-                    window.location.reload();
-                }}
-            />
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+            }}
+        >
+            <ParticleEffectButton
+                color='#121019'
+                hidden={this.state.hidden}
+            >
+                <FancyButton classes='btn btn--small btn-primary btn--full'
+                             onClick={() => {
+                                 window.location.reload();
+                             }}
+                             label='Re-konn3ct'/>
+            </ParticleEffectButton>
+
         </div>
     </div>
 );

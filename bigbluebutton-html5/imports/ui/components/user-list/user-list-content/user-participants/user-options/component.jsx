@@ -304,38 +304,38 @@ class UserOptions extends PureComponent {
       ) : null
       ),
       (!meetingIsBreakout && isMeteorConnected && dynamicGuestPolicy ? (
-        <Dropdown.DropdownListItem
-          key={this.guestPolicyId}
-          icon="user"
-          label={intl.formatMessage(intlMessages.guestPolicyLabel)}
-          data-test="guestPolicyLabel"
-          description={intl.formatMessage(intlMessages.guestPolicyDesc)}
-          onClick={() => mountModal(<GuestPolicyContainer />)}
-        />
-      ) : null
+              <Dropdown.DropdownListItem
+                  key={this.guestPolicyId}
+                  icon="user"
+                  label={intl.formatMessage(intlMessages.guestPolicyLabel)}
+                  data-test="guestPolicyLabel"
+                  description={intl.formatMessage(intlMessages.guestPolicyDesc)}
+                  onClick={() => mountModal(<GuestPolicyContainer/>)}
+              />
+          ) : null
       ),
-      (amIModerator && activityReportAccessToken != null ? (
-        <Dropdown.DropdownListItem
-          data-test="openActivityReport"
-          icon="multi_whiteboard"
-          label={intl.formatMessage(intlMessages.activityReportLabel)}
-          description={intl.formatMessage(intlMessages.activityReportDesc)}
-          key={this.activityReportId}
-          onClick={openActivityReportUrl}
-        />
-      ) : null
-      ),
-      (isMeteorConnected ? <Dropdown.DropdownListSeparator key={_.uniqueId('list-separator-')} /> : null),
+      // (amIModerator && activityReportAccessToken != null ? (
+      //   <Dropdown.DropdownListItem
+      //     data-test="openActivityReport"
+      //     icon="multi_whiteboard"
+      //     label={intl.formatMessage(intlMessages.activityReportLabel)}
+      //     description={intl.formatMessage(intlMessages.activityReportDesc)}
+      //     key={this.activityReportId}
+      //     onClick={openActivityReportUrl}
+      //   />
+      // ) : null
+      // ),
+      (isMeteorConnected ? <Dropdown.DropdownListSeparator key={_.uniqueId('list-separator-')}/> : null),
       (canCreateBreakout && isMeteorConnected ? (
-        <Dropdown.DropdownListItem
-          data-test="createBreakoutRooms"
-          key={this.createBreakoutId}
-          icon="rooms"
-          label={intl.formatMessage(intlMessages.createBreakoutRoom)}
-          description={intl.formatMessage(intlMessages.createBreakoutRoomDesc)}
-          onClick={this.onCreateBreakouts}
-        />
-      ) : null
+              <Dropdown.DropdownListItem
+                  data-test="createBreakoutRooms"
+                  key={this.createBreakoutId}
+                  icon="rooms"
+                  label={intl.formatMessage(intlMessages.createBreakoutRoom)}
+                  description={intl.formatMessage(intlMessages.createBreakoutRoomDesc)}
+                  onClick={this.onCreateBreakouts}
+              />
+          ) : null
       ),
       (canInviteUsers && isMeteorConnected ? (
         <Dropdown.DropdownListItem

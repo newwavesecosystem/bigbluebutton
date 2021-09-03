@@ -1,20 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
-import { Meteor } from 'meteor/meteor';
+import {defineMessages, injectIntl} from 'react-intl';
+import {Meteor} from 'meteor/meteor';
 import Auth from '/imports/ui/services/auth';
-import ActivityReportService from '../activity-report/service';
 import Button from '/imports/ui/components/button/component';
 import allowRedirectToLogoutURL from './service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import logoutRouteHandler from '/imports/utils/logoutRouteHandler';
 import Rating from './rating/component';
-import { styles } from './styles';
+import {styles} from './styles';
 import logger from '/imports/startup/client/logger';
 import Users from '/imports/api/users';
 import Meetings from '/imports/api/meetings';
 import AudioManager from '/imports/ui/services/audio-manager';
-import { meetingIsBreakout } from '/imports/ui/components/app/service';
+import {meetingIsBreakout} from '/imports/ui/components/app/service';
 
 const intlMessage = defineMessages({
   410: {
@@ -261,35 +260,35 @@ class MeetingEnded extends PureComponent {
               {this.getEndingMessage()}
             </h1>
             {!allowRedirectToLogoutURL() ? null : (
-              <div>
-                {
-                  ActivityReportService.isModerator()
-                  && ActivityReportService.getActivityReportAccessToken() != null
-                    ? (
-                      <div className={styles.text}>
-                        <Button
-                          icon="multi_whiteboard"
-                          color="default"
-                          onClick={ActivityReportService.openActivityReportUrl}
-                          className={styles.button}
-                          label={intl.formatMessage(intlMessage.open_activity_report_btn)}
-                          description={intl.formatMessage(intlMessage.open_activity_report_btn)}
-                        />
-                      </div>
-                    ) : null
-                }
-                <div className={styles.text}>
-                  {intl.formatMessage(intlMessage.messageEnded)}
-                </div>
+                <div>
+                  {/*{*/}
+                  {/*  ActivityReportService.isModerator()*/}
+                  {/*  && ActivityReportService.getActivityReportAccessToken() != null*/}
+                  {/*    ? (*/}
+                  {/*      <div className={styles.text}>*/}
+                  {/*        <Button*/}
+                  {/*          icon="multi_whiteboard"*/}
+                  {/*          color="default"*/}
+                  {/*          onClick={ActivityReportService.openActivityReportUrl}*/}
+                  {/*          className={styles.button}*/}
+                  {/*          label={intl.formatMessage(intlMessage.open_activity_report_btn)}*/}
+                  {/*          description={intl.formatMessage(intlMessage.open_activity_report_btn)}*/}
+                  {/*        />*/}
+                  {/*      </div>*/}
+                  {/*    ) : null*/}
+                  {/*}*/}
+                  <div className={styles.text}>
+                    {intl.formatMessage(intlMessage.messageEnded)}
+                  </div>
 
-                <Button
-                  color="primary"
-                  onClick={this.confirmRedirect}
-                  className={styles.button}
-                  label={intl.formatMessage(intlMessage.buttonOkay)}
-                  description={intl.formatMessage(intlMessage.confirmDesc)}
-                />
-              </div>
+                  <Button
+                      color="primary"
+                      onClick={this.confirmRedirect}
+                      className={styles.button}
+                      label={intl.formatMessage(intlMessage.buttonOkay)}
+                      description={intl.formatMessage(intlMessage.confirmDesc)}
+                  />
+                </div>
 
             )}
           </div>

@@ -534,12 +534,12 @@ public:
         mime: image/png
   selectRandomUser:
     enabled: true
-    countdown: false
+    countdown: true
   user:
     role_moderator: MODERATOR
     role_viewer: VIEWER
     label:
-      moderator: false
+      moderator: true
       mobile: true
       guest: true
       sharingWebcam: true
