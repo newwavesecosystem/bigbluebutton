@@ -9,6 +9,7 @@ import _ from 'lodash';
 import { meetingIsBreakout } from '/imports/ui/components/app/service';
 import { defineMessages } from 'react-intl';
 import PollService from '/imports/ui/components/poll/service';
+import getFromUserSettings from '/imports/ui/services/users-settings';
 
 const CHAT_CONFIG = Meteor.settings.public.chat;
 const GROUPING_MESSAGES_WINDOW = CHAT_CONFIG.grouping_messages_window;
@@ -203,6 +204,17 @@ const sendGroupMessage = (message, idChatOpen) => {
   if (_.indexOf(currentClosedChats, receiverId.id) > -1) {
     Storage.setItem(CLOSED_CHAT_LIST_KEY, _.without(currentClosedChats, receiverId.id));
   }
+
+  Logger.error('Auth.userID');
+  Logger.error(Auth.userID);
+
+  Logger.error('Auth.externUserID');
+  Logger.error(Auth.externUserID);
+
+  const uemail=getFromUserSettings('bbb_user_email', 'snone');
+  console.log(uemail);
+  Logger.error(`logging userEmail params ${uemail}`);
+
 
   return makeCall('sendGroupChatMsg', destinationChatId, payload);
 };

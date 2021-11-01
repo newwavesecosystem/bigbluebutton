@@ -5,8 +5,6 @@ import RegexWebUrl from '/imports/utils/regex-weburl';
 import { extractCredentials } from '/imports/api/common/server/helpers';
 import Logger from '/imports/startup/server/logger';
 import axios from 'axios';
-import Auth from '/imports/ui/services/auth';
-// import getFromUserSettings from '/imports/ui/services/users-settings';
 
 const HTML_SAFE_MAP = {
   '<': '&lt;',
@@ -55,11 +53,11 @@ export default function sendGroupChatMsg(chatId, message) {
       chatId,
     };
 
-    Logger.error('Auth.userID');
-    Logger.error(Auth.userID);
-
-    Logger.error('Auth.externUserID');
-    Logger.error(Auth.externUserID);
+    // Logger.error('Auth.userID');
+    // Logger.error(Auth.userID);
+    //
+    // Logger.error('Auth.externUserID');
+    // Logger.error(Auth.externUserID);
 
     // const uemail=getFromUserSettings('bbb_user_email', 'snone');
     // console.log(uemail);
