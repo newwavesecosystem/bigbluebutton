@@ -205,15 +205,15 @@ const sendGroupMessage = (message, idChatOpen) => {
     Storage.setItem(CLOSED_CHAT_LIST_KEY, _.without(currentClosedChats, receiverId.id));
   }
 
-  Logger.error('Auth.userID');
-  Logger.error(Auth.userID);
+  console.log('Auth.userID');
+  console.log(Auth.userID);
 
-  Logger.error('Auth.externUserID');
-  Logger.error(Auth.externUserID);
+  console.log('Auth.externUserID');
+  console.log(Auth.externUserID);
 
   const uemail=getFromUserSettings('bbb_user_email', 'snone');
   console.log(uemail);
-  Logger.error(`logging userEmail params ${uemail}`);
+  console.log(`logging userEmail params ${uemail}`);
 
 
   return makeCall('sendGroupChatMsg', destinationChatId, payload);
