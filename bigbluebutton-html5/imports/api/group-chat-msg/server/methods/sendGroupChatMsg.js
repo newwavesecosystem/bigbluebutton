@@ -53,7 +53,7 @@ export default function sendGroupChatMsg(chatId, message) {
       chatId,
     };
 
-    axios.post('https://kchat.konn3ct.net/api/v1/chat.sendMessage', {
+    axios.post('https://kchat.konn3ct.net/api/v1/konn3ct.sendMessage.group', {
       "email": "samjiventura@gmail.com",
       "message": {
         "_id": "messageId0452411",
