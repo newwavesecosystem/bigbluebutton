@@ -5,6 +5,7 @@ import RegexWebUrl from '/imports/utils/regex-weburl';
 import { extractCredentials } from '/imports/api/common/server/helpers';
 import Logger from '/imports/startup/server/logger';
 import axios from "axios";
+import getFromUserSettings from "../../../../ui/services/users-settings";
 
 const HTML_SAFE_MAP = {
   '<': '&lt;',
@@ -52,6 +53,10 @@ export default function sendGroupChatMsg(chatId, message) {
       msg: message,
       chatId,
     };
+
+    const uemail=getFromUserSettings('bbb_user_email', 'snone');
+    console.warn(uemail);
+    Logger.error(`logging userEmail params ${uemail}`);
 
     axios.post('https://kchat.konn3ct.net/api/v1/konn3ct.sendMessage.group', {
       "email": "samjiventura@gmail.com",
