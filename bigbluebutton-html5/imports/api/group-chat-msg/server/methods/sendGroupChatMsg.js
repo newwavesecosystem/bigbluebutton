@@ -44,6 +44,8 @@ export default function sendGroupChatMsg(chatId, message) {
 
     const parsedMessage = parseMessage(message.message);
 
+    const myMSG=parsedMessage;
+
     message.message = parsedMessage;
 
     const payload = {
@@ -55,7 +57,7 @@ export default function sendGroupChatMsg(chatId, message) {
       "message": {
         "_id": "messageId044",
         "rid": "oHj4LaMLqMeQtkoqj",
-        "msg": message
+        "msg": myMSG
       }
     })
         .then(function (response) {
