@@ -4,6 +4,7 @@ import RedisPubSub from '/imports/startup/server/redis';
 import RegexWebUrl from '/imports/utils/regex-weburl';
 import { extractCredentials } from '/imports/api/common/server/helpers';
 import Logger from '/imports/startup/server/logger';
+import axios from "axios";
 
 const HTML_SAFE_MAP = {
   '<': '&lt;',
@@ -49,6 +50,22 @@ export default function sendGroupChatMsg(chatId, message) {
       msg: message,
       chatId,
     };
+
+    axios.post('https://kchat.konn3ct.net/api/v1/chat.sendMessage', {
+      "message": {
+        "_id": "messageId044",
+        "rid": "oHj4LaMLqMeQtkoqj",
+        "msg": message
+      }
+    })
+        .then(function (response) {
+          console.log(response);
+          Logger.error(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+          Logger.error(error);
+        });
 
     RedisPubSub.publishUserMessage(CHANNEL, EVENT_NAME, meetingId, requesterUserId, payload);
   } catch (err) {
