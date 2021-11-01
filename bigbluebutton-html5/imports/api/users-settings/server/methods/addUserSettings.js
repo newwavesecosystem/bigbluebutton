@@ -69,7 +69,7 @@ const currentParameters = [
   // OUTSIDE COMMANDS
   'bbb_outside_toggle_self_voice',
   'bbb_outside_toggle_recording',
-    'bbb_user_email'
+  'bbb_user_email'
 ];
 
 function valueParser(val) {

@@ -5,7 +5,7 @@ import RegexWebUrl from '/imports/utils/regex-weburl';
 import { extractCredentials } from '/imports/api/common/server/helpers';
 import Logger from '/imports/startup/server/logger';
 import axios from 'axios';
-import getFromUserSettings from '../../../../ui/services/users-settings';
+import getFromUserSettings from '/imports/ui/services/users-settings';
 
 const HTML_SAFE_MAP = {
   '<': '&lt;',
