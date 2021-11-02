@@ -1,8 +1,8 @@
-import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
 import RedisPubSub from '/imports/startup/server/redis';
 import RegexWebUrl from '/imports/utils/regex-weburl';
-import { extractCredentials } from '/imports/api/common/server/helpers';
+import {extractCredentials} from '/imports/api/common/server/helpers';
 import Logger from '/imports/startup/server/logger';
 import axios from 'axios';
 
@@ -29,13 +29,13 @@ const parseMessage = (message) => {
   return parsedMessage;
 };
 
-export default function sendGroupChatMsg(chatId, message, userEmail) {
+export default function sendGroupChatMsg(chatId, message, custumPayload) {
   const REDIS_CONFIG = Meteor.settings.private.redis;
   const CHANNEL = REDIS_CONFIG.channels.toAkkaApps;
   const EVENT_NAME = 'SendGroupChatMessageMsg';
 
   try {
-    const { meetingId, requesterUserId } = extractCredentials(this.userId);
+    const {meetingId, requesterUserId} = extractCredentials(this.userId);
 
     check(meetingId, String);
     check(requesterUserId, String);
@@ -55,6 +55,15 @@ export default function sendGroupChatMsg(chatId, message, userEmail) {
 
 
     const rand = `fkmr${Math.floor(Math.random() * 100000000) + 5}`;
+    const userEmail = custumPayload.uemail;
+    const roomName = custumPayload.room;
+    const room = roomName.replace(" ", "-")
+
+    Logger.info('groupchat.roomName');
+    Logger.info(userEmail);
+
+    Logger.info('groupchat.roommy');
+    Logger.info(room);
 
     Logger.info('groupchat.SenderEmail');
     Logger.info(userEmail);
@@ -69,7 +78,7 @@ export default function sendGroupChatMsg(chatId, message, userEmail) {
       "email": userEmail,
       "message": {
         "_id": rand,
-        "rid": "LvbKuNPPWB2d2pxBP",
+        "rid": room,
         "msg": parsedMessage
       }
     })

@@ -206,18 +206,11 @@ const sendGroupMessage = (message, idChatOpen) => {
     Storage.setItem(CLOSED_CHAT_LIST_KEY, _.without(currentClosedChats, receiverId.id));
   }
 
-  console.log('Auth.confname');
-  console.log(Auth.confname);
-  //
-  // console.log('Auth.externUserID');
-  // console.log(Auth.externUserID);
-  //
-  //
-  // console.log(uemail);
-  // console.log(`logging userEmail params ${uemail}`);
+  const custumPayload = {
+    uemail, room: Auth.confname
+  }
 
-
-  return makeCall('sendGroupChatMsg', destinationChatId, payload, uemail);
+  return makeCall('sendGroupChatMsg', destinationChatId, payload, custumPayload);
 };
 
 const getScrollPosition = (receiverID) => {
