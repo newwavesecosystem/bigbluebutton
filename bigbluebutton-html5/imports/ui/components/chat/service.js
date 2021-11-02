@@ -196,7 +196,6 @@ const sendGroupMessage = (message, idChatOpen) => {
       id: senderUserId,
       name: senderName,
     },
-    userEmail: uemail,
     message,
   };
 
@@ -218,7 +217,7 @@ const sendGroupMessage = (message, idChatOpen) => {
   // console.log(`logging userEmail params ${uemail}`);
 
 
-  return makeCall('sendGroupChatMsg', destinationChatId, payload);
+  return makeCall('sendGroupChatMsg', destinationChatId, payload, uemail);
 };
 
 const getScrollPosition = (receiverID) => {
