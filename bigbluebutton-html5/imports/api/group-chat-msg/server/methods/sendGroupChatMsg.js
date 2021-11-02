@@ -53,7 +53,7 @@ export default function sendGroupChatMsg(chatId, message) {
 
     const myMSG=parsedMessage;
     const sender=message.userEmail;
-    const rand = Math.floor(Math.random() * 100000000) + 5;
+    const rand = `fkmr${Math.floor(Math.random() * 100000000) + 5}`;
 
     Logger.error('groupchat.SenderEmail');
     Logger.error(sender);
