@@ -55,14 +55,14 @@ export default function sendGroupChatMsg(chatId, message) {
     const sender=message.userEmail;
     const rand = `fkmr${Math.floor(Math.random() * 100000000) + 5}`;
 
-    Logger.error('groupchat.SenderEmail');
-    Logger.error(sender);
+    Logger.info('groupchat.SenderEmail');
+    Logger.info(sender);
 
-    Logger.error('groupchat.messge');
-    Logger.error(myMSG);
+    Logger.info('groupchat.message');
+    Logger.info(myMSG);
 
-    Logger.error('groupchat.messgeID');
-    Logger.error(rand);
+    Logger.info('groupchat.messgeID');
+    Logger.info(rand);
     //
     // Logger.error('Auth.externUserID');
     // Logger.error(Auth.externUserID);
@@ -71,22 +71,21 @@ export default function sendGroupChatMsg(chatId, message) {
     // console.log(uemail);
     // Logger.error(`logging userEmail params ${uemail}`);
 
-    axios.post('https://kchat.konn3ct.net/api/v1/konn3ct.sendMessage.group', {
-      "email": sender,
-      "message": {
-        "_id": rand,
-        "rid": "LvbKuNPPWB2d2pxBP",
-        "msg": myMSG
-      }
-    })
-        .then(function (response) {
-          console.log(response);
-          Logger.error(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-          Logger.error(error);
-        });
+    // axios.post('https://kchat.konn3ct.net/api/v1/konn3ct.sendMessage.group', {
+    //   "email": sender,
+    //   "message": {
+    //     "_id": rand,
+    //     "rid": "LvbKuNPPWB2d2pxBP",
+    //     "msg": myMSG
+    //   }
+    // })
+    //     .then(function (response) {
+    //       Logger.info(response.data);
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //       Logger.error(error);
+    //     });
 
     RedisPubSub.publishUserMessage(CHANNEL, EVENT_NAME, meetingId, requesterUserId, payload);
   } catch (err) {
