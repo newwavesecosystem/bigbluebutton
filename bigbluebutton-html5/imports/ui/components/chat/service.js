@@ -187,6 +187,7 @@ const sendGroupMessage = (message, idChatOpen) => {
   }
 
   const userAvatarColor = Users.findOne({ userId: senderUserId }, { fields: { color: 1 } });
+  const uemail=getFromUserSettings('bbb_user_email', 'snone');
 
   const payload = {
     color: userAvatarColor?.color || '0',
@@ -195,6 +196,7 @@ const sendGroupMessage = (message, idChatOpen) => {
       id: senderUserId,
       name: senderName,
     },
+    userEmail: uemail,
     message,
   };
 
@@ -205,15 +207,15 @@ const sendGroupMessage = (message, idChatOpen) => {
     Storage.setItem(CLOSED_CHAT_LIST_KEY, _.without(currentClosedChats, receiverId.id));
   }
 
-  console.log('Auth.userID');
-  console.log(Auth.userID);
-
-  console.log('Auth.externUserID');
-  console.log(Auth.externUserID);
-
-  const uemail=getFromUserSettings('bbb_user_email', 'snone');
-  console.log(uemail);
-  console.log(`logging userEmail params ${uemail}`);
+  // console.log('Auth.userID');
+  // console.log(Auth.userID);
+  //
+  // console.log('Auth.externUserID');
+  // console.log(Auth.externUserID);
+  //
+  //
+  // console.log(uemail);
+  // console.log(`logging userEmail params ${uemail}`);
 
 
   return makeCall('sendGroupChatMsg', destinationChatId, payload);

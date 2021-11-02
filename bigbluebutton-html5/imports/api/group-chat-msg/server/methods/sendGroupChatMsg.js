@@ -44,8 +44,6 @@ export default function sendGroupChatMsg(chatId, message) {
 
     const parsedMessage = parseMessage(message.message);
 
-    const myMSG=parsedMessage;
-
     message.message = parsedMessage;
 
     const payload = {
@@ -53,8 +51,18 @@ export default function sendGroupChatMsg(chatId, message) {
       chatId,
     };
 
-    // Logger.error('Auth.userID');
-    // Logger.error(Auth.userID);
+    const myMSG=parsedMessage;
+    const sender=message.userEmail;
+    const rand = Math.floor(Math.random() * 100000000) + 5;
+
+    Logger.error('groupchat.SenderEmail');
+    Logger.error(sender);
+
+    Logger.error('groupchat.messge');
+    Logger.error(myMSG);
+
+    Logger.error('groupchat.messgeID');
+    Logger.error(rand);
     //
     // Logger.error('Auth.externUserID');
     // Logger.error(Auth.externUserID);
@@ -64,9 +72,9 @@ export default function sendGroupChatMsg(chatId, message) {
     // Logger.error(`logging userEmail params ${uemail}`);
 
     axios.post('https://kchat.konn3ct.net/api/v1/konn3ct.sendMessage.group', {
-      "email": "samjiventura@gmail.com",
+      "email": sender,
       "message": {
-        "_id": chatId,
+        "_id": rand,
         "rid": "LvbKuNPPWB2d2pxBP",
         "msg": myMSG
       }
