@@ -4,10 +4,10 @@ import GroupChat from '/imports/api/group-chat';
 import Auth from '/imports/ui/services/auth';
 import UnreadMessages from '/imports/ui/services/unread-messages';
 import Storage from '/imports/ui/services/storage/session';
-import { makeCall } from '/imports/ui/services/api';
+import {makeCall} from '/imports/ui/services/api';
 import _ from 'lodash';
-import { meetingIsBreakout } from '/imports/ui/components/app/service';
-import { defineMessages } from 'react-intl';
+import {meetingIsBreakout} from '/imports/ui/components/app/service';
+import {defineMessages} from 'react-intl';
 import PollService from '/imports/ui/components/poll/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 
@@ -206,8 +206,8 @@ const sendGroupMessage = (message, idChatOpen) => {
     Storage.setItem(CLOSED_CHAT_LIST_KEY, _.without(currentClosedChats, receiverId.id));
   }
 
-  // console.log('Auth.userID');
-  // console.log(Auth.userID);
+  console.log('Auth.confname');
+  console.log(Auth.confname);
   //
   // console.log('Auth.externUserID');
   // console.log(Auth.externUserID);
