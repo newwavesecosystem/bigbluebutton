@@ -173,11 +173,57 @@ class SettingsDropdown extends PureComponent {
     );
   }
 
+  showLogout() {
+    const {
+      intl, isMeteorConnected, mountModal,
+    } = this.props;
+
+    const {
+      allowLogout: allowLogoutSetting,
+    } = Meteor.settings.public.app;
+
+    const exitIcon = <FontAwesomeIcon icon={faTimesCircle} size="sm"/>;
+    const reloadIcon = <FontAwesomeIcon icon={faRedo} size="sm"/>;
+
+    const logoutOption = (
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+          <Button
+              label="Re-konn3ct"
+              description="Reload meeting room"
+              customIcon={reloadIcon}
+              color="primary"
+              size="sm"
+              onClick={() => mountModal(this.reloadmeetingDialog())}
+          />
+          <Button
+              label={intl.formatMessage(intlMessages.leaveSessionLabel)}
+              description={intl.formatMessage(intlMessages.leaveSessionDesc)}
+              customIcon={exitIcon}
+              color="danger"
+              size="sm"
+              onClick={() => mountModal(this.leavemeetingDialog())}
+          />
+        </div>
+    );
+
+    const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
+        ? logoutOption
+        : null;
+
+    return (
+        shouldRenderLogoutOption
+    );
+  }
+
   leaveSession() {
     makeCall('userLeftMeeting');
     // we don't check askForFeedbackOnLogout here,
     // it is checked in meeting-ended component
     Session.set('codeError', this.LOGOUT_CODE);
+  }
+
+  reloadSession() {
+    location.reload();
   }
 
   renderMenuItems() {
@@ -276,25 +322,26 @@ class SettingsDropdown extends PureComponent {
     } = this.props;
 
     return (
+        this.showLogout()
 
-      <BBBMenu
-        classes={[styles.offsetTop]}
-        accessKey={OPEN_OPTIONS_AK}
-        trigger={(
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            icon="more"
-            ghost
-            circle
-            hideLabel
-            className={isDropdownOpen ? styles.hideDropdownButton : styles.btn}
-            // FIXME: Without onClick react proptypes keep warning
-            // even after the DropdownTrigger inject an onClick handler
-            onClick={() => null}
-          />
-        )}
-        actions={this.renderMenuItems()}
-      />
+      // <BBBMenu
+      //   classes={[styles.offsetTop]}
+      //   accessKey={OPEN_OPTIONS_AK}
+      //   trigger={(
+      //     <Button
+      //       label={intl.formatMessage(intlMessages.optionsLabel)}
+      //       icon="more"
+      //       ghost
+      //       circle
+      //       hideLabel
+      //       className={isDropdownOpen ? styles.hideDropdownButton : styles.btn}
+      //       // FIXME: Without onClick react proptypes keep warning
+      //       // even after the DropdownTrigger inject an onClick handler
+      //       onClick={() => null}
+      //     />
+      //   )}
+      //   actions={this.renderMenuItems()}
+      // />
 
     );
   }

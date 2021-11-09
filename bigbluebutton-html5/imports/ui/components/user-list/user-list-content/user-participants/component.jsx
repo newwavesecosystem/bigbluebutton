@@ -195,30 +195,46 @@ class UserParticipants extends Component {
 
     return (
       <div className={styles.userListColumn}>
-        {
-          !compact
-            ? (
-              <div className={styles.container}>
-                <h2 className={styles.smallTitle}>
-                  {intl.formatMessage(intlMessages.usersTitle)}
-                  &nbsp;(
-                  {users.length}
-                  )
-                </h2>
-                {currentUser.role === ROLE_MODERATOR
-                  ? (
-                    <UserOptionsContainer {...{
-                      users,
-                      clearAllEmojiStatus,
-                      meetingIsBreakout,
-                    }}
-                    />
-                  ) : null
-                }
 
+        {currentUser.role === ROLE_MODERATOR
+          ? (
+            <div>
+              <div className={styles.container} />
+              <div className={styles.container}>
+                <UserOptionsContainer {...{
+                  users,
+                  meetingIsBreakout,
+                }}
+                />
               </div>
-            )
-            : <hr className={styles.separator} />
+              <div className={styles.container} />
+            </div>
+          ) : null}
+
+        {
+            !compact
+              ? (
+                <div className={styles.container}>
+                  <h2 className={styles.smallTitle}>
+                    {intl.formatMessage(intlMessages.usersTitle)}
+                        &nbsp;(
+                    {users.length}
+                    )
+                  </h2>
+                  {/* {currentUser.role === ROLE_MODERATOR */}
+                  {/*  ? ( */}
+                  {/*    <UserOptionsContainer {...{ */}
+                  {/*      users, */}
+                  {/*      clearAllEmojiStatus, */}
+                  {/*      meetingIsBreakout, */}
+                  {/*    }} */}
+                  {/*    /> */}
+                  {/*  ) : null */}
+                  {/* } */}
+
+                </div>
+              )
+              : <hr className={styles.separator} />
         }
         <div
           id={'user-list-virtualized-scroll'}

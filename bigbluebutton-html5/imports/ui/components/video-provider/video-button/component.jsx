@@ -1,12 +1,14 @@
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Button from '/imports/ui/components/button/component';
+import {defineMessages, injectIntl} from 'react-intl';
+import {validIOSVersion} from '/imports/ui/components/app/service';
+import {debounce} from 'lodash';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faVideo, faVideoSlash} from '@fortawesome/free-solid-svg-icons';
+import {styles} from './styles';
 import VideoService from '../service';
-import { defineMessages, injectIntl } from 'react-intl';
-import { styles } from './styles';
-import { validIOSVersion } from '/imports/ui/components/app/service';
-import { debounce } from 'lodash';
 
 const intlMessages = defineMessages({
   joinVideo: {
@@ -64,25 +66,28 @@ const JoinVideoButton = ({
   }, JOIN_VIDEO_DELAY_MILLISECONDS);
 
   let label = exitVideo()
-    ? intl.formatMessage(intlMessages.leaveVideo)
-    : intl.formatMessage(intlMessages.joinVideo);
+      ? intl.formatMessage(intlMessages.leaveVideo)
+      : intl.formatMessage(intlMessages.joinVideo);
 
   if (disableReason) label = intl.formatMessage(intlMessages[disableReason]);
 
+  const videoOff = <FontAwesomeIcon icon={faVideoSlash} size="lg"/>;
+  const videoOn = <FontAwesomeIcon icon={faVideo} size="lg"/>;
+
   return (
-    <Button
-      label={label}
-      data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
-      className={cx(hasVideoStream || styles.btn)}
-      onClick={handleOnClick}
-      hideLabel
-      color={hasVideoStream ? 'primary' : 'default'}
-      icon={hasVideoStream ? 'video' : 'video_off'}
-      ghost={!hasVideoStream}
-      size="lg"
-      circle
-      disabled={!!disableReason}
-    />
+      <Button
+          label={label}
+          data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
+          className={cx(hasVideoStream || styles.btn)}
+          onClick={handleOnClick}
+          hideLabel
+          color="default"
+          customIcon={hasVideoStream ? videoOn : videoOff}
+          ghost={!hasVideoStream}
+          size="lg"
+          circle
+          disabled={!!disableReason}
+      />
   );
 };
 

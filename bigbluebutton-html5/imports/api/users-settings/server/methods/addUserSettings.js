@@ -24,6 +24,7 @@ const oldParameters = {
   presenterTools: 'bbb_presenter_tools',
   shortcuts: 'bbb_shortcuts',
   skipCheck: 'bbb_skip_check_audio',
+  userEmail: 'bbb_user_email',
 };
 
 const oldParametersKeys = Object.keys(oldParameters);
@@ -70,6 +71,7 @@ const currentParameters = [
   // OUTSIDE COMMANDS
   'bbb_outside_toggle_self_voice',
   'bbb_outside_toggle_recording',
+  'bbb_user_email'
 ];
 
 function valueParser(val) {

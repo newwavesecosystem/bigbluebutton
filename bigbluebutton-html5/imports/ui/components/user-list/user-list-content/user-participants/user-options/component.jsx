@@ -13,6 +13,8 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import { styles } from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
 import Settings from '/imports/ui/services/settings';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUsersCog} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -345,6 +347,8 @@ class UserOptions extends PureComponent {
 
   render() {
     const { intl } = this.props;
+
+    const usersetIcon = <FontAwesomeIcon icon={faUsersCog}/>;
 
     return (
       <BBBMenu

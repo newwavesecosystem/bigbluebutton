@@ -12,6 +12,7 @@ import NoteService from '/imports/ui/components/note/service';
 import Service from './service';
 import NavBar from './component';
 import LayoutContext from '../layout/context';
+import AudioService from '../audio/service';
 
 const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
@@ -102,11 +103,18 @@ export default withTracker(() => {
 
   const { connectRecordingObserver, processOutsideToggleRecording } = Service;
 
+
+  const {isConnected, isEchoTest} = AudioService;
+  const openPanel = Session.get('openPanel');
+  const isExpanded = openPanel !== '';
+
   return {
+    isExpanded,
     currentUserId: Auth.userID,
     processOutsideToggleRecording,
     connectRecordingObserver,
     meetingId,
     presentationTitle: meetingTitle,
+    inAudio: isConnected() && !isEchoTest(),
   };
 })(NavBarContainer);

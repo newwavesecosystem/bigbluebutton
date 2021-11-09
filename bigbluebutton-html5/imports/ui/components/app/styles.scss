@@ -1,4 +1,4 @@
-@import '/imports/ui/stylesheets/variables/_all';
+@import "/imports/ui/stylesheets/variables/_all";
 @import '/imports/ui/stylesheets/mixins/_indicators';
 
 :root {
@@ -19,7 +19,7 @@
 
 .layout {
   @extend %flex-column;
-  background-color: #06172a;
+  background-color: #35ac39;
 }
 
 .navbar {

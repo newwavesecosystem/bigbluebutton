@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import _ from 'lodash';
 import cx from 'classnames';
 import Icon from '/imports/ui/components/icon/component';
-import { styles } from '../styles';
+import {styles} from '../styles';
 
 const propTypes = {
   icon: PropTypes.string,
+  customIcon: PropTypes.string,
   label: PropTypes.string,
   description: PropTypes.string,
   accessKey: PropTypes.string,
@@ -16,6 +17,7 @@ const propTypes = {
 
 const defaultProps = {
   icon: '',
+  customIcon: '',
   label: '',
   description: '',
   tabIndex: 0,
@@ -37,17 +39,18 @@ class DropdownListItem extends Component {
 
   renderDefault() {
     const {
-      icon, label, iconRight, accessKey,
+      icon, label, iconRight, accessKey, customIcon,
     } = this.props;
 
     return [
-      (icon ? <Icon iconName={icon} key="icon" className={styles.itemIcon} /> : null),
+      (icon ? <Icon iconName={icon} key="icon" className={styles.itemIcon}/> : null),
+      (customIcon || null),
       (
-        <span className={styles.itemLabel} key="label" accessKey={accessKey}>
+          <span className={styles.itemLabel} key="label" accessKey={accessKey}>
           {label}
         </span>
       ),
-      (iconRight ? <Icon iconName={iconRight} key="iconRight" className={styles.iconRight} /> : null),
+      (iconRight ? <Icon iconName={iconRight} key="iconRight" className={styles.iconRight}/> : null),
     ];
   }
 

@@ -152,6 +152,9 @@ class NavBar extends Component {
 
     const isExpanded = sidebarNavigation.isOpen;
 
+    const leftIcon = <FontAwesomeIcon icon={faCaretSquareLeft} size="lg"/>;
+    const rightIcon = <FontAwesomeIcon icon={faCaretSquareRight} size="lg"/>;
+
     return (
       <header
         className={styles.navbar}
@@ -173,24 +176,26 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           <div className={styles.left}>
-            {!isExpanded ? null
-              : <Icon iconName="left_arrow" className={styles.arrowLeft} />}
+            {/*{!isExpanded ? null*/}
+            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />}*/}
             <Button
               onClick={this.handleToggleUserList}
               ghost
               circle
-              hideLabel
+              // hideLabel
               data-test={hasNotification ? 'hasUnreadMessages' : null}
-              label={intl.formatMessage(intlMessages.toggleUserListLabel)}
-              tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
+              label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
-              icon="user"
+              // icon="user"
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
+              size="sm"
+              customIcon={isExpanded ? leftIcon : rightIcon}
+
             />
-            {isExpanded ? null
-              : <Icon iconName="right_arrow" className={styles.arrowRight} />}
+            {/*{isExpanded ? null*/}
+            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />}*/}
           </div>
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>

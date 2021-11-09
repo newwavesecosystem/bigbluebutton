@@ -5,6 +5,8 @@ import Button from '/imports/ui/components/button/component';
 import MediaService from '/imports/ui/components/media/service';
 import cx from 'classnames';
 import { styles } from '../styles';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMinusSquare, faShareSquare,} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -32,6 +34,11 @@ const intlMessages = defineMessages({
   },
 });
 
+const shouldUnswapLayout = () => MediaService.shouldShowScreenshare() || MediaService.shouldShowExternalVideo();
+
+const shareOff = <FontAwesomeIcon icon={faShareSquare} size="lg"/>;
+const shareOn = <FontAwesomeIcon icon={faMinusSquare} size="lg"/>;
+
 const PresentationOptionsContainer = ({
   intl,
   isLayoutSwapped,
@@ -53,12 +60,12 @@ const PresentationOptionsContainer = ({
   return (
     <Button
       className={cx(styles.button, !isLayoutSwapped || styles.btn)}
-      icon={`${buttonType}${isLayoutSwapped ? '_off' : ''}`}
+      // icon={`${buttonType}${isLayoutSwapped ? '_off' : ''}`}
       label={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationLabel : intlMessages.minimizePresentationLabel)}
       aria-label={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationLabel : intlMessages.minimizePresentationLabel)}
       aria-describedby={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationDesc : intlMessages.minimizePresentationDesc)}
       description={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationDesc : intlMessages.minimizePresentationDesc)}
-      color={!isLayoutSwapped ? "primary" : "default"}
+      // color={!isLayoutSwapped ? "primary" : "default"}
       hideLabel
       circle
       size="lg"
@@ -66,6 +73,8 @@ const PresentationOptionsContainer = ({
       id="restore-presentation"
       ghost={isLayoutSwapped}
       disabled={!isThereCurrentPresentation}
+      customIcon={shareOff}
+      color="default"
     />
   );
 };

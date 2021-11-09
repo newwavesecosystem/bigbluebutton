@@ -364,7 +364,7 @@ class ScreenshareComponent extends React.Component {
             height,
             width,
             zIndex,
-            backgroundColor: '#06172A',
+            backgroundColor: '#35ac39',
           }
         }
       >

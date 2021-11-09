@@ -280,7 +280,7 @@ class InputStreamLiveSelector extends Component {
       false,
     );
 
-    const dropdownListComplete = inputDeviceList.concat(outputDeviceList);
+    const dropdownListComplete = outputDeviceList.concat(inputDeviceList);
 
     return (
       <BBBMenu
@@ -292,7 +292,7 @@ class InputStreamLiveSelector extends Component {
               accessKey={shortcuts.leaveaudio}
               data-test="leaveAudio"
               hideLabel
-              color="primary"
+              // color="primary"
               icon={isListenOnly ? 'listen' : 'volume_level_2'}
               size="lg"
               circle
@@ -300,6 +300,7 @@ class InputStreamLiveSelector extends Component {
                 e.stopPropagation();
                 handleLeaveAudio();
               }}
+              color="default"
             />
             <ButtonEmoji
               className={styles.audioDropdown}

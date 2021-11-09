@@ -4,11 +4,12 @@ import GroupChat from '/imports/api/group-chat';
 import Auth from '/imports/ui/services/auth';
 import UnreadMessages from '/imports/ui/services/unread-messages';
 import Storage from '/imports/ui/services/storage/session';
-import { makeCall } from '/imports/ui/services/api';
+import {makeCall} from '/imports/ui/services/api';
 import _ from 'lodash';
-import { meetingIsBreakout } from '/imports/ui/components/app/service';
-import { defineMessages } from 'react-intl';
+import {meetingIsBreakout} from '/imports/ui/components/app/service';
+import {defineMessages} from 'react-intl';
 import PollService from '/imports/ui/components/poll/service';
+import getFromUserSettings from '/imports/ui/services/users-settings';
 
 const CHAT_CONFIG = Meteor.settings.public.chat;
 const GROUPING_MESSAGES_WINDOW = CHAT_CONFIG.grouping_messages_window;
@@ -186,6 +187,7 @@ const sendGroupMessage = (message, idChatOpen) => {
   }
 
   const userAvatarColor = Users.findOne({ userId: senderUserId }, { fields: { color: 1 } });
+  const uemail=getFromUserSettings('bbb_user_email', 'snone');
 
   const payload = {
     color: userAvatarColor?.color || '0',
@@ -204,7 +206,11 @@ const sendGroupMessage = (message, idChatOpen) => {
     Storage.setItem(CLOSED_CHAT_LIST_KEY, _.without(currentClosedChats, receiverId.id));
   }
 
-  return makeCall('sendGroupChatMsg', destinationChatId, payload);
+  const custumPayload = {
+    uemail, room: Auth.confname
+  }
+
+  return makeCall('sendGroupChatMsg', destinationChatId, payload, custumPayload);
 };
 
 const getScrollPosition = (receiverID) => {

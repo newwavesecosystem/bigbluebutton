@@ -380,6 +380,9 @@ class AudioModal extends Component {
     const arrow = isRTL ? '←' : '→';
     const dialAudioLabel = `${intl.formatMessage(intlMessages.audioDialTitle)} ${arrow}`;
 
+    const mic = <FontAwesomeIcon icon={faMicrophoneAlt} size="sm" style={{color: 'green'}}/>;
+    const nomic = <FontAwesomeIcon icon={faMicrophoneAltSlash} size="sm" style={{color: 'red'}}/>;
+
     return (
       <div>
         <span className={styles.audioOptions}>
@@ -390,7 +393,7 @@ class AudioModal extends Component {
                   className={styles.audioBtn}
                   label={intl.formatMessage(intlMessages.microphoneLabel)}
                   aria-describedby="mic-description"
-                  icon="unmute"
+                  // icon="unmute"
                   circle
                   size="jumbo"
                   disabled={audioLocked}
@@ -399,6 +402,8 @@ class AudioModal extends Component {
                       ? this.handleJoinMicrophone
                       : this.handleGoToEchoTest
                   }
+                  hideLabel
+                  customIcon={mic}
                 />
                 <span className="sr-only" id="mic-description">
                   {intl.formatMessage(intlMessages.microphoneDesc)}
@@ -412,10 +417,12 @@ class AudioModal extends Component {
                   className={styles.audioBtn}
                   label={intl.formatMessage(intlMessages.listenOnlyLabel)}
                   aria-describedby="listenOnly-description"
-                  icon="listen"
+                  // icon="listen"
                   circle
                   size="jumbo"
                   onClick={this.handleJoinListenOnly}
+                  customIcon={nomic}
+                  hideLabel
                 />
                 <span className="sr-only" id="listenOnly-description">
                   {intl.formatMessage(intlMessages.listenOnlyDesc)}

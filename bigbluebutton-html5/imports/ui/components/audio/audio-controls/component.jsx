@@ -6,6 +6,8 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import Button from '/imports/ui/components/button/component';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophone, faMicrophoneSlash, faPhoneAlt, faPhoneVolume,} from '@fortawesome/free-solid-svg-icons';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import { styles } from './styles';
@@ -26,6 +28,14 @@ const intlMessages = defineMessages({
   unmuteAudio: {
     id: 'app.actionsBar.unmuteLabel',
     description: 'Unmute audio button label',
+  },
+  selectleaveSessionLabel: {
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
+    description: 'Leave session button label',
+  },
+  selectleaveSessionDesc: {
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
+    description: 'Describes leave session option',
   },
 });
 
@@ -71,6 +81,8 @@ class AudioControls extends PureComponent {
       shortcuts,
     } = this.props;
 
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg"/>;
+
     return (
       <Button
         className={styles.btn}
@@ -82,10 +94,11 @@ class AudioControls extends PureComponent {
         data-test="joinAudio"
         color="default"
         ghost
-        icon="no_audio"
+        // icon="no_audio"
         size="lg"
         circle
         accessKey={shortcuts.joinaudio}
+        customIcon={dialOff}
       />
     );
   }
@@ -117,6 +130,9 @@ class AudioControls extends PureComponent {
       }
     }
 
+    const dialOn = <FontAwesomeIcon icon={faPhoneVolume} size="lg"/>;
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg"/>;
+
     return (
       <Button
         className={cx(inAudio || styles.btn)}
@@ -130,10 +146,11 @@ class AudioControls extends PureComponent {
           : intl.formatMessage(intlMessages.joinAudio)}
         color={inAudio ? 'primary' : 'default'}
         ghost={!inAudio}
-        icon={joinIcon}
+        // icon={joinIcon}
         size="lg"
         circle
         accessKey={inAudio ? shortcuts.leaveaudio : shortcuts.joinaudio}
+        customIcon={inAudio ? dialOn : dialOff}
       />
     );
   }
@@ -185,6 +202,9 @@ class AudioControls extends PureComponent {
     const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
       : intl.formatMessage(intlMessages.muteAudio);
 
+    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg"/>;
+    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>;
+
     const toggleMuteBtn = (
       <Button
         className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
@@ -193,12 +213,14 @@ class AudioControls extends PureComponent {
         hideLabel
         label={label}
         aria-label={label}
-        color={!muted ? 'primary' : 'default'}
+        // color={!muted ? 'primary' : 'default'}
         ghost={muted}
-        icon={muted ? 'mute' : 'unmute'}
+        // icon={muted ? 'mute' : 'unmute'}
         size="lg"
         circle
         accessKey={shortcuts.togglemute}
+        customIcon={muted ? micOff : micOn}
+        color="default"
       />
     );
 

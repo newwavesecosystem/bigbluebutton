@@ -209,7 +209,7 @@ class VideoListItem extends Component {
                 [styles.talking]: voiceUser.talking,
               })}
             >
-              <span className={styles.loadingText}>{name}</span>
+              <span className={styles.loadingText}>Loading...</span>
             </div>
           )
 
@@ -257,7 +257,7 @@ class VideoListItem extends Component {
                       anchorOrigin: { vertical: 'bottom', horizontal: 'left' },
                       transformorigin: { vertical: 'bottom', horizontal: 'left' },
                     }}
-                  />                  
+                  />
                 )
                 : (
                   <div className={isFirefox ? styles.dropdownFireFox

@@ -264,24 +264,24 @@ class MeetingEnded extends PureComponent {
             </h1>
             {!allowRedirectToLogoutURL() ? null : (
               <div>
-                {
-                  LearningDashboardService.isModerator()
-                  && LearningDashboardService.isLearningDashboardEnabled() === true
-                  // Always set cookie in case Dashboard is already opened
-                  && LearningDashboardService.setLearningDashboardCookie() === true
-                    ? (
-                      <div className={styles.text}>
-                        <Button
-                          icon="multi_whiteboard"
-                          color="default"
-                          onClick={() => LearningDashboardService.openLearningDashboardUrl(locale)}
-                          className={styles.button}
-                          label={intl.formatMessage(intlMessage.open_activity_report_btn)}
-                          description={intl.formatMessage(intlMessage.open_activity_report_btn)}
-                        />
-                      </div>
-                    ) : null
-                }
+                {/*{*/}
+                {/*  LearningDashboardService.isModerator()*/}
+                {/*  && LearningDashboardService.isLearningDashboardEnabled() === true*/}
+                {/*  // Always set cookie in case Dashboard is already opened*/}
+                {/*  && LearningDashboardService.setLearningDashboardCookie() === true*/}
+                {/*    ? (*/}
+                {/*      <div className={styles.text}>*/}
+                {/*        <Button*/}
+                {/*          icon="multi_whiteboard"*/}
+                {/*          color="default"*/}
+                {/*          onClick={() => LearningDashboardService.openLearningDashboardUrl(locale)}*/}
+                {/*          className={styles.button}*/}
+                {/*          label={intl.formatMessage(intlMessage.open_activity_report_btn)}*/}
+                {/*          description={intl.formatMessage(intlMessage.open_activity_report_btn)}*/}
+                {/*        />*/}
+                {/*      </div>*/}
+                {/*    ) : null*/}
+                {/*}*/}
                 <div className={styles.text}>
                   {intl.formatMessage(intlMessage.messageEnded)}
                 </div>

@@ -39,6 +39,11 @@ class ActionsBar extends PureComponent {
       isOldMinimizeButtonEnabled,
     } = this.props;
 
+    const actionBarClasses = {};
+
+    const handIcon = <FontAwesomeIcon icon={faHandPaper} size="lg"/>;
+    const handdownIcon = <FontAwesomeIcon icon={faHandPointDown} size="lg"/>;
+
     return (
       <div
         className={styles.actionsbar}
@@ -98,7 +103,7 @@ class ActionsBar extends PureComponent {
           {isRaiseHandButtonEnabled
             ? (
               <Button
-                icon="hand"
+                // icon="hand"
                 label={intl.formatMessage({
                   id: `app.actionsBar.emojiMenu.${
                     currentUser.emoji === 'raiseHand'
@@ -120,6 +125,7 @@ class ActionsBar extends PureComponent {
                     currentUser.emoji === 'raiseHand' ? 'none' : 'raiseHand',
                   );
                 }}
+                customIcon={currentUser.emoji === 'raiseHand' ? handdownIcon : handIcon}
               />
             )
             : null}

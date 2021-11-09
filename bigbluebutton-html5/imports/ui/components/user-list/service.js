@@ -5,15 +5,15 @@ import Breakouts from '/imports/api/breakouts/';
 import Meetings from '/imports/api/meetings';
 import Auth from '/imports/ui/services/auth';
 import Storage from '/imports/ui/services/storage/session';
-import { EMOJI_STATUSES } from '/imports/utils/statuses';
-import { makeCall } from '/imports/ui/services/api';
+import {EMOJI_STATUSES} from '/imports/utils/statuses';
+import {makeCall} from '/imports/ui/services/api';
 import _ from 'lodash';
 import KEY_CODES from '/imports/utils/keyCodes';
 import AudioService from '/imports/ui/components/audio/service';
 import VideoService from '/imports/ui/components/video-provider/service';
 import logger from '/imports/startup/client/logger';
 import WhiteboardService from '/imports/ui/components/whiteboard/service';
-import { Session } from 'meteor/session';
+import {Session} from 'meteor/session';
 
 const CHAT_CONFIG = Meteor.settings.public.chat;
 const PUBLIC_CHAT_ID = CHAT_CONFIG.public_id;
@@ -30,9 +30,9 @@ const STARTED_CHAT_LIST_KEY = 'startedChatList';
 
 const CUSTOM_LOGO_URL_KEY = 'CustomLogoUrl';
 
-export const setCustomLogoUrl = path => Storage.setItem(CUSTOM_LOGO_URL_KEY, path);
+export const setCustomLogoUrl = (path) => Storage.setItem(CUSTOM_LOGO_URL_KEY, path);
 
-export const setModeratorOnlyMessage = msg => Storage.setItem('ModeratorOnlyMessage', msg);
+export const setModeratorOnlyMessage = (msg) => Storage.setItem('ModeratorOnlyMessage', msg);
 
 const getCustomLogoUrl = () => Storage.getItem(CUSTOM_LOGO_URL_KEY);
 
@@ -304,7 +304,7 @@ const isMeetingLocked = (id) => {
   let isLocked = false;
 
   if (meeting.lockSettingsProps !== undefined) {
-    const {lockSettingsProps:lockSettings, usersProp} = meeting;
+    const {lockSettingsProps: lockSettings, usersProp} = meeting;
 
     if (lockSettings.disableCam
       || lockSettings.disableMic
@@ -629,10 +629,10 @@ export const getUserNamesLink = (docTitle, fnSortedLabel, lnSortedLabel) => {
   const date = new Date();
   const time = `${date.getHours()}-${date.getMinutes()}`;
   const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${time}`;
-  link.setAttribute('download', `bbb-${meeting.meetingProp.name}[users-list]_${dateString}.txt`);
+  link.setAttribute('download', `${meeting.meetingProp.name}[attendance]_${dateString}.txt`);
   link.setAttribute(
-    'href',
-    `data: ${mimeType} ;charset=utf-16,${encodeURIComponent(namesListsString)}`,
+      'href',
+      `data: ${mimeType} ;charset=utf-16,${encodeURIComponent(namesListsString)}`,
   );
   return link;
 };
