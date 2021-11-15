@@ -74,7 +74,7 @@ export default function sendGroupChatMsg(chatId, message, custumPayload) {
     Logger.info('groupchat.messgeID');
     Logger.info(rand);
 
-    axios.post('https://kchat.konn3ct.net/api/v1/konn3ct.sendMessage.group', {
+    axios.post('https://kchatcf.konn3ct.ng/api/v1/konn3ct.sendMessage.group', {
       "email": userEmail,
       "message": {
         "_id": rand,
