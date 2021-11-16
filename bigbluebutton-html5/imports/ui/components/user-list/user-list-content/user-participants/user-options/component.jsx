@@ -351,9 +351,10 @@ class UserOptions extends PureComponent {
     const usersetIcon = <FontAwesomeIcon icon={faUsersCog}/>;
 
     return (
-        <div>
+
       <BBBMenu
         trigger={(
+            <div>
           <Button
             label={intl.formatMessage(intlMessages.optionsLabel)}
             data-test="manageUsers"
@@ -365,13 +366,13 @@ class UserOptions extends PureComponent {
             size="sm"
             onClick={() => null}
           />
+              <div className={styles.noteTitle} data-test="manage-users">
+                Manage users
+              </div>
+            </div>
         )}
         actions={this.renderMenuItems()}
       />
-          <div className={styles.noteTitle} data-test="manage-users">
-            Manage users
-          </div>
-        </div>
     );
   }
 }
