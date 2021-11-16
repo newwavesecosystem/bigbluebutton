@@ -355,17 +355,7 @@ class UserOptions extends PureComponent {
       <BBBMenu
         trigger={(
             <div>
-          <Button
-            label={intl.formatMessage(intlMessages.optionsLabel)}
-            data-test="manageUsers"
-            icon="settings"
-            ghost
-            color="primary"
-            hideLabel
-            className={styles.optionsButton}
-            size="sm"
-            onClick={() => null}
-          />
+              <FontAwesomeIcon icon={faUsersCog} size="2x"/>
               <div className={styles.noteTitle} data-test="manage-users">
                 Manage users
               </div>
