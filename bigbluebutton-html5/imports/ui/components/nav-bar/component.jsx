@@ -16,6 +16,8 @@ import SettingsDropdownContainer from './settings-dropdown/container';
 import browserInfo from '/imports/utils/browserInfo';
 import deviceInfo from '/imports/utils/deviceInfo';
 import { PANELS, ACTIONS } from '../layout/enums';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCaretSquareLeft, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
