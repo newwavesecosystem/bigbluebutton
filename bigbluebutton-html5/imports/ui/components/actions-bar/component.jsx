@@ -9,7 +9,8 @@ import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/scree
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHandPaper, faHandPointDown} from '@fortawesome/free-solid-svg-icons';
 class ActionsBar extends PureComponent {
   render() {
     const {
