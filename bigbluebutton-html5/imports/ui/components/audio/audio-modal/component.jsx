@@ -14,6 +14,8 @@ import EchoTest from '../echo-test/component';
 import Help from '../help/component';
 import AudioDial from '../audio-dial/component';
 import AudioAutoplayPrompt from '../autoplay/component';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophoneAlt, faMicrophoneAltSlash} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.shape({
