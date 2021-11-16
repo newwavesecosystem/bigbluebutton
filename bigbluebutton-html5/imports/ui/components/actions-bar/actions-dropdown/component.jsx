@@ -295,8 +295,6 @@ class ActionsDropdown extends PureComponent {
       onClick: () => mountModal(<SettingsMenuContainer />),
     })
 
-  ]);
-
     return actions;
   }
 
