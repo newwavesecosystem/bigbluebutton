@@ -11,7 +11,8 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '../../fullscreen-button/service';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faRedo, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
 
 const intlMessages = defineMessages({
