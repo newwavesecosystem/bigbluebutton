@@ -194,7 +194,7 @@ class SettingsDropdown extends PureComponent {
               customIcon={reloadIcon}
               color="primary"
               size="sm"
-              onClick={() => mountModal(this.reloadmeetingDialog())}
+              onClick={() => this.reloadmeetingDialog()}
           />
           <Button
               label={intl.formatMessage(intlMessages.leaveSessionLabel)}

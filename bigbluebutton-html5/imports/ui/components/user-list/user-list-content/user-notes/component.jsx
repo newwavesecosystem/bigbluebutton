@@ -100,7 +100,7 @@ class UserNotes extends Component {
         role="button"
         tabIndex={0}
         className={styles.listItem}
-        onClick={() => NoteService.toggleNotePanel(sidebarContentPanel, newLayoutContextDispatch)}
+        onClick={() => NoteService.toggleNotePanel(sidebarContentPanel, layoutContextDispatch)}
         onKeyPress={() => { }}
       >
         <FontAwesomeIcon icon={faFileSignature} size="2x"/>
