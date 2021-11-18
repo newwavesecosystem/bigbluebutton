@@ -85,6 +85,26 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.endMeetingDesc',
     description: 'Describes settings option closing the current meeting',
   },
+  endMeetingTitle: {
+    id: 'app.endMeeting.title',
+    description: 'end meeting title',
+  },
+  endMeetingDescription: {
+    id: 'app.endMeeting.description',
+    description: 'end meeting description with affected users information',
+  },
+  endMeetingNoUserDescription: {
+    id: 'app.endMeeting.noUserDescription',
+    description: 'end meeting description',
+  },
+  yesLabel: {
+    id: 'app.endMeeting.yesLabel',
+    description: 'label for yes button for end meeting',
+  },
+  noLabel: {
+    id: 'app.endMeeting.noLabel',
+    description: 'label for no button for end meeting',
+  },
 });
 
 const propTypes = {
@@ -281,7 +301,7 @@ class SettingsDropdown extends PureComponent {
               customIcon={reloadIcon}
               color="primary"
               size="sm"
-              onClick={() => this.reloadmeetingDialog()}
+              onClick={() => mountModal(this.reloadmeetingDialog())}
           />
           <Button
               label={intl.formatMessage(intlMessages.leaveSessionLabel)}
