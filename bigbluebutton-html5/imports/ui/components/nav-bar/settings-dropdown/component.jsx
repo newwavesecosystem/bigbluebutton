@@ -14,6 +14,7 @@ import FullscreenService from '../../fullscreen-button/service';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faRedo, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../styles';
+import Modal from '/imports/ui/components/modal/simple/component';
 
 const intlMessages = defineMessages({
   optionsLabel: {
@@ -123,6 +124,10 @@ class SettingsDropdown extends PureComponent {
 
     this.leaveSession = this.leaveSession.bind(this);
     this.onFullscreenChange = this.onFullscreenChange.bind(this);
+    this.reloadSession = this.reloadSession.bind(this);
+    this.leavemeetingDialog = this.leavemeetingDialog.bind(this);
+    this.reloadmeetingDialog = this.reloadmeetingDialog.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -131,6 +136,88 @@ class SettingsDropdown extends PureComponent {
 
   componentWillUnmount() {
     document.documentElement.removeEventListener('fullscreenchange', this.onFullscreenChange);
+  }
+
+  closeModal() {
+    const {
+      mountModal,
+    } = this.props;
+
+    return (
+        mountModal(null)
+    );
+  }
+
+  leavemeetingDialog() {
+    const {
+      intl,
+    } = this.props;
+
+    return (
+        <Modal
+            overlayClassName={styles.overlay}
+            className={styles.modal}
+            hideBorder
+            shouldShowCloseButton={false}
+            title="Leave meeting"
+        >
+          <div className={styles.container}>
+            <div className={styles.description}>
+              Are you sure you want to leave the meeting
+            </div>
+            <div className={styles.footer}>
+              <Button
+                  data-test="confirmEndMeeting"
+                  color="primary"
+                  className={styles.button}
+                  label={intl.formatMessage(intlMessages.yesLabel)}
+                  onClick={() => this.leaveSession()}
+              />
+              <Button
+                  label={intl.formatMessage(intlMessages.noLabel)}
+                  className={styles.button}
+                  onClick={() => this.closeModal()}
+              />
+            </div>
+          </div>
+        </Modal>
+    );
+  }
+
+  reloadmeetingDialog() {
+    const {
+      intl,
+    } = this.props;
+
+    return (
+        <Modal
+            overlayClassName={styles.overlay}
+            className={styles.modal}
+            hideBorder
+            shouldShowCloseButton={false}
+            title="Reload meeting"
+        >
+          <div className={styles.container}>
+            <div className={styles.description}>
+              Are you sure you want to reload the meeting
+            </div>
+            <div className={styles.footer}>
+              <Button
+                  data-test="confirmReload"
+                  color="primary"
+                  className={styles.button}
+                  label={intl.formatMessage(intlMessages.yesLabel)}
+                  onClick={() => this.reloadSession()}
+              />
+              <Button
+                  label={intl.formatMessage(intlMessages.noLabel)}
+                  className={styles.button}
+                  onClick={() => this.closeModal()}
+              />
+            </div>
+          </div>
+        </Modal>
+    );
   }
 
   onFullscreenChange() {
