@@ -132,6 +132,43 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       e.preventDefault();
     });
   </script>
+    <script>
+
+        // test support
+        let isSupported = false;
+
+        if ('wakeLock' in navigator) {
+            isSupported = true;
+            console.info('Screen Wake Lock API supported 🎉');
+        } else {
+            console.info('Wake lock is not supported by this browser.');
+        }
+
+        // The wake lock sentinel.
+        let wakeLock = null;
+
+        // Function that attempts to request a screen wake lock.
+        const requestWakeLock = async () => {
+            try {
+                console.log('Requesting for Screen Wake Lock');
+                wakeLock = await navigator.wakeLock.request('screen')
+                wakeLock.addEventListener('release', () => {
+                    console.log('Screen Wake Lock released:', wakeLock.released);
+                });
+                console.log('Screen Wake Lock released:', wakeLock.released);
+            } catch (err) {
+                console.error(`${err.name}, ${err.message}`);
+            }
+        };
+
+        // Request a screen wake lock…
+        await requestWakeLock();
+        // …and release it again after 5s.
+        // window.setTimeout(() => {
+        //     wakeLock.release();
+        //     wakeLock = null;
+        // }, 5000);
+    </script>
   <script src="compatibility/adapter.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/sip.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/kurento-utils.js?v=VERSION" language="javascript"></script>
