@@ -143,7 +143,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
             });
             console.log('Screen Wake Lock released:', wakeLock.released);
         } catch (err) {
-            console.error(`${err.name}, ${err.message}`);
+            console.error(`Wake Lock: An error occur on - ${err}`);
         }
 
         // test support
