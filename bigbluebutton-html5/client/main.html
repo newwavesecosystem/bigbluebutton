@@ -88,34 +88,6 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   </style>
 
     <script>
-
-        // The wake lock sentinel.
-        let wakeLock = null;
-
-        // Attempts to request a screen wake lock.
-        try {
-            console.log('Requesting for Screen Wake Lock');
-            wakeLock = await navigator.wakeLock.request('screen')
-            wakeLock.addEventListener('release', () => {
-                console.log('Screen Wake Lock released:', wakeLock.released);
-            });
-            console.log('Screen Wake Lock released:', wakeLock.released);
-        } catch (err) {
-            console.error(`${err.name}, ${err.message}`);
-        }
-
-        // test support
-        let isSupported = false;
-
-        if ('wakeLock' in navigator) {
-            isSupported = true;
-            console.log('Screen Wake Lock API supported 🎉');
-        } else {
-            console.log('Wake lock is not supported by this browser.');
-        }
-    </script>
-
-    <script>
         document.addEventListener('gesturestart', function (e) {
             e.preventDefault();
         });
@@ -154,6 +126,34 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
                     }
                 };
             }
+        }
+    </script>
+
+    <script>
+
+        // The wake lock sentinel.
+        let wakeLock = null;
+
+        // Attempts to request a screen wake lock.
+        try {
+            console.log('Requesting for Screen Wake Lock');
+            wakeLock = navigator.wakeLock.request('screen')
+            wakeLock.addEventListener('release', () => {
+                console.log('Screen Wake Lock released:', wakeLock.released);
+            });
+            console.log('Screen Wake Lock released:', wakeLock.released);
+        } catch (err) {
+            console.error(`${err.name}, ${err.message}`);
+        }
+
+        // test support
+        let isSupported = false;
+
+        if ('wakeLock' in navigator) {
+            isSupported = true;
+            console.log('Screen Wake Lock API supported 🎉');
+        } else {
+            console.log('Wake lock is not supported by this browser.');
         }
     </script>
 
