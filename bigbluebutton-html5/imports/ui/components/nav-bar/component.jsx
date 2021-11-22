@@ -12,7 +12,7 @@ import browserInfo from '/imports/utils/browserInfo';
 import deviceInfo from '/imports/utils/deviceInfo';
 import {ACTIONS, PANELS} from '../layout/enums';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCaretSquareLeft, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
+import {faCaretSquareLeft, faCaretSquareRight, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
