@@ -93,7 +93,7 @@ class ActionsBar extends PureComponent {
                 hideLabel
                 circle
                 size="lg"
-                onClick={() => this.handleToggleUserList}
+                onClick={() => this.handleToggleUserList()}
                 customIcon={menuIcon}
             />
 
