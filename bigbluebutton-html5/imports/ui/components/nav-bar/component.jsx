@@ -182,7 +182,7 @@ class NavBar extends Component {
               onClick={this.handleToggleUserList}
               ghost
               circle
-              // hideLabel
+              hideLabel
               data-test={hasNotification ? 'hasUnreadMessages' : null}
               label={isExpanded ? 'Hide' : 'Chats'}
               aria-label={ariaLabel}
