@@ -11,7 +11,6 @@ import JoinVideoOptionsContainer from '../video-provider/video-button/container'
 import PresentationOptionsContainer from './presentation-options/component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faHandPaper, faHandPointDown} from '@fortawesome/free-solid-svg-icons';
-import {ACTIONS, PANELS} from "../layout/enums";
 
 class ActionsBar extends PureComponent {
   render() {
@@ -49,50 +48,6 @@ class ActionsBar extends PureComponent {
     const handdownIcon = <FontAwesomeIcon icon={faHandPointDown} size="lg"/>;
     const menuIcon = <FontAwesomeIcon icon={faBars} size="lg"/>;
 
-    handleToggleUserList()
-    {
-      const {
-        sidebarNavigation,
-        sidebarContent,
-        layoutContextDispatch,
-      } = this.props;
-
-      if (sidebarNavigation.isOpen) {
-        if (sidebarContent.isOpen) {
-          layoutContextDispatch({
-            type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
-            value: false,
-          });
-          layoutContextDispatch({
-            type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL,
-            value: PANELS.NONE,
-          });
-          layoutContextDispatch({
-            type: ACTIONS.SET_ID_CHAT_OPEN,
-            value: '',
-          });
-        }
-
-        layoutContextDispatch({
-          type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
-          value: false,
-        });
-        layoutContextDispatch({
-          type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
-          value: PANELS.NONE,
-        });
-      } else {
-        layoutContextDispatch({
-          type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
-          value: true,
-        });
-        layoutContextDispatch({
-          type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
-          value: PANELS.USERLIST,
-        });
-      }
-    }
-
 
     return (
         <div
@@ -114,9 +69,7 @@ class ActionsBar extends PureComponent {
                 hideLabel
                 circle
                 size="lg"
-                onClick={() => {
-                  this.handleToggleUserList();
-                }}
+                onClick={null}
                 customIcon={menuIcon}
             />
 
