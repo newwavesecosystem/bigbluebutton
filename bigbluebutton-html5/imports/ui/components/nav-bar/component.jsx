@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import {withModalMounter} from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import {defineMessages, injectIntl} from 'react-intl';
 import {styles} from './styles.scss';
+import Button from '/imports/ui/components/button/component';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
 import SettingsDropdownContainer from './settings-dropdown/container';
@@ -13,7 +15,6 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import {ACTIONS, PANELS} from '../layout/enums';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretSquareLeft, faCaretSquareRight, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
-import Button from '/imports/ui/components/button/component';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
