@@ -147,10 +147,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
         }
 
         // test support
-        let isSupported = false;
-
         if ('wakeLock' in navigator) {
-            isSupported = true;
             console.log('Screen Wake Lock API supported 🎉');
         } else {
             console.log('Wake lock is not supported by this browser.');

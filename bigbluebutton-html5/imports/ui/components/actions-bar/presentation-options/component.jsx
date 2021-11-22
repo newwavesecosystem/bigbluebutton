@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import Button from '/imports/ui/components/button/component';
 import MediaService from '/imports/ui/components/media/service';
 import cx from 'classnames';
-import { styles } from '../styles';
+import {styles} from '../styles';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMinusSquare, faShareSquare,} from '@fortawesome/free-solid-svg-icons';
+import {faEye, faEyeSlash,} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -36,18 +36,18 @@ const intlMessages = defineMessages({
 
 const shouldUnswapLayout = () => MediaService.shouldShowScreenshare() || MediaService.shouldShowExternalVideo();
 
-const shareOff = <FontAwesomeIcon icon={faShareSquare} size="lg"/>;
-const shareOn = <FontAwesomeIcon icon={faMinusSquare} size="lg"/>;
+const shareOff = <FontAwesomeIcon icon={faEyeSlash} size="lg"/>;
+const shareOn = <FontAwesomeIcon icon={faEye} size="lg"/>;
 
 const PresentationOptionsContainer = ({
-  intl,
-  isLayoutSwapped,
-  toggleSwapLayout,
-  layoutContextDispatch,
-  hasPresentation,
-  hasExternalVideo,
-  hasScreenshare,
-}) => {
+                                        intl,
+                                        isLayoutSwapped,
+                                        toggleSwapLayout,
+                                        layoutContextDispatch,
+                                        hasPresentation,
+                                        hasExternalVideo,
+                                        hasScreenshare,
+                                      }) => {
   let buttonType = 'presentation';
   if (hasExternalVideo) {
     // hack until we have an external-video icon
@@ -59,22 +59,22 @@ const PresentationOptionsContainer = ({
   const isThereCurrentPresentation = hasExternalVideo || hasScreenshare || hasPresentation;
   return (
     <Button
-      className={cx(styles.button, !isLayoutSwapped || styles.btn)}
+        className={cx(styles.button, !isLayoutSwapped || styles.btn)}
       // icon={`${buttonType}${isLayoutSwapped ? '_off' : ''}`}
-      label={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationLabel : intlMessages.minimizePresentationLabel)}
-      aria-label={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationLabel : intlMessages.minimizePresentationLabel)}
-      aria-describedby={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationDesc : intlMessages.minimizePresentationDesc)}
-      description={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationDesc : intlMessages.minimizePresentationDesc)}
+        label={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationLabel : intlMessages.minimizePresentationLabel)}
+        aria-label={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationLabel : intlMessages.minimizePresentationLabel)}
+        aria-describedby={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationDesc : intlMessages.minimizePresentationDesc)}
+        description={intl.formatMessage(isLayoutSwapped ? intlMessages.restorePresentationDesc : intlMessages.minimizePresentationDesc)}
       // color={!isLayoutSwapped ? "primary" : "default"}
-      hideLabel
-      circle
-      size="lg"
-      onClick={() => toggleSwapLayout(layoutContextDispatch)}
-      id="restore-presentation"
-      ghost={isLayoutSwapped}
-      disabled={!isThereCurrentPresentation}
-      customIcon={shareOff}
-      color="default"
+        hideLabel
+        circle
+        size="lg"
+        onClick={() => toggleSwapLayout(layoutContextDispatch)}
+        id="restore-presentation"
+        ghost={isLayoutSwapped}
+        disabled={!isThereCurrentPresentation}
+        customIcon={isLayoutSwapped ? shareOff : shareOn}
+        color="default"
     />
   );
 };

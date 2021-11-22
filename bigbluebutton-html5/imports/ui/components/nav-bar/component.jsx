@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import { withModalMounter } from '/imports/ui/components/modal/service';
+import {withModalMounter} from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
-import { defineMessages, injectIntl } from 'react-intl';
-import Icon from '../icon/component';
-import { styles } from './styles.scss';
-import Button from '/imports/ui/components/button/component';
+import {defineMessages, injectIntl} from 'react-intl';
+import {styles} from './styles.scss';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
-import ConnectionStatusButton from '/imports/ui/components/connection-status/button/container';
-import ConnectionStatusService from '/imports/ui/components/connection-status/service';
 import SettingsDropdownContainer from './settings-dropdown/container';
 import browserInfo from '/imports/utils/browserInfo';
 import deviceInfo from '/imports/utils/deviceInfo';
-import { PANELS, ACTIONS } from '../layout/enums';
+import {ACTIONS, PANELS} from '../layout/enums';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretSquareLeft, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
 
@@ -177,34 +172,34 @@ class NavBar extends Component {
         }
       >
         <div className={styles.top}>
-          <div className={styles.left}>
-            {/*{!isExpanded ? null*/}
-            {/*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />}*/}
-            <Button
-              onClick={this.handleToggleUserList}
-              ghost
-              circle
-              // hideLabel
-              data-test={hasNotification ? 'hasUnreadMessages' : null}
-              label={isExpanded ? 'Hide' : 'Chats'}
-              aria-label={ariaLabel}
-              // icon="user"
-              className={cx(toggleBtnClasses)}
-              aria-expanded={isExpanded}
-              accessKey={TOGGLE_USERLIST_AK}
-              size="sm"
-              customIcon={isExpanded ? leftIcon : rightIcon}
+          {/*<div className={styles.left}>*/}
+          {/*  /!*{!isExpanded ? null*!/*/}
+          {/*  /!*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />}*!/*/}
+          {/*  <Button*/}
+          {/*    onClick={this.handleToggleUserList}*/}
+          {/*    ghost*/}
+          {/*    circle*/}
+          {/*    // hideLabel*/}
+          {/*    data-test={hasNotification ? 'hasUnreadMessages' : null}*/}
+          {/*    label={isExpanded ? 'Hide' : 'Chats'}*/}
+          {/*    aria-label={ariaLabel}*/}
+          {/*    // icon="user"*/}
+          {/*    className={cx(toggleBtnClasses)}*/}
+          {/*    aria-expanded={isExpanded}*/}
+          {/*    accessKey={TOGGLE_USERLIST_AK}*/}
+          {/*    size="sm"*/}
+          {/*    customIcon={isExpanded ? leftIcon : rightIcon}*/}
 
-            />
-            {/*{isExpanded ? null*/}
-            {/*  : <Icon iconName="right_arrow" className={styles.arrowRight} />}*/}
-          </div>
+          {/*  />*/}
+          {/*  /!*{isExpanded ? null*!/*/}
+          {/*  /!*  : <Icon iconName="right_arrow" className={styles.arrowRight} />}*!/*/}
+          {/*</div>*/}
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
 
             <RecordingIndicator
-              mountModal={mountModal}
-              amIModerator={amIModerator}
+                mountModal={mountModal}
+                amIModerator={amIModerator}
             />
           </div>
           <div className={styles.right}>
