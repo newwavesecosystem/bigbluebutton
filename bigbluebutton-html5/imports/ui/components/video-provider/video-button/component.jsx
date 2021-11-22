@@ -84,7 +84,7 @@ const JoinVideoButton = ({
           color="default"
           customIcon={hasVideoStream ? videoOn : videoOff}
           ghost={!hasVideoStream}
-          size="lg"
+          size="md"
           circle
           disabled={!!disableReason}
       />

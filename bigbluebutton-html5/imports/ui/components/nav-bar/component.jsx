@@ -13,7 +13,6 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import {ACTIONS, PANELS} from '../layout/enums';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretSquareLeft, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
-import Icon from '../icon/component';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -152,6 +151,7 @@ class NavBar extends Component {
 
     const leftIcon = <FontAwesomeIcon icon={faCaretSquareLeft} size="lg"/>;
     const rightIcon = <FontAwesomeIcon icon={faCaretSquareRight} size="lg"/>;
+    const closeIcon = <FontAwesomeIcon icon={faTimesCircle} size="lg"/>;
 
     return (
       <header
@@ -174,26 +174,26 @@ class NavBar extends Component {
       >
         <div className={styles.top}>
           {/*<div className={styles.left}>*/}
-          {/*  /!*{!isExpanded ? null*!/*/}
-          {/*  /!*  : <Icon iconName="left_arrow" className={styles.arrowLeft} />}*!/*/}
-          {/*  <Button*/}
-          {/*    onClick={this.handleToggleUserList}*/}
-          {/*    ghost*/}
-          {/*    circle*/}
-          {/*    // hideLabel*/}
-          {/*    data-test={hasNotification ? 'hasUnreadMessages' : null}*/}
-          {/*    label={isExpanded ? 'Hide' : 'Chats'}*/}
-          {/*    aria-label={ariaLabel}*/}
-          {/*    // icon="user"*/}
-          {/*    className={cx(toggleBtnClasses)}*/}
-          {/*    aria-expanded={isExpanded}*/}
-          {/*    accessKey={TOGGLE_USERLIST_AK}*/}
-          {/*    size="sm"*/}
-          {/*    customIcon={isExpanded ? leftIcon : rightIcon}*/}
+          {/*  {!isExpanded ? null*/}
+          {/*    : <Icon iconName="left_arrow" className={styles.arrowLeft} />}*/}
+          {!isExpanded ? null : (<Button
+              onClick={this.handleToggleUserList}
+              ghost
+              circle
+              // hideLabel
+              data-test={hasNotification ? 'hasUnreadMessages' : null}
+              label={isExpanded ? 'Hide' : 'Chats'}
+              aria-label={ariaLabel}
+              // icon="user"
+              className={cx(toggleBtnClasses)}
+              aria-expanded={isExpanded}
+              accessKey={TOGGLE_USERLIST_AK}
+              size="md"
+              customIcon={isExpanded ? closeIcon : rightIcon}
 
-          {/*  />*/}
-          {isExpanded ? null
-              : <Icon iconName="right_arrow" className={styles.arrowRight}/>}
+          />)}
+          {/*{isExpanded ? null*/}
+          {/*    : <Icon iconName="right_arrow" className={styles.arrowRight}/>}*/}
           {/*</div>*/}
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>
