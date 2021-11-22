@@ -26,16 +26,29 @@ class ActionsBar extends PureComponent {
   handleToggleUserList() {
     const {
       layoutContextDispatch,
+      sidebarNavigation
     } = this.props;
 
-    layoutContextDispatch({
-      type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
-      value: true,
-    });
-    layoutContextDispatch({
-      type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
-      value: PANELS.USERLIST,
-    });
+    if (sidebarNavigation.isOpen) {
+
+      layoutContextDispatch({
+        type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
+        value: false,
+      });
+      layoutContextDispatch({
+        type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
+        value: PANELS.NONE,
+      });
+    } else {
+      layoutContextDispatch({
+        type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
+        value: true,
+      });
+      layoutContextDispatch({
+        type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
+        value: PANELS.USERLIST,
+      });
+    }
   }
 
   render() {

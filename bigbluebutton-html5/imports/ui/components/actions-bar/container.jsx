@@ -1,32 +1,30 @@
-import React, { useContext } from 'react';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import { injectIntl } from 'react-intl';
+import React, {useContext} from 'react';
+import {Meteor} from 'meteor/meteor';
+import {withTracker} from 'meteor/react-meteor-data';
+import {injectIntl} from 'react-intl';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import Auth from '/imports/ui/services/auth';
 import PresentationService from '/imports/ui/components/presentation/service';
 import Presentations from '/imports/api/presentations';
-import { UsersContext } from '../components-data/users-context/context';
+import {UsersContext} from '../components-data/users-context/context';
 import ActionsBar from './component';
 import Service from './service';
 import UserListService from '/imports/ui/components/user-list/service';
 import ExternalVideoService from '/imports/ui/components/external-video-player/service';
 import CaptionsService from '/imports/ui/components/captions/service';
 import LayoutContext from '../layout/context';
-import { isVideoBroadcasting } from '/imports/ui/components/screenshare/service';
+import {isVideoBroadcasting} from '/imports/ui/components/screenshare/service';
 
-import MediaService, {
-  getSwapLayout,
-  shouldEnableSwapLayout,
-} from '../media/service';
+import MediaService, {getSwapLayout, shouldEnableSwapLayout,} from '../media/service';
 
 const ActionsBarContainer = (props) => {
   const usingUsersContext = useContext(UsersContext);
   const { users } = usingUsersContext;
   const layoutContext = useContext(LayoutContext);
-  const { layoutContextState, layoutContextDispatch } = layoutContext;
-  const { output } = layoutContextState;
-  const { actionBar: actionsBarStyle } = output;
+  const {layoutContextState, layoutContextDispatch} = layoutContext;
+  const {output, input} = layoutContextState;
+  const {actionBar: actionsBarStyle} = output;
+  const {sidebarContent, sidebarNavigation} = input;
 
   const currentUser = { userId: Auth.userID, emoji: users[Auth.meetingID][Auth.userID].emoji };
 
@@ -36,6 +34,7 @@ const ActionsBarContainer = (props) => {
         ...props,
         currentUser,
         layoutContextDispatch,
+        sidebarNavigation,
         actionsBarStyle,
       }
     }
