@@ -11,8 +11,33 @@ import JoinVideoOptionsContainer from '../video-provider/video-button/container'
 import PresentationOptionsContainer from './presentation-options/component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faHandPaper, faHandPointDown} from '@fortawesome/free-solid-svg-icons';
+import _ from "lodash";
+import {ACTIONS, PANELS} from "../layout/enums";
 
 class ActionsBar extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.menuItem = _.uniqueId('action-item-');
+
+    this.handleToggleUserList = this.handleToggleUserList.bind(this);
+  }
+
+  handleToggleUserList() {
+    const {
+      layoutContextDispatch,
+    } = this.props;
+
+    layoutContextDispatch({
+      type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
+      value: true,
+    });
+    layoutContextDispatch({
+      type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
+      value: PANELS.USERLIST,
+    });
+  }
+
   render() {
     const {
       amIPresenter,
@@ -65,11 +90,10 @@ class ActionsBar extends PureComponent {
                 color='default'
                 data-test="menu"
                 // ghost={currentUser.emoji !== 'raiseHand'}
-                className={cx(styles.btn)}
                 hideLabel
                 circle
                 size="lg"
-                onClick={null}
+                onClick={() => this.handleToggleUserList}
                 customIcon={menuIcon}
             />
 
