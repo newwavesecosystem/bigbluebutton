@@ -105,7 +105,7 @@ class ActionsBar extends PureComponent {
                 // ghost={currentUser.emoji !== 'raiseHand'}
                 hideLabel
                 circle
-                size="lg"
+                size="md"
                 onClick={() => this.handleToggleUserList()}
                 customIcon={menuIcon}
             />
@@ -160,28 +160,28 @@ class ActionsBar extends PureComponent {
             ? (
               <Button
                 // icon="hand"
-                label={intl.formatMessage({
+                  label={intl.formatMessage({
                   id: `app.actionsBar.emojiMenu.${
                     currentUser.emoji === 'raiseHand'
                       ? 'lowerHandLabel'
                       : 'raiseHandLabel'
                   }`,
                 })}
-                accessKey={shortcuts.raisehand}
-                color={currentUser.emoji === 'raiseHand' ? 'primary' : 'default'}
-                data-test={currentUser.emoji === 'raiseHand' ? 'lowerHandLabel' : 'raiseHandLabel'}
-                ghost={currentUser.emoji !== 'raiseHand'}
-                className={cx(currentUser.emoji === 'raiseHand' || styles.btn)}
-                hideLabel
-                circle
-                size="lg"
-                onClick={() => {
-                  setEmojiStatus(
-                    currentUser.userId,
-                    currentUser.emoji === 'raiseHand' ? 'none' : 'raiseHand',
-                  );
-                }}
-                customIcon={currentUser.emoji === 'raiseHand' ? handdownIcon : handIcon}
+                  accessKey={shortcuts.raisehand}
+                  color={currentUser.emoji === 'raiseHand' ? 'primary' : 'default'}
+                  data-test={currentUser.emoji === 'raiseHand' ? 'lowerHandLabel' : 'raiseHandLabel'}
+                  ghost={currentUser.emoji !== 'raiseHand'}
+                  className={cx(currentUser.emoji === 'raiseHand' || styles.btn)}
+                  hideLabel
+                  circle
+                  size="md"
+                  onClick={() => {
+                    setEmojiStatus(
+                        currentUser.userId,
+                        currentUser.emoji === 'raiseHand' ? 'none' : 'raiseHand',
+                    );
+                  }}
+                  customIcon={currentUser.emoji === 'raiseHand' ? handdownIcon : handIcon}
               />
             )
             : null}

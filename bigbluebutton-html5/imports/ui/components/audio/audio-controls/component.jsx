@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import deviceInfo from '/imports/utils/deviceInfo';
 import Button from '/imports/ui/components/button/component';
 import getFromUserSettings from '/imports/ui/services/users-settings';
@@ -10,7 +10,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMicrophone, faMicrophoneSlash, faPhoneAlt, faPhoneVolume,} from '@fortawesome/free-solid-svg-icons';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
-import { styles } from './styles';
+import {styles} from './styles';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -160,21 +160,21 @@ class AudioControls extends PureComponent {
       inAudio,
     } = this.props;
 
-    const { isMobile } = deviceInfo;
+    const {isMobile} = deviceInfo;
 
-    let { enableDynamicAudioDeviceSelection } = Meteor.settings.public.app;
+    let {enableDynamicAudioDeviceSelection} = Meteor.settings.public.app;
 
     if (typeof enableDynamicAudioDeviceSelection === 'undefined') {
       enableDynamicAudioDeviceSelection = true;
     }
 
-    const _enableDynamicDeviceSelection = enableDynamicAudioDeviceSelection
-      && !isMobile;
+    const _enableDynamicDeviceSelection = enableDynamicAudioDeviceSelection;
+    // && !isMobile;
 
     if (inAudio) {
       if (_enableDynamicDeviceSelection) {
         return AudioControls.renderLeaveButtonWithLiveStreamSelector(this
-          .props);
+            .props);
       }
 
       return this.renderLeaveButtonWithoutLiveStreamSelector();

@@ -68,7 +68,7 @@ const PresentationOptionsContainer = ({
       // color={!isLayoutSwapped ? "primary" : "default"}
         hideLabel
         circle
-        size="lg"
+        size="md"
         onClick={() => toggleSwapLayout(layoutContextDispatch)}
         id="restore-presentation"
         ghost={isLayoutSwapped}

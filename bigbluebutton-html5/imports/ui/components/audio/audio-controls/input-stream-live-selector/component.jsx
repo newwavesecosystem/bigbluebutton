@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logger from '/imports/startup/client/logger';
 import Auth from '/imports/ui/services/auth';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 import Button from '/imports/ui/components/button/component';
 import ButtonEmoji from '/imports/ui/components/button/button-emoji/ButtonEmoji';
 import BBBMenu from '/imports/ui/components/menu/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 
-import { styles } from '../styles';
+import {styles} from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -263,13 +263,14 @@ class InputStreamLiveSelector extends Component {
     } = this.props;
 
     const inputDeviceList = !isListenOnly
-      ? this.renderDeviceList(
-        AUDIO_INPUT,
-        audioInputDevices,
-        liveChangeInputDevice,
-        intl.formatMessage(intlMessages.microphones),
-        selectedInputDeviceId || currentInputDeviceId,
-      ) : [];
+        ? this.renderDeviceList(
+            AUDIO_INPUT,
+            audioInputDevices,
+            liveChangeInputDevice,
+            intl.formatMessage(intlMessages.microphones),
+            selectedInputDeviceId || currentInputDeviceId,
+            false,
+        ) : [];
 
     const outputDeviceList = this.renderDeviceList(
       AUDIO_OUTPUT,
@@ -277,7 +278,6 @@ class InputStreamLiveSelector extends Component {
       liveChangeOutputDevice,
       intl.formatMessage(intlMessages.speakers),
       selectedOutputDeviceId || currentOutputDeviceId,
-      false,
     );
 
     const dropdownListComplete = outputDeviceList.concat(inputDeviceList);

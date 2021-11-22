@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styles } from '../styles';
+import {styles} from '../styles';
 import Icon from '../../icon/component';
 import TooltipContainer from '/imports/ui/components/tooltip/container';
 
@@ -63,16 +63,17 @@ const ButtonEmoji = (props) => {
     <span>
       <TooltipContainer title={label}>
         <button
-          type="button"
-          tabIndex={tabIndex}
-          {...newProps}
-          className={[styles.emojiButton, className].join(' ')}
-          aria-label={label}
-          onClick={onClick}
+            type="button"
+            tabIndex={tabIndex}
+            {...newProps}
+            className={[styles.emojiButton, className].join(' ')}
+            aria-label={label}
+            color="primary"
+            onClick={onClick}
         >
           <span className={styles.label}>
-            { !hideLabel && label }
-            { IconComponent }
+            {!hideLabel && label}
+            {IconComponent}
           </span>
         </button>
       </TooltipContainer>

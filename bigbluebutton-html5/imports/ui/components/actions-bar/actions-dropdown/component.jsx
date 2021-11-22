@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
-import { makeCall } from '/imports/ui/services/api';
+import {defineMessages} from 'react-intl';
+import {makeCall} from '/imports/ui/services/api';
 import Button from '/imports/ui/components/button/component';
-import { withModalMounter } from '/imports/ui/components/modal/service';
+import {withModalMounter} from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 import RandomUserSelectContainer from '/imports/ui/components/modal/random-user/container';
@@ -12,11 +12,11 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import cx from 'classnames';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleUp, faBars } from '@fortawesome/free-solid-svg-icons';
-import { Session } from 'meteor/session';
-import { styles } from '../styles';
-import { PANELS, ACTIONS } from '../../layout/enums';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons';
+import {Session} from 'meteor/session';
+import {styles} from '../styles';
+import {ACTIONS, PANELS} from '../../layout/enums';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -383,17 +383,17 @@ class ActionsDropdown extends PureComponent {
         accessKey={OPEN_ACTIONS_AK}
         trigger={
           <Button
-            className={isDropdownOpen ? styles.hideDropdownButton : ''}
-            hideLabel
-            aria-label={intl.formatMessage(intlMessages.actionsLabel)}
-            label={intl.formatMessage(intlMessages.actionsLabel)}
+              className={isDropdownOpen ? styles.hideDropdownButton : ''}
+              hideLabel
+              aria-label={intl.formatMessage(intlMessages.actionsLabel)}
+              label={intl.formatMessage(intlMessages.actionsLabel)}
             // icon="plus"
             // color="primary"
-            size="lg"
-            circle
-            onClick={() => null}
-            customIcon={arrowUp}
-            color="default"
+              size="md"
+              circle
+              onClick={() => null}
+              customIcon={arrowUp}
+              color="default"
           />
         }
         actions={children}

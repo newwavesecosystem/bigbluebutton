@@ -13,6 +13,7 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import {ACTIONS, PANELS} from '../layout/enums';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretSquareLeft, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
+import Icon from '../icon/component';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -191,8 +192,8 @@ class NavBar extends Component {
           {/*    customIcon={isExpanded ? leftIcon : rightIcon}*/}
 
           {/*  />*/}
-          {/*  /!*{isExpanded ? null*!/*/}
-          {/*  /!*  : <Icon iconName="right_arrow" className={styles.arrowRight} />}*!/*/}
+          {isExpanded ? null
+              : <Icon iconName="right_arrow" className={styles.arrowRight}/>}
           {/*</div>*/}
           <div className={styles.center}>
             <h1 className={styles.presentationTitle}>{presentationTitle}</h1>

@@ -103,7 +103,7 @@ public:
         userJoinAudioAlerts: false
         userJoinPushAlerts: false
         userLeaveAudioAlerts: false
-        userLeavePushAlerts: true
+        userLeavePushAlerts: false
         raiseHandAudioAlerts: true
         raiseHandPushAlerts: true
         guestWaitingAudioAlerts: true
