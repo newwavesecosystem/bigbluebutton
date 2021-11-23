@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logger from '/imports/startup/client/logger';
 import Auth from '/imports/ui/services/auth';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 import Button from '/imports/ui/components/button/component';
 import ButtonEmoji from '/imports/ui/components/button/button-emoji/ButtonEmoji';
 import BBBMenu from '/imports/ui/components/menu/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMicrophone, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
 import cx from 'classnames';
-import { styles } from '../styles';
+import {styles} from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -326,23 +326,23 @@ class InputStreamLiveSelector extends Component {
                       // aria-label={intl.formatMessage(intlMessages.leaveAudio)}
                       // label={intl.formatMessage(intlMessages.leaveAudio)}
                       // accessKey={shortcuts.leaveaudio}
-              className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
-              label={label}
-              aria-label={label}
-              accessKey={shortcuts.togglemute}
-              data-test="leaveAudio"
-              hideLabel
+                className={cx(!talking || styles.glow)}
+                label={label}
+                aria-label={label}
+                accessKey={shortcuts.togglemute}
+                data-test="leaveAudio"
+                hideLabel
                       // color="primary"
                       // icon={isListenOnly ? 'listen' : 'volume_level_2'}
-              size="lg"
-              customIcon={muted ? micOff : micOn}
-              circle
-              onClick={(e) => {
+                size="lg"
+                customIcon={muted ? micOff : micOn}
+                circle
+                onClick={(e) => {
                 e.stopPropagation();
                 // handleLeaveAudio();
                 handleToggleMuteMicrophone();
               }}
-              color={muted ? 'danger' : 'success'}
+                color={muted ? 'danger' : 'success'}
             />
             <ButtonEmoji
               className={styles.audioDropdown}

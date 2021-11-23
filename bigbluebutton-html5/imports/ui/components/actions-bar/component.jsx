@@ -102,7 +102,6 @@ class ActionsBar extends PureComponent {
                 accessKey="menu"
                 color='default'
                 data-test="menu"
-                // ghost={currentUser.emoji !== 'raiseHand'}
                 hideLabel
                 circle
                 size="md"
