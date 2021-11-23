@@ -42,6 +42,14 @@ const intlMessages = defineMessages({
     id: 'app.audio.speakers',
     description: 'Output audio dropdown item label',
   },
+  muteAudio: {
+    id: 'app.actionsBar.muteLabel',
+    description: 'Mute audio button label',
+  },
+  unmuteAudio: {
+    id: 'app.actionsBar.unmuteLabel',
+    description: 'Unmute audio button label',
+  },
 });
 
 const propTypes = {
