@@ -212,8 +212,7 @@ class InputStreamLiveSelector extends Component {
   renderDeviceList(deviceKind, list, callback, title, currentDeviceId,
     renderSeparator = true) {
     const {
-      intl,
-      handleLeaveAudio
+      intl
     } = this.props;
     const listLength = list ? list.length : -1;
     const listTitle = [
@@ -243,13 +242,8 @@ class InputStreamLiveSelector extends Component {
             className: styles.disableDeviceSelection,
           },
         ];
-    return listTitle.concat(deviceList).concat([{
-      key: "audio-leave",
-      label: "Dis-Konn3ct Audio",
-      className: '',
-      iconRight: null,
-      onClick: () => handleLeaveAudio(),
-    }]);
+
+    return listTitle.concat(deviceList);
   }
 
   render() {
@@ -291,10 +285,30 @@ class InputStreamLiveSelector extends Component {
         selectedOutputDeviceId || currentOutputDeviceId,
     );
 
-    const dropdownListComplete = outputDeviceList.concat(inputDeviceList);
+
+    const otherList = [
+      {
+        key: "others-Title",
+        label: "Others",
+        disabled: true,
+        dividerTop: true,
+      },
+      {
+        key: "audio-leave",
+        label: "Dis-Konn3ct Audio",
+        className: '',
+        iconRight: null,
+        onClick: () => handleLeaveAudio(),
+      }];
+
+
+    const dropdownListComplete = outputDeviceList.concat(inputDeviceList).concat(otherList);
 
     const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg"/>;
     const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>;
+
+    const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
+        : intl.formatMessage(intlMessages.muteAudio);
 
 
     return (
@@ -302,9 +316,12 @@ class InputStreamLiveSelector extends Component {
             trigger={(
                 <>
                   <Button
-                      aria-label={intl.formatMessage(intlMessages.leaveAudio)}
-                      label={intl.formatMessage(intlMessages.leaveAudio)}
-                      accessKey={shortcuts.leaveaudio}
+                      // aria-label={intl.formatMessage(intlMessages.leaveAudio)}
+                      // label={intl.formatMessage(intlMessages.leaveAudio)}
+                      // accessKey={shortcuts.leaveaudio}
+                      label={label}
+                      aria-label={label}
+                      accessKey={shortcuts.togglemute}
                       data-test="leaveAudio"
                       hideLabel
                       // color="primary"
@@ -317,7 +334,7 @@ class InputStreamLiveSelector extends Component {
                         // handleLeaveAudio();
                         handleToggleMuteMicrophone()
                       }}
-                      color="default"
+                      color={muted ? "danger" : "success"}
             />
             <ButtonEmoji
               className={styles.audioDropdown}
