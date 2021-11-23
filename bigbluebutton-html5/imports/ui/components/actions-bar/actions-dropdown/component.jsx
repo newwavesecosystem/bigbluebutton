@@ -13,7 +13,7 @@ import cx from 'classnames';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faAngleDoubleUp} from '@fortawesome/free-solid-svg-icons';
+import {faArrowCircleUp} from '@fortawesome/free-solid-svg-icons';
 import {Session} from 'meteor/session';
 import {styles} from '../styles';
 import {ACTIONS, PANELS} from '../../layout/enums';
@@ -376,7 +376,7 @@ class ActionsDropdown extends PureComponent {
       || !isMeteorConnected) {
       return null;
     }
-    const arrowUp = <FontAwesomeIcon icon={faAngleDoubleUp} size="lg" />;
+    const arrowUp = <FontAwesomeIcon icon={faArrowCircleUp} size="md"/>;
     return (
       <BBBMenu
         classes={[styles.offsetBottom]}

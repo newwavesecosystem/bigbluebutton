@@ -175,7 +175,7 @@ const ScreenshareButton = ({
           data-test={isVideoBroadcasting ? 'stopScreenShare' : 'startScreenShare'}
           label={intl.formatMessage(vLabel)}
           description={intl.formatMessage(vDescr)}
-          color={isVideoBroadcasting ? 'primary' : 'default'}
+          color={isVideoBroadcasting ? 'success' : 'default'}
           ghost={!isVideoBroadcasting}
           hideLabel
           circle

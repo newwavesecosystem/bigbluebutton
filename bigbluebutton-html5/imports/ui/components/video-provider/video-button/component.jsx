@@ -81,7 +81,7 @@ const JoinVideoButton = ({
           className={cx(hasVideoStream || styles.btn)}
           onClick={handleOnClick}
           hideLabel
-          color="default"
+          color={hasVideoStream ? "success" : "default"}
           customIcon={hasVideoStream ? videoOn : videoOff}
           ghost={!hasVideoStream}
           size="md"

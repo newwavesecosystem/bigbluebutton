@@ -11,6 +11,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import {styles} from '../styles';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMicrophone, faMicrophoneSlash} from "@fortawesome/free-solid-svg-icons";
+import cx from "classnames";
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -327,6 +328,7 @@ class InputStreamLiveSelector extends Component {
                       // aria-label={intl.formatMessage(intlMessages.leaveAudio)}
                       // label={intl.formatMessage(intlMessages.leaveAudio)}
                       // accessKey={shortcuts.leaveaudio}
+                      className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
                       label={label}
                       aria-label={label}
                       accessKey={shortcuts.togglemute}
