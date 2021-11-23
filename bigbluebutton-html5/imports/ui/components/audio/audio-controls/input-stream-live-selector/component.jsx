@@ -213,6 +213,7 @@ class InputStreamLiveSelector extends Component {
     renderSeparator = true) {
     const {
       intl,
+      handleLeaveAudio
     } = this.props;
     const listLength = list ? list.length : -1;
     const listTitle = [
@@ -232,17 +233,23 @@ class InputStreamLiveSelector extends Component {
           iconRight: (device.deviceId === currentDeviceId) ? 'check' : null,
           onClick: () => this.onDeviceListClick(device.deviceId, deviceKind, callback),
         }
-      ))
-      : [
-        {
-          key: `noDeviceFoundKey-${deviceKind}-`,
-          label: listLength < 0
-            ? intl.formatMessage(intlMessages.loading)
-            : intl.formatMessage(intlMessages.noDeviceFound),
-          className: styles.disableDeviceSelection,
-        },
-      ];
-    return listTitle.concat(deviceList);
+        ))
+        : [
+          {
+            key: `noDeviceFoundKey-${deviceKind}-`,
+            label: listLength < 0
+                ? intl.formatMessage(intlMessages.loading)
+                : intl.formatMessage(intlMessages.noDeviceFound),
+            className: styles.disableDeviceSelection,
+          },
+        ];
+    return listTitle.concat(deviceList).concat([{
+      key: "audio-leave",
+      label: "Dis-Konn3ct Audio",
+      className: '',
+      iconRight: null,
+      onClick: () => handleLeaveAudio(),
+    }]);
   }
 
   render() {
