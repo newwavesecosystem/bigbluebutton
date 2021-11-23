@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import logger from '/imports/startup/client/logger';
 import Auth from '/imports/ui/services/auth';
-import {defineMessages, injectIntl} from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import Button from '/imports/ui/components/button/component';
 import ButtonEmoji from '/imports/ui/components/button/button-emoji/ButtonEmoji';
 import BBBMenu from '/imports/ui/components/menu/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 
-import {styles} from '../styles';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMicrophone, faMicrophoneSlash} from "@fortawesome/free-solid-svg-icons";
-import cx from "classnames";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMicrophone, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
+import cx from 'classnames';
+import { styles } from '../styles';
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -221,7 +221,7 @@ class InputStreamLiveSelector extends Component {
   renderDeviceList(deviceKind, list, callback, title, currentDeviceId,
     renderSeparator = true) {
     const {
-      intl
+      intl,
     } = this.props;
     const listLength = list ? list.length : -1;
     const listTitle = [
@@ -241,16 +241,16 @@ class InputStreamLiveSelector extends Component {
           iconRight: (device.deviceId === currentDeviceId) ? 'check' : null,
           onClick: () => this.onDeviceListClick(device.deviceId, deviceKind, callback),
         }
-        ))
-        : [
-          {
-            key: `noDeviceFoundKey-${deviceKind}-`,
-            label: listLength < 0
-                ? intl.formatMessage(intlMessages.loading)
-                : intl.formatMessage(intlMessages.noDeviceFound),
-            className: styles.disableDeviceSelection,
-          },
-        ];
+      ))
+      : [
+        {
+          key: `noDeviceFoundKey-${deviceKind}-`,
+          label: listLength < 0
+            ? intl.formatMessage(intlMessages.loading)
+            : intl.formatMessage(intlMessages.noDeviceFound),
+          className: styles.disableDeviceSelection,
+        },
+      ];
 
     return listTitle.concat(deviceList);
   }
@@ -273,78 +273,76 @@ class InputStreamLiveSelector extends Component {
       currentOutputDeviceId,
       isListenOnly,
       muted,
-      handleToggleMuteMicrophone
+      handleToggleMuteMicrophone,
+      talking,
     } = this.props;
 
     const inputDeviceList = !isListenOnly
-        ? this.renderDeviceList(
-            AUDIO_INPUT,
-            audioInputDevices,
-            liveChangeInputDevice,
-            intl.formatMessage(intlMessages.microphones),
-            selectedInputDeviceId || currentInputDeviceId,
-            false,
-        ) : [];
+      ? this.renderDeviceList(
+        AUDIO_INPUT,
+        audioInputDevices,
+        liveChangeInputDevice,
+        intl.formatMessage(intlMessages.microphones),
+        selectedInputDeviceId || currentInputDeviceId,
+        false,
+      ) : [];
 
     const outputDeviceList = this.renderDeviceList(
-        AUDIO_OUTPUT,
-        audioOutputDevices,
-        liveChangeOutputDevice,
-        intl.formatMessage(intlMessages.speakers),
-        selectedOutputDeviceId || currentOutputDeviceId,
+      AUDIO_OUTPUT,
+      audioOutputDevices,
+      liveChangeOutputDevice,
+      intl.formatMessage(intlMessages.speakers),
+      selectedOutputDeviceId || currentOutputDeviceId,
     );
-
 
     const otherList = [
       {
-        key: "others-Title",
-        label: "Others",
+        key: 'others-Title',
+        label: 'Others',
         disabled: true,
         dividerTop: true,
       },
       {
-        key: "audio-leave",
-        label: "Dis-Konn3ct Audio",
+        key: 'audio-leave',
+        label: 'Dis-Konn3ct Audio',
         className: '',
         iconRight: null,
         onClick: () => handleLeaveAudio(),
       }];
 
-
     const dropdownListComplete = outputDeviceList.concat(inputDeviceList).concat(otherList);
 
-    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg"/>;
-    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>;
+    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg" />;
+    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg" />;
 
     const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
-        : intl.formatMessage(intlMessages.muteAudio);
-
+      : intl.formatMessage(intlMessages.muteAudio);
 
     return (
-        <BBBMenu
-            trigger={(
-                <>
-                  <Button
+      <BBBMenu
+        trigger={(
+          <>
+            <Button
                       // aria-label={intl.formatMessage(intlMessages.leaveAudio)}
                       // label={intl.formatMessage(intlMessages.leaveAudio)}
                       // accessKey={shortcuts.leaveaudio}
-                      className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
-                      label={label}
-                      aria-label={label}
-                      accessKey={shortcuts.togglemute}
-                      data-test="leaveAudio"
-                      hideLabel
+              className={cx(styles.muteToggle, !talking || styles.glow, !muted || styles.btn)}
+              label={label}
+              aria-label={label}
+              accessKey={shortcuts.togglemute}
+              data-test="leaveAudio"
+              hideLabel
                       // color="primary"
                       // icon={isListenOnly ? 'listen' : 'volume_level_2'}
-                      size="lg"
-                      customIcon={muted ? micOff : micOn}
-                      circle
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // handleLeaveAudio();
-                        handleToggleMuteMicrophone()
-                      }}
-                      color={muted ? "danger" : "success"}
+              size="lg"
+              customIcon={muted ? micOff : micOn}
+              circle
+              onClick={(e) => {
+                e.stopPropagation();
+                // handleLeaveAudio();
+                handleToggleMuteMicrophone();
+              }}
+              color={muted ? 'danger' : 'success'}
             />
             <ButtonEmoji
               className={styles.audioDropdown}

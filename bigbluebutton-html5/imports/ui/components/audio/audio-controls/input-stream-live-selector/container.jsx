@@ -1,12 +1,12 @@
-import React, {PureComponent} from 'react';
-import {withTracker} from 'meteor/react-meteor-data';
+import React, { PureComponent } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
 import InputStreamLiveSelector from './component';
 import Service from '../../service';
 
 class InputStreamLiveSelectorContainer extends PureComponent {
   render() {
     return (
-        <InputStreamLiveSelector {...this.props} />
+      <InputStreamLiveSelector {...this.props} />
     );
   }
 }
@@ -14,6 +14,7 @@ class InputStreamLiveSelectorContainer extends PureComponent {
 export default withTracker(({ handleLeaveAudio }) => ({
   muted: Service.isMuted(),
   handleToggleMuteMicrophone: () => Service.toggleMuteMicrophone(),
+  talking: Service.isTalking() && !Service.isMuted(),
   isAudioConnected: Service.isConnected(),
   isListenOnly: Service.isListenOnly(),
   currentInputDeviceId: Service.inputDeviceId(),
