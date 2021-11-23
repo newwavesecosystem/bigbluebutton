@@ -262,7 +262,8 @@ class InputStreamLiveSelector extends Component {
       currentInputDeviceId,
       currentOutputDeviceId,
       isListenOnly,
-      muted
+      muted,
+      handleToggleMuteMicrophone
     } = this.props;
 
     const inputDeviceList = !isListenOnly
@@ -305,9 +306,10 @@ class InputStreamLiveSelector extends Component {
                       customIcon={muted ? micOff : micOn}
                       circle
                       onClick={(e) => {
-                e.stopPropagation();
-                handleLeaveAudio();
-              }}
+                        e.stopPropagation();
+                        // handleLeaveAudio();
+                        handleToggleMuteMicrophone()
+                      }}
                       color="default"
             />
             <ButtonEmoji

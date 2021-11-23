@@ -13,6 +13,7 @@ class InputStreamLiveSelectorContainer extends PureComponent {
 
 export default withTracker(({ handleLeaveAudio }) => ({
   muted: Service.isMuted(),
+  handleToggleMuteMicrophone: () => Service.toggleMuteMicrophone(),
   isAudioConnected: Service.isConnected(),
   isListenOnly: Service.isListenOnly(),
   currentInputDeviceId: Service.inputDeviceId(),
