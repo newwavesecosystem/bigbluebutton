@@ -1,24 +1,21 @@
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import deviceInfo from '/imports/utils/deviceInfo';
 import browserInfo from '/imports/utils/browserInfo';
 import Button from '/imports/ui/components/button/component';
 import logger from '/imports/startup/client/logger';
-import { notify } from '/imports/ui/services/notification';
+import {notify} from '/imports/ui/services/notification';
 import cx from 'classnames';
 import Modal from '/imports/ui/components/modal/simple/component';
-import { withModalMounter } from '../../modal/service';
-import { styles } from '../styles';
+import {withModalMounter} from '../../modal/service';
+import {styles} from '../styles';
 import ScreenshareBridgeService from '/imports/api/screenshare/client/bridge/service';
-import {
-  shareScreen,
-  screenshareHasEnded,
-} from '/imports/ui/components/screenshare/service';
-import { SCREENSHARING_ERRORS } from '/imports/api/screenshare/client/bridge/errors';
+import {screenshareHasEnded, shareScreen,} from '/imports/ui/components/screenshare/service';
+import {SCREENSHARING_ERRORS} from '/imports/api/screenshare/client/bridge/errors';
 
-const { isMobile } = deviceInfo;
-const { isSafari } = browserInfo;
+const {isMobile} = deviceInfo;
+const {isSafari} = browserInfo;
 
 const propTypes = {
   intl: PropTypes.objectOf(Object).isRequired,
@@ -172,27 +169,27 @@ const ScreenshareButton = ({
   return shouldAllowScreensharing
     ? (
       <Button
-        className={cx(isVideoBroadcasting || styles.btn)}
-        disabled={(!isMeteorConnected && !isVideoBroadcasting) || !screenshareDataSavingSetting}
-        icon={isVideoBroadcasting ? 'desktop' : 'desktop_off'}
-        data-test={isVideoBroadcasting ? 'stopScreenShare' : 'startScreenShare'}
-        label={intl.formatMessage(vLabel)}
-        description={intl.formatMessage(vDescr)}
-        color={isVideoBroadcasting ? 'primary' : 'default'}
-        ghost={!isVideoBroadcasting}
-        hideLabel
-        circle
-        size="lg"
-        onClick={isVideoBroadcasting
-          ? screenshareHasEnded
-          : () => {
-            if (isSafari && !ScreenshareBridgeService.HAS_DISPLAY_MEDIA) {
-              renderScreenshareUnavailableModal();
-            } else {
-              shareScreen(handleFailure);
-            }
-          }}
-        id={isVideoBroadcasting ? 'unshare-screen-button' : 'share-screen-button'}
+          className={cx(isVideoBroadcasting || styles.btn)}
+          disabled={(!isMeteorConnected && !isVideoBroadcasting) || !screenshareDataSavingSetting}
+          icon={isVideoBroadcasting ? 'desktop' : 'desktop_off'}
+          data-test={isVideoBroadcasting ? 'stopScreenShare' : 'startScreenShare'}
+          label={intl.formatMessage(vLabel)}
+          description={intl.formatMessage(vDescr)}
+          color={isVideoBroadcasting ? 'primary' : 'default'}
+          ghost={!isVideoBroadcasting}
+          hideLabel
+          circle
+          size="md"
+          onClick={isVideoBroadcasting
+              ? screenshareHasEnded
+              : () => {
+                if (isSafari && !ScreenshareBridgeService.HAS_DISPLAY_MEDIA) {
+                  renderScreenshareUnavailableModal();
+                } else {
+                  shareScreen(handleFailure);
+                }
+              }}
+          id={isVideoBroadcasting ? 'unshare-screen-button' : 'share-screen-button'}
       />
     ) : null;
 };

@@ -9,6 +9,8 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 
 import {styles} from '../styles';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMicrophone, faMicrophoneSlash} from "@fortawesome/free-solid-svg-icons";
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -260,6 +262,7 @@ class InputStreamLiveSelector extends Component {
       currentInputDeviceId,
       currentOutputDeviceId,
       isListenOnly,
+      muted
     } = this.props;
 
     const inputDeviceList = !isListenOnly
@@ -273,34 +276,39 @@ class InputStreamLiveSelector extends Component {
         ) : [];
 
     const outputDeviceList = this.renderDeviceList(
-      AUDIO_OUTPUT,
-      audioOutputDevices,
-      liveChangeOutputDevice,
-      intl.formatMessage(intlMessages.speakers),
-      selectedOutputDeviceId || currentOutputDeviceId,
+        AUDIO_OUTPUT,
+        audioOutputDevices,
+        liveChangeOutputDevice,
+        intl.formatMessage(intlMessages.speakers),
+        selectedOutputDeviceId || currentOutputDeviceId,
     );
 
     const dropdownListComplete = outputDeviceList.concat(inputDeviceList);
 
+    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg"/>;
+    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>;
+
+
     return (
-      <BBBMenu
-        trigger={(
-          <>
-            <Button
-              aria-label={intl.formatMessage(intlMessages.leaveAudio)}
-              label={intl.formatMessage(intlMessages.leaveAudio)}
-              accessKey={shortcuts.leaveaudio}
-              data-test="leaveAudio"
-              hideLabel
-              // color="primary"
-              icon={isListenOnly ? 'listen' : 'volume_level_2'}
-              size="lg"
-              circle
-              onClick={(e) => {
+        <BBBMenu
+            trigger={(
+                <>
+                  <Button
+                      aria-label={intl.formatMessage(intlMessages.leaveAudio)}
+                      label={intl.formatMessage(intlMessages.leaveAudio)}
+                      accessKey={shortcuts.leaveaudio}
+                      data-test="leaveAudio"
+                      hideLabel
+                      // color="primary"
+                      // icon={isListenOnly ? 'listen' : 'volume_level_2'}
+                      size="lg"
+                      customIcon={muted ? micOff : micOn}
+                      circle
+                      onClick={(e) => {
                 e.stopPropagation();
                 handleLeaveAudio();
               }}
-              color="default"
+                      color="default"
             />
             <ButtonEmoji
               className={styles.audioDropdown}
