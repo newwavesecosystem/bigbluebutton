@@ -673,7 +673,7 @@ public:
       flushOnClose: true
       logTag: ''
   virtualBackgrounds:
-    enabled: true
+    enabled: false
     storedOnBBB: true
     showThumbnails: true
     imagesPath: /resources/images/virtual-backgrounds/
@@ -691,7 +691,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: KVmt0Rlr6EEEO72J8PWwZzHnXxnTVed626OfDXZ4WzZAub5778cLMdUgV0KFCK
+    apikey: XWcq2obeeNFDcqtpYHXpKcRaVT8nvgkstT2caGKjbhprNr7x6v1mLgeLVyWch2U
     version: 1.2.13
     host: 127.0.0.1
     port: 9001
