@@ -679,8 +679,9 @@ public:
     imagesPath: /resources/images/virtual-backgrounds/
     thumbnailsPath: /resources/images/virtual-backgrounds/thumbnails/
     fileNames:
-      - white.jpg
-      - konn3ct.jpg
+      - christmas1.jpg
+      - christmas2.jpg
+      - christmas3.jpg
 private:
   analytics:
     includeChat: true
