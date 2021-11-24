@@ -17,7 +17,6 @@ var createTFLiteSIMDModule = (function() {
 function(createTFLiteSIMDModule) {
   createTFLiteSIMDModule = createTFLiteSIMDModule || {};
 
-  var roomURL = "room/";
   var Module = typeof createTFLiteSIMDModule !== "undefined" ? createTFLiteSIMDModule : {};
   var readyPromiseResolve, readyPromiseReject;
   Module["ready"] = new Promise(function (resolve, reject) {
@@ -58,7 +57,7 @@ function(createTFLiteSIMDModule) {
       scriptDirectory = _scriptDir
     }
     if (scriptDirectory.indexOf("blob:") !== 0) {
-      scriptDirectory = scriptDirectory.substr(0, scriptDirectory.lastIndexOf(roomURL) + roomURL.length) + "wasm/"
+      scriptDirectory = scriptDirectory.substr(0, scriptDirectory.lastIndexOf("room/") + "room/".length) + "wasm/"
     } else {
       scriptDirectory = ""
     }
