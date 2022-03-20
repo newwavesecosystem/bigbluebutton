@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withModalMounter } from '/imports/ui/components/common/modal/service';
+import {withModalMounter} from '/imports/ui/components/common/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import Styled from './styles';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
@@ -12,8 +12,8 @@ import SettingsDropdownContainer from './settings-dropdown/container';
 import browserInfo from '/imports/utils/browserInfo';
 import deviceInfo from '/imports/utils/deviceInfo';
 import _ from "lodash";
-import { politeSRAlert } from '/imports/utils/dom-utils';
-import { PANELS, ACTIONS } from '../layout/enums';
+import {politeSRAlert} from '/imports/utils/dom-utils';
+import {ACTIONS, PANELS} from '../layout/enums';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -207,27 +207,27 @@ class NavBar extends Component {
         <Styled.Top>
           <Styled.Left>
             {isExpanded && document.dir === 'ltr'
-              && <Styled.ArrowLeft iconName="left_arrow" />}
+            && <Styled.ArrowLeft iconName="left_arrow"/>}
             {!isExpanded && document.dir === 'rtl'
-              && <Styled.ArrowLeft iconName="left_arrow" />}
-            <Styled.NavbarToggleButton
-              onClick={this.handleToggleUserList}
-              ghost
-              circle
-              hideLabel
-              data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}
-              label={intl.formatMessage(intlMessages.toggleUserListLabel)}
-              tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
-              aria-label={ariaLabel}
-              icon="user"
-              aria-expanded={isExpanded}
-              accessKey={TOGGLE_USERLIST_AK}
-              hasNotification={hasNotification}
-            />
+            && <Styled.ArrowLeft iconName="left_arrow"/>}
+            {/*<Styled.NavbarToggleButton*/}
+            {/*  onClick={this.handleToggleUserList}*/}
+            {/*  ghost*/}
+            {/*  circle*/}
+            {/*  hideLabel*/}
+            {/*  data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}*/}
+            {/*  label={intl.formatMessage(intlMessages.toggleUserListLabel)}*/}
+            {/*  tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}*/}
+            {/*  aria-label={ariaLabel}*/}
+            {/*  icon="user"*/}
+            {/*  aria-expanded={isExpanded}*/}
+            {/*  accessKey={TOGGLE_USERLIST_AK}*/}
+            {/*  hasNotification={hasNotification}*/}
+            {/*/>*/}
             {!isExpanded && document.dir === 'ltr'
-              && <Styled.ArrowRight iconName="right_arrow" />}
+            && <Styled.ArrowRight iconName="right_arrow"/>}
             {isExpanded && document.dir === 'rtl'
-              && <Styled.ArrowRight iconName="right_arrow" />}
+            && <Styled.ArrowRight iconName="right_arrow"/>}
           </Styled.Left>
           <Styled.Center>
             <Styled.PresentationTitle data-test="presentationTitle">
