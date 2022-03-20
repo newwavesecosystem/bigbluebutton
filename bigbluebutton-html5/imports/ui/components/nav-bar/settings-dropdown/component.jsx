@@ -12,7 +12,7 @@ import FullscreenService from '/imports/ui/components/common/fullscreen-button/s
 import {colorDanger} from '/imports/ui/stylesheets/styled-components/palette';
 import browserInfo from '/imports/utils/browserInfo';
 import Button from "/imports/ui/components/common/button/component";
-import Modal from '/imports/ui/components/common/modal/simple/component';
+import ConfirmationModal from "/imports/ui/components/common/modal/confirmation/component";
 
 const intlMessages = defineMessages({
   optionsLabel: {
@@ -175,31 +175,14 @@ class SettingsDropdown extends PureComponent {
     } = this.props;
 
     return (
-        <Modal
-            hideBorder
-            shouldShowCloseButton={false}
-            title="Leave"
-        >
-          <div className={styles.container}>
-            <div className={styles.description}>
-              Are you sure you want to leave the meeting
-            </div>
-            <div className={styles.footer}>
-              <Button
-                  data-test="confirmEndMeeting"
-                  color="primary"
-                  className={styles.button}
-                  label={intl.formatMessage(intlMessages.yesLabel)}
-                  onClick={() => this.leaveSession()}
-              />
-              <Button
-                  label={intl.formatMessage(intlMessages.noLabel)}
-                  className={styles.button}
-                  onClick={() => this.closeModal()}
-              />
-            </div>
-          </div>
-        </Modal>
+        <ConfirmationModal
+            intl={intl}
+            onConfirm={() => this.leaveSession()}
+            title="Leave Meeting"
+            description="Are you sure you want to leave the meeting?"
+            confirmButtonColor="danger"
+            confirmButtonDataTest="confirmEndMeeting"
+        />
     );
   }
 
@@ -209,33 +192,14 @@ class SettingsDropdown extends PureComponent {
     } = this.props;
 
     return (
-        <Modal
-            overlayClassName={styles.overlay}
-            className={styles.modal}
-            hideBorder
-            shouldShowCloseButton={false}
+        <ConfirmationModal
+            intl={intl}
+            onConfirm={() => this.reloadSession()}
             title="Reload meeting"
-        >
-          <div className={styles.container}>
-            <div className={styles.description}>
-              Are you sure you want to reload the meeting
-            </div>
-            <div className={styles.footer}>
-              <Button
-                  data-test="confirmReload"
-                  color="primary"
-                  className={styles.button}
-                  label={intl.formatMessage(intlMessages.yesLabel)}
-                  onClick={() => this.reloadSession()}
-              />
-              <Button
-                  label={intl.formatMessage(intlMessages.noLabel)}
-                  className={styles.button}
-                  onClick={() => this.closeModal()}
-              />
-            </div>
-          </div>
-        </Modal>
+            description="Are you sure you want to reload the meeting?"
+            confirmButtonColor="danger"
+            confirmButtonDataTest="confirmReload"
+        />
     );
   }
 
