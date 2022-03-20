@@ -12,7 +12,7 @@ const LoadingScreen = ({ children }) => (
       <div />
     </Styled.Spinner>
     <Styled.Message>
-      {children}
+      {children == "" ? "Joining in a moment" : children}
     </Styled.Message>
   </Styled.Background>
 );

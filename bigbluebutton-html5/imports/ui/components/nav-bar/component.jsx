@@ -6,8 +6,6 @@ import {defineMessages, injectIntl} from 'react-intl';
 import Styled from './styles';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
-import ConnectionStatusButton from '/imports/ui/components/connection-status/button/container';
-import ConnectionStatusService from '/imports/ui/components/connection-status/service';
 import SettingsDropdownContainer from './settings-dropdown/container';
 import browserInfo from '/imports/utils/browserInfo';
 import deviceInfo from '/imports/utils/deviceInfo';
@@ -239,7 +237,7 @@ class NavBar extends Component {
             />
           </Styled.Center>
           <Styled.Right>
-            {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null}
+            {/*{ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null}*/}
             <SettingsDropdownContainer amIModerator={amIModerator} />
           </Styled.Right>
         </Styled.Top>

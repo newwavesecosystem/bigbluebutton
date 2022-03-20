@@ -176,8 +176,6 @@ class SettingsDropdown extends PureComponent {
 
     return (
         <Modal
-            overlayClassName={styles.overlay}
-            className={styles.modal}
             hideBorder
             shouldShowCloseButton={false}
             title="Leave"
