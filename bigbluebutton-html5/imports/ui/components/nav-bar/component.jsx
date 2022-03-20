@@ -12,6 +12,7 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import _ from "lodash";
 import {politeSRAlert} from '/imports/utils/dom-utils';
 import {ACTIONS, PANELS} from '../layout/enums';
+import {FiArrowRightCircle} from "react-icons/fi";
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -208,24 +209,25 @@ class NavBar extends Component {
             && <Styled.ArrowLeft iconName="left_arrow"/>}
             {!isExpanded && document.dir === 'rtl'
             && <Styled.ArrowLeft iconName="left_arrow"/>}
-            {/*<Styled.NavbarToggleButton*/}
-            {/*  onClick={this.handleToggleUserList}*/}
-            {/*  ghost*/}
-            {/*  circle*/}
-            {/*  hideLabel*/}
-            {/*  data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}*/}
-            {/*  label={intl.formatMessage(intlMessages.toggleUserListLabel)}*/}
-            {/*  tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}*/}
-            {/*  aria-label={ariaLabel}*/}
-            {/*  icon="user"*/}
-            {/*  aria-expanded={isExpanded}*/}
-            {/*  accessKey={TOGGLE_USERLIST_AK}*/}
-            {/*  hasNotification={hasNotification}*/}
-            {/*/>*/}
+            <Styled.NavbarToggleButton
+                onClick={this.handleToggleUserList}
+                ghost
+                circle
+                hideLabel
+                data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}
+                label={intl.formatMessage(intlMessages.toggleUserListLabel)}
+                tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
+                aria-label={ariaLabel}
+                icon="user"
+                aria-expanded={isExpanded}
+                accessKey={TOGGLE_USERLIST_AK}
+                hasNotification={hasNotification}
+            />
             {!isExpanded && document.dir === 'ltr'
             && <Styled.ArrowRight iconName="right_arrow"/>}
             {isExpanded && document.dir === 'rtl'
             && <Styled.ArrowRight iconName="right_arrow"/>}
+            <FiArrowRightCircle/>
           </Styled.Left>
           <Styled.Center>
             <Styled.PresentationTitle data-test="presentationTitle">

@@ -8,16 +8,16 @@ public:
     # audio
     autoJoin: true
     # Disables the listen only option in audio modal.
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
-    skipCheck: false
+    skipCheck: true
     # Skips the echo test when connecting with microphone right after user
     # joins the room the first time. Subsequent joins to microphone won't
     # have echo test skipped, for example if user leaves and joins the mic
     # again or reloading page and joining mic again.
     # This setting won't have effect if skipCheck = true
-    skipCheckOnJoin: false
+    skipCheckOnJoin: true
     #
     # Allow users to change microphone/speaker dynamically
     # The device is changed immediately, without the need to rejoin
@@ -26,13 +26,13 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
-    bbbServerVersion: HTML5_FULL_BBB_VERSION
+    clientTitle: KONN3CT
+    appName: KONN3CT MEET
+    bbbServerVersion: v1.9
     displayBbbServerVersion: true
-    copyright: '©2022 BigBlueButton Inc.'
+    copyright: '©2022 konn3ct'
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://konn3ct.com/contact
     lockOnJoin: true
     cdn: ''
     basename: '/html5client'
