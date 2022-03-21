@@ -205,10 +205,10 @@ class NavBar extends Component {
       >
         <Styled.Top>
           <Styled.Left>
-            {isExpanded && document.dir === 'ltr'
-            && <FiArrowLeftCircle/>}
-            {!isExpanded && document.dir === 'rtl'
-            && <FiArrowLeftCircle/>}
+            {/*{isExpanded && document.dir === 'ltr'*/}
+            {/*&& <FiArrowLeftCircle/>}*/}
+            {/*{!isExpanded && document.dir === 'rtl'*/}
+            {/*&& <FiArrowLeftCircle/>}*/}
             <Styled.NavbarToggleButton
                 onClick={this.handleToggleUserList}
                 ghost
@@ -221,11 +221,12 @@ class NavBar extends Component {
                 aria-expanded={isExpanded}
                 accessKey={TOGGLE_USERLIST_AK}
                 hasNotification={hasNotification}
+                customIcon={isExpanded ? <FiArrowLeftCircle/> : <FiArrowRightCircle/>}
             />
-            {!isExpanded && document.dir === 'ltr'
-            && <FiArrowRightCircle/>}
-            {isExpanded && document.dir === 'rtl'
-            && <FiArrowRightCircle/>}
+            {/*{!isExpanded && document.dir === 'ltr'*/}
+            {/*&& <FiArrowRightCircle/>}*/}
+            {/*{isExpanded && document.dir === 'rtl'*/}
+            {/*&& <FiArrowRightCircle/>}*/}
 
           </Styled.Left>
           <Styled.Center>

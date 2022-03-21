@@ -206,7 +206,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://gbbmeet.konn3ct.ng/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
