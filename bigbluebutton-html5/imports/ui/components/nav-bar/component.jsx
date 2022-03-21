@@ -12,7 +12,7 @@ import deviceInfo from '/imports/utils/deviceInfo';
 import _ from "lodash";
 import {politeSRAlert} from '/imports/utils/dom-utils';
 import {ACTIONS, PANELS} from '../layout/enums';
-import {FiArrowRightCircle} from "react-icons/fi";
+import {FiArrowLeftCircle, FiArrowRightCircle} from "react-icons/fi";
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -206,9 +206,9 @@ class NavBar extends Component {
         <Styled.Top>
           <Styled.Left>
             {isExpanded && document.dir === 'ltr'
-            && <Styled.ArrowLeft iconName="left_arrow"/>}
+            && <FiArrowLeftCircle/>}
             {!isExpanded && document.dir === 'rtl'
-            && <Styled.ArrowLeft iconName="left_arrow"/>}
+            && <FiArrowLeftCircle/>}
             <Styled.NavbarToggleButton
                 onClick={this.handleToggleUserList}
                 ghost
@@ -218,24 +218,23 @@ class NavBar extends Component {
                 label={intl.formatMessage(intlMessages.toggleUserListLabel)}
                 tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
                 aria-label={ariaLabel}
-                icon="user"
                 aria-expanded={isExpanded}
                 accessKey={TOGGLE_USERLIST_AK}
                 hasNotification={hasNotification}
             />
             {!isExpanded && document.dir === 'ltr'
-            && <Styled.ArrowRight iconName="right_arrow"/>}
+            && <FiArrowRightCircle/>}
             {isExpanded && document.dir === 'rtl'
-            && <Styled.ArrowRight iconName="right_arrow"/>}
-            <FiArrowRightCircle/>
+            && <FiArrowRightCircle/>}
+
           </Styled.Left>
           <Styled.Center>
             <Styled.PresentationTitle data-test="presentationTitle">
               {presentationTitle}
             </Styled.PresentationTitle>
             <RecordingIndicator
-              mountModal={mountModal}
-              amIModerator={amIModerator}
+                mountModal={mountModal}
+                amIModerator={amIModerator}
             />
           </Styled.Center>
           <Styled.Right>
