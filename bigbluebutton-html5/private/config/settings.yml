@@ -759,7 +759,7 @@ public:
   virtualBackgrounds:
     enabled: true
     storedOnBBB: true
-    showThumbnails: true
+    showThumbnails: false
     imagesPath: /resources/images/virtual-backgrounds/
     thumbnailsPath: /resources/images/virtual-backgrounds/thumbnails/
     fileNames:

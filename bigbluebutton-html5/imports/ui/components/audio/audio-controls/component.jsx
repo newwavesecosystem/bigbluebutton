@@ -1,13 +1,13 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {defineMessages, injectIntl} from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import deviceInfo from '/imports/utils/deviceInfo';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
+import { FiMic, FiMicOff } from 'react-icons/fi';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
 import MutedAlert from '/imports/ui/components/muted-alert/component';
 import Styled from './styles';
 import Settings from '/imports/ui/services/settings';
-import {FiMic, FiMicOff} from "react-icons/fi";
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -176,23 +176,23 @@ class AudioControls extends PureComponent {
     const { animations } = Settings.application;
 
     const toggleMuteBtn = (
-        <Styled.MuteToggleButton
-            onClick={handleToggleMuteMicrophone}
-            disabled={disable}
-            hideLabel
-            label={label}
-            aria-label={label}
-            color={!muted ? 'primary' : 'danger'}
-            ghost={muted}
-            customIcon={muted ? <FiMicOff/> : <FiMic/>}
+      <Styled.MuteToggleButton
+        onClick={handleToggleMuteMicrophone}
+        disabled={disable}
+        hideLabel
+        label={label}
+        aria-label={label}
+        color={!muted ? 'primary' : 'danger'}
+        ghost={muted}
+        customIcon={muted ? <FiMicOff /> : <FiMic />}
             // icon={muted ? 'mute' : 'unmute'}
-            size="lg"
-            circle
-            accessKey={shortcuts.togglemute}
-            talking={talking}
-            animations={animations}
-            data-test="toggleMicrophoneButton"
-        />
+        size="md"
+        circle
+        accessKey={shortcuts.togglemute}
+        talking={talking}
+        animations={animations}
+        data-test="toggleMicrophoneButton"
+      />
     );
 
     const MUTE_ALERT_CONFIG = Meteor.settings.public.app.mutedAlert;
