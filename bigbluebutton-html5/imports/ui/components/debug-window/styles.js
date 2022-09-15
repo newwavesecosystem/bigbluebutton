@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { smPaddingX } from '/imports/ui/stylesheets/styled-components/general';
+import {smPaddingX} from '/imports/ui/stylesheets/styled-components/general';
 import Resizable from 're-resizable';
 import Icon from '/imports/ui/components/common/icon/component';
 import Button from '/imports/ui/components/common/button/component';
@@ -23,7 +23,7 @@ const DebugWindow = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
-  border: 2px solid #06172A;
+  border: 2px solid #35ac39;
 
   &::after {
     content: "";

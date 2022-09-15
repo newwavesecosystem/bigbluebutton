@@ -1,5 +1,5 @@
 import React from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FullscreenButtonContainer from '/imports/ui/components/common/fullscreen-button/container';
@@ -9,25 +9,25 @@ import VolumeSlider from '../external-video-player/volume-slider/component';
 import AutoplayOverlay from '../media/autoplay-overlay/component';
 import logger from '/imports/startup/client/logger';
 import playAndRetry from '/imports/utils/mediaElementPlayRetry';
-import { notify } from '/imports/ui/services/notification';
+import {notify} from '/imports/ui/services/notification';
 import {
-  SCREENSHARE_MEDIA_ELEMENT_NAME,
-  isMediaFlowing,
-  screenshareHasEnded,
-  screenshareHasStarted,
+  attachLocalPreviewStream,
   getMediaElement,
   getMediaElementDimensions,
-  attachLocalPreviewStream,
-  setVolume,
-  getVolume,
   getStats,
+  getVolume,
+  isMediaFlowing,
+  SCREENSHARE_MEDIA_ELEMENT_NAME,
+  screenshareHasEnded,
+  screenshareHasStarted,
+  setVolume,
 } from '/imports/ui/components/screenshare/service';
 import {
   isStreamStateHealthy,
   subscribeToStreamStateChange,
   unsubscribeFromStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
-import { ACTIONS } from '/imports/ui/components/layout/enums';
+import {ACTIONS} from '/imports/ui/components/layout/enums';
 import Settings from '/imports/ui/services/settings';
 import deviceInfo from '/imports/utils/deviceInfo';
 
@@ -540,7 +540,7 @@ class ScreenshareComponent extends React.Component {
             height,
             width,
             zIndex: fullscreenContext ? zIndex : undefined,
-            backgroundColor: '#06172A',
+            backgroundColor: '#35ac39',
           }
         }
       >
