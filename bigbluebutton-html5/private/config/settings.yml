@@ -8,10 +8,10 @@ public:
     # audio
     autoJoin: true
     # Disables the listen only option in audio modal.
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
-    skipCheck: false
+    skipCheck: true
     # Skips the echo test when connecting with microphone right after user
     # joins the room the first time. Subsequent joins to microphone won't
     # have echo test skipped, for example if user leaves and joins the mic
