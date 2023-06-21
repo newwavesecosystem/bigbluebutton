@@ -8,10 +8,10 @@ public:
     # audio
     autoJoin: true
     # Disables the listen only option in audio modal.
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
-    skipCheck: false
+    skipCheck: true
     # Skips the echo test when connecting with microphone right after user
     # joins the room the first time. Subsequent joins to microphone won't
     # have echo test skipped, for example if user leaves and joins the mic
@@ -26,13 +26,13 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
-    bbbServerVersion: HTML5_FULL_BBB_VERSION
+    clientTitle: konn3ct
+    appName: konn3ct
+    bbbServerVersion: 2.6-dev
     displayBbbServerVersion: true
-    copyright: '©2023 BigBlueButton Inc.'
-    html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    copyright: '©2021 konn3ct'
+    html5ClientBuild: 2.2
+    helpLink: https://konn3ct.com/contact
     delayForUnmountOfSharedNote: 120000
     bbbTabletApp:
       enabled: true
@@ -264,7 +264,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://meet.konn3ct.com/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -555,7 +555,7 @@ public:
     showPushLayoutButton: true
     showPushLayoutToggle: true
   pads:
-    url: ETHERPAD_HOST
+    url: https://meet.konn3ct.com/pad
     cookie:
       path: /
       sameSite: None
