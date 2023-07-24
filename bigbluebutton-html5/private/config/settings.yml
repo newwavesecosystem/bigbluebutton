@@ -275,7 +275,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://meet.konn3ct.com/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -595,7 +595,7 @@ public:
     showPushLayoutButton: true
     showPushLayoutToggle: true
   pads:
-    url: ETHERPAD_HOST
+    url: https://meet.konn3ct.com/pad
     cookie:
       path: /
       sameSite: None
