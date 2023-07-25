@@ -249,88 +249,88 @@ class SettingsDropdown extends PureComponent {
 
     this.getFullscreenItem(this.menuItems);
 
-    this.menuItems.push(
-      {
-        key: 'list-item-settings',
-        icon: 'settings',
-        dataTest: 'settings',
-        label: intl.formatMessage(intlMessages.settingsLabel),
-        description: intl.formatMessage(intlMessages.settingsDesc),
-        onClick: () => this.setSettingsMenuModalIsOpen(true),
-      },
-      {
-        key: 'list-item-about',
-        icon: 'about',
-        dataTest: 'aboutModal',
-        label: intl.formatMessage(intlMessages.aboutLabel),
-        description: intl.formatMessage(intlMessages.aboutDesc),
-        onClick: () => this.setAboutModalIsOpen(true),
-      },
-    );
+    // this.menuItems.push(
+    //   {
+    //     key: 'list-item-settings',
+    //     icon: 'settings',
+    //     dataTest: 'settings',
+    //     label: intl.formatMessage(intlMessages.settingsLabel),
+    //     description: intl.formatMessage(intlMessages.settingsDesc),
+    //     onClick: () => this.setSettingsMenuModalIsOpen(true),
+    //   },
+    //   {
+    //     key: 'list-item-about',
+    //     icon: 'about',
+    //     dataTest: 'aboutModal',
+    //     label: intl.formatMessage(intlMessages.aboutLabel),
+    //     description: intl.formatMessage(intlMessages.aboutDesc),
+    //     onClick: () => this.setAboutModalIsOpen(true),
+    //   },
+    // );
 
-    if (helpButton) {
-      this.menuItems.push(
-        {
-          key: 'list-item-help',
-          icon: 'help',
-          iconRight: 'popout_window',
-          label: intl.formatMessage(intlMessages.helpLabel),
-          dataTest: 'helpButton',
-          description: intl.formatMessage(intlMessages.helpDesc),
-          onClick: () => window.open(`${helpLink}`),
-        },
-      );
-    }
+    // if (helpButton) {
+    //   this.menuItems.push(
+    //     {
+    //       key: 'list-item-help',
+    //       icon: 'help',
+    //       iconRight: 'popout_window',
+    //       label: intl.formatMessage(intlMessages.helpLabel),
+    //       dataTest: 'helpButton',
+    //       description: intl.formatMessage(intlMessages.helpDesc),
+    //       onClick: () => window.open(`${helpLink}`),
+    //     },
+    //   );
+    // }
 
-    if (isIos &&
-      !isTabletApp &&
-      BBB_TABLET_APP_CONFIG.enabled == true &&
-      BBB_TABLET_APP_CONFIG.iosAppStoreUrl !== '') {
-      this.menuItems.push(
-        {
-          key: 'list-item-help',
-          icon: 'popout_window',
-          label: intl.formatMessage(intlMessages.openAppLabel),
-          onClick: () => this.setMobileAppModalIsOpen(true),
-         }
-      );
-    }
+    // if (isIos &&
+    //   !isTabletApp &&
+    //   BBB_TABLET_APP_CONFIG.enabled == true &&
+    //   BBB_TABLET_APP_CONFIG.iosAppStoreUrl !== '') {
+    //   this.menuItems.push(
+    //     {
+    //       key: 'list-item-help',
+    //       icon: 'popout_window',
+    //       label: intl.formatMessage(intlMessages.openAppLabel),
+    //       onClick: () => this.setMobileAppModalIsOpen(true),
+    //      }
+    //   );
+    // }
 
     if (audioCaptionsEnabled && isMobile) {
       this.menuItems.push(
-        {
-          key: 'audioCaptions',
-          dataTest: 'audioCaptions',
-          icon: audioCaptionsActive ? 'closed_caption_stop' : 'closed_caption',
-          label: intl.formatMessage(
-            audioCaptionsActive ? intlMessages.stopCaption : intlMessages.startCaption,
-          ),
-          onClick: () => audioCaptionsSet(!audioCaptionsActive),
-        },
+          {
+            key: 'audioCaptions',
+            dataTest: 'audioCaptions',
+            icon: audioCaptionsActive ? 'closed_caption_stop' : 'closed_caption',
+            label: intl.formatMessage(
+                audioCaptionsActive ? intlMessages.stopCaption : intlMessages.startCaption,
+            ),
+            onClick: () => audioCaptionsSet(!audioCaptionsActive),
+          },
       );
     }
 
-    this.menuItems.push(
-      {
-        key: 'list-item-shortcuts',
-        icon: 'shortcuts',
-        label: intl.formatMessage(intlMessages.hotkeysLabel),
-        description: intl.formatMessage(intlMessages.hotkeysDesc),
-        onClick: () => this.setShortcutHelpModalIsOpen(true),
-        divider: true,
-      },
-    );
+    // this.menuItems.push(
+    //   {
+    //     key: 'list-item-shortcuts',
+    //     icon: 'shortcuts',
+    //     label: intl.formatMessage(intlMessages.hotkeysLabel),
+    //     description: intl.formatMessage(intlMessages.hotkeysDesc),
+    //     onClick: () => this.setShortcutHelpModalIsOpen(true),
+    //     divider: true,
+    //   },
+    // );
 
     if (allowLogoutSetting && isMeteorConnected) {
       this.menuItems.push(
-        {
-          key: 'list-item-logout',
-          dataTest: 'logout',
-          icon: 'logout',
-          label: intl.formatMessage(intlMessages.leaveSessionLabel),
-          description: intl.formatMessage(intlMessages.leaveSessionDesc),
-          onClick: () => this.leaveSession(),
-        },
+          {
+            key: 'list-item-logout',
+            dataTest: 'logout',
+            icon: 'logout',
+            label: intl.formatMessage(intlMessages.leaveSessionLabel),
+            description: intl.formatMessage(intlMessages.leaveSessionDesc),
+            onClick: () => this.leaveSession(),
+          },
       );
     }
 
