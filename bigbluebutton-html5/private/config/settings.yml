@@ -523,7 +523,7 @@ public:
   captions:
     enabled: true
     id: captions
-    dictation: false
+    dictation: true
     background: '#000000'
     font:
       color: '#ffffff'
@@ -714,7 +714,7 @@ public:
     #  webcam: medium
     #  screenshare: medium
   stats:
-    enabled: true
+    enabled: false
     interval: 10000
     timeout: 30000
     log: true
