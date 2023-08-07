@@ -248,7 +248,7 @@ class SettingsDropdown extends PureComponent {
 
     this.menuItems = [];
 
-    this.getFullscreenItem(this.menuItems);
+    // this.getFullscreenItem(this.menuItems);
 
     // this.menuItems.push(
     //   {
@@ -390,7 +390,7 @@ class SettingsDropdown extends PureComponent {
                         label={intl.formatMessage(intlMessages.optionsLabel)}
                         icon="more"
                         data-test="optionsButton"
-                        color="dark"
+                        color="danger"
                         size="md"
                         circle
                         hideLabel

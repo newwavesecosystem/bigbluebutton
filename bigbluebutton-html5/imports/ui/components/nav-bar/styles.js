@@ -131,7 +131,6 @@ const StartButton = styled(Button)`
 
   margin: 0;
   display: block;
-  position: absolute;
   bottom: ${mdPaddingX};
 `;
 
