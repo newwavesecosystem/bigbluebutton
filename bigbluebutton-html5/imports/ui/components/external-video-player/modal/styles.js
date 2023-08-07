@@ -82,29 +82,10 @@ const ExternalVideoNote = styled.div`
   padding-top: ${smPaddingY};
 `;
 
-const StartButton = styled(Button)`
-  display: flex;
-  align-self: center;
-
-  &:focus {
-    outline: none !important;
-  }
-
-  & > i {
-    color: #3c5764;
-  }
-
-  margin: 0;
-  display: block;
-  position: absolute;
-  bottom: ${mdPaddingX};
-`;
-
 export default {
   UrlError,
   ExternalVideoModal,
   Content,
   VideoUrl,
-  ExternalVideoNote,
-  StartButton,
+  ExternalVideoNote
 };

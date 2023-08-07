@@ -239,13 +239,19 @@ class NavBar extends Component {
               {presentationTitle}
             </Styled.PresentationTitle>
             <RecordingIndicator
-              amIModerator={amIModerator}
-              currentUserId={currentUserId}
+                amIModerator={amIModerator}
+                currentUserId={currentUserId}
             />
           </Styled.Center>
           <Styled.Right>
-            {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null}
-            <SettingsDropdownContainer amIModerator={amIModerator} />
+            {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton/> : null}
+            <Styled.StartButton
+                label={'Re-Konn3ct'}
+                onClick={() => null}
+                data-test="reKonn3ct"
+                color="primary"
+            />
+            <SettingsDropdownContainer amIModerator={amIModerator}/>
           </Styled.Right>
         </Styled.Top>
         <Styled.Bottom>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Icon from '/imports/ui/components/common/icon/component';
-import { barsPadding, borderSize } from '/imports/ui/stylesheets/styled-components/general';
+import {barsPadding, borderSize, mdPaddingX} from '/imports/ui/stylesheets/styled-components/general';
 import {
   colorWhite,
   colorDanger,
@@ -117,6 +117,24 @@ const NavbarToggleButton = styled(Button)`
   `}
 `;
 
+const StartButton = styled(Button)`
+  display: flex;
+  align-self: center;
+
+  &:focus {
+    outline: none !important;
+  }
+
+  & > i {
+    color: #3c5764;
+  }
+
+  margin: 0;
+  display: block;
+  position: absolute;
+  bottom: ${mdPaddingX};
+`;
+
 export default {
   Navbar,
   Top,
@@ -128,4 +146,5 @@ export default {
   Right,
   Bottom,
   NavbarToggleButton,
+  StartButton
 };

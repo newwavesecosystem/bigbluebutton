@@ -381,16 +381,6 @@ class SettingsDropdown extends PureComponent {
 
     return (
         <>
-          <div style="flex-direction: 'row'">
-
-            <Styled.StartButton
-                label={'Re-Konn3ct'}
-                onClick={() => null}
-                data-test="reKonn3ct"
-                color="primary"
-            />
-
-
             <BBBMenu
                 accessKey={OPEN_OPTIONS_AK}
                 customStyles={!isMobile ? customStyles : null}
@@ -421,7 +411,6 @@ class SettingsDropdown extends PureComponent {
                   transformorigin: {vertical: 'top', horizontal: isRTL ? 'left' : 'right'},
                 }}
             />
-          </div>
           {this.renderModal(isAboutModalOpen, this.setAboutModalIsOpen, "low",
           AboutContainer)}
         {this.renderModal(isShortcutHelpModalOpen, this.setShortcutHelpModalIsOpen, 
