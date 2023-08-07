@@ -11,7 +11,8 @@ import Styled from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
 import Settings from '/imports/ui/services/settings';
 import { isBreakoutRoomsEnabled, isLearningDashboardEnabled } from '/imports/ui/services/features';
-import { uniqueId } from '/imports/utils/string-utils';
+import {uniqueId} from '/imports/utils/string-utils';
+import Icon from "/imports/ui/components/common/icon/component";
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -366,16 +367,32 @@ class UserOptions extends PureComponent {
       <>
         <BBBMenu
           trigger={(
-            <Styled.OptionsButton
-              label={intl.formatMessage(intlMessages.optionsLabel)}
-              data-test="manageUsers"
-              icon="settings"
-              color="light"
-              hideLabel
-              size="md"
-              circle
-              onClick={() => null}
-            />
+              <div
+                  aria-label={intl.formatMessage(intlMessages.optionsLabel)}
+                  aria-describedby="manageUsers"
+                  role="button"
+                  tabIndex={0}
+                  // className={styles.listItem}
+                  onClick={() => null}
+              >
+                <Icon iconName="help"/>
+                <div aria-hidden>
+                  <div data-test="manage-users">
+                    Manage users
+                  </div>
+                </div>
+              </div>
+
+              // <Styled.OptionsButton
+              //   label={intl.formatMessage(intlMessages.optionsLabel)}
+              //   data-test="manageUsers"
+              //   icon="settings"
+              //   color="light"
+              //   hideLabel
+              //   size="md"
+              //   circle
+              //   onClick={() => null}
+              // />
           )}
           actions={this.renderMenuItems()}
           opts={{
