@@ -6,7 +6,7 @@ public:
     # Shows the audio modal when user joins the room. The audio modal prompts
     # user to select an option ("Microphone" and/or "Listen only") for joining
     # audio
-    autoJoin: false
+    autoJoin: true
     # Disables the listen only option in audio modal.
     listenOnlyMode: false
     forceListenOnly: false
