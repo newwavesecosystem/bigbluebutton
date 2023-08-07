@@ -381,7 +381,7 @@ class SettingsDropdown extends PureComponent {
 
     return (
         <>
-          <div>
+          <div style="flex-direction: 'row'">
 
             <Styled.StartButton
                 label={'Re-Konn3ct'}
