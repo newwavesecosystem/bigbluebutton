@@ -6,9 +6,9 @@ public:
     # Shows the audio modal when user joins the room. The audio modal prompts
     # user to select an option ("Microphone" and/or "Listen only") for joining
     # audio
-    autoJoin: true
+    autoJoin: false
     # Disables the listen only option in audio modal.
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
     skipCheck: true
