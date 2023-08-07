@@ -204,26 +204,38 @@ class UserParticipants extends Component {
 
     return (
       <Styled.UserListColumn data-test="userList">
+
+        {currentUser?.role === ROLE_MODERATOR
+            ? (
+                <UserOptionsContainer {...{
+                  clearAllEmojiStatus,
+                  meetingIsBreakout,
+                  isMeetingMuteOnStart,
+                }}
+                />
+            ) : null
+        }
+
         {
           !compact
-            ? (
-              <Styled.Container>
-                <Styled.SmallTitle>
-                  {intl.formatMessage(intlMessages.usersTitle)}
-                  {users.length > 0 ? ` (${users.length})` : null}
-                </Styled.SmallTitle>
-                {currentUser?.role === ROLE_MODERATOR
-                  ? (
-                    <UserOptionsContainer {...{
-                      clearAllEmojiStatus,
-                      meetingIsBreakout,
-                      isMeetingMuteOnStart,
-                    }}
-                    />
-                  ) : null
-                }
+              ? (
+                  <Styled.Container>
+                    <Styled.SmallTitle>
+                      {intl.formatMessage(intlMessages.usersTitle)}
+                      {users.length > 0 ? ` (${users.length})` : null}
+                    </Styled.SmallTitle>
+                    {/*{currentUser?.role === ROLE_MODERATOR*/}
+                    {/*  ? (*/}
+                    {/*    <UserOptionsContainer {...{*/}
+                    {/*      clearAllEmojiStatus,*/}
+                    {/*      meetingIsBreakout,*/}
+                    {/*      isMeetingMuteOnStart,*/}
+                    {/*    }}*/}
+                    {/*    />*/}
+                    {/*  ) : null*/}
+                    {/*}*/}
 
-              </Styled.Container>
+                  </Styled.Container>
             )
             : <Styled.Separator />
         }
