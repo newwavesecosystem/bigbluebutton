@@ -58,11 +58,17 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-        acs: props.activeChats,
+      acs: props.activeChats,
     }
 
     this.handleToggleUserList = this.handleToggleUserList.bind(this);
   }
+
+
+  reloadSession() {
+    location.reload();
+  }
+
 
   componentDidMount() {
     const {
@@ -245,12 +251,15 @@ class NavBar extends Component {
           </Styled.Center>
           <Styled.Right>
             {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton/> : null}
-            <Styled.StartButton
-                label={'Re-Konn3ct'}
-                onClick={() => null}
-                data-test="reKonn3ct"
-                color="primary"
-            />
+            <div style={{marginRight: 10}}>
+              <Styled.StartButton
+                  label={'Re-Konn3ct'}
+                  onClick={() => this.reloadSession()}
+                  data-test="reKonn3ct"
+                  color="primary"
+              />
+            </div>
+
             <SettingsDropdownContainer amIModerator={amIModerator}/>
           </Styled.Right>
         </Styled.Top>
