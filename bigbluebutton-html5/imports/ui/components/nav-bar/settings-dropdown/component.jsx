@@ -14,6 +14,7 @@ import { colorDanger, colorWhite } from '/imports/ui/stylesheets/styled-componen
 import Styled from './styles';
 import browserInfo from '/imports/utils/browserInfo';
 import deviceInfo from '/imports/utils/deviceInfo';
+import Icon from "/imports/ui/components/common/icon/component";
 
 const intlMessages = defineMessages({
   optionsLabel: {
@@ -379,38 +380,49 @@ class SettingsDropdown extends PureComponent {
     const customStyles = { top: '1rem' };
 
     return (
-      <>
-        <BBBMenu
-          accessKey={OPEN_OPTIONS_AK}
-          customStyles={!isMobile ? customStyles : null}
-          trigger={(
-            <Styled.DropdownButton
-              state={isDropdownOpen ? 'open' : 'closed'}
-              label={intl.formatMessage(intlMessages.optionsLabel)}
-              icon="more"
-              data-test="optionsButton"
-              color="dark"
-              size="md"
-              circle
-              hideLabel
-              // FIXME: Without onClick react proptypes keep warning
-              // even after the DropdownTrigger inject an onClick handler
-              onClick={() => null}
+        <>
+          <div>
+
+            <Styled.StartButton
+                label={'Re-Konn3ct'}
+                onClick={() => null}
+                data-test="reKonn3ct"
+                color="primary"
             />
-          )}
-          actions={this.renderMenuItems()}
-          opts={{
-            id: 'app-settings-dropdown-menu',
-            keepMounted: true,
-            transitionDuration: 0,
-            elevation: 3,
-            getcontentanchorel: null,
-            fullwidth: 'true',
-            anchorOrigin: { vertical: 'bottom', horizontal: isRTL ? 'left' : 'right' },
-            transformorigin: { vertical: 'top', horizontal: isRTL ? 'left' : 'right' },
-          }}
-        />
-        {this.renderModal(isAboutModalOpen, this.setAboutModalIsOpen, "low",
+
+
+            <BBBMenu
+                accessKey={OPEN_OPTIONS_AK}
+                customStyles={!isMobile ? customStyles : null}
+                trigger={(
+                    <Styled.DropdownButton
+                        state={isDropdownOpen ? 'open' : 'closed'}
+                        label={intl.formatMessage(intlMessages.optionsLabel)}
+                        icon="more"
+                        data-test="optionsButton"
+                        color="dark"
+                        size="md"
+                        circle
+                        hideLabel
+                        // FIXME: Without onClick react proptypes keep warning
+                        // even after the DropdownTrigger inject an onClick handler
+                        onClick={() => null}
+                    />
+                )}
+                actions={this.renderMenuItems()}
+                opts={{
+                  id: 'app-settings-dropdown-menu',
+                  keepMounted: true,
+                  transitionDuration: 0,
+                  elevation: 3,
+                  getcontentanchorel: null,
+                  fullwidth: 'true',
+                  anchorOrigin: {vertical: 'bottom', horizontal: isRTL ? 'left' : 'right'},
+                  transformorigin: {vertical: 'top', horizontal: isRTL ? 'left' : 'right'},
+                }}
+            />
+          </div>
+          {this.renderModal(isAboutModalOpen, this.setAboutModalIsOpen, "low",
           AboutContainer)}
         {this.renderModal(isShortcutHelpModalOpen, this.setShortcutHelpModalIsOpen, 
           "low", ShortcutHelpComponent)}
