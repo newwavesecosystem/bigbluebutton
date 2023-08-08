@@ -367,16 +367,14 @@ class UserOptions extends PureComponent {
       <>
         <BBBMenu
           trigger={(
-              <Styled.Messages>
-                <Styled.List>
-                  <Icon iconName="help"/>
-                  <div aria-hidden>
-                    <div data-test="manage-users">
-                      Manage users
-                    </div>
+              <Styled.SamjiOptionsButton>
+                <Icon iconName="help"/>
+                <div aria-hidden>
+                  <div data-test="manage-users">
+                    Manage users
                   </div>
-                </Styled.List>
-              </Styled.Messages>
+                </div>
+              </Styled.SamjiOptionsButton>
 
               // <div
               //     aria-label={intl.formatMessage(intlMessages.optionsLabel)}
