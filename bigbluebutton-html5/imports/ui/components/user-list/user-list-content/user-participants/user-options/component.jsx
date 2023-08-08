@@ -367,21 +367,32 @@ class UserOptions extends PureComponent {
       <>
         <BBBMenu
           trigger={(
-              <div
-                  aria-label={intl.formatMessage(intlMessages.optionsLabel)}
-                  aria-describedby="manageUsers"
-                  role="button"
-                  tabIndex={0}
-                  // className={styles.listItem}
-                  onClick={() => null}
-              >
-                <Icon iconName="help"/>
-                <div aria-hidden>
-                  <div data-test="manage-users">
-                    Manage users
+              <Styled.Messages>
+                <Styled.List>
+                  <Icon iconName="help"/>
+                  <div aria-hidden>
+                    <div data-test="manage-users">
+                      Manage users
+                    </div>
                   </div>
-                </div>
-              </div>
+                </Styled.List>
+              </Styled.Messages>
+
+              // <div
+              //     aria-label={intl.formatMessage(intlMessages.optionsLabel)}
+              //     aria-describedby="manageUsers"
+              //     role="button"
+              //     tabIndex={0}
+              //     // className={styles.listItem}
+              //     onClick={() => null}
+              // >
+              //   <Icon iconName="help"/>
+              //   <div aria-hidden>
+              //     <div data-test="manage-users">
+              //       Manage users
+              //     </div>
+              //   </div>
+              // </div>
 
               // <Styled.OptionsButton
               //   label={intl.formatMessage(intlMessages.optionsLabel)}

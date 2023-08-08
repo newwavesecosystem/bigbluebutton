@@ -179,11 +179,11 @@ class UserNotes extends Component {
 
     return (
       <Styled.Messages>
-        <Styled.Container>
-          <Styled.SmallTitle data-test="notesTitle">
-            {intl.formatMessage(intlMessages.title)}
-          </Styled.SmallTitle>
-        </Styled.Container>
+        {/*<Styled.Container>*/}
+        {/*  <Styled.SmallTitle data-test="notesTitle">*/}
+        {/*    {intl.formatMessage(intlMessages.title)}*/}
+        {/*  </Styled.SmallTitle>*/}
+        {/*</Styled.Container>*/}
         <Styled.ScrollableList>
           <Styled.List>
             {this.renderNotes()}
