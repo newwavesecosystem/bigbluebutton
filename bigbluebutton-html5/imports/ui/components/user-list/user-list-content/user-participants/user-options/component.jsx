@@ -378,7 +378,7 @@ class UserOptions extends PureComponent {
                         tabIndex={0}
                     >
                       <Icon iconName="help"/>
-                      <div aria-hidden>
+                      <div>
                         <span className="sr-only">{`${intl.formatMessage(intlMessages.optionsLabel)}`}</span>
                       </div>
                     </Styled.ListItem>

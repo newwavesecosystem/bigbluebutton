@@ -237,9 +237,9 @@ class ReaderMenu extends PureComponent {
             priority,
           }}
       >
-        {/*<Styled.Title>*/}
-        {/*  {intl.formatMessage(intlMessages.title)}*/}
-        {/*</Styled.Title>*/}
+        <Styled.Title>
+          {intl.formatMessage(intlMessages.title)}
+        </Styled.Title>
         {!locale ? null : (
             <div>
               <Styled.Col>
