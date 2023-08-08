@@ -13,6 +13,7 @@ import Settings from '/imports/ui/services/settings';
 import { isBreakoutRoomsEnabled, isLearningDashboardEnabled } from '/imports/ui/services/features';
 import {uniqueId} from '/imports/utils/string-utils';
 import Icon from "/imports/ui/components/common/icon/component";
+import NotesService from "/imports/ui/components/notes/service";
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -367,14 +368,32 @@ class UserOptions extends PureComponent {
       <>
         <BBBMenu
           trigger={(
-              <Styled.SamjiOptionsButton>
-                <Icon iconName="help"/>
-                <div aria-hidden>
-                  <div data-test="manage-users">
-                    Manage users
-                  </div>
-                </div>
-              </Styled.SamjiOptionsButton>
+              <Styled.Messages>
+                <Styled.ScrollableList>
+                  <Styled.List>
+                    <Styled.ListItem
+                        aria-label="manage-users"
+                        aria-describedby="manage-users"
+                        role="button"
+                        tabIndex={0}
+                    >
+                      <Icon iconName="help"/>
+                      <div aria-hidden>
+                        <span className="sr-only">{`${intl.formatMessage(intlMessages.optionsLabel)}`}</span>
+                      </div>
+                    </Styled.ListItem>
+                  </Styled.List>
+                </Styled.ScrollableList>
+              </Styled.Messages>
+
+              // <Styled.SamjiOptionsButton>
+              //   <Icon iconName="help"/>
+              //   <div aria-hidden>
+              //     <div data-test="manage-users">
+              //       Manage users
+              //     </div>
+              //   </div>
+              // </Styled.SamjiOptionsButton>
 
               // <div
               //     aria-label={intl.formatMessage(intlMessages.optionsLabel)}

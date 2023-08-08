@@ -229,27 +229,27 @@ class ReaderMenu extends PureComponent {
 
     return (
       <Styled.ReaderMenuModal
-        onRequestClose={closeModal}
-        hideBorder
-        contentLabel={intl.formatMessage(intlMessages.title)}
-        {...{
-          isOpen,
-          priority,
-        }}
+          onRequestClose={closeModal}
+          hideBorder
+          contentLabel={intl.formatMessage(intlMessages.title)}
+          {...{
+            isOpen,
+            priority,
+          }}
       >
-        <Styled.Title>
-          {intl.formatMessage(intlMessages.title)}
-        </Styled.Title>
+        {/*<Styled.Title>*/}
+        {/*  {intl.formatMessage(intlMessages.title)}*/}
+        {/*</Styled.Title>*/}
         {!locale ? null : (
-          <div>
-            <Styled.Col>
-              <Styled.Row>
-                <Styled.Label aria-hidden>
-                  {intl.formatMessage(intlMessages.ariaSelectLang)}
-                </Styled.Label>
-                <Styled.Select
-                  aria-label={intl.formatMessage(intlMessages.ariaSelectLang)}
-                  onChange={this.handleLocaleChange}
+            <div>
+              <Styled.Col>
+                <Styled.Row>
+                  <Styled.Label aria-hidden>
+                    {intl.formatMessage(intlMessages.ariaSelectLang)}
+                  </Styled.Label>
+                  <Styled.Select
+                      aria-label={intl.formatMessage(intlMessages.ariaSelectLang)}
+                      onChange={this.handleLocaleChange}
                   defaultValue={defaultLocale}
                   lang={locale}
                 >
