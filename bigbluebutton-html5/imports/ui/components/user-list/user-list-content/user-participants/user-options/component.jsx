@@ -379,7 +379,7 @@ class UserOptions extends PureComponent {
                     >
                       <Icon iconName="help"/>
                       <div>
-                        <span className="sr-only">{`${intl.formatMessage(intlMessages.optionsLabel)}`}</span>
+                        <span>{`${intl.formatMessage(intlMessages.optionsLabel)}`}</span>
                       </div>
                     </Styled.ListItem>
                   </Styled.List>
