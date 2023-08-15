@@ -216,10 +216,10 @@ class NavBar extends Component {
       >
         <Styled.Top>
           <Styled.Left>
-            {isExpanded && document.dir === 'ltr'
-            && <Styled.ArrowLeft iconName="left_arrow"/>}
-            {!isExpanded && document.dir === 'rtl'
-            && <Styled.ArrowLeft iconName="left_arrow"/>}
+            {/*{isExpanded && document.dir === 'ltr'*/}
+            {/*&& <Styled.ArrowLeft iconName="left_arrow"/>}*/}
+            {/*{!isExpanded && document.dir === 'rtl'*/}
+            {/*&& <Styled.ArrowLeft iconName="left_arrow"/>}*/}
             <Styled.NavbarToggleButton
                 onClick={this.handleToggleUserList}
                 color={isPhone && isExpanded ? 'primary' : 'dark'}
@@ -230,15 +230,15 @@ class NavBar extends Component {
                 label={intl.formatMessage(intlMessages.toggleUserListLabel)}
                 tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
                 aria-label={ariaLabel}
-                // icon="user"
+                icon={isExpanded && document.dir === 'ltr' ? "left_arrow" : "right_arrow"}
                 aria-expanded={isExpanded}
                 accessKey={TOGGLE_USERLIST_AK}
                 hasNotification={hasNotification}
             />
-            {!isExpanded && document.dir === 'ltr'
-            && <Styled.ArrowRight iconName="right_arrow"/>}
-            {isExpanded && document.dir === 'rtl'
-            && <Styled.ArrowRight iconName="right_arrow"/>}
+            {/*{!isExpanded && document.dir === 'ltr'*/}
+            {/*&& <Styled.ArrowRight iconName="right_arrow"/>}*/}
+            {/*{isExpanded && document.dir === 'rtl'*/}
+            {/*&& <Styled.ArrowRight iconName="right_arrow"/>}*/}
           </Styled.Left>
           <Styled.Center>
             <Styled.PresentationTitle data-test="presentationTitle">
