@@ -220,21 +220,21 @@ class NavBar extends Component {
             && <Styled.ArrowLeft iconName="left_arrow"/>}
             {!isExpanded && document.dir === 'rtl'
             && <Styled.ArrowLeft iconName="left_arrow"/>}
-            {/*<Styled.NavbarToggleButton*/}
-            {/*  onClick={this.handleToggleUserList}*/}
-            {/*  color={isPhone && isExpanded ? 'primary' : 'dark'}*/}
-            {/*  size='md'*/}
-            {/*  circle*/}
-            {/*  hideLabel*/}
-            {/*  data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}*/}
-            {/*  label={intl.formatMessage(intlMessages.toggleUserListLabel)}*/}
-            {/*  tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}*/}
-            {/*  aria-label={ariaLabel}*/}
-            {/*  icon="user"*/}
-            {/*  aria-expanded={isExpanded}*/}
-            {/*  accessKey={TOGGLE_USERLIST_AK}*/}
-            {/*  hasNotification={hasNotification}*/}
-            {/*/>*/}
+            <Styled.NavbarToggleButton
+                onClick={this.handleToggleUserList}
+                color={isPhone && isExpanded ? 'primary' : 'dark'}
+                size='md'
+                circle
+                hideLabel
+                data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}
+                label={intl.formatMessage(intlMessages.toggleUserListLabel)}
+                tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
+                aria-label={ariaLabel}
+                // icon="user"
+                aria-expanded={isExpanded}
+                accessKey={TOGGLE_USERLIST_AK}
+                hasNotification={hasNotification}
+            />
             {!isExpanded && document.dir === 'ltr'
             && <Styled.ArrowRight iconName="right_arrow"/>}
             {isExpanded && document.dir === 'rtl'
