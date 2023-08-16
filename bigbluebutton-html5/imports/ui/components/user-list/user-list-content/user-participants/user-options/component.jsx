@@ -11,7 +11,8 @@ import Styled from './styles';
 import { getUserNamesLink } from '/imports/ui/components/user-list/service';
 import Settings from '/imports/ui/services/settings';
 import { isBreakoutRoomsEnabled, isLearningDashboardEnabled } from '/imports/ui/services/features';
-import { uniqueId } from '/imports/utils/string-utils';
+import {uniqueId} from '/imports/utils/string-utils';
+import Icon from "/imports/ui/components/common/icon/component";
 
 const propTypes = {
   intl: PropTypes.shape({
