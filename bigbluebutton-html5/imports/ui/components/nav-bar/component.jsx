@@ -58,11 +58,17 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-        acs: props.activeChats,
+      acs: props.activeChats,
     }
 
     this.handleToggleUserList = this.handleToggleUserList.bind(this);
   }
+
+
+  reloadSession() {
+    location.reload();
+  }
+
 
   componentDidMount() {
     const {
@@ -210,42 +216,51 @@ class NavBar extends Component {
       >
         <Styled.Top>
           <Styled.Left>
-            {isExpanded && document.dir === 'ltr'
-              && <Styled.ArrowLeft iconName="left_arrow" />}
-            {!isExpanded && document.dir === 'rtl'
-              && <Styled.ArrowLeft iconName="left_arrow" />}
+            {/*{isExpanded && document.dir === 'ltr'*/}
+            {/*&& <Styled.ArrowLeft iconName="left_arrow"/>}*/}
+            {/*{!isExpanded && document.dir === 'rtl'*/}
+            {/*&& <Styled.ArrowLeft iconName="left_arrow"/>}*/}
             <Styled.NavbarToggleButton
-              onClick={this.handleToggleUserList}
-              color={isPhone && isExpanded ? 'primary' : 'dark'}
-              size='md'
-              circle
-              hideLabel
-              data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}
-              label={intl.formatMessage(intlMessages.toggleUserListLabel)}
-              tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
-              aria-label={ariaLabel}
-              icon="user"
-              aria-expanded={isExpanded}
-              accessKey={TOGGLE_USERLIST_AK}
-              hasNotification={hasNotification}
+                onClick={this.handleToggleUserList}
+                color={isPhone && isExpanded ? 'primary' : 'dark'}
+                size='md'
+                circle
+                hideLabel
+                data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}
+                label={intl.formatMessage(intlMessages.toggleUserListLabel)}
+                tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
+                aria-label={ariaLabel}
+                icon={isExpanded && document.dir === 'ltr' ? "left_arrow" : "right_arrow"}
+                aria-expanded={isExpanded}
+                accessKey={TOGGLE_USERLIST_AK}
+                hasNotification={hasNotification}
             />
-            {!isExpanded && document.dir === 'ltr'
-              && <Styled.ArrowRight iconName="right_arrow" />}
-            {isExpanded && document.dir === 'rtl'
-              && <Styled.ArrowRight iconName="right_arrow" />}
+            {/*{!isExpanded && document.dir === 'ltr'*/}
+            {/*&& <Styled.ArrowRight iconName="right_arrow"/>}*/}
+            {/*{isExpanded && document.dir === 'rtl'*/}
+            {/*&& <Styled.ArrowRight iconName="right_arrow"/>}*/}
           </Styled.Left>
           <Styled.Center>
             <Styled.PresentationTitle data-test="presentationTitle">
               {presentationTitle}
             </Styled.PresentationTitle>
             <RecordingIndicator
-              amIModerator={amIModerator}
-              currentUserId={currentUserId}
+                amIModerator={amIModerator}
+                currentUserId={currentUserId}
             />
           </Styled.Center>
           <Styled.Right>
-            {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null}
-            <SettingsDropdownContainer amIModerator={amIModerator} />
+            {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton/> : null}
+            <div style={{marginRight: 10}}>
+              <Styled.StartButton
+                  label={'Re-Konn3ct'}
+                  onClick={() => this.reloadSession()}
+                  data-test="reKonn3ct"
+                  color="primary"
+              />
+            </div>
+
+            <SettingsDropdownContainer amIModerator={amIModerator}/>
           </Styled.Right>
         </Styled.Top>
         <Styled.Bottom>

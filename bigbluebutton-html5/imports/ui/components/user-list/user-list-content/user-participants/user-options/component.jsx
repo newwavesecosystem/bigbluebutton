@@ -389,16 +389,59 @@ class UserOptions extends PureComponent {
       <>
         <BBBMenu
           trigger={(
-            <Styled.OptionsButton
-              label={intl.formatMessage(intlMessages.optionsLabel)}
-              data-test="manageUsers"
-              icon="settings"
-              color="light"
-              hideLabel
-              size="md"
-              circle
-              onClick={() => null}
-            />
+              <Styled.Messages>
+                <Styled.ScrollableList>
+                  <Styled.List>
+                    <Styled.ListItem
+                        aria-label="manage-users"
+                        aria-describedby="manage-users"
+                        role="button"
+                        tabIndex={0}
+                    >
+                      <Icon iconName="help"/>
+                      <div>
+                        <span>{`${intl.formatMessage(intlMessages.optionsLabel)}`}</span>
+                      </div>
+                    </Styled.ListItem>
+                  </Styled.List>
+                </Styled.ScrollableList>
+              </Styled.Messages>
+
+              // <Styled.SamjiOptionsButton>
+              //   <Icon iconName="help"/>
+              //   <div aria-hidden>
+              //     <div data-test="manage-users">
+              //       Manage users
+              //     </div>
+              //   </div>
+              // </Styled.SamjiOptionsButton>
+
+              // <div
+              //     aria-label={intl.formatMessage(intlMessages.optionsLabel)}
+              //     aria-describedby="manageUsers"
+              //     role="button"
+              //     tabIndex={0}
+              //     // className={styles.listItem}
+              //     onClick={() => null}
+              // >
+              //   <Icon iconName="help"/>
+              //   <div aria-hidden>
+              //     <div data-test="manage-users">
+              //       Manage users
+              //     </div>
+              //   </div>
+              // </div>
+
+              // <Styled.OptionsButton
+              //   label={intl.formatMessage(intlMessages.optionsLabel)}
+              //   data-test="manageUsers"
+              //   icon="settings"
+              //   color="light"
+              //   hideLabel
+              //   size="md"
+              //   circle
+              //   onClick={() => null}
+              // />
           )}
           actions={this.renderMenuItems()}
           opts={{
