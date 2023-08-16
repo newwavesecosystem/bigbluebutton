@@ -488,7 +488,7 @@
     "app.actionsBar.actionsDropdown.minimizePresentationDesc": "Button used to minimize presentation",
     "app.actionsBar.actionsDropdown.layoutModal": "Manage layout",
     "app.actionsBar.actionsDropdown.shareCameraAsContent": "Make Camera Presentation",
-    "app.actionsBar.actionsDropdown.unshareCameraAsContent": "Stop camera as content",
+    "app.actionsBar.actionsDropdown.unshareCameraAsContent": "Stop Camera Presentation",
     "app.screenshare.screenShareLabel": "Screen share",
     "app.cameraAsContent.cameraAsContentLabel": "Present camera",
     "app.submenu.application.applicationSectionTitle": "Application",

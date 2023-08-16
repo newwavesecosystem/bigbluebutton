@@ -905,7 +905,7 @@ public:
       flushOnClose: true
       logTag: ''
   virtualBackgrounds:
-    enabled: true
+    enabled: false
     enableVirtualBackgroundUpload: true
     storedOnBBB: true
     showThumbnails: true
