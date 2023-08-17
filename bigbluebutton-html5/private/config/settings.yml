@@ -88,9 +88,9 @@ public:
     # speech API, which involves sending voice data to third-party servers!
     # https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API#speech_recognition
     audioCaptions:
-      enabled: true
+      enabled: false
       # mobile: <Boolean> - controls speech transcription availability on mobile
-      mobile: true
+      mobile: flase
       # provider: [webspeech, vosk, whisper, deepspeech]
       provider: webspeech
       language:
@@ -145,13 +145,13 @@ public:
     showAudioFilters: true
     raiseHandActionButton:
       # Enables the old raiseHand icon
-      enabled: false
+      enabled: true
       # If true, positions the icon next to the screenshare button, if false positions it where BBB had raisedHand button up to BBB 2.6 (right-hand bottom corner in LRT)
-      centered: true
+      centered: false
     reactionsButton:
       # Enables the new raiseHand icon inside of the reaction menu (introduced in BBB 2.7)
       # If both reactionsButton and raiseHandActionButton are enabled, reactionsButton takes precedence.
-      enabled: true
+      enabled: false
     # If enabled, before joining microphone the client will perform a trickle
     # ICE against Kurento and use the information about successfull
     # candidate-pairs to filter out local candidates in SIP.js's SDP.
@@ -524,9 +524,9 @@ public:
     maxTypedAnswerLength: 45
     chatMessage: true
   captions:
-    enabled: true
+    enabled: false
     id: captions
-    dictation: true
+    dictation: false
     background: '#000000'
     font:
       color: '#ffffff'
@@ -584,7 +584,7 @@ public:
     # e.g.: disableEmojis: ['1F595','1F922']
     disableEmojis: []
   userReaction:
-    enabled: true
+    enabled: false
     expire: 60
   userStatus:
     enabled: false

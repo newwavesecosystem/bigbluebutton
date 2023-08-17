@@ -140,32 +140,32 @@ class ActionsBar extends PureComponent {
         <Styled.Center>
           <AudioControlsContainer />
           {enableVideo
-            ? (
-              <JoinVideoOptionsContainer />
-            )
-            : null}
+              ? (
+                  <JoinVideoOptionsContainer/>
+              )
+              : null}
           <ScreenshareButtonContainer {...{
             amIPresenter,
             isMeteorConnected,
           }}
           />
-        {isRaiseHandButtonCentered && this.renderRaiseHand()}
+          {isRaiseHandButtonCentered && this.renderRaiseHand()}
         </Styled.Center>
         <Styled.Right>
-          { shouldShowOptionsButton ?
-            <PresentationOptionsContainer
-              presentationIsOpen={presentationIsOpen}
-              setPresentationIsOpen={setPresentationIsOpen}
-              layoutContextDispatch={layoutContextDispatch}
-              hasPresentation={isThereCurrentPresentation}
-              hasExternalVideo={isSharingVideo}
-              hasScreenshare={hasScreenshare}
-              hasPinnedSharedNotes={isSharedNotesPinned}
-              hasGenericContent={hasGenericContent}
-              hasCameraAsContent={hasCameraAsContent}
-            />
-            : null
-          }
+          {/*{ shouldShowOptionsButton ?*/}
+          {/*  <PresentationOptionsContainer*/}
+          {/*    presentationIsOpen={presentationIsOpen}*/}
+          {/*    setPresentationIsOpen={setPresentationIsOpen}*/}
+          {/*    layoutContextDispatch={layoutContextDispatch}*/}
+          {/*    hasPresentation={isThereCurrentPresentation}*/}
+          {/*    hasExternalVideo={isSharingVideo}*/}
+          {/*    hasScreenshare={hasScreenshare}*/}
+          {/*    hasPinnedSharedNotes={isSharedNotesPinned}*/}
+          {/*    hasGenericContent={hasGenericContent}*/}
+          {/*    hasCameraAsContent={hasCameraAsContent}*/}
+          {/*  />*/}
+          {/*  : null*/}
+          {/*}*/}
           {!isRaiseHandButtonCentered && this.renderRaiseHand()}
         </Styled.Right>
       </Styled.ActionsBar>

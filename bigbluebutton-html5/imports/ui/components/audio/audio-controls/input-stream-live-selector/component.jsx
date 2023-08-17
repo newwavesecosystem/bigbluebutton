@@ -324,23 +324,23 @@ class InputStreamLiveSelector extends Component {
 
     return (
       <Styled.MuteToggleButton
-        onClick={(e) => {
-          e.stopPropagation();
-          handleToggleMuteMicrophone();
-        }}
-        disabled={disable}
-        hideLabel
-        label={label}
-        aria-label={label}
-        color={!muted ? 'primary' : 'default'}
-        ghost={muted}
-        icon={muted ? 'mute' : 'unmute'}
-        size="lg"
-        circle
-        accessKey={shortcuts.togglemute}
-        $talking={talking || undefined}
-        animations={animations}
-        data-test={muted ? 'unmuteMicButton' : 'muteMicButton'}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleToggleMuteMicrophone();
+          }}
+          disabled={disable}
+          hideLabel
+          label={label}
+          aria-label={label}
+          color={!muted ? 'primary' : 'danger'}
+          ghost={muted}
+          icon={muted ? 'mute' : 'unmute'}
+          size="sm"
+          circle
+          accessKey={shortcuts.togglemute}
+          $talking={talking || undefined}
+          animations={animations}
+          data-test={muted ? 'unmuteMicButton' : 'muteMicButton'}
       />
     );
   }
@@ -354,21 +354,21 @@ class InputStreamLiveSelector extends Component {
     } = this.props;
 
     return (
-      <Button
-        aria-label={intl.formatMessage(intlMessages.leaveAudio)}
-        label={intl.formatMessage(intlMessages.leaveAudio)}
-        accessKey={shortcuts.leaveaudio}
-        data-test="leaveListenOnly"
-        hideLabel
-        color="primary"
-        icon={isListenOnly ? 'listen' : 'volume_level_2'}
-        size="lg"
-        circle
-        onClick={(e) => {
-          e.stopPropagation();
-          handleLeaveAudio();
-        }}
-      />
+        <Button
+            aria-label={intl.formatMessage(intlMessages.leaveAudio)}
+            label={intl.formatMessage(intlMessages.leaveAudio)}
+            accessKey={shortcuts.leaveaudio}
+            data-test="leaveListenOnly"
+            hideLabel
+            color="danger"
+            icon={isListenOnly ? 'listen' : 'volume_level_2'}
+            size="sm"
+            circle
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLeaveAudio();
+            }}
+        />
     );
   }
 

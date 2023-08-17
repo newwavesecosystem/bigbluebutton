@@ -17,7 +17,8 @@ export function isScreenSharingEnabled() {
 }
 
 export function isLearningDashboardEnabled() {
-  return getDisabledFeatures().indexOf('learningDashboard') === -1;
+  // return getDisabledFeatures().indexOf('learningDashboard') === -1;
+  return false;
 }
 
 export function isPollingEnabled() {
