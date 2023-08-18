@@ -31,6 +31,10 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@browser-bunyan/server-stream": "^1.8.0",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@jitsi/sdp-interop": "0.1.14",

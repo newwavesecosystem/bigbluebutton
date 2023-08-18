@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import logger from '/imports/startup/client/logger';
 import Auth from '/imports/ui/services/auth';
 import Settings from '/imports/ui/services/settings';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 import Button from '/imports/ui/components/common/button/component';
 import BBBMenu from '/imports/ui/components/common/menu/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 
 import Styled from './styles';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
+
 
 const AUDIO_INPUT = 'audioinput';
 const AUDIO_OUTPUT = 'audiooutput';
@@ -317,31 +321,35 @@ class InputStreamLiveSelector extends Component {
       talking,
     } = this.props;
 
-    const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
-      : intl.formatMessage(intlMessages.muteAudio);
+    const micOn = <FontAwesomeIcon icon={faMicrophone} size="lg"/>;
+    const micOff = <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>;
 
-    const { animations } = Settings.application;
+    const label = muted ? intl.formatMessage(intlMessages.unmuteAudio)
+        : intl.formatMessage(intlMessages.muteAudio);
+
+    const {animations} = Settings.application;
 
     return (
-      <Styled.MuteToggleButton
-          onClick={(e) => {
-            e.stopPropagation();
-            handleToggleMuteMicrophone();
-          }}
-          disabled={disable}
-          hideLabel
-          label={label}
-          aria-label={label}
-          color={!muted ? 'success' : 'danger'}
-          ghost={muted}
-          icon={muted ? 'mute' : 'unmute'}
-          size="md"
-          circle
-          accessKey={shortcuts.togglemute}
-          $talking={talking || undefined}
-          animations={animations}
-          data-test={muted ? 'unmuteMicButton' : 'muteMicButton'}
-      />
+        <Styled.MuteToggleButton
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleMuteMicrophone();
+            }}
+            disabled={disable}
+            hideLabel
+            label={label}
+            aria-label={label}
+            color={!muted ? 'success' : 'danger'}
+            ghost={muted}
+            // icon={muted ? 'mute' : 'unmute'}
+            customIcon={muted ? micOff : micOn}
+            size="md"
+            circle
+            accessKey={shortcuts.togglemute}
+            $talking={talking || undefined}
+            animations={animations}
+            data-test={muted ? 'unmuteMicButton' : 'muteMicButton'}
+        />
     );
   }
 
@@ -422,7 +430,6 @@ class InputStreamLiveSelector extends Component {
 
     const dropdownListComplete = inputDeviceList.concat(outputDeviceList).concat(leaveAudioOption);
     const customStyles = { top: '-1rem' };
-
     return (
       <>
         {!isListenOnly ? (
