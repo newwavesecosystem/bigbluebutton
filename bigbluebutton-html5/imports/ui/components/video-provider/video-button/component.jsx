@@ -195,16 +195,16 @@ const JoinVideoButton = ({
     <>
       <Styled.OffsetBottom>
         <Button
-          label={label}
-          data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
-          onClick={handleOnClick}
-          hideLabel
-          color={isSharing ? 'primary' : 'default'}
-          icon={isSharing ? 'video' : 'video_off'}
-          ghost={!isSharing}
-          size="lg"
-          circle
-          disabled={!!disableReason}
+            label={label}
+            data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
+            onClick={handleOnClick}
+            hideLabel
+            color={isSharing ? 'primary' : 'default'}
+            icon={isSharing ? 'video' : 'video_off'}
+            ghost={!isSharing}
+            size="md"
+            circle
+            disabled={!!disableReason}
         />
         {renderUserActions()}
       </Styled.OffsetBottom>

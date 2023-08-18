@@ -332,10 +332,10 @@ class InputStreamLiveSelector extends Component {
           hideLabel
           label={label}
           aria-label={label}
-          color={!muted ? 'primary' : 'danger'}
+          color={!muted ? 'success' : 'danger'}
           ghost={muted}
           icon={muted ? 'mute' : 'unmute'}
-          size="sm"
+          size="md"
           circle
           accessKey={shortcuts.togglemute}
           $talking={talking || undefined}
@@ -362,7 +362,7 @@ class InputStreamLiveSelector extends Component {
             hideLabel
             color="danger"
             icon={isListenOnly ? 'listen' : 'volume_level_2'}
-            size="sm"
+            size="md"
             circle
             onClick={(e) => {
               e.stopPropagation();
