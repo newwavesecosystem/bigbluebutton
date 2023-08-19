@@ -178,7 +178,7 @@ const ScreenshareButton = ({
             data-test={dataTest}
             label={intl.formatMessage(vLabel)}
             description={intl.formatMessage(vDescr)}
-            color={amIBroadcasting ? 'primary' : 'default'}
+            color={amIBroadcasting ? 'success' : 'default'}
             ghost={!amIBroadcasting}
             hideLabel
             circle

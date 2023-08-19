@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import deviceInfo from '/imports/utils/deviceInfo';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import InputStreamLiveSelectorContainer from './input-stream-live-selector/container';
@@ -8,6 +8,9 @@ import MutedAlert from '/imports/ui/components/muted-alert/component';
 import Styled from './styles';
 import Button from '/imports/ui/components/common/button/component';
 import AudioModalContainer from '../audio-modal/container';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMicrophone, faMicrophoneSlash, faPhoneAlt, faPhoneVolume,} from '@fortawesome/free-solid-svg-icons';
 
 const intlMessages = defineMessages({
   joinAudio: {
@@ -65,21 +68,24 @@ class AudioControls extends PureComponent {
       isConnected
     } = this.props;
 
+    const dialOff = <FontAwesomeIcon icon={faPhoneAlt} size="lg"/>;
+
     return (
-      <Button
-        onClick={() => this.handleJoinAudio(joinListenOnly, isConnected)}
-        disabled={disable}
-        hideLabel
-        aria-label={intl.formatMessage(intlMessages.joinAudio)}
-        label={intl.formatMessage(intlMessages.joinAudio)}
-        data-test="joinAudio"
-        color="default"
-        ghost
-        icon="no_audio"
-        size="lg"
-        circle
-        accessKey={shortcuts.joinaudio}
-      />
+        <Button
+            onClick={() => this.handleJoinAudio(joinListenOnly, isConnected)}
+            disabled={disable}
+            hideLabel
+            aria-label={intl.formatMessage(intlMessages.joinAudio)}
+            label={intl.formatMessage(intlMessages.joinAudio)}
+            data-test="joinAudio"
+            color="default"
+            ghost
+            // icon="no_audio"
+            size="lg"
+            circle
+            accessKey={shortcuts.joinaudio}
+            customIcon={dialOff}
+        />
     );
   }
 
