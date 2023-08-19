@@ -86,18 +86,18 @@ class RaiseHandDropdown extends PureComponent {
 
     return (
       <Button
-        icon={EMOJI_STATUSES[currentUser.emoji === 'none'
+          icon={EMOJI_STATUSES[currentUser.emoji === 'none'
           ? 'raiseHand' : currentUser.emoji]}
-        label={intl.formatMessage(btnLabel)}
-        accessKey={shortcuts.raisehand}
-        color={currentUser.emoji !== 'none' ? 'primary' : 'default'}
-        data-test={currentUser.emoji === 'raiseHand' ? 'lowerHandLabel' : 'raiseHandLabel'}
-        ghost={currentUser.emoji === 'none'}
-        emoji={currentUser.emoji}
-        hideLabel
-        circle
-        size="lg"
-        onClick={(e) => {
+          label={intl.formatMessage(btnLabel)}
+          accessKey={shortcuts.raisehand}
+          color={currentUser.emoji !== 'none' ? 'success' : 'default'}
+          data-test={currentUser.emoji === 'raiseHand' ? 'lowerHandLabel' : 'raiseHandLabel'}
+          ghost={currentUser.emoji === 'none'}
+          emoji={currentUser.emoji}
+          hideLabel
+          circle
+          size="lg"
+          onClick={(e) => {
           e.stopPropagation();
           setEmojiStatus(currentUser.userId, btnEmoji);
         }}
