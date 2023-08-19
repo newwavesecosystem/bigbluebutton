@@ -165,9 +165,6 @@ const JoinVideoButton = ({
     if (actions.length === 0) return null;
     const customStyles = {top: '-3.6rem'};
 
-    const videoOff = <FontAwesomeIcon icon={faVideoSlash} size="lg"/>;
-    const videoOn = <FontAwesomeIcon icon={faVideo} size="lg"/>;
-
     return (
         <BBBMenu
             customStyles={!isMobile ? customStyles : null}
@@ -187,24 +184,27 @@ const JoinVideoButton = ({
               keepMounted: true,
               transitionDuration: 0,
               elevation: 3,
-          getcontentanchorel: null,
-          fullwidth: 'true',
-          anchorOrigin: { vertical: 'top', horizontal: 'center' },
-          transformOrigin: { vertical: 'top', horizontal: 'center' },
-        }}
-      />
+              getcontentanchorel: null,
+              fullwidth: 'true',
+              anchorOrigin: {vertical: 'top', horizontal: 'center'},
+              transformOrigin: {vertical: 'top', horizontal: 'center'},
+            }}
+        />
     );
   };
 
+  const videoOff = <FontAwesomeIcon icon={faVideoSlash} size="lg"/>;
+  const videoOn = <FontAwesomeIcon icon={faVideo} size="lg"/>;
+
   return (
-    <>
-      <Styled.OffsetBottom>
-        <Button
-            label={label}
-            data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
-            onClick={handleOnClick}
-            hideLabel
-            color={isSharing ? 'success' : 'default'}
+      <>
+        <Styled.OffsetBottom>
+          <Button
+              label={label}
+              data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
+              onClick={handleOnClick}
+              hideLabel
+              color={isSharing ? 'success' : 'default'}
             // icon={isSharing ? 'video' : 'video_off'}
             customIcon={hasVideoStream ? videoOn : videoOff}
             ghost={!isSharing}
