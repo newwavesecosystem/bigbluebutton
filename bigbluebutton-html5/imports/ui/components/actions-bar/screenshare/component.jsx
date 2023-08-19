@@ -182,7 +182,7 @@ const ScreenshareButton = ({
             ghost={!amIBroadcasting}
             hideLabel
             circle
-            size="md"
+            size="lg"
             onClick={amIBroadcasting
                 ? screenshareHasEnded
                 : () => {

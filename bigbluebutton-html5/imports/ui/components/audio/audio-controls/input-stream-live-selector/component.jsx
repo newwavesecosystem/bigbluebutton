@@ -343,7 +343,7 @@ class InputStreamLiveSelector extends Component {
             ghost={muted}
             // icon={muted ? 'mute' : 'unmute'}
             customIcon={muted ? micOff : micOn}
-            size="md"
+            size="lg"
             circle
             accessKey={shortcuts.togglemute}
             $talking={talking || undefined}
@@ -370,7 +370,7 @@ class InputStreamLiveSelector extends Component {
             hideLabel
             color="danger"
             icon={isListenOnly ? 'listen' : 'volume_level_2'}
-            size="md"
+            size="lg"
             circle
             onClick={(e) => {
               e.stopPropagation();
