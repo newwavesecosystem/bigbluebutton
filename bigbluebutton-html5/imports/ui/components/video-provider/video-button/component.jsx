@@ -206,11 +206,11 @@ const JoinVideoButton = ({
               hideLabel
               color={isSharing ? 'success' : 'default'}
             // icon={isSharing ? 'video' : 'video_off'}
-            customIcon={hasVideoStream ? videoOn : videoOff}
-            ghost={!isSharing}
-            size="md"
-            circle
-            disabled={!!disableReason}
+              customIcon={hasVideoStream ? videoOn : videoOff}
+              ghost={!isSharing}
+              size="lg"
+              circle
+              disabled={!!disableReason}
         />
         {renderUserActions()}
       </Styled.OffsetBottom>
