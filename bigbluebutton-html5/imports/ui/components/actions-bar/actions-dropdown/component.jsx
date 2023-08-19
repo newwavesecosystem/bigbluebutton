@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import {defineMessages} from 'react-intl';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 import RandomUserSelectContainer from '/imports/ui/components/common/modal/random-user/container';
@@ -8,12 +8,15 @@ import LayoutModalContainer from '/imports/ui/components/layout/modal/container'
 import BBBMenu from '/imports/ui/components/common/menu/component';
 import Styled from './styles';
 import TimerService from '/imports/ui/components/timer/service';
-import { colorPrimary } from '/imports/ui/stylesheets/styled-components/palette';
-import { PANELS, ACTIONS, LAYOUT_TYPE } from '../../layout/enums';
-import { uniqueId } from '/imports/utils/string-utils';
-import { isPresentationEnabled, isLayoutsEnabled } from '/imports/ui/services/features';
+import {colorPrimary} from '/imports/ui/stylesheets/styled-components/palette';
+import {PANELS, ACTIONS, LAYOUT_TYPE} from '../../layout/enums';
+import {uniqueId} from '/imports/utils/string-utils';
+import {isPresentationEnabled, isLayoutsEnabled} from '/imports/ui/services/features';
 import VideoPreviewContainer from '/imports/ui/components/video-preview/container';
-import { screenshareHasEnded } from '/imports/ui/components/screenshare/service';
+import {screenshareHasEnded} from '/imports/ui/components/screenshare/service';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowCircleUp} from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -397,43 +400,46 @@ class ActionsDropdown extends PureComponent {
     const availableActions = this.getAvailableActions();
     const availablePresentations = this.makePresentationItems();
     const children = availablePresentations.length > 1 && amIPresenter
-      ? availablePresentations.concat(availableActions)
-      : availableActions;
+        ? availablePresentations.concat(availableActions)
+        : availableActions;
 
-    const customStyles = { top: '-1rem' };
+    const customStyles = {top: '-1rem'};
 
     if (availableActions.length === 0 || !isMeteorConnected) {
       return null;
     }
 
+    const arrowUp = <FontAwesomeIcon icon={faArrowCircleUp} size="md"/>;
+
     return (
-      <>
-        <BBBMenu
-          customStyles={!isMobile ? customStyles : null}
-          accessKey={OPEN_ACTIONS_AK}
-          trigger={(
-            <Styled.HideDropdownButton
-              open={isDropdownOpen}
-              hideLabel
-              aria-label={intl.formatMessage(intlMessages.actionsLabel)}
-              data-test="actionsButton"
-              label={intl.formatMessage(intlMessages.actionsLabel)}
-              icon="plus"
-              color="primary"
-              size="lg"
-              circle
-              onClick={() => null}
-            />
-          )}
-          actions={children}
-          opts={{
-            id: 'actions-dropdown-menu',
-            keepMounted: true,
-            transitionDuration: 0,
-            elevation: 3,
-            getcontentanchorel: null,
-            fullwidth: 'true',
-            anchorOrigin: { vertical: 'top', horizontal: isRTL ? 'right' : 'left' },
+        <>
+          <BBBMenu
+              customStyles={!isMobile ? customStyles : null}
+              accessKey={OPEN_ACTIONS_AK}
+              trigger={(
+                  <Styled.HideDropdownButton
+                      open={isDropdownOpen}
+                      hideLabel
+                      aria-label={intl.formatMessage(intlMessages.actionsLabel)}
+                      data-test="actionsButton"
+                      label={intl.formatMessage(intlMessages.actionsLabel)}
+                      // icon="plus"
+                      // color="primary"
+                      customIcon={arrowUp}
+                      size="lg"
+                      circle
+                      onClick={() => null}
+                  />
+              )}
+              actions={children}
+              opts={{
+                id: 'actions-dropdown-menu',
+                keepMounted: true,
+                transitionDuration: 0,
+                elevation: 3,
+                getcontentanchorel: null,
+                fullwidth: 'true',
+                anchorOrigin: {vertical: 'top', horizontal: isRTL ? 'right' : 'left'},
             transformOrigin: { vertical: 'bottom', horizontal: isRTL ? 'right' : 'left' },
           }}
         />

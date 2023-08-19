@@ -2,15 +2,18 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ButtonEmoji from '/imports/ui/components/common/button/button-emoji/ButtonEmoji';
 import VideoService from '../service';
-import { defineMessages, injectIntl } from 'react-intl';
+import {defineMessages, injectIntl} from 'react-intl';
 import Styled from './styles';
 import deviceInfo from '/imports/utils/deviceInfo';
-import { debounce } from '/imports/utils/debounce';
+import {debounce} from '/imports/utils/debounce';
 import BBBMenu from '/imports/ui/components/common/menu/component';
-import { isVirtualBackgroundsEnabled } from '/imports/ui/services/features';
+import {isVirtualBackgroundsEnabled} from '/imports/ui/services/features';
 import Button from '/imports/ui/components/common/button/component';
 import VideoPreviewContainer from '/imports/ui/components/video-preview/container';
 import Settings from '/imports/ui/services/settings';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faVideo, faVideoSlash} from '@fortawesome/free-solid-svg-icons';
 
 const ENABLE_WEBCAM_SELECTOR_BUTTON = Meteor.settings.public.app.enableWebcamSelectorButton;
 const ENABLE_CAMERA_BRIGHTNESS = Meteor.settings.public.app.enableCameraBrightness;
@@ -151,37 +154,39 @@ const JoinVideoButton = ({
 
     if (shouldEnableWebcamVisualEffectsButton) {
       actions.push(
-        {
-          key: 'virtualBgSelection',
-          label: intl.formatMessage(intlMessages.visualEffects),
-          onClick: () => handleOpenAdvancedOptions((
-          ) => setPropsToPassModal({ isVisualEffects: true })),
-        },
+          {
+            key: 'virtualBgSelection',
+            label: intl.formatMessage(intlMessages.visualEffects),
+            onClick: () => handleOpenAdvancedOptions(() => setPropsToPassModal({isVisualEffects: true})),
+          },
       );
     }
 
     if (actions.length === 0) return null;
-    const customStyles = { top: '-3.6rem' };
+    const customStyles = {top: '-3.6rem'};
+
+    const videoOff = <FontAwesomeIcon icon={faVideoSlash} size="lg"/>;
+    const videoOn = <FontAwesomeIcon icon={faVideo} size="lg"/>;
 
     return (
-      <BBBMenu
-        customStyles={!isMobile ? customStyles : null}
-        trigger={(
-          <ButtonEmoji
-            emoji="device_list_selector"
-            data-test="videoDropdownMenu"
-            hideLabel
-            label={intl.formatMessage(intlMessages.videoSettings)}
-            rotate
-            tabIndex={0}
-          />
-        )}
-        actions={actions}
-        opts={{
-          id: 'video-dropdown-menu',
-          keepMounted: true,
-          transitionDuration: 0,
-          elevation: 3,
+        <BBBMenu
+            customStyles={!isMobile ? customStyles : null}
+            trigger={(
+                <ButtonEmoji
+                    emoji="device_list_selector"
+                    data-test="videoDropdownMenu"
+                    hideLabel
+                    label={intl.formatMessage(intlMessages.videoSettings)}
+                    rotate
+                    tabIndex={0}
+                />
+            )}
+            actions={actions}
+            opts={{
+              id: 'video-dropdown-menu',
+              keepMounted: true,
+              transitionDuration: 0,
+              elevation: 3,
           getcontentanchorel: null,
           fullwidth: 'true',
           anchorOrigin: { vertical: 'top', horizontal: 'center' },
@@ -199,8 +204,9 @@ const JoinVideoButton = ({
             data-test={hasVideoStream ? 'leaveVideo' : 'joinVideo'}
             onClick={handleOnClick}
             hideLabel
-            color={isSharing ? 'primary' : 'default'}
-            icon={isSharing ? 'video' : 'video_off'}
+            color={isSharing ? 'success' : 'default'}
+            // icon={isSharing ? 'video' : 'video_off'}
+            customIcon={hasVideoStream ? videoOn : videoOff}
             ghost={!isSharing}
             size="md"
             circle

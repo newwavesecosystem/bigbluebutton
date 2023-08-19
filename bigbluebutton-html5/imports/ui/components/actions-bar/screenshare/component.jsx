@@ -173,26 +173,26 @@ const ScreenshareButton = ({
       shouldAllowScreensharing
       ? (
         <Button
-          disabled={(!isMeteorConnected && !isScreenBroadcasting)}
-          icon={amIBroadcasting ? 'desktop' : 'desktop_off'}
-          data-test={dataTest}
-          label={intl.formatMessage(vLabel)}
-          description={intl.formatMessage(vDescr)}
-          color={amIBroadcasting ? 'primary' : 'default'}
-          ghost={!amIBroadcasting}
-          hideLabel
-          circle
-          size="lg"
-          onClick={amIBroadcasting
-            ? screenshareHasEnded
-            : () => {
-              if (isSafari && !ScreenshareBridgeService.HAS_DISPLAY_MEDIA) {
-                setScreenshareUnavailableModalIsOpen(true);
-              } else {
-                shareScreen(amIPresenter, handleFailure);
-              }
-            }}
-          id={amIBroadcasting ? 'unshare-screen-button' : 'share-screen-button'}
+            disabled={(!isMeteorConnected && !isScreenBroadcasting)}
+            icon={amIBroadcasting ? 'desktop' : 'desktop_off'}
+            data-test={dataTest}
+            label={intl.formatMessage(vLabel)}
+            description={intl.formatMessage(vDescr)}
+            color={amIBroadcasting ? 'primary' : 'default'}
+            ghost={!amIBroadcasting}
+            hideLabel
+            circle
+            size="md"
+            onClick={amIBroadcasting
+                ? screenshareHasEnded
+                : () => {
+                  if (isSafari && !ScreenshareBridgeService.HAS_DISPLAY_MEDIA) {
+                    setScreenshareUnavailableModalIsOpen(true);
+                  } else {
+                    shareScreen(amIPresenter, handleFailure);
+                  }
+                }}
+            id={amIBroadcasting ? 'unshare-screen-button' : 'share-screen-button'}
         />
       ) : null
     }
