@@ -340,7 +340,7 @@ class InputStreamLiveSelector extends Component {
             label={label}
             aria-label={label}
             color={!muted ? 'success' : 'danger'}
-            ghost={muted}
+            // ghost={muted}
             // icon={muted ? 'mute' : 'unmute'}
             customIcon={muted ? micOff : micOn}
             size="lg"
