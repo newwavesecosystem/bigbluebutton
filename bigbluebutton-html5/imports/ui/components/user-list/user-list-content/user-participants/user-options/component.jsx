@@ -399,7 +399,7 @@ class UserOptions extends PureComponent {
                         role="button"
                         tabIndex={0}
                     >
-                      <Icon iconName="help"/>
+                      <Icon iconName="settings"/>
                       <div>
                         <span>{`${intl.formatMessage(intlMessages.optionsLabel)}`}</span>
                       </div>

@@ -108,24 +108,28 @@ class UserMessages extends PureComponent {
 
     return (
       <Styled.Messages>
-        <Styled.Container>
-          {
-            !compact ? (
-              <Styled.MessagesTitle data-test="messageTitle">
-                {intl.formatMessage(intlMessages.messagesTitle)}
-              </Styled.MessagesTitle>
-            ) : (
-              <Styled.Separator />
-            )
-          }
-        </Styled.Container>
+        {/*<Styled.Container>*/}
+        {/*  {*/}
+        {/*    !compact ? (*/}
+        {/*      <Styled.MessagesTitle data-test="messageTitle">*/}
+        {/*        {intl.formatMessage(intlMessages.messagesTitle)}*/}
+        {/*      </Styled.MessagesTitle>*/}
+        {/*    ) : (*/}
+        {/*      <Styled.Separator />*/}
+        {/*    )*/}
+        {/*  }*/}
+        {/*</Styled.Container>*/}
         <Styled.ScrollableList
-          role="tabpanel"
-          tabIndex={0}
-          ref={(ref) => { this._msgsList = ref; }}
+            role="tabpanel"
+            tabIndex={0}
+            ref={(ref) => {
+              this._msgsList = ref;
+            }}
         >
           <Styled.List>
-            <TransitionGroup ref={(ref) => { this._msgItems = ref; }}>
+            <TransitionGroup ref={(ref) => {
+              this._msgItems = ref;
+            }}>
               {this.getActiveChats()}
             </TransitionGroup>
           </Styled.List>
