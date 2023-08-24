@@ -488,10 +488,9 @@ class InputStreamLiveSelector extends Component {
   render() {
     const {_enableDynamicDeviceSelection} = this.props;
 
-    // return _enableDynamicDeviceSelection
-    //   ? this.renderButtonsWithSelectorDevice()
-    //   :
-    this.renderButtonsWithoutSelectorDevice();
+    return _enableDynamicDeviceSelection
+        ? this.renderButtonsWithSelectorDevice()
+        : this.renderButtonsWithoutSelectorDevice();
   }
 }
 
