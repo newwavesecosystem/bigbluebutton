@@ -26,13 +26,13 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
-    bbbServerVersion: HTML5_FULL_BBB_VERSION
+    clientTitle: Konn3ct
+    appName: Konn3ct Page
+    bbbServerVersion: 2.3.2
     displayBbbServerVersion: true
-    copyright: '©2023 BigBlueButton Inc.'
-    html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    copyright: '©2023 Konn3ct'
+    html5ClientBuild: 2.3.2
+    helpLink: https://konn3ct.com/contact
     delayForUnmountOfSharedNote: 120000
     bbbTabletApp:
       enabled: true
