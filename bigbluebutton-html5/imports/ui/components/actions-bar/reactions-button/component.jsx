@@ -125,21 +125,22 @@ const ReactionsButton = (props) => {
   return (
     <BBBMenu
       trigger={(
-        // <Styled.ReactionsDropdown>
+        <Styled.ReactionsDropdown>
           <Styled.RaiseHandButton
-            data-test="reactionsButton"
-            icon="hand"
-            label={intl.formatMessage(intlMessages.reactionsLabel)}
-            description="Reactions"
-            ghost={!showEmojiPicker}
-            onKeyPress={() => {}}
-            onClick={() => setShowEmojiPicker(true)}
-            color={showEmojiPicker ? 'primary' : 'default'}
-            hideLabel
-            circle
-            size="lg"
+              data-test="reactionsButton"
+              icon="hand"
+              label={intl.formatMessage(intlMessages.reactionsLabel)}
+              description="Reactions"
+              ghost={!showEmojiPicker}
+              onKeyPress={() => {
+              }}
+              onClick={() => setShowEmojiPicker(true)}
+              color={showEmojiPicker ? 'primary' : 'default'}
+              hideLabel
+              circle
+              size="lg"
           />
-          // </Styled.ReactionsDropdown>
+        </Styled.ReactionsDropdown>
       )}
       actions={actions}
       onCloseCallback={() => handleClose()}

@@ -115,20 +115,20 @@ class RaiseHandDropdown extends PureComponent {
     return (
       <Styled.OffsetBottom>
         {this.renderRaiseHandButton()}
-        <BBBMenu
-          trigger={(
-            <>
-              <Styled.HideDropdownButton
-                emoji="device_list_selector"
-                label={intl.formatMessage(intlMessages.statusTriggerLabel)}
-                hideLabel
-                tabIndex={0}
-                rotate
-              />
-            </>
-            )}
-          actions={actions}
-        />
+        {/*<BBBMenu*/}
+        {/*  trigger={(*/}
+        {/*    <>*/}
+        {/*      <Styled.HideDropdownButton*/}
+        {/*        emoji="device_list_selector"*/}
+        {/*        label={intl.formatMessage(intlMessages.statusTriggerLabel)}*/}
+        {/*        hideLabel*/}
+        {/*        tabIndex={0}*/}
+        {/*        rotate*/}
+        {/*      />*/}
+        {/*    </>*/}
+        {/*    )}*/}
+        {/*  actions={actions}*/}
+        {/*/>*/}
       </Styled.OffsetBottom>
     );
   }
