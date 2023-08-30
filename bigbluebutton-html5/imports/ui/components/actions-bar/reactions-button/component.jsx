@@ -125,7 +125,7 @@ const ReactionsButton = (props) => {
   return (
     <BBBMenu
       trigger={(
-        <Styled.ReactionsDropdown>
+        // <Styled.ReactionsDropdown>
           <Styled.RaiseHandButton
             data-test="reactionsButton"
             icon="hand"
@@ -139,7 +139,7 @@ const ReactionsButton = (props) => {
             circle
             size="lg"
           />
-        </Styled.ReactionsDropdown>
+          // </Styled.ReactionsDropdown>
       )}
       actions={actions}
       onCloseCallback={() => handleClose()}
