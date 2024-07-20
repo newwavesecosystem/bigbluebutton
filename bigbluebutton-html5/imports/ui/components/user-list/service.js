@@ -725,10 +725,10 @@ export const getUserNamesLink = (docTitle, fnSortedLabel, lnSortedLabel) => {
   const link = document.createElement('a');
   const meeting = Meetings.findOne({ meetingId: Auth.meetingID },
     { fields: { 'meetingProp.name': 1 } });
-  link.setAttribute('download', `bbb-${meeting.meetingProp.name}[users-list]_${getDateString()}.txt`);
+  link.setAttribute('download', `Spot-attendance-${meeting.meetingProp.name}[users-list]_${getDateString()}.txt`);
   link.setAttribute(
-    'href',
-    `data: ${mimeType};charset=utf-16,${encodeURIComponent(namesListsString)}`,
+      'href',
+      `data: ${mimeType};charset=utf-16,${encodeURIComponent(namesListsString)}`,
   );
   return link;
 };

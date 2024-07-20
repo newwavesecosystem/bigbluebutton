@@ -630,7 +630,7 @@ class VideoPreview extends Component {
       },
     }, `Failed to toggle virtual background: ${error.message}`);
 
-    notify(intl.formatMessage(intlMessages.virtualBgGenericError), 'error', 'video');
+    // notify(intl.formatMessage(intlMessages.virtualBgGenericError), 'error', 'video');
   }
 
   updateDeviceId (deviceId) {
